@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "maring:mar_iron_ore",
+    "maring:mar_deep_iron_ore",
+    "maring:mar_stone",
+    "maring:mar_deep_stone",
+    "maring:mar_gold_ore",
+    "maring:mar_deep_gold_ore",
+    "maring:mar_copper_ore",
+    "maring:mar_deep_copper_ore",
+    "maring:mar_deep_emerald_ore",
+    "maring:mar_deep_ominous_ore"
+  ]
+}

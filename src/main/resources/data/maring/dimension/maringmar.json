@@ -1,0 +1,138 @@
+{
+  "type": "maring:maringmar",
+  "generator": {
+    "type": "minecraft:noise",
+    "settings": "minecraft:overworld",
+    "biome_source": {
+      "type": "minecraft:multi_noise",
+      "biomes": [
+        {
+          "biome": "maring:maring_very_hotground",
+          "parameters": {
+            "temperature": [
+              0.75,
+              1
+            ],
+            "humidity": [
+              -1,
+              1
+            ],
+            "continentalness": 0,
+            "erosion": 0,
+            "weirdness": 0,
+            "depth": 0,
+            "offset": 0
+          }
+        },
+        {
+          "biome": "maring:maring_hotground",
+          "parameters": {
+            "temperature": [
+              0.5,
+              0.75
+            ],
+            "humidity": [
+              -1,
+              0.5
+            ],
+            "continentalness": 0,
+            "erosion": 0,
+            "weirdness": 0,
+            "depth": 0,
+            "offset": 0
+          }
+        },
+        {
+          "biome": "maring:maring_normalground",
+          "parameters": {
+            "temperature": [
+              -0.5,
+              0.5
+            ],
+            "humidity": [
+              -1,
+              0.2
+            ],
+            "continentalness": 0,
+            "erosion": 0,
+            "weirdness": 0,
+            "depth": 0,
+            "offset": 0
+          }
+        },
+        {
+          "biome": "maring:maring_coldground",
+          "parameters": {
+            "temperature": [
+              -1,
+              -0.5
+            ],
+            "humidity": [
+              -1,
+              0.2
+            ],
+            "continentalness": 0,
+            "erosion": 0,
+            "weirdness": 0,
+            "depth": 0,
+            "offset": 0
+          }
+        },
+        {
+          "biome": "maring:maring_hot_dryriverbed ",
+          "parameters": {
+            "temperature": [
+              0.5,
+              0.75
+            ],
+            "humidity": [
+              0.5,
+              1
+            ],
+            "continentalness": 0,
+            "erosion": 0,
+            "weirdness": 0,
+            "depth": 0,
+            "offset": 0
+          }
+        },
+        {
+          "biome": "maring:maring_normal_dryriverbed.json",
+          "parameters": {
+            "temperature": [
+              -0.5,
+              0.5
+            ],
+            "humidity": [
+              0.2,
+              1
+            ],
+            "continentalness": 0,
+            "erosion": 0,
+            "weirdness": 0,
+            "depth": 0,
+            "offset": 0
+          }
+        },
+        {
+          "biome": "maring:maring_cold_dryriverbed",
+          "parameters": {
+            "temperature": [
+              -1,
+              -0.5
+            ],
+            "humidity": [
+              0.2,
+              1
+            ],
+            "continentalness": 0,
+            "erosion": 0,
+            "weirdness": 0,
+            "depth": 0,
+            "offset": 0
+          }
+        }
+      ]
+    }
+  }
+}

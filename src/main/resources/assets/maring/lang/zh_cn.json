@@ -1,0 +1,31 @@
+{
+  "block.maring.mar_surface": "火星表层土",
+  "block.maring.mar_stone": "火星石",
+  "block.maring.mar_deep_stone": "火星底层石",
+  "block.maring.mar_iron_ore": "火星铁矿石",
+  "block.maring.mar_deep_iron_ore": "火星深层铁矿石",
+  "block.maring.mar_gold_ore": "火星金矿石",
+  "block.maring.mar_deep_gold_ore": "火星深层矿石",
+  "block.maring.mar_copper_ore": "火星铜矿石",
+  "block.maring.mar_deep_copper_ore": "火星深层铜矿石",
+  "block.maring.mar_deep_emerald_ore": "火星绿宝石矿石",
+  "block.maring.mar_deep_ominous_ore": "荧惑矿石",
+  
+  "item.maring.rubbish": "垃圾食品",
+  "item.maring.bread_can": "面包罐头",
+  "item.maring.carrot_can": "萝卜罐头",
+  "item.maring.potato_can": "土豆罐头",
+  "item.maring.beef_can": "牛肉罐头",
+  "item.maring.pork_can": "猪肉罐头",
+  "item.maring.lamb_can": "羊肉罐头",
+  "item.maring.fish_can": "鱼肉罐头",
+  "item.maring.rabbit_can": "兔子罐头",
+  "item.maring.ominous_cake": "荧惑糕",
+  
+  "effect.maring.fulling": "饱腹",
+  "effect.maring.mental_abuse": "精神错乱",
+  "effect.maring.ominous_luck": "荧惑",
+  
+  "mar_main_block_tab": "火星-方块",
+  "mar_food_tab": "火星-事物"
+}

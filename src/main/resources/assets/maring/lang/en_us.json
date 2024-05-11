@@ -1,0 +1,31 @@
+{
+  "block.maring.mar_surface": "mar surface dirt",
+  "block.maring.mar_stone": "mar stone",
+  "block.maring.mar_deep_stone": "mar deep stone",
+  "block.maring.mar_iron_ore": "mar iron ore",
+  "block.maring.mar_deep_iron_ore": "mar deep iron ore",
+  "block.maring.mar_gold_ore": "mar gold ore",
+  "block.maring.mar_deep_gold_ore": "mar deep gold ore",
+  "block.maring.mar_copper_ore": "mar copper ore",
+  "block.maring.mar_deep_copper_ore": "mar deep copper ore",
+  "block.maring.mar_deep_emerald_ore": "mar deep emerald ore",
+  "block.maring.mar_deep_ominous_ore": "Ares ore",
+  
+  "item.maring.rubbish": "rubbish food",
+  "item.maring.bread_can": "bread can",
+  "item.maring.carrot_can": "carrot can",
+  "item.maring.potato_can": "potato can",
+  "item.maring.beef_can": "beef can",
+  "item.maring.pork_can": "pork can",
+  "item.maring.lamb_can": "lamb can",
+  "item.maring.fish_can": "fish can",
+  "item.maring.rabbit_can": "rabbit_can",
+  "item.maring.ominous_cake": "mar' cake",
+  
+  "effect.maring.fulling": "full",
+  "effect.maring.mental_abuse": "mental disorder",
+  "effect.maring.ominous_luck": "mar's luck",
+  
+  "mar_main_block_tab": "mar-main block tab",
+  "mar_food_tab": "mar-food tab"
+}
