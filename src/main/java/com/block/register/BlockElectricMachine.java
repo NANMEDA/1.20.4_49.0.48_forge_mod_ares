@@ -1,13 +1,12 @@
 package com.block.register;
 
-import net.minecraft.world.level.material.MapColor;
-import net.minecraft.world.level.block.SoundType;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.block.register.BlockJSON;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.material.MapColor;
 
-public class BlockBasic {
+public class BlockElectricMachine {
     private static final Map<Integer, String> BLOCK_NAME = new HashMap<>();
     private static final Map<Integer, MapColor> MAP_COLORS = new HashMap<>();
     private static final Map<Integer, SoundType> SOUNDS = new HashMap<>();
@@ -29,23 +28,11 @@ public class BlockBasic {
     static float[] deep_ore_strength = new float[]{4.0F, 6.0F};
     
     static {
-        addBlock(0,"mar_surface",MapColor.COLOR_ORANGE,SoundType.SAND,dirt_strength,false,"shovel",0);
-        addBlock(1,"mar_stone",MapColor.COLOR_RED,SoundType.STONE,stone_strength,true,"pickaxe",0);
-        addBlock(2,"mar_deep_stone",MapColor.COLOR_RED,SoundType.STONE,ore_strength,true,"pickaxe",0);
-        addBlock(3,"mar_iron_ore",MapColor.COLOR_LIGHT_GRAY,SoundType.STONE,ore_strength,true,"pickaxe",1);
-        addBlock(4,"mar_deep_iron_ore",MapColor.COLOR_GRAY,SoundType.STONE,deep_ore_strength,true,"pickaxe",1);
-        addBlock(5,"mar_gold_ore",MapColor.COLOR_LIGHT_GRAY,SoundType.STONE,ore_strength,true,"pickaxe",2);
-        addBlock(6,"mar_deep_gold_ore",MapColor.COLOR_GRAY,SoundType.STONE,deep_ore_strength,true,"pickaxe",2);
-        addBlock(7,"mar_copper_ore",MapColor.COLOR_ORANGE,SoundType.STONE,ore_strength,true,"pickaxe",1);
-        addBlock(8,"mar_deep_copper_ore",MapColor.COLOR_ORANGE,SoundType.STONE,deep_ore_strength,true,"pickaxe",1);
-        addBlock(9,"mar_deep_emerald_ore",MapColor.COLOR_GREEN,SoundType.STONE,deep_ore_strength,true,"pickaxe",2);    
+        addBlock(0,"electric_oven",MapColor.COLOR_GRAY,SoundType.STONE,deep_ore_strength,false,"pickaxe",0);
+        addBlock(1,"sunn",MapColor.COLOR_GRAY,SoundType.STONE,deep_ore_strength,false,"pickaxe",0);   
     }
     
-    static {
-    	addBlock(10,"mar_deep_ominous_ore",MapColor.COLOR_BLACK,SoundType.STONE,new float[]{20.0F, 50.0F},true,"pickaxe",3);
-    }
-    
-    public static int BLOCK_BASIC_NUMBER = BLOCK_NAME.size();
+    public static int BLOCK_ELECTRIC_NUMBER = BLOCK_NAME.size();
      
     static {
     for (Map.Entry<Integer, String> entry : BLOCK_NAME.entrySet()) {

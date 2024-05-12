@@ -19,13 +19,14 @@
   "item.maring.pork_can": "pork can",
   "item.maring.lamb_can": "lamb can",
   "item.maring.fish_can": "fish can",
-  "item.maring.rabbit_can": "rabbit_can",
+  "item.maring.rabbit_can": "rabbit can",
+  "item.maring.chicken_can": "chicken can",
   "item.maring.ominous_cake": "mar' cake",
   
   "effect.maring.fulling": "full",
   "effect.maring.mental_abuse": "mental disorder",
   "effect.maring.ominous_luck": "mar's luck",
   
-  "mar_main_block_tab": "mar-main block tab",
-  "mar_food_tab": "mar-food tab"
+  "mar_main_block_tab": "Ares-main block tab",
+  "mar_food_tab": "Ares-food tab"
 }

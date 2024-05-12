@@ -7,7 +7,9 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class EffectRegister {
-	public static final DeferredRegister<MobEffect> EFFECTS = DeferredRegister.create(ForgeRegistries.MOB_EFFECTS,"maring");
+	public static final String MODID = "maring";
+	
+	public static final DeferredRegister<MobEffect> EFFECTS = DeferredRegister.create(ForgeRegistries.MOB_EFFECTS,MODID);
 	
     public static final RegistryObject<MobEffect> FULLING = EFFECTS.register("fulling", () ->
     new EffectFulling(MobEffectCategory.BENEFICIAL, 0xff3333, false,1));

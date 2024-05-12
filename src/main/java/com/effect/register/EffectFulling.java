@@ -25,7 +25,10 @@ public class EffectFulling extends EffectMain {
             Player player = (Player) living;
             int currentHunger = player.getFoodData().getFoodLevel();
             int newHunger = currentHunger + (int)(1F * this.amplified);
+            float currentSaturation = player.getFoodData().getSaturationLevel();
+            float newSaturation = currentSaturation + (int)(1F * this.amplified);
             player.getFoodData().setFoodLevel(Math.min(newHunger, 20));
+            player.getFoodData().setSaturation(Math.min(newSaturation, 20));
         }
     }
     
