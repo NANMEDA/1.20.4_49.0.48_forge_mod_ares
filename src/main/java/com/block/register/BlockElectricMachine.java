@@ -29,7 +29,6 @@ public class BlockElectricMachine {
     
     static {
         addBlock(0,"electric_oven",MapColor.COLOR_GRAY,SoundType.STONE,deep_ore_strength,false,"pickaxe",0);
-        addBlock(1,"sunn",MapColor.COLOR_GRAY,SoundType.STONE,deep_ore_strength,false,"pickaxe",0);   
     }
     
     public static int BLOCK_ELECTRIC_NUMBER = BLOCK_NAME.size();

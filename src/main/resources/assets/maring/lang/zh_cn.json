@@ -11,6 +11,8 @@
   "block.maring.mar_deep_emerald_ore": "火星绿宝石矿石",
   "block.maring.mar_deep_ominous_ore": "荧惑矿石",
   
+  "block.maring.powerstation_burn": "火力发电机",
+  
   "item.maring.rubbish": "垃圾食品",
   "item.maring.bread_can": "面包罐头",
   "item.maring.carrot_can": "萝卜罐头",
@@ -28,5 +30,7 @@
   "effect.maring.ominous_luck": "？",
   
   "mar_main_block_tab": "阿瑞斯-方块",
-  "mar_food_tab": "阿瑞斯-食物"
+  "mar_food_tab": "阿瑞斯-食物",
+  
+  "menu.powerstation_burn": "火力发电站"
 }

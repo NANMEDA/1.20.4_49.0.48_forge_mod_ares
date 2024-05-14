@@ -10,6 +10,7 @@
   "block.maring.mar_deep_copper_ore": "mar deep copper ore",
   "block.maring.mar_deep_emerald_ore": "mar deep emerald ore",
   "block.maring.mar_deep_ominous_ore": "Ares ore",
+  "block.maring.powerstation_burn": "thermal power generator",
   
   "item.maring.rubbish": "rubbish food",
   "item.maring.bread_can": "bread can",
@@ -28,5 +29,7 @@
   "effect.maring.ominous_luck": "mar's luck",
   
   "mar_main_block_tab": "Ares-main block tab",
-  "mar_food_tab": "Ares-food tab"
+  "mar_food_tab": "Ares-food tab",
+  
+  "menu.powerstation_burn": "thermal power plant"
 }

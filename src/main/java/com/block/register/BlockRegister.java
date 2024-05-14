@@ -1,11 +1,13 @@
 package com.block.register;
 
 import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -28,6 +30,9 @@ public class BlockRegister {
     public static final RegistryObject<Block>[] ELECTRIC_BLOCKS = new RegistryObject[BlockElectricMachine.BLOCK_ELECTRIC_NUMBER];
     public static final RegistryObject<Item>[] ELECTRIC_BLOCK_ITEMS = new RegistryObject[BlockElectricMachine.BLOCK_ELECTRIC_NUMBER];
     
+    public static final RegistryObject<Block> PowerStationBurn_BLOCKS;
+    public static final RegistryObject<Item> PowerStationBurn_BLOCKS_ITEM;
+    
     static {
         IntStream.range(0, BlockBasic.BLOCK_BASIC_NUMBER).forEach(i -> {
         	COMMON_BLOCKS[i] = BLOCKS.register(BlockBasic.getBlockName(i), () -> {
@@ -45,7 +50,7 @@ public class BlockRegister {
         IntStream.range(0, BlockElectricMachine.BLOCK_ELECTRIC_NUMBER).forEach(i -> {
         	ELECTRIC_BLOCKS[i] = BLOCKS.register(BlockElectricMachine.getBlockName(i), () -> {
         	    BlockBehaviour.Properties properties = BlockBehaviour.Properties.of()
-        	    		.noOcclusion()
+        	    		//.noOcclusion()
         	            .sound(BlockElectricMachine.getBlockSound(i))
         	            .strength(BlockElectricMachine.getBlockStrength(i)[0], BlockElectricMachine.getBlockStrength(i)[1])
         	            .mapColor(BlockElectricMachine.getBlockMapColor(i));
@@ -57,5 +62,14 @@ public class BlockRegister {
         	});
         	ELECTRIC_BLOCK_ITEMS[i] = BLOCK_ITEMS.register(BlockElectricMachine.getBlockName(i), () -> new BlockItem(ELECTRIC_BLOCKS[i].get(), new Item.Properties()));
         });
+        
+
+    	PowerStationBurn_BLOCKS = BLOCKS.register("powerstation_burn", () -> {
+    		return new PowerStationBurn(BlockBehaviour.Properties.of()
+    	            .sound(SoundType.STONE)
+    	            .strength(5f,5f)
+    	            .mapColor(MapColor.COLOR_GRAY)); 
+    	});
+    	PowerStationBurn_BLOCKS_ITEM = BLOCK_ITEMS.register("powerstation_burn", () -> new BlockItem(PowerStationBurn_BLOCKS.get(), new Item.Properties()));
     }
 }
