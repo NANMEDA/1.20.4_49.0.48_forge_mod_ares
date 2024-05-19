@@ -46,5 +46,6 @@ public class CreativeTabsRegister {
                 	output.accept(BlockRegister.ELECTRIC_BLOCK_ITEMS[i].get());
                 });
                 output.accept(BlockRegister.PowerStationBurn_BLOCKS_ITEM.get());
+                output.accept(BlockRegister.canfoodmaker_BLOCK_ITEM.get());
             }).build());
 }

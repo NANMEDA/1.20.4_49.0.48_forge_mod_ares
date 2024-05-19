@@ -1,70 +1,45 @@
 package com.block.register;
 
-import net.minecraft.world.level.block.EntityBlock;
-
-
-import net.minecraftforge.common.extensions.IForgeServerPlayer;
-import net.minecraft.world.level.block.HorizontalDirectionalBlock;
-import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityTicker;
-import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.MapColor;
-import net.minecraft.world.level.pathfinder.PathComputationType;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.Shapes;
-import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.network.NetworkDirection;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
-
-import java.nio.channels.NetworkChannel;
-import java.security.PublicKey;
-import java.util.Map;
-import java.util.stream.IntStream;
-
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import com.menu.register.CanfoodMakerMenuProvider;
 import com.menu.register.PowerStationMenuProvider;
 import com.mojang.serialization.MapCodec;
 
+import block.entity.register.CanfoodMakerEntity;
 import block.entity.register.PowerStationBurnEntity;
-import net.minecraft.SystemReport;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.protocol.game.ClientboundMoveEntityPacket.Pos;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.server.rcon.NetworkDataOutputStream;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Item.Properties;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
-//import net.minecraftforge.common.Tags.Blocks;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraft.world.level.pathfinder.PathComputationType;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.common.extensions.IForgeServerPlayer;
 
-public class PowerStationBurn extends HorizontalDirectionalBlock implements EntityBlock {
-	public static String global_name = "powerstation_burn"; 
+public class BlockCanfoodMaker extends HorizontalDirectionalBlock implements EntityBlock {
+	public static String global_name = "canfood_maker"; 
 	
-	public PowerStationBurn(Properties properties) {
+	public BlockCanfoodMaker(Properties properties) {
 		super(properties);
 	}
 
 	@Nullable
 	@Override
 	public BlockEntity newBlockEntity(BlockPos pos, BlockState pBlockState) {
-		return new PowerStationBurnEntity(pos, pBlockState);
+		return new CanfoodMakerEntity(pos, pBlockState);
 	}
 	
 	@Override
@@ -83,13 +58,13 @@ public class PowerStationBurn extends HorizontalDirectionalBlock implements Enti
 		super.use(blockstate,level,pos,player,interactionhand,blockHitResult);
 		if(!level.isClientSide()) {
 			var BlockEntity = level.getBlockEntity(pos);
-			if(BlockEntity instanceof PowerStationBurnEntity entity) {
+			if(BlockEntity instanceof CanfoodMakerEntity entity) {
 				player = (ServerPlayer) player;
 				IForgeServerPlayer ifpe = (IForgeServerPlayer)player;
-				ifpe.openMenu(new PowerStationMenuProvider(pos), pos);
+				ifpe.openMenu(new CanfoodMakerMenuProvider(pos), pos);
 				
 			}else {
-				throw new IllegalStateException("missing block-powerstation_burn");
+				throw new IllegalStateException("missing block-canfood_maker");
 			}
 		}
 		return InteractionResult.SUCCESS;
@@ -101,13 +76,13 @@ public class PowerStationBurn extends HorizontalDirectionalBlock implements Enti
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pBlockState, BlockEntityType<T> pBlockEntityType) {
 	     if(pLevel.isClientSide()) {
 	    	 return (level,pos,state,blockentity) -> {
-	    		 if(blockentity instanceof PowerStationBurnEntity entity) {
+	    		 if(blockentity instanceof CanfoodMakerEntity entity) {
 	    			 entity.clienttick();
 	    		 }
 	    	 };
 	     }else {
     		 return (level,pos,state,blockentity) -> {
-	    		 if(blockentity instanceof PowerStationBurnEntity entity) {
+	    		 if(blockentity instanceof CanfoodMakerEntity entity) {
 	    			 entity.servertick();
 	    		 } 
 	    	 };
@@ -132,3 +107,4 @@ public class PowerStationBurn extends HorizontalDirectionalBlock implements Enti
 	        BlockJSON.GenLootTableJSONBasic(global_name);
 	    	}
 }
+

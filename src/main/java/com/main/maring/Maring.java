@@ -8,7 +8,12 @@ import com.effect.register.EffectRegister;
 import com.item.register.*;
 import com.menu.register.MenuRegister;
 import com.mojang.logging.LogUtils;
+
+import animal.client.model.JumpSpiderModel;
+import animal.client.render.JumpSpiderRenderer;
+import animal.entity.MonsterRegister;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.food.FoodProperties;
@@ -21,6 +26,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -57,6 +63,7 @@ public class Maring
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
+        modEventBus.addListener(this::clientSetup);
             // Initialize EffectRegister class
        
         EffectRegister.EFFECTS.register(modEventBus);
@@ -67,10 +74,11 @@ public class Maring
         block.entity.register.BlockEntityRegister.BLOCKENTITIES.register(modEventBus);
         MenuRegister.MENU_TYPES.register(modEventBus);
         CreativeTabsRegister.CREATIVE_MODE_TABS.register(modEventBus);
+        MonsterRegister.ENTITY_TYPES.register(modEventBus);
         
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
-        
+
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
 
@@ -86,23 +94,19 @@ public class Maring
 
         Config.items.forEach((item) -> LOGGER.info("ITEM >> {}", item.toString()));
     }
-
-    // Add the example block item to the building blocks tab
-    /*
-    private void addCreative(BuildCreativeModeTabContentsEvent event)
-    {
-        if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS)
-            event.accept(EXAMPLE_BLOCK_ITEM);
+    
+    private void clientSetup(final FMLClientSetupEvent event) {
+        LOGGER.info("HELLO FROM CLIENT SETUP");
     }
-     */
-    // You can use SubscribeEvent and let the Event Bus discover methods to call
+
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event)
     {
         // Do something when the server starts
         LOGGER.info("HELLO from server starting");
     }
-
+    
+    
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
     @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents
@@ -113,6 +117,16 @@ public class Maring
             // Some client setup code
             LOGGER.info("HELLO FROM CLIENT SETUP");
             LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
+            
+            event.enqueueWork(()->{
+                EntityRenderers.register(MonsterRegister.JUMP_SPIDER.get(), JumpSpiderRenderer::new);
+            }); 
         }
+        
+        
+		@SubscribeEvent
+	    public static void registerEntityLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
+	        event.registerLayerDefinition(JumpSpiderModel.LAYER_LOCATION,JumpSpiderModel::createBodyLayer);
+	    } 
     }
 }

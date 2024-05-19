@@ -19,4 +19,7 @@ public class BlockEntityRegister {
 	public static final RegistryObject<BlockEntityType<PowerStationBurnEntity>> PowerStationBurn_BLOCKENTITY = 
 			BLOCKENTITIES.register("powerstation_burn", () -> BlockEntityType.Builder.of(PowerStationBurnEntity::new, BlockRegister.PowerStationBurn_BLOCKS.get()).build(null));
 
+	public static final RegistryObject<BlockEntityType<CanfoodMakerEntity>> canfoodmaker_BLOCKENTITY = 
+			BLOCKENTITIES.register("canfood_maker", () -> BlockEntityType.Builder.of(CanfoodMakerEntity::new, BlockRegister.canfoodmaker_BLOCK.get()).build(null));
+
 }

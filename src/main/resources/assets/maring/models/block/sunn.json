@@ -1,5 +1,0 @@
-{
-  "loader": "forge:obj",
-  "custom": { "flip-v": true },
-  "model": "maring:models/block/sunn.obj"
-}

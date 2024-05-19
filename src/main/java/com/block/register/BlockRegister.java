@@ -32,6 +32,8 @@ public class BlockRegister {
     
     public static final RegistryObject<Block> PowerStationBurn_BLOCKS;
     public static final RegistryObject<Item> PowerStationBurn_BLOCKS_ITEM;
+    public static final RegistryObject<Block> canfoodmaker_BLOCK;
+    public static final RegistryObject<Item> canfoodmaker_BLOCK_ITEM;
     
     static {
         IntStream.range(0, BlockBasic.BLOCK_BASIC_NUMBER).forEach(i -> {
@@ -64,12 +66,23 @@ public class BlockRegister {
         });
         
 
-    	PowerStationBurn_BLOCKS = BLOCKS.register("powerstation_burn", () -> {
+    	PowerStationBurn_BLOCKS = BLOCKS.register(PowerStationBurn.global_name, () -> {
     		return new PowerStationBurn(BlockBehaviour.Properties.of()
     	            .sound(SoundType.STONE)
     	            .strength(5f,5f)
     	            .mapColor(MapColor.COLOR_GRAY)); 
     	});
-    	PowerStationBurn_BLOCKS_ITEM = BLOCK_ITEMS.register("powerstation_burn", () -> new BlockItem(PowerStationBurn_BLOCKS.get(), new Item.Properties()));
+    	PowerStationBurn_BLOCKS_ITEM = BLOCK_ITEMS.register(PowerStationBurn.global_name, () -> new BlockItem(PowerStationBurn_BLOCKS.get(), new Item.Properties()));
+    	
+    	canfoodmaker_BLOCK = BLOCKS.register(BlockCanfoodMaker.global_name, () -> {
+    		return new BlockCanfoodMaker(BlockBehaviour.Properties.of()
+    	            .sound(SoundType.STONE)
+    	            .strength(5f,5f)
+    	            .mapColor(MapColor.COLOR_GRAY)); 
+    	});
+    	canfoodmaker_BLOCK_ITEM = BLOCK_ITEMS.register(BlockCanfoodMaker.global_name, () -> new BlockItem(canfoodmaker_BLOCK.get(), new Item.Properties()));
+
+    
+    
     }
 }

@@ -1,7 +1,5 @@
 package block.entity.register;
 
-import org.jetbrains.annotations.NotNull;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
@@ -20,14 +18,11 @@ import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraft.core.Direction;
 
-public class PowerStationBurnEntity extends PowerStationEntity {
-	private float temperature=20.0f;
-	private short heat=0;
-	
+public class PowerStationSunEntity extends PowerStationEntity {
 	//public int energy_output=0;
-	private int FULL_ENERGY_OUTPUT = 20;
+	private int FULL_ENERGY_OUTPUT = 6;
 	
-	public PowerStationBurnEntity(BlockPos pos, BlockState pBlockState) {
+	public PowerStationSunEntity(BlockPos pos, BlockState pBlockState) {
 		super(BlockEntityRegister.PowerStationBurn_BLOCKENTITY.get(), pos, pBlockState);
 	}
 	/*
@@ -60,27 +55,16 @@ public class PowerStationBurnEntity extends PowerStationEntity {
 		return item;
 	}
 	*/
-	
 	private final String TAG_NAME = "Item";
-	private final String TAG_HEAT = "HEAT";
-	private final String TAG_TEMPERATURE = "TAG_TEMPERATURE";
 	
 	@Override
 	protected void savedata(CompoundTag tag) {
 		tag.put(TAG_NAME, item.serializeNBT());
-		tag.putShort(TAG_HEAT, heat);
-		tag.putFloat(TAG_TEMPERATURE, temperature);
 	}
 	@Override
 	protected void loaddata(CompoundTag tag) {
 		if(tag.contains(TAG_NAME)) {
 			item.deserializeNBT(tag.getCompound(TAG_NAME));
-		}
-		if(tag.contains(TAG_HEAT)) {
-			heat = tag.getShort(TAG_HEAT);
-		}
-		if(tag.contains(TAG_TEMPERATURE)) {
-			temperature = tag.getFloat(TAG_TEMPERATURE);
 		}
 	}
 	/*
@@ -128,56 +112,15 @@ public class PowerStationBurnEntity extends PowerStationEntity {
 	@Override
 	public void servertick() {
 		ItemStack stack = item.getStackInSlot(0);
-		if(!stack.isEmpty()) {
-			int burntime = ForgeHooks.getBurnTime(stack, RecipeType.SMELTING);
-			if(burntime>0 && heat < 10000) {
-				heat += (int)burntime*2.0;
-				item.extractItem(0, 1, false);
-			}
-			if(heat>15000) {heat=15000;}
-		}
-		if(heat>5000) {heat-=1;}
-		if(heat>1000) {heat-=1;}
-		else if(heat>0) {heat -= 1;}
-		
-		if(heat>7000) {
-			if(temperature<100f&&temperature>80f) {
-				temperature+=0.01f;
-			}else if(temperature<=80&&temperature>60) {temperature+=0.03f;}
-			else {temperature+=0.05f;}
-		}
-		else if(heat>4000) {
-			if(temperature<100f&&temperature>70f) {
-				temperature+=0.01f;
-			}else if(temperature<=70f) {temperature+=0.03f;}
-		}else if(heat>500) {
-			if(temperature>80f) {
-				temperature-=0.01f;
-			}else if(temperature>50f) {
-				temperature+=0.01f;
-			}else {temperature+=0.02f;}
-		}else {
-			if(temperature>50f) {temperature-=0.03f;}
-			else if(temperature>20f) {temperature-=0.01f;}
-		}
-		if(temperature>100f) {temperature=100f;}
-		
-		float steam = temperature-50.0f;
-		if(steam>0f && steam<40f) {
-			energy_output = (int) (steam/40.0*(FULL_ENERGY_OUTPUT-10)+10);
-		}else if(steam>=40f) {
+		if(level.getSkyDarken()>9) {
 			energy_output = FULL_ENERGY_OUTPUT;
+		}else if(level.getSkyDarken()>3) {
+			//energy_output = (int) (FULL_ENERGY_OUTPUT*(level.getSkyDarken()-3)/6f);
+			energy_output = level.getSkyDarken()-3;
 		}else {
 			energy_output = 0;
 		}
-		
-		//理论上，比如一个木板燃烧300tik，*2=600heat,假如维持Heat==4000；可以持续300tik==15s;假如维持Heat==8000；可以持续200tik==10s;
-		//15s*20=300 maring J，10s*20=200 maring J
 		//一个木板 = 200到300 maring J。
-		
-		System.out.println("heat = " + heat);
-		System.out.println("temperature = " + temperature);
-		System.out.println("energy_output = " + energy_output);
 		setChanged();
 	    }
 	@Override

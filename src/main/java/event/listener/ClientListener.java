@@ -6,6 +6,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+
+import com.menu.register.CanfoodMakerScreen;
 import com.menu.register.MenuRegister;
 import com.menu.register.PowerStationBurnScreen;
 
@@ -14,5 +16,8 @@ public class ClientListener {
 	@SubscribeEvent
 	public static void ScreenRegister(FMLClientSetupEvent event) {
 		event.enqueueWork(()->MenuScreens.register(MenuRegister.POWERSTATIONBURN_MENU.get(), PowerStationBurnScreen::new));
+		
+		event.enqueueWork(()->MenuScreens.register(MenuRegister.CANFOODMAKER_MENU.get(), CanfoodMakerScreen::new));
 	}
+	
 }

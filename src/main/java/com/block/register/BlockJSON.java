@@ -28,7 +28,7 @@ public class BlockJSON {
 	    Gson gson = new GsonBuilder().setPrettyPrinting().create();
 	    try (FileWriter fileWriter = new FileWriter(file)) {
 	        gson.toJson(jsonObject, fileWriter);
-	        System.out.println("JSON生成！");
+	        System.out.println("JSON生成！Block-model:"+name);
 	    } catch (IOException e) {
 	        e.printStackTrace();
 	    }
@@ -51,7 +51,7 @@ public class BlockJSON {
 	    Gson gson = new GsonBuilder().setPrettyPrinting().create();
 	    try (FileWriter fileWriter = new FileWriter(file)) {
 	        gson.toJson(jsonObject, fileWriter);
-	        System.out.println("JSON生成！");
+	        System.out.println("JSON生成！Blockstate：" + name);
 	    } catch (IOException e) {
 	        e.printStackTrace();
 	    }
@@ -70,7 +70,7 @@ public class BlockJSON {
 	    Gson gson = new GsonBuilder().setPrettyPrinting().create();
 	    try (FileWriter fileWriter = new FileWriter(file)) {
 	        gson.toJson(jsonObject, fileWriter);
-	        System.out.println("JSON生成！");
+	        System.out.println("JSON生成！Item：" + name);
 	    } catch (IOException e) {
 	        e.printStackTrace();
 	    }
@@ -104,7 +104,7 @@ public class BlockJSON {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             String jsonString = gson.toJson(lootTable);
             fileWriter.write(jsonString);
-            System.out.println("JSON生成！");
+            System.out.println("JSON生成！战利表：" + name);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -142,6 +142,8 @@ public class BlockJSON {
         JsonPrimitive newElement = new JsonPrimitive("maring:" + name);
         if (!values.contains(newElement)) {
             values.add(newElement);
+        }else {
+        	return;
         }
 
         json.add("values", values);
@@ -149,7 +151,7 @@ public class BlockJSON {
         try (FileWriter fileWriter = new FileWriter(file)) {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             gson.toJson(json, fileWriter);
-            System.out.println("JSON 生成！");
+            System.out.println("JSON 生成修改了"+tool);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -162,7 +164,7 @@ public class BlockJSON {
     	    case 1 -> tool = "needs_stone_tool";
     	    case 2 -> tool = "needs_iron_tool";
     	    case 3 -> tool = "needs_diamond_tool";
-    	    default -> throw new IllegalArgumentException("Unexpected value: " + level);
+    	    default -> throw new IllegalArgumentException("Unexpected tool_level needs: level = " + level);
     	}
         if(tool == null) {return;}
         File file = new File("/forge-1.20.4-49.0.48-mdk/src/main/resources/data/minecraft/tags/blocks/mineable/" + tool + ".json");
@@ -192,6 +194,8 @@ public class BlockJSON {
         JsonPrimitive newElement = new JsonPrimitive("maring:" + name);
         if (!values.contains(newElement)) {
             values.add(newElement);
+        }else {
+        	return;
         }
 
         json.add("values", values);
@@ -199,7 +203,7 @@ public class BlockJSON {
         try (FileWriter fileWriter = new FileWriter(file)) {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             gson.toJson(json, fileWriter);
-            System.out.println("JSON 生成！");
+            System.out.println("JSON 生成修改了"+tool);
         } catch (IOException e) {
             e.printStackTrace();
         }
