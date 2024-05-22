@@ -64,7 +64,6 @@ public class Maring
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::clientSetup);
-            // Initialize EffectRegister class
        
         EffectRegister.EFFECTS.register(modEventBus);
 
@@ -118,9 +117,6 @@ public class Maring
             LOGGER.info("HELLO FROM CLIENT SETUP");
             LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
             
-            event.enqueueWork(()->{
-                EntityRenderers.register(MonsterRegister.JUMP_SPIDER.get(), JumpSpiderRenderer::new);
-            }); 
         }
         
         

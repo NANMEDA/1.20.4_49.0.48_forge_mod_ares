@@ -33,6 +33,7 @@ import javax.annotation.Nullable;
 import com.menu.register.PowerStationMenuProvider;
 import com.mojang.serialization.MapCodec;
 
+import block.entity.register.MicrowaveOvenEntity;
 import block.entity.register.PowerStationBurnEntity;
 import net.minecraft.SystemReport;
 import net.minecraft.core.BlockPos;
@@ -113,6 +114,18 @@ public class PowerStationBurn extends HorizontalDirectionalBlock implements Enti
 	    	 };
 	     }
 	 }
+	
+	@Override
+    public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
+        if (pState.getBlock() != pNewState.getBlock()) {
+            BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
+            if (blockEntity instanceof PowerStationBurnEntity) {
+                ((PowerStationBurnEntity) blockEntity).drop();
+            }
+        }
+
+        super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
+    }
 
 	@Override
 	protected MapCodec<? extends HorizontalDirectionalBlock> codec() {

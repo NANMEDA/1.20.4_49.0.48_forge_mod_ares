@@ -4,6 +4,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.world.Containers;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -12,6 +14,7 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraft.core.Direction;
+import net.minecraft.core.NonNullList;
 
 public abstract class PowerStationEntity extends BlockEntity {
 	
@@ -55,6 +58,15 @@ public abstract class PowerStationEntity extends BlockEntity {
             item.deserializeNBT(tag.getCompound("Item"));
         }
     }
+    
+	public void drop() {
+		for (int slot = 0; slot < item.getSlots(); slot++) {
+		    ItemStack stackInSlot = item.getStackInSlot(slot);
+		    if (!stackInSlot.isEmpty()) {
+		        Containers.dropContents(this.level, this.worldPosition, NonNullList.of(ItemStack.EMPTY, stackInSlot));
+		    }
+		}
+	}
 
     @Override
     protected void saveAdditional(CompoundTag tag) {

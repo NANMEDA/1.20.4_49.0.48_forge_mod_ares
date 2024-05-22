@@ -12,6 +12,7 @@
   "block.maring.mar_deep_ominous_ore": "荧惑矿石",
   
   "block.maring.powerstation_burn": "火力发电机",
+  "block.maring.canfood_maker": "食品罐装机",
   
   "item.maring.rubbish": "垃圾食品",
   "item.maring.bread_can": "面包罐头",
@@ -25,12 +26,16 @@
   "item.maring.chicken_can": "鸡肉罐头",
   "item.maring.ominous_cake": "荧惑糕",
   
+  "entity.maring.jump_spider": "抱子蜘蛛",
+  
   "effect.maring.fulling": "饱腹",
   "effect.maring.mental_abuse": "精神错乱",
   "effect.maring.ominous_luck": "？",
   
   "mar_main_block_tab": "阿瑞斯-方块",
   "mar_food_tab": "阿瑞斯-食物",
+  "mar_machine_tab": "阿瑞斯-机器",
   
-  "menu.powerstation_burn": "火力发电站"
+  "menu.powerstation_burn": "火力发电站",
+  "menu.canfood_maker": "食品罐装机"
 }

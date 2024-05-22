@@ -82,7 +82,14 @@ public class BlockRegister {
     	});
     	canfoodmaker_BLOCK_ITEM = BLOCK_ITEMS.register(BlockCanfoodMaker.global_name, () -> new BlockItem(canfoodmaker_BLOCK.get(), new Item.Properties()));
 
-    
-    
     }
+    
+    public static final RegistryObject<Block> microwaveoven_BLOCK = BLOCKS.register(BlockMicrowaveOven.global_name, () -> {
+		return new BlockMicrowaveOven(BlockBehaviour.Properties.of()
+	            .sound(SoundType.STONE)
+	            .strength(5f,5f)
+	            .mapColor(MapColor.COLOR_GRAY)); 
+	});
+    public static final RegistryObject<Item> microwaveoven_BLOCK_ITEM = BLOCK_ITEMS.register(BlockMicrowaveOven.global_name, () -> new BlockItem(microwaveoven_BLOCK.get(), new Item.Properties()));
+
 }

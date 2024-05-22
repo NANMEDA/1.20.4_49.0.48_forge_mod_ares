@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XTX",
+    "X X",
+    "XUX"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:iron_ingot"
+    },
+    "T": {
+      "item": "minecraft:anvil"
+    },
+    "U": {
+      "item": "minecraft:cauldron"
+    }
+  },
+  "result": {
+    "item": "maring:canfood_maker",
+    "count": 1
+  }
+}

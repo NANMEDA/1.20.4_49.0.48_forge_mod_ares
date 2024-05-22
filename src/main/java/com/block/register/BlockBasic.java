@@ -15,6 +15,7 @@ public class BlockBasic {
     private static final Map<Integer, Boolean> NEED_TOOL = new HashMap<>();
     private static final Map<Integer, String> TOOL = new HashMap<>();
     private static final Map<Integer, Integer> TOOL_MIN_LEVEL = new HashMap<>();
+    //用hashmap会不会太浪费了？
     
     //参考
     //泥土0.5 0.5

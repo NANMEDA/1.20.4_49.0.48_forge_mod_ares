@@ -7,6 +7,7 @@ import com.block.register.BlockElectricMachine;
 import com.block.register.BlockRegister;
 import com.item.register.ItemRegister;
 import com.item.register.itemFood;
+import com.item.register.itemMaterial;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -47,5 +48,15 @@ public class CreativeTabsRegister {
                 });
                 output.accept(BlockRegister.PowerStationBurn_BLOCKS_ITEM.get());
                 output.accept(BlockRegister.canfoodmaker_BLOCK_ITEM.get());
+            }).build());
+    
+    public static final RegistryObject<CreativeModeTab> MAR_MATERIAL_TAB = CREATIVE_MODE_TABS.register("mar_material_tab", () -> CreativeModeTab.builder()
+    		.title(Component.translatable("mar_material_tab"))
+    		.withTabsBefore(MAR_MACHINE_TAB.getId())
+            .icon(() -> ItemRegister.MATERIAL_ITEMS[0].get().getDefaultInstance())
+            .displayItems((parameters, output) -> {
+                IntStream.range(0, itemMaterial.ITEM_MATERIAL_NUMBER).forEach(i -> {
+                	output.accept(ItemRegister.MATERIAL_ITEMS[i].get());
+                });
             }).build());
 }

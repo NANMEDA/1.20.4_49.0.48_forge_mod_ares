@@ -2,13 +2,10 @@ package com.block.register;
 
 import javax.annotation.Nullable;
 
-import com.menu.register.CanfoodMakerMenuProvider;
-import com.menu.register.PowerStationMenuProvider;
+import com.menu.register.MicrowaveOvenMenuProvider;
 import com.mojang.serialization.MapCodec;
 
-import block.entity.register.CanfoodMakerEntity;
 import block.entity.register.MicrowaveOvenEntity;
-import block.entity.register.PowerStationBurnEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
@@ -30,17 +27,17 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.extensions.IForgeServerPlayer;
 
-public class BlockCanfoodMaker extends HorizontalDirectionalBlock implements EntityBlock {
-	public static String global_name = "canfood_maker"; 
+public class BlockMicrowaveOven extends HorizontalDirectionalBlock implements EntityBlock{
+	public static String global_name = "microwave_oven"; 
 	
-	public BlockCanfoodMaker(Properties properties) {
+	public BlockMicrowaveOven(Properties properties) {
 		super(properties);
 	}
 
 	@Nullable
 	@Override
 	public BlockEntity newBlockEntity(BlockPos pos, BlockState pBlockState) {
-		return new CanfoodMakerEntity(pos, pBlockState);
+		return new MicrowaveOvenEntity(pos, pBlockState);
 	}
 	
 	@Override
@@ -59,13 +56,13 @@ public class BlockCanfoodMaker extends HorizontalDirectionalBlock implements Ent
 		super.use(blockstate,level,pos,player,interactionhand,blockHitResult);
 		if(!level.isClientSide()) {
 			var BlockEntity = level.getBlockEntity(pos);
-			if(BlockEntity instanceof CanfoodMakerEntity entity) {
+			if(BlockEntity instanceof MicrowaveOvenEntity entity) {
 				player = (ServerPlayer) player;
 				IForgeServerPlayer ifpe = (IForgeServerPlayer)player;
-				ifpe.openMenu(new CanfoodMakerMenuProvider(pos), pos);
+				ifpe.openMenu(new MicrowaveOvenMenuProvider(pos), pos);
 				
 			}else {
-				throw new IllegalStateException("missing block-canfood_maker");
+				throw new IllegalStateException("missing block-microwave oven");
 			}
 		}
 		return InteractionResult.SUCCESS;
@@ -77,35 +74,37 @@ public class BlockCanfoodMaker extends HorizontalDirectionalBlock implements Ent
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pBlockState, BlockEntityType<T> pBlockEntityType) {
 	     if(pLevel.isClientSide()) {
 	    	 return (level,pos,state,blockentity) -> {
-	    		 if(blockentity instanceof CanfoodMakerEntity entity) {
+	    		 if(blockentity instanceof MicrowaveOvenEntity entity) {
 	    			 entity.clienttick();
 	    		 }
 	    	 };
 	     }else {
     		 return (level,pos,state,blockentity) -> {
-	    		 if(blockentity instanceof CanfoodMakerEntity entity) {
+	    		 if(blockentity instanceof MicrowaveOvenEntity entity) {
 	    			 entity.servertick();
 	    		 } 
 	    	 };
 	     }
 	 }
-	
-	@Override
-    public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
-        if (pState.getBlock() != pNewState.getBlock()) {
-            BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-            if (blockEntity instanceof CanfoodMakerEntity) {
-                ((CanfoodMakerEntity) blockEntity).drop();
-            }
-        }
-
-        super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
-    }
 
 	@Override
 	protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
 		return null;
 	}
+	
+	@Override
+    public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
+        if (pState.getBlock() != pNewState.getBlock()) {
+            BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
+            if (blockEntity instanceof MicrowaveOvenEntity) {
+                ((MicrowaveOvenEntity) blockEntity).drop();
+            }
+        }
+
+        super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
+    }
+	
+	
 	
 	@Override
 	public BlockState playerWillDestroy(Level pLevel, BlockPos pBlockPos, BlockState pBlockState, Player player) {

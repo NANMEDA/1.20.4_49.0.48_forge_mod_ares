@@ -10,7 +10,7 @@ import net.minecraftforge.items.SlotItemHandler;
 public class CanfoodMakerMenu extends MenuBasic{
 
 	protected CanfoodMakerMenu( Inventory pInventory, int pID,BlockPos pos) {
-		super(MenuRegister.CANFOODMAKER_MENU.get(), pID, pos, BlockRegister.canfoodmaker_BLOCK.get(), 5, 0, 5);
+		super(MenuRegister.CANFOODMAKER_MENU.get(), pID, pos, BlockRegister.canfoodmaker_BLOCK.get(), 5, 0, 4);
 		if(pInventory.player.level().getBlockEntity(pos) instanceof CanfoodMakerEntity canfoodmakerEntity) {
 			addSlot(new SlotItemHandler(canfoodmakerEntity.getItems(), 0, 35, 18));
 			addSlot(new SlotItemHandler(canfoodmakerEntity.getItems(), 1, 56, 18));

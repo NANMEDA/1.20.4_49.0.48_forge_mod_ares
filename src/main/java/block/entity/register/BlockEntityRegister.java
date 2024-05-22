@@ -22,4 +22,7 @@ public class BlockEntityRegister {
 	public static final RegistryObject<BlockEntityType<CanfoodMakerEntity>> canfoodmaker_BLOCKENTITY = 
 			BLOCKENTITIES.register("canfood_maker", () -> BlockEntityType.Builder.of(CanfoodMakerEntity::new, BlockRegister.canfoodmaker_BLOCK.get()).build(null));
 
+	public static final RegistryObject<BlockEntityType<MicrowaveOvenEntity>> microwaveoven_BLOCKENTITY = 
+			BLOCKENTITIES.register("microwave_oven", () -> BlockEntityType.Builder.of(MicrowaveOvenEntity::new, BlockRegister.microwaveoven_BLOCK.get()).build(null));
+
 }
