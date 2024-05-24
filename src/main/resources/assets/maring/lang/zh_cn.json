@@ -26,6 +26,17 @@
   "item.maring.chicken_can": "鸡肉罐头",
   "item.maring.ominous_cake": "荧惑糕",
   
+  "item.maring.ominous_gemstone": "荧惑石",
+  "item.maring.basic_metal_parts": "基础金属零件",
+  "item.maring.advanced_metal_parts": "高级金属零件",
+  "item.maring.bioplastic_parts": "生物塑料零件",
+  "item.maring.semiconductor_parts": "半导体零件",
+  "item.maring.crystal_parts": "强晶体零件",
+  "item.maring.bottled_methane": "装瓶甲烷",
+  "item.maring.big_bottled_methane": "大甲烷瓶",
+  "item.maring.bottled_oxygen": "装瓶氧气",
+  "item.maring.big_bottled_oxygen": "大氧气瓶",
+  
   "entity.maring.jump_spider": "抱子蜘蛛",
   
   "effect.maring.fulling": "饱腹",

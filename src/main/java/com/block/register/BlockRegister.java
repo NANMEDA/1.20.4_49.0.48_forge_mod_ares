@@ -17,7 +17,7 @@ import java.util.stream.IntStream;
 import javax.annotation.Nonnull;
 
 import com.block.register.BlockBasic;
-import com.block.register.BlockElectricMachine;
+import com.block.register.BlockElectricBasic;
 import com.item.register.itemFood;
 
 public class BlockRegister {
@@ -27,8 +27,8 @@ public class BlockRegister {
     
     public static final RegistryObject<Block>[] COMMON_BLOCKS = new RegistryObject[BlockBasic.BLOCK_BASIC_NUMBER];
     public static final RegistryObject<Item>[] COMMON_BLOCK_ITEMS = new RegistryObject[BlockBasic.BLOCK_BASIC_NUMBER];
-    public static final RegistryObject<Block>[] ELECTRIC_BLOCKS = new RegistryObject[BlockElectricMachine.BLOCK_ELECTRIC_NUMBER];
-    public static final RegistryObject<Item>[] ELECTRIC_BLOCK_ITEMS = new RegistryObject[BlockElectricMachine.BLOCK_ELECTRIC_NUMBER];
+    public static final RegistryObject<Block>[] ELECTRIC_BLOCKS = new RegistryObject[BlockElectricBasic.BLOCK_ELECTRIC_NUMBER];
+    public static final RegistryObject<Item>[] ELECTRIC_BLOCK_ITEMS = new RegistryObject[BlockElectricBasic.BLOCK_ELECTRIC_NUMBER];
     
     public static final RegistryObject<Block> PowerStationBurn_BLOCKS;
     public static final RegistryObject<Item> PowerStationBurn_BLOCKS_ITEM;
@@ -49,20 +49,20 @@ public class BlockRegister {
         	});
         	COMMON_BLOCK_ITEMS[i] = BLOCK_ITEMS.register(BlockBasic.getBlockName(i), () -> new BlockItem(COMMON_BLOCKS[i].get(), new Item.Properties()));
         });
-        IntStream.range(0, BlockElectricMachine.BLOCK_ELECTRIC_NUMBER).forEach(i -> {
-        	ELECTRIC_BLOCKS[i] = BLOCKS.register(BlockElectricMachine.getBlockName(i), () -> {
+        IntStream.range(0, BlockElectricBasic.BLOCK_ELECTRIC_NUMBER).forEach(i -> {
+        	ELECTRIC_BLOCKS[i] = BLOCKS.register(BlockElectricBasic.getBlockName(i), () -> {
         	    BlockBehaviour.Properties properties = BlockBehaviour.Properties.of()
         	    		//.noOcclusion()
-        	            .sound(BlockElectricMachine.getBlockSound(i))
-        	            .strength(BlockElectricMachine.getBlockStrength(i)[0], BlockElectricMachine.getBlockStrength(i)[1])
-        	            .mapColor(BlockElectricMachine.getBlockMapColor(i));
-        	    if (BlockElectricMachine.needTool(i)) {
+        	            .sound(BlockElectricBasic.getBlockSound(i))
+        	            .strength(BlockElectricBasic.getBlockStrength(i)[0], BlockElectricBasic.getBlockStrength(i)[1])
+        	            .mapColor(BlockElectricBasic.getBlockMapColor(i));
+        	    if (BlockElectricBasic.needTool(i)) {
         	        properties.requiresCorrectToolForDrops();
         	    }
         	    return new Block(properties) {
         	    };
         	});
-        	ELECTRIC_BLOCK_ITEMS[i] = BLOCK_ITEMS.register(BlockElectricMachine.getBlockName(i), () -> new BlockItem(ELECTRIC_BLOCKS[i].get(), new Item.Properties()));
+        	ELECTRIC_BLOCK_ITEMS[i] = BLOCK_ITEMS.register(BlockElectricBasic.getBlockName(i), () -> new BlockItem(ELECTRIC_BLOCKS[i].get(), new Item.Properties()));
         });
         
 

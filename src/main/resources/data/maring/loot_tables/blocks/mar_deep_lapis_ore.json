@@ -10,7 +10,7 @@
           "children": [
             {
               "type": "minecraft:item",
-              "name": "maring:mar_deep_ominous_ore",
+              "name": "maring:mar_deep_lapis_ore",
               "conditions": [
                 {
                   "condition": "minecraft:match_tool",
@@ -29,8 +29,22 @@
             },
             {
               "type": "minecraft:item",
-              "name": "maring:ominous_gemstone",
+              "name": "minecraft:lapis_lazuli",
               "functions": [
+                {
+                  "function": "minecraft:set_count",
+                  "count": {
+                    "type": "minecraft:uniform",
+                    "min": 4,
+                    "max": 9
+                  },
+                  "add": false
+                },
+                {
+                  "function": "minecraft:apply_bonus",
+                  "enchantment": "minecraft:fortune",
+                  "formula": "minecraft:ore_drops"
+                },
                 {
                   "function": "minecraft:explosion_decay"
                 }

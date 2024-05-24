@@ -1,6 +1,55 @@
 {
-  "parent": "minecraft:item/handheld",
-  "textures": {
-    "layer0": "maring:item/bioplastic_parts"
-  }
+	"credit": "Made with Blockbench",
+	"texture_size": [32, 32],
+	"textures": {
+		"1": "maring:item/bioplastic_parts",
+		"particle": "maring:item/bioplastic_parts"
+	},
+	"elements": [
+		{
+			"from": [3, 0, 3],
+			"to": [13, 3, 13],
+			"rotation": {"angle": 0, "axis": "y", "origin": [-1, 0, -1]},
+			"faces": {
+				"north": {"uv": [5, 0, 10, 1.5], "texture": "#1"},
+				"east": {"uv": [5, 1.5, 10, 3], "texture": "#1"},
+				"south": {"uv": [5, 3, 10, 4.5], "texture": "#1"},
+				"west": {"uv": [5, 4.5, 10, 6], "texture": "#1"},
+				"up": {"uv": [5, 5, 0, 0], "texture": "#1"},
+				"down": {"uv": [5, 5, 0, 10], "texture": "#1"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [90, 180, 0],
+			"translation": [0, 2.5, 4.25],
+			"scale": [0.7, 0.7, 0.7]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [86, 180, 0],
+			"translation": [0, 2.25, 4.75],
+			"scale": [0.7, 0.7, 0.7]
+		},
+		"firstperson_righthand": {
+			"rotation": [36, 178, 0],
+			"translation": [2.25, 7.75, 2.75]
+		},
+		"firstperson_lefthand": {
+			"rotation": [37, 180, 0],
+			"translation": [2.25, 7.75, 1.5]
+		},
+		"ground": {
+			"translation": [0, 4.75, 0]
+		},
+		"gui": {
+			"rotation": [25, 125, 0],
+			"translation": [0, 8, 0],
+			"scale": [1, 1.5, 1]
+		},
+		"fixed": {
+			"rotation": [-90, 0, 0],
+			"translation": [0, 0, -6.5]
+		}
+	}
 }

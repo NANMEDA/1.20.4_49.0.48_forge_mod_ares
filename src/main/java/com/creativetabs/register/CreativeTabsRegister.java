@@ -3,7 +3,7 @@ package com.creativetabs.register;
 import java.util.stream.IntStream;
 
 import com.block.register.BlockBasic;
-import com.block.register.BlockElectricMachine;
+import com.block.register.BlockElectricBasic;
 import com.block.register.BlockRegister;
 import com.item.register.ItemRegister;
 import com.item.register.itemFood;
@@ -29,6 +29,7 @@ public class CreativeTabsRegister {
                 	output.accept(BlockRegister.COMMON_BLOCK_ITEMS[i].get());
                 });
             }).build());
+    
     public static final RegistryObject<CreativeModeTab> MAR_FOOD_TAB = CREATIVE_MODE_TABS.register("mar_food_tab", () -> CreativeModeTab.builder()
     		.title(Component.translatable("mar_food_tab"))
     		.withTabsBefore(MAR_MAIN_TAB.getId())
@@ -38,12 +39,13 @@ public class CreativeTabsRegister {
                 	output.accept(ItemRegister.FOOD_ITEMS[i].get());
                 });
             }).build());
+    
     public static final RegistryObject<CreativeModeTab> MAR_MACHINE_TAB = CREATIVE_MODE_TABS.register("mar_machine_tab", () -> CreativeModeTab.builder()
     		.title(Component.translatable("mar_machine_tab"))
     		.withTabsBefore(MAR_FOOD_TAB.getId())
             .icon(() -> BlockRegister.PowerStationBurn_BLOCKS_ITEM.get().getDefaultInstance())
             .displayItems((parameters, output) -> {
-                IntStream.range(0, BlockElectricMachine.BLOCK_ELECTRIC_NUMBER).forEach(i -> {
+                IntStream.range(0, BlockElectricBasic.BLOCK_ELECTRIC_NUMBER).forEach(i -> {
                 	output.accept(BlockRegister.ELECTRIC_BLOCK_ITEMS[i].get());
                 });
                 output.accept(BlockRegister.PowerStationBurn_BLOCKS_ITEM.get());
