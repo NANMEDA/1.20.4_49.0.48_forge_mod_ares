@@ -1,11 +1,9 @@
 package com.menu.register;
 
-import block.entity.register.PowerStationBurnEntity;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraftforge.server.command.ModIdArgument;
 import net.minecraft.resources.ResourceLocation;
 
 public class PowerStationBurnScreen extends AbstractContainerScreen<PowerStationBurnMenu> {

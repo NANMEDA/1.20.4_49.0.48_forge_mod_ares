@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "SOS",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:bread"
+    },
+    "S": {
+      "item": "minecraft:sugar"
+    },
+    "O": {
+      "item": "maring:ominous_gemstone"
+    }
+  },
+  "result": {
+    "item": "maring:ominous_cake",
+    "count": 8
+  }
+}

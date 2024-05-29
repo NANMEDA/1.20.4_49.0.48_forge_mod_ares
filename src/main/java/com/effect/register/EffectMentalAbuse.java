@@ -2,6 +2,8 @@ package com.effect.register;
 
 import java.util.Random;
 
+import com.google.j2objc.annotations.ReflectionSupport.Level;
+
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -26,7 +28,7 @@ public class EffectMentalAbuse extends EffectMain {
     public void applyEffectTick(LivingEntity living, int amplified) {
         if (living instanceof Player) {
             Player player = (Player) living;
-            int randomNum = new Random().nextInt(10) + 1;
+            int randomNum = new Random().nextInt(10) + 1;//1-10
             String soundPath = "maring:sounds/music/abuse" + randomNum;
             SoundEvent soundEvent = ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(soundPath));
             if (soundEvent != null) {

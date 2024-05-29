@@ -28,6 +28,7 @@ public class CreativeTabsRegister {
                 IntStream.range(0, BlockBasic.BLOCK_BASIC_NUMBER).forEach(i -> {
                 	output.accept(BlockRegister.COMMON_BLOCK_ITEMS[i].get());
                 });
+                output.accept(BlockRegister.unbrokenglass_BLOCK_ITEM.get());
             }).build());
     
     public static final RegistryObject<CreativeModeTab> MAR_FOOD_TAB = CREATIVE_MODE_TABS.register("mar_food_tab", () -> CreativeModeTab.builder()
@@ -43,13 +44,16 @@ public class CreativeTabsRegister {
     public static final RegistryObject<CreativeModeTab> MAR_MACHINE_TAB = CREATIVE_MODE_TABS.register("mar_machine_tab", () -> CreativeModeTab.builder()
     		.title(Component.translatable("mar_machine_tab"))
     		.withTabsBefore(MAR_FOOD_TAB.getId())
-            .icon(() -> BlockRegister.PowerStationBurn_BLOCKS_ITEM.get().getDefaultInstance())
+            .icon(() -> BlockRegister.PowerStationBurn_BLOCK_ITEM.get().getDefaultInstance())
             .displayItems((parameters, output) -> {
                 IntStream.range(0, BlockElectricBasic.BLOCK_ELECTRIC_NUMBER).forEach(i -> {
                 	output.accept(BlockRegister.ELECTRIC_BLOCK_ITEMS[i].get());
                 });
-                output.accept(BlockRegister.PowerStationBurn_BLOCKS_ITEM.get());
+                output.accept(BlockRegister.PowerStationBurn_BLOCK_ITEM.get());
+                output.accept(BlockRegister.PowerStationSun_BLOCK_ITEM.get());
                 output.accept(BlockRegister.canfoodmaker_BLOCK_ITEM.get());
+                output.accept(BlockRegister.microwaveoven_BLOCK_ITEM.get());
+                output.accept(BlockRegister.basicmetalmanufactor_BLOCK_ITEM.get());
             }).build());
     
     public static final RegistryObject<CreativeModeTab> MAR_MATERIAL_TAB = CREATIVE_MODE_TABS.register("mar_material_tab", () -> CreativeModeTab.builder()

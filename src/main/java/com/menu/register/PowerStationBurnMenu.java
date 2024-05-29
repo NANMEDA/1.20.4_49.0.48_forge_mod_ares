@@ -26,7 +26,7 @@ import net.minecraftforge.items.IItemHandler;
 public class PowerStationBurnMenu extends MenuBasic {
 
 	protected PowerStationBurnMenu( Inventory pInventory, int pID,BlockPos pos) {
-		super(MenuRegister.POWERSTATIONBURN_MENU.get(), pID, pos, BlockRegister.PowerStationBurn_BLOCKS.get(), 1, 0, 1);
+		super(MenuRegister.POWERSTATIONBURN_MENU.get(), pID, pos, BlockRegister.PowerStationBurn_BLOCK.get(), 1, 0, 1);
 		if(pInventory.player.level().getBlockEntity(pos) instanceof PowerStationBurnEntity powerstationburnEntity) {
 			addSlot(new SlotItemHandler(powerstationburnEntity.getItems(), 0, 56, 53));
 		}

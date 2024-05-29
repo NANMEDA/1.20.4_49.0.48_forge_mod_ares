@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "maring:mar_iron_ore",
+    "maring:mar_deeps_iron_ore",
+    "maring:mar_deep_iron_ore"
+  ]
+}

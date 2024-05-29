@@ -16,6 +16,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
@@ -40,6 +41,8 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import tags.register.AddTag;
+import tags.register.TagkeyRegister;
 
 import java.util.stream.IntStream;
 
@@ -54,10 +57,15 @@ public class Maring
     // Directly reference a slf4j logger
     private static final Logger LOGGER = LogUtils.getLogger();
     // Create a Deferred Register to hold Blocks which will all be registered under the "examplemod" namespace
-    
+    static{
+    	AddTag.init();
+    	TagkeyRegister.init();
+    }
     
     public Maring()
     {
+    	
+    	
     	
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 

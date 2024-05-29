@@ -22,7 +22,9 @@ public class ItemRegister {
         	        .saturationMod(itemFood.getFoodFull(i));
         	if (itemFood.getFoodEffect(i) != null) {foodBuilder.effect(itemFood.getFoodEffect(i), itemFood.getFoodEffectProbal(i));}
         	if (itemFood.getFoodEat(i)) {foodBuilder.alwaysEat();}
-        	FOOD_ITEMS[i] = ITEMS.register(itemFood.getFoodName(i), () -> new Item(new Item.Properties().food(foodBuilder.build())));
+        	FOOD_ITEMS[i] = ITEMS.register(itemFood.getFoodName(i), () -> new Item(new Item.Properties()
+        			.food(foodBuilder.build())
+        			));
         });
         
         IntStream.range(0, itemMaterial.ITEM_MATERIAL_NUMBER).forEach(i -> {

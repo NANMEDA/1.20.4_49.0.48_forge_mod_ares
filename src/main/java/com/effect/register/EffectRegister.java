@@ -17,4 +17,6 @@ public class EffectRegister {
     new EffectMentalAbuse(MobEffectCategory.HARMFUL, 0xff0033, false,1));
     public static final RegistryObject<MobEffect> OMINOUSLUCK = EFFECTS.register("ominous_luck", () ->
     new EffectOminousLuck(MobEffectCategory.BENEFICIAL, 0x000033, false,1));
+    public static final RegistryObject<MobEffect> LOSEPRESSURE = EFFECTS.register("lose_pressure", () ->
+    new EffectLosePressure(MobEffectCategory.HARMFUL, 0x000033, false,1));
 }

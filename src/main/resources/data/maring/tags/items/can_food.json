@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "maring:carrot_can",
+    "maring:potato_can",
+    "maring:beef_can",
+    "maring:pork_can",
+    "maring:lamb_can",
+    "maring:fish_can",
+    "maring:bread_can",
+    "maring:rabbit_can",
+    "maring:chicken_can"
+  ]
+}

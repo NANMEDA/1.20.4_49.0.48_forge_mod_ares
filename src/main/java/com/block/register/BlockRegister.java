@@ -30,10 +30,14 @@ public class BlockRegister {
     public static final RegistryObject<Block>[] ELECTRIC_BLOCKS = new RegistryObject[BlockElectricBasic.BLOCK_ELECTRIC_NUMBER];
     public static final RegistryObject<Item>[] ELECTRIC_BLOCK_ITEMS = new RegistryObject[BlockElectricBasic.BLOCK_ELECTRIC_NUMBER];
     
-    public static final RegistryObject<Block> PowerStationBurn_BLOCKS;
-    public static final RegistryObject<Item> PowerStationBurn_BLOCKS_ITEM;
+    public static final RegistryObject<Block> PowerStationBurn_BLOCK;
+    public static final RegistryObject<Item> PowerStationBurn_BLOCK_ITEM;
+    public static final RegistryObject<Block> PowerStationSun_BLOCK;
+    public static final RegistryObject<Item> PowerStationSun_BLOCK_ITEM;
     public static final RegistryObject<Block> canfoodmaker_BLOCK;
     public static final RegistryObject<Item> canfoodmaker_BLOCK_ITEM;
+    //public static final RegistryObject<Block> basicmetalmanufactor_BLOCK;
+    //public static final RegistryObject<Item> basicmetalmanufactor_BLOCK_ITEM;
     
     static {
         IntStream.range(0, BlockBasic.BLOCK_BASIC_NUMBER).forEach(i -> {
@@ -66,13 +70,24 @@ public class BlockRegister {
         });
         
 
-    	PowerStationBurn_BLOCKS = BLOCKS.register(PowerStationBurn.global_name, () -> {
+    	PowerStationBurn_BLOCK = BLOCKS.register(PowerStationBurn.global_name, () -> {
     		return new PowerStationBurn(BlockBehaviour.Properties.of()
     	            .sound(SoundType.STONE)
     	            .strength(5f,5f)
     	            .mapColor(MapColor.COLOR_GRAY)); 
     	});
-    	PowerStationBurn_BLOCKS_ITEM = BLOCK_ITEMS.register(PowerStationBurn.global_name, () -> new BlockItem(PowerStationBurn_BLOCKS.get(), new Item.Properties()));
+    	PowerStationBurn_BLOCK_ITEM = BLOCK_ITEMS.register(PowerStationBurn.global_name, () -> new BlockItem(PowerStationBurn_BLOCK.get(), new Item.Properties()));
+    	
+    	PowerStationSun_BLOCK = BLOCKS.register(PowerStationSun.global_name, () -> {
+    		return new PowerStationSun(BlockBehaviour.Properties.of()
+    	            .sound(SoundType.AMETHYST)
+    	            .strength(5f,5f)
+    	            .mapColor(MapColor.COLOR_BLUE)); 
+    	});
+    	PowerStationSun_BLOCK_ITEM = BLOCK_ITEMS.register(PowerStationSun.global_name, () -> new BlockItem(PowerStationSun_BLOCK.get(), new Item.Properties()));
+
+    	
+    	
     	
     	canfoodmaker_BLOCK = BLOCKS.register(BlockCanfoodMaker.global_name, () -> {
     		return new BlockCanfoodMaker(BlockBehaviour.Properties.of()
@@ -84,12 +99,33 @@ public class BlockRegister {
 
     }
     
+    
     public static final RegistryObject<Block> microwaveoven_BLOCK = BLOCKS.register(BlockMicrowaveOven.global_name, () -> {
 		return new BlockMicrowaveOven(BlockBehaviour.Properties.of()
-	            .sound(SoundType.STONE)
+	            .sound(SoundType.AMETHYST)
 	            .strength(5f,5f)
+	            .noOcclusion()
 	            .mapColor(MapColor.COLOR_GRAY)); 
 	});
     public static final RegistryObject<Item> microwaveoven_BLOCK_ITEM = BLOCK_ITEMS.register(BlockMicrowaveOven.global_name, () -> new BlockItem(microwaveoven_BLOCK.get(), new Item.Properties()));
 
+    public static final RegistryObject<Block> unbrokenglass_BLOCK = BLOCKS.register(BlockUnbrokenGlass.global_name, () -> {
+		return new BlockUnbrokenGlass(BlockBehaviour.Properties.of()
+	            .sound(SoundType.GLASS)
+	            .strength(-1.0f,-1.0f)
+	            .noOcclusion()
+	            .mapColor(MapColor.NONE)); 
+	});
+    public static final RegistryObject<Item> unbrokenglass_BLOCK_ITEM = BLOCK_ITEMS.register(BlockUnbrokenGlass.global_name, () -> new BlockItem(unbrokenglass_BLOCK.get(), new Item.Properties()));
+
+    public static final RegistryObject<Block> basicmetalmanufactor_BLOCK = BLOCKS.register(BlockBasicMetalManufactor.global_name, () -> {
+		return new BlockBasicMetalManufactor(BlockBehaviour.Properties.of()
+	            .sound(SoundType.STONE)
+	            .strength(5f,5f)
+	            .noOcclusion()
+	            .mapColor(MapColor.COLOR_GRAY)); 
+	});
+    public static final RegistryObject<Item> basicmetalmanufactor_BLOCK_ITEM = BLOCK_ITEMS.register(BlockBasicMetalManufactor.global_name, () -> new BlockItem(basicmetalmanufactor_BLOCK.get(), new Item.Properties()));
+
+    
 }

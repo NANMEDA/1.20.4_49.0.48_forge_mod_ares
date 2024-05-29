@@ -24,95 +24,15 @@ public abstract class PowerConsumerEntity extends BlockEntity {
 
 	protected int energy_consume;
     protected int FULL_ENERGY_CONSUPTION;
-    protected int itemstack_number=5;
     protected short energy_supply = 100;
     
-    
-    protected final ItemStackHandler item = new ItemStackHandler(itemstack_number) {
-        @Override
-        public void onLoad() {
-            super.onLoad();
-            System.out.println("entity is onload");
-        }
 
-        @Override
-        protected void onContentsChanged(int slot) {
-            setChanged();
-            // level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_ALL);
-        }
+    protected void servertick() {
     };
-
-    protected final LazyOptional<IItemHandler> itemHandler = LazyOptional.of(() -> item);
-
-    public <T> LazyOptional<T> getCapability(Capability<T> cap, Direction side) {
-    	return null;
-    }
-
-    public ItemStackHandler getItems() {
-        return item;
-    }
-
-    protected void savedata(CompoundTag tag) {
-        tag.put("Item", item.serializeNBT());
-    }
-
-    protected void loaddata(CompoundTag tag) {
-        if (tag.contains("Item")) {
-            item.deserializeNBT(tag.getCompound("Item"));
-        }
-    }
-
-    @Override
-    protected void saveAdditional(CompoundTag tag) {
-        super.saveAdditional(tag);
-        savedata(tag);
-    }
-
-    @Override
-    public void load(CompoundTag tag) {
-        super.load(tag);
-        loaddata(tag);
-    }
-
-    @Override
-    public CompoundTag getUpdateTag() {
-        CompoundTag tag = super.getUpdateTag();
-        savedata(tag);
-        return tag;
-    }
-
-    @Override
-    public void handleUpdateTag(CompoundTag tag) {
-        if (tag != null) {
-            loaddata(tag);
-        }
-    }
-
-    @Override
-    public ClientboundBlockEntityDataPacket getUpdatePacket() {
-        return ClientboundBlockEntityDataPacket.create(this);
-    }
-
-    @Override
-    public void onDataPacket(Connection connection, ClientboundBlockEntityDataPacket packet) {
-        CompoundTag tag = packet.getTag();
-        if (tag != null) {
-            loaddata(tag);
-        }
-    }
     
-	public void drop() {
-		for (int slot = 0; slot < item.getSlots(); slot++) {
-		    ItemStack stackInSlot = item.getStackInSlot(slot);
-		    if (!stackInSlot.isEmpty()) {
-		        Containers.dropContents(this.level, this.worldPosition, NonNullList.of(ItemStack.EMPTY, stackInSlot));
-		    }
-		}
-	}
-    
-
-    protected abstract void servertick();
-    
+    protected boolean servertick(boolean u) {
+    	return u;
+    };
 
     protected abstract void clienttick();
     

@@ -25,11 +25,12 @@ public abstract class PowerStationEntity extends BlockEntity {
 	protected int energy_output;
     protected int FULL_ENERGY_OUTPUT;
 
+    /*
     protected final ItemStackHandler item = new ItemStackHandler(1) {
         @Override
         public void onLoad() {
             super.onLoad();
-            System.out.println("entity is onload");
+            //System.out.println("entity is onload");
         }
 
         @Override
@@ -92,20 +93,20 @@ public abstract class PowerStationEntity extends BlockEntity {
         if (tag != null) {
             loaddata(tag);
         }
-    }
+    }*/
 
     @Override
     public ClientboundBlockEntityDataPacket getUpdatePacket() {
         return ClientboundBlockEntityDataPacket.create(this);
     }
-
+/*
     @Override
     public void onDataPacket(Connection connection, ClientboundBlockEntityDataPacket packet) {
         CompoundTag tag = packet.getTag();
         if (tag != null) {
             loaddata(tag);
         }
-    }
+    }*/
 
     protected abstract  void servertick();
     

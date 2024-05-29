@@ -1,7 +1,10 @@
 {
   "variants": {
-    "": {
-      "model": "maring:block/microwave_oven"
-    }
+    "facing=north": { "model": "maring:block/microwave_oven" },
+    "facing=east": { "model": "maring:block/microwave_oven", "y": 90 },
+    "facing=south": { "model": "maring:block/microwave_oven", "y": 180 },
+    "facing=west": { "model": "maring:block/microwave_oven", "y": 270},
+    "facing=up": { "model": "maring:block/microwave_oven" },
+    "facing=down": { "model": "maring:block/microwave_oven" }
   }
 }

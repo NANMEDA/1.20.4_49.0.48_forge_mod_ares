@@ -17,12 +17,15 @@ public class BlockEntityRegister {
     public static final DeferredRegister<BlockEntityType<?>> BLOCKENTITIES =  DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, MODID);
 	
 	public static final RegistryObject<BlockEntityType<PowerStationBurnEntity>> PowerStationBurn_BLOCKENTITY = 
-			BLOCKENTITIES.register("powerstation_burn", () -> BlockEntityType.Builder.of(PowerStationBurnEntity::new, BlockRegister.PowerStationBurn_BLOCKS.get()).build(null));
+			BLOCKENTITIES.register("powerstation_burn", () -> BlockEntityType.Builder.of(PowerStationBurnEntity::new, BlockRegister.PowerStationBurn_BLOCK.get()).build(null));
 
 	public static final RegistryObject<BlockEntityType<CanfoodMakerEntity>> canfoodmaker_BLOCKENTITY = 
 			BLOCKENTITIES.register("canfood_maker", () -> BlockEntityType.Builder.of(CanfoodMakerEntity::new, BlockRegister.canfoodmaker_BLOCK.get()).build(null));
 
 	public static final RegistryObject<BlockEntityType<MicrowaveOvenEntity>> microwaveoven_BLOCKENTITY = 
 			BLOCKENTITIES.register("microwave_oven", () -> BlockEntityType.Builder.of(MicrowaveOvenEntity::new, BlockRegister.microwaveoven_BLOCK.get()).build(null));
+
+	public static final RegistryObject<BlockEntityType<BasicMetalManufactorEntity>> basicmetalmanufactor_BLOCKENTITY = 
+			BLOCKENTITIES.register("basicmetal_manufactor", () -> BlockEntityType.Builder.of(BasicMetalManufactorEntity::new, BlockRegister.basicmetalmanufactor_BLOCK.get()).build(null));
 
 }

@@ -1,21 +1,12 @@
 package com.item.register;
 
 import java.util.HashMap;
-import com.item.register.ItemJSON;
-
 import java.util.Map;
 import java.util.Random;
 import java.util.function.Supplier;
 import com.effect.register.EffectRegister;
-import com.main.maring.Maring;
-
-import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.material.MapColor;
-import net.minecraftforge.registries.RegistryObject;
-import oshi.jna.platform.linux.LinuxLibc.Exit_status;
 
 public class itemFood {
     private static final Map<Integer, String> FOOD_NAME = new HashMap<>();

@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.world.Containers;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeType;
@@ -17,6 +18,7 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraft.core.Direction;
+import net.minecraft.core.NonNullList;
 
 public class PowerStationSunEntity extends PowerStationEntity {
 	//public int energy_output=0;
@@ -25,7 +27,7 @@ public class PowerStationSunEntity extends PowerStationEntity {
 	public PowerStationSunEntity(BlockPos pos, BlockState pBlockState) {
 		super(BlockEntityRegister.PowerStationBurn_BLOCKENTITY.get(), pos, pBlockState);
 	}
-	/*
+	
 	private final ItemStackHandler item = new ItemStackHandler(1) {
 		@Override
 		public void onLoad() {
@@ -39,8 +41,8 @@ public class PowerStationSunEntity extends PowerStationEntity {
 		}
 	};
 	
-	*/
-	//private final LazyOptional<IItemHandler> itemHandler = LazyOptional.of(() -> item);
+	
+	private final LazyOptional<IItemHandler> itemHandler = LazyOptional.of(() -> item);
 	
 	@Override
 	public <T>LazyOptional<T> getCapability(Capability<T> cap,Direction side){
@@ -50,78 +52,44 @@ public class PowerStationSunEntity extends PowerStationEntity {
 			return super.getCapability(cap, side);
 		}
 	}
-	/*
-	public ItemStackHandler getItems() {
-		return item;
-	}
-	*/
+
 	private final String TAG_NAME = "Item";
 	
-	@Override
 	protected void savedata(CompoundTag tag) {
 		tag.put(TAG_NAME, item.serializeNBT());
 	}
-	@Override
+	
 	protected void loaddata(CompoundTag tag) {
 		if(tag.contains(TAG_NAME)) {
 			item.deserializeNBT(tag.getCompound(TAG_NAME));
 		}
 	}
-	/*
-	@Override
-	protected void saveAdditional(CompoundTag tag) {
-		super.saveAdditional(tag);
-		savedata(tag);
-	}
 	
-	@Override
-	public void load(CompoundTag tag) {
-		super.load(tag);
-		loaddata(tag);
-	}
-	
-	@Override
-	public CompoundTag getUpdateTag() {
-		CompoundTag tag = super.getUpdateTag();
-		savedata(tag);
-		return tag;
-	}
-	
-	@Override
-	public void handleUpdateTag(CompoundTag tag) {
-		if(tag != null) {
-			loaddata(tag);
+	public void drop() {
+		for (int slot = 0; slot < item.getSlots(); slot++) {
+		    ItemStack stackInSlot = item.getStackInSlot(slot);
+		    if (!stackInSlot.isEmpty()) {
+		        Containers.dropContents(this.level, this.worldPosition, NonNullList.of(ItemStack.EMPTY, stackInSlot));
+		    }
 		}
 	}
-	
-	@Override
-	public ClientboundBlockEntityDataPacket getUpdatePacket() {
-		return ClientboundBlockEntityDataPacket.create(this);
-	}
-	
-	@Override
-	public void onDataPacket(Connection connection,ClientboundBlockEntityDataPacket packet) {
-		CompoundTag tag = packet.getTag();
-		if(tag!= null){
-			//handleUpdateTag(tag);
-			loaddata(tag);
-		}
-	}
-	*/
 	
 	@Override
 	public void servertick() {
-		ItemStack stack = item.getStackInSlot(0);
-		if(level.getSkyDarken()>9) {
-			energy_output = FULL_ENERGY_OUTPUT;
-		}else if(level.getSkyDarken()>3) {
-			//energy_output = (int) (FULL_ENERGY_OUTPUT*(level.getSkyDarken()-3)/6f);
-			energy_output = level.getSkyDarken()-3;
-		}else {
-			energy_output = 0;
+		if(level.dimensionType().hasSkyLight() && !level.isRaining()) {
+			int brightness = level.getBrightness(null, worldPosition);
+			if(brightness>11) {
+				this.energy_output = FULL_ENERGY_OUTPUT;
+			}else if(brightness>7) {
+				this.energy_output = (int) (FULL_ENERGY_OUTPUT *0.5);
+			}else {
+				this.energy_output = 0;
+			}
+			return;
 		}
+		this.energy_output = 0;
+		return;
 		//一个木板 = 200到300 maring J。
-		setChanged();
 	    }
 	@Override
 	public void clienttick() {

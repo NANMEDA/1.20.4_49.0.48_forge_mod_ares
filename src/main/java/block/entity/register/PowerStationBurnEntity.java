@@ -6,6 +6,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.world.Containers;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeType;
@@ -19,18 +20,19 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraft.core.Direction;
+import net.minecraft.core.NonNullList;
 
 public class PowerStationBurnEntity extends PowerStationEntity {
 	private float temperature=20.0f;
 	private short heat=0;
 	
 	//public int energy_output=0;
-	private int FULL_ENERGY_OUTPUT = 20;
+	private int FULL_ENERGY_OUTPUT = 40;
 	
 	public PowerStationBurnEntity(BlockPos pos, BlockState pBlockState) {
 		super(BlockEntityRegister.PowerStationBurn_BLOCKENTITY.get(), pos, pBlockState);
 	}
-	/*
+	
 	private final ItemStackHandler item = new ItemStackHandler(1) {
 		@Override
 		public void onLoad() {
@@ -44,8 +46,8 @@ public class PowerStationBurnEntity extends PowerStationEntity {
 		}
 	};
 	
-	*/
-	//private final LazyOptional<IItemHandler> itemHandler = LazyOptional.of(() -> item);
+	
+	private final LazyOptional<IItemHandler> itemHandler = LazyOptional.of(() -> item);
 	
 	@Override
 	public <T>LazyOptional<T> getCapability(Capability<T> cap,Direction side){
@@ -55,23 +57,22 @@ public class PowerStationBurnEntity extends PowerStationEntity {
 			return super.getCapability(cap, side);
 		}
 	}
-	/*
+	
 	public ItemStackHandler getItems() {
 		return item;
 	}
-	*/
+	
 	
 	private final String TAG_NAME = "Item";
 	private final String TAG_HEAT = "HEAT";
 	private final String TAG_TEMPERATURE = "TAG_TEMPERATURE";
 	
-	@Override
 	protected void savedata(CompoundTag tag) {
 		tag.put(TAG_NAME, item.serializeNBT());
 		tag.putShort(TAG_HEAT, heat);
 		tag.putFloat(TAG_TEMPERATURE, temperature);
 	}
-	@Override
+	
 	protected void loaddata(CompoundTag tag) {
 		if(tag.contains(TAG_NAME)) {
 			item.deserializeNBT(tag.getCompound(TAG_NAME));
@@ -83,7 +84,7 @@ public class PowerStationBurnEntity extends PowerStationEntity {
 			temperature = tag.getFloat(TAG_TEMPERATURE);
 		}
 	}
-	/*
+	
 	@Override
 	protected void saveAdditional(CompoundTag tag) {
 		super.saveAdditional(tag);
@@ -123,7 +124,16 @@ public class PowerStationBurnEntity extends PowerStationEntity {
 			loaddata(tag);
 		}
 	}
-	*/
+	
+	public void drop() {
+		for (int slot = 0; slot < item.getSlots(); slot++) {
+		    ItemStack stackInSlot = item.getStackInSlot(slot);
+		    if (!stackInSlot.isEmpty()) {
+		        Containers.dropContents(this.level, this.worldPosition, NonNullList.of(ItemStack.EMPTY, stackInSlot));
+		    }
+		}
+	}
+	
 	
 	@Override
 	public void servertick() {
@@ -131,7 +141,7 @@ public class PowerStationBurnEntity extends PowerStationEntity {
 		if(!stack.isEmpty()) {
 			int burntime = ForgeHooks.getBurnTime(stack, RecipeType.SMELTING);
 			if(burntime>0 && heat < 10000) {
-				heat += (int)burntime*2.0;
+				heat += (int)burntime;
 				item.extractItem(0, 1, false);
 			}
 			if(heat>15000) {heat=15000;}
@@ -171,13 +181,13 @@ public class PowerStationBurnEntity extends PowerStationEntity {
 			energy_output = 0;
 		}
 		
-		//理论上，比如一个木板燃烧300tik，*2=600heat,假如维持Heat==4000；可以持续300tik==15s;假如维持Heat==8000；可以持续200tik==10s;
-		//15s*20=300 maring J，10s*20=200 maring J
+		//理论上，比如一个木板燃烧300tik，=300heat,假如维持Heat==4000；可以持续150tik==7.5s;假如维持Heat==8000；可以持续100tik==5s;
+		//7.5s*40=300 maring J，5s*40=200 maring J
 		//一个木板 = 200到300 maring J。
 		
-		System.out.println("heat = " + heat);
-		System.out.println("temperature = " + temperature);
-		System.out.println("energy_output = " + energy_output);
+		//System.out.println("heat = " + heat);
+		//System.out.println("temperature = " + temperature);
+		//System.out.println("energy_output = " + energy_output);
 		setChanged();
 	    }
 	@Override

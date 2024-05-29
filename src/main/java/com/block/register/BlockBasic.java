@@ -23,7 +23,7 @@ public class BlockBasic {
     
     static{
         addBlock("mar_surface", MapColor.COLOR_ORANGE, SoundType.SAND, dirt_strength, false, "shovel", 0);
-        addBlock("mar_stone", MapColor.COLOR_RED, SoundType.STONE, stone_strength, true, "pickaxe", 0);
+        addBlock("mar_stone", MapColor.COLOR_ORANGE, SoundType.STONE, stone_strength, true, "pickaxe", 0);
         addBlock("mar_deep_stone",MapColor.COLOR_RED,SoundType.STONE,ore_strength,true,"pickaxe",0);
         addBlock("mar_iron_ore",MapColor.COLOR_LIGHT_GRAY,SoundType.STONE,ore_strength,true,"pickaxe",1);
         addBlock("mar_deep_iron_ore",MapColor.COLOR_GRAY,SoundType.STONE,deep_ore_strength,true,"pickaxe",1);
@@ -36,14 +36,18 @@ public class BlockBasic {
         addBlock("mar_redstone_ore",MapColor.COLOR_RED,SoundType.STONE,ore_strength,true,"pickaxe",2);
         addBlock("mar_deep_redstone_ore",MapColor.COLOR_RED,SoundType.STONE,deep_ore_strength,true,"pickaxe",2);
         addBlock("mar_deep_emerald_ore",MapColor.COLOR_GREEN,SoundType.STONE,deep_ore_strength,true,"pickaxe",2);    
-    }
+    }//14
     
     static {
     	addBlock("mar_deep_ominous_ore",MapColor.COLOR_BLACK,SoundType.STONE,new float[]{20.0F, 50.0F},true,"pickaxe",3);
     	addBlock("unbroken_cement",MapColor.TERRACOTTA_WHITE,SoundType.STONE,new float[]{-1.0F, -1.0F},false,null,0);
-    	addBlock("unbroken_glass",MapColor.NONE,SoundType.GLASS,new float[]{-1.0F, -1.0F},false,null,0);
+    	//addBlock("unbroken_glass",MapColor.NONE,SoundType.GLASS,new float[]{-1.0F, -1.0F},false,null,0);
     	addBlock("unbroken_decoration_green",MapColor.COLOR_GREEN,SoundType.STONE,new float[]{-1.0F, -1.0F},false,null,0);
     	addBlock("unbroken_decoration_lightblue",MapColor.COLOR_LIGHT_BLUE,SoundType.STONE,new float[]{-1.0F, -1.0F},false,null,0);
+    }
+    
+    static {
+    	addBlock("methane_vents", MapColor.COLOR_ORANGE, SoundType.STONE, stone_strength, true, "pickaxe", 0);
     }
 
    

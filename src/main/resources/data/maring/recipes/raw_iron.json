@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "maring:row_iron_nugget"
+    }
+  },
+  "result": {
+    "item": "minecraft:raw_iron",
+    "count": 1
+  }
+}

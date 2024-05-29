@@ -19,7 +19,6 @@ public class CanfoodMakerScreen extends AbstractContainerScreen<CanfoodMakerMenu
 	@Override
 	protected void renderBg(GuiGraphics pGraphics, float pPartialTick, int pMousex, int pMousey) {
 		pGraphics.blit(GUI,this.leftPos,this.topPos,0,0,this.imageWidth,this.imageHeight);
-		
 	}
 	
 }

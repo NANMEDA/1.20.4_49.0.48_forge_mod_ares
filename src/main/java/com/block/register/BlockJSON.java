@@ -115,7 +115,7 @@ public class BlockJSON {
             return;
         }
 
-        File file = new File("/forge-1.20.4-49.0.48-mdk/src/main/resources/data/minecraft/tags/blocks/" + tool + ".json");
+        File file = new File("/forge-1.20.4-49.0.48-mdk/src/main/resources/data/minecraft/tags/blocks/mineable/" + tool + ".json");
 
         if (!file.exists()) {
             //return;
@@ -167,7 +167,7 @@ public class BlockJSON {
     	    default -> throw new IllegalArgumentException("Unexpected tool_level needs: level = " + level);
     	}
         if(tool == null) {return;}
-        File file = new File("/forge-1.20.4-49.0.48-mdk/src/main/resources/data/minecraft/tags/blocks/mineable/" + tool + ".json");
+        File file = new File("/forge-1.20.4-49.0.48-mdk/src/main/resources/data/minecraft/tags/blocks/" + tool + ".json");
 
         if (!file.exists()) {
             //return;

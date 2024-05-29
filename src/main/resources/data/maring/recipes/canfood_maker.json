@@ -1,7 +1,7 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "XTX",
+    "XVX",
     "X X",
     "XUX"
   ],
@@ -9,8 +9,8 @@
     "X": {
       "item": "minecraft:iron_ingot"
     },
-    "T": {
-      "item": "minecraft:anvil"
+    "V": {
+      "item": "minecraft:hopper"
     },
     "U": {
       "item": "minecraft:cauldron"

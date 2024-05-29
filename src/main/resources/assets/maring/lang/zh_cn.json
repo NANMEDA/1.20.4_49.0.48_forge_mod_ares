@@ -8,13 +8,25 @@
   "block.maring.mar_deep_gold_ore": "火星深层金矿石",
   "block.maring.mar_copper_ore": "火星铜矿石",
   "block.maring.mar_deep_copper_ore": "火星深层铜矿石",
+  "block.maring.mar_lapis_ore": "火星青金石矿",
+  "block.maring.mar_deep_lapis_ore": "火星深层青金石矿",
+  "block.maring.mar_redstone_ore": "火星红石矿石",
+  "block.maring.mar_deep_redstone_ore": "火星深层红石矿",
   "block.maring.mar_deep_emerald_ore": "火星绿宝石矿石",
   "block.maring.mar_deep_ominous_ore": "荧惑矿石",
+  "block.maring.unbroken_cement": "结构水泥",
+  "block.maring.unbroken_glass": "结构玻璃",
+  "block.maring.unbroken_decoration_green": "结构绿色水泥",
+  "block.maring.unbroken_decoration_lightblue": "结构淡蓝水泥",
+  "block.maring.methane_vents": "甲烷喷口",
   
   "block.maring.powerstation_burn": "火力发电机",
+  "block.maring.powerstation_sun": "太阳能发电机",
   "block.maring.canfood_maker": "食品罐装机",
+  "block.maring.microwave_oven": "微波炉",
+  "block.maring.basicmetal_manufactor": "基础金属零件铸机",
   
-  "item.maring.rubbish": "垃圾食品",
+  "item.maring.rubbish": "毁坏的食品",
   "item.maring.bread_can": "面包罐头",
   "item.maring.carrot_can": "萝卜罐头",
   "item.maring.potato_can": "土豆罐头",
@@ -27,15 +39,16 @@
   "item.maring.ominous_cake": "荧惑糕",
   
   "item.maring.ominous_gemstone": "荧惑石",
-  "item.maring.basic_metal_parts": "基础金属零件",
-  "item.maring.advanced_metal_parts": "高级金属零件",
-  "item.maring.bioplastic_parts": "生物塑料零件",
-  "item.maring.semiconductor_parts": "半导体零件",
-  "item.maring.crystal_parts": "强晶体零件",
+  "item.maring.basic_metal_parts": "基础金属零件套件",
+  "item.maring.advanced_metal_parts": "高级金属零件套件",
+  "item.maring.bioplastic_parts": "生物塑料零件套件",
+  "item.maring.semiconductor_parts": "半导体零件套件",
+  "item.maring.crystal_parts": "前晶体零件套件",
   "item.maring.bottled_methane": "装瓶甲烷",
   "item.maring.big_bottled_methane": "大甲烷瓶",
   "item.maring.bottled_oxygen": "装瓶氧气",
   "item.maring.big_bottled_oxygen": "大氧气瓶",
+  "item.maring.raw_iron_nugget": "生铁粒",
   
   "entity.maring.jump_spider": "抱子蜘蛛",
   
@@ -43,10 +56,14 @@
   "effect.maring.mental_abuse": "精神错乱",
   "effect.maring.ominous_luck": "？",
   
-  "mar_main_block_tab": "阿瑞斯-方块",
-  "mar_food_tab": "阿瑞斯-食物",
-  "mar_machine_tab": "阿瑞斯-机器",
+  "mar_main_block_tab": "莪瑞斯-方块",
+  "mar_food_tab": "莪瑞斯-食物",
+  "mar_machine_tab": "莪瑞斯-机器",
+  "mar_material_tab": "莪瑞斯-材料",
   
   "menu.powerstation_burn": "火力发电站",
-  "menu.canfood_maker": "食品罐装机"
+  "menu.canfood_maker": "食品罐装机",
+  "menu.microwave_oven": "微波炉",
+  "menu.basicmetal_manufactor": "基础金属压铸机"
+  
 }

@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "maring:mar_stone",
+    "minecraft:mar_deep_stone",
+    "maring:mar_deep_stone"
+  ]
+}
