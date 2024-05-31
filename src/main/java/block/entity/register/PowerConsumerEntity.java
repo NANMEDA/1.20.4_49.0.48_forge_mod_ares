@@ -26,6 +26,10 @@ public abstract class PowerConsumerEntity extends BlockEntity {
     protected int FULL_ENERGY_CONSUPTION;
     protected short energy_supply = 100;
     
+    @Override
+    public ClientboundBlockEntityDataPacket getUpdatePacket() {
+        return ClientboundBlockEntityDataPacket.create(this);
+    }
 
     protected void servertick() {
     };

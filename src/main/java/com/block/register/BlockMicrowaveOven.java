@@ -46,8 +46,6 @@ public class BlockMicrowaveOven extends Block implements EntityBlock{
 	public BlockMicrowaveOven(Properties properties) {
 		super(properties);
 	}
-	
-    
 
 	@Nullable
 	@Override

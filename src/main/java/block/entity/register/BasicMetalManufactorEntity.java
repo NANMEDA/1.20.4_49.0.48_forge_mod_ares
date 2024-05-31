@@ -131,20 +131,20 @@ public class BasicMetalManufactorEntity extends PowerConsumerEntity{
 	public void servertick() {
 		ItemStack[] stack = new ItemStack[6];
 		if(energy_supply<25) {
+			process_progress = 0;
 			return;
 		}
-		for (int i = 0; i < 6; i++) {
+		for (int i = 0; i < 5; i++) {//不要弄错成6了，最后一个是输出
 		    stack[i] = item.getStackInSlot(i);
 		    if(stack[i]==ItemStack.EMPTY) {
 		    	process_progress = 0;
 		    	return;
 		    }
 		}
-		if(stack[5].getCount()<64||stack[5]==ItemStack.EMPTY) {
-			//System.out.println("into making");
+		stack[5]=item.getStackInSlot(5);
+		if(stack[5].getCount()<64) {
 			energy_consume = 15;
 			if(process_progress>0) {
-				//System.out.println("process!!");
 				process_progress -= (energy_supply > 75) ? 3 : ((energy_supply > 50) ? 2 : ((energy_supply > 25) ? 1 : 0));
 				setChanged();
 				return;

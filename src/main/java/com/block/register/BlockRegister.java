@@ -18,6 +18,11 @@ import javax.annotation.Nonnull;
 
 import com.block.register.BlockBasic;
 import com.block.register.BlockElectricBasic;
+import com.block.register.BasicMetalManufactor.BlockBasicMetalManufactor;
+import com.block.register.BasicMetalManufactor.BlockBasicMetalManufactorbehind;
+import com.block.register.BasicMetalManufactor.BlockBasicMetalManufactorbehindup;
+import com.block.register.BasicMetalManufactor.BlockBasicMetalManufactorleft;
+import com.block.register.BasicMetalManufactor.BlockBasicMetalManufactorup;
 import com.item.register.itemFood;
 
 public class BlockRegister {
@@ -127,5 +132,42 @@ public class BlockRegister {
 	});
     public static final RegistryObject<Item> basicmetalmanufactor_BLOCK_ITEM = BLOCK_ITEMS.register(BlockBasicMetalManufactor.global_name, () -> new BlockItem(basicmetalmanufactor_BLOCK.get(), new Item.Properties()));
 
+    public static final RegistryObject<Block> basicmetalmanufactorup_BLOCK = BLOCKS.register(BlockBasicMetalManufactorup.global_name, () -> {
+		return new BlockBasicMetalManufactorup(BlockBehaviour.Properties.of()
+	            .sound(SoundType.STONE)
+	            .strength(5f,5f)
+	            .noOcclusion()
+	            .mapColor(MapColor.NONE)); 
+	});
+    public static final RegistryObject<Item> basicmetalmanufactorup_BLOCK_ITEM = BLOCK_ITEMS.register(BlockBasicMetalManufactorup.global_name, () -> new BlockItem(basicmetalmanufactorup_BLOCK.get(), new Item.Properties()));
+
+    public static final RegistryObject<Block> basicmetalmanufactorleft_BLOCK = BLOCKS.register(BlockBasicMetalManufactorleft.global_name, () -> {
+		return new BlockBasicMetalManufactorleft(BlockBehaviour.Properties.of()
+	            .sound(SoundType.STONE)
+	            .strength(5f,5f)
+	            .noOcclusion()
+	            .mapColor(MapColor.NONE)); 
+	});
+    public static final RegistryObject<Item> basicmetalmanufactorleft_BLOCK_ITEM = BLOCK_ITEMS.register(BlockBasicMetalManufactorleft.global_name, () -> new BlockItem(basicmetalmanufactorleft_BLOCK.get(), new Item.Properties()));
+
+    public static final RegistryObject<Block> basicmetalmanufactorbehind_BLOCK = BLOCKS.register(BlockBasicMetalManufactorbehind.global_name, () -> {
+		return new BlockBasicMetalManufactorbehind(BlockBehaviour.Properties.of()
+	            .sound(SoundType.STONE)
+	            .strength(5f,5f)
+	            .noOcclusion()
+	            .mapColor(MapColor.NONE)); 
+	});
+    public static final RegistryObject<Item> basicmetalmanufactorbehind_BLOCK_ITEM = BLOCK_ITEMS.register(BlockBasicMetalManufactorbehind.global_name,
+    		() -> new BlockItem(basicmetalmanufactorbehind_BLOCK.get(), new Item.Properties()));
+
+    public static final RegistryObject<Block> basicmetalmanufactorbehindup_BLOCK = BLOCKS.register(BlockBasicMetalManufactorbehindup.global_name, () -> {
+		return new BlockBasicMetalManufactorbehindup(BlockBehaviour.Properties.of()
+	            .sound(SoundType.STONE)
+	            .strength(5f,5f)
+	            .noOcclusion()
+	            .mapColor(MapColor.NONE)); 
+	});
+    public static final RegistryObject<Item> basicmetalmanufactorbehindup_BLOCK_ITEM = BLOCK_ITEMS.register(BlockBasicMetalManufactorbehindup.global_name,
+    		() -> new BlockItem(basicmetalmanufactorbehindup_BLOCK.get(), new Item.Properties()));
     
 }

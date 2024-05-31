@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "maring:block/basicmetal_manufactor_behindup"},
+    "facing=east": { "model": "maring:block/basicmetal_manufactor_behindup"},
+    "facing=south": { "model": "maring:block/basicmetal_manufactor_behindup"},
+    "facing=west": { "model": "maring:block/basicmetal_manufactor_behindup"}
+  }
+}

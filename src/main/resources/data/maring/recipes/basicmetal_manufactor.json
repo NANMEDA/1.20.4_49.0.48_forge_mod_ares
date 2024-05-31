@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "X X",
+    "BUB"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:iron_ingot"
+    },
+    "U": {
+      "item": "minecraft:flower_pot"
+    },
+    "B": {
+      "item": "maring:basic_metal_parts"
+    }
+  },
+  "result": {
+    "item": "maring:basicmetal_manufactor",
+    "count": 1
+  }
+}
