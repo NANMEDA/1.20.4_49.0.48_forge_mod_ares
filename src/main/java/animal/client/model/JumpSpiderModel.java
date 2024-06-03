@@ -5,9 +5,7 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 
 import animal.entity.JumpSpider;
 import animal.entity.JumpSpiderAnimation;
-import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.HierarchicalModel;
-import net.minecraft.client.model.MinecartModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -29,6 +27,7 @@ public class JumpSpiderModel extends HierarchicalModel<JumpSpider>{
 
 	}
 
+	@SuppressWarnings("unused")
 	public static LayerDefinition createBodyLayer() {
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();

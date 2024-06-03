@@ -1,36 +1,17 @@
 package animal.entity;
 
-import org.checkerframework.common.returnsreceiver.qual.This;
-
 import net.minecraft.core.BlockPos;
-import net.minecraft.server.commands.SetSpawnCommand;
-import net.minecraft.server.commands.SummonCommand;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.AnimationState;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.FloatGoal;
-import net.minecraft.world.entity.ai.goal.FollowMobGoal;
-import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
-import net.minecraft.world.entity.ai.goal.TemptGoal;
-import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.monster.Monster;
-import net.minecraft.world.entity.monster.Slime;
 import net.minecraft.world.entity.monster.Spider;
-import net.minecraft.world.entity.monster.Zombie;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.network.packets.SpawnEntity;
 
 public class JumpSpider extends Spider {
 
@@ -105,7 +86,8 @@ public class JumpSpider extends Spider {
         return SoundEvents.SPIDER_STEP;
      }
     
-    @Override
+    @SuppressWarnings("resource")
+	@Override
     protected SoundEvent getDeathSound() {
     	if (!this.level().isClientSide) {
     	    if (this.level().random.nextFloat() < 0.001f) {//爆小蜘蛛了

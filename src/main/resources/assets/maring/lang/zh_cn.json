@@ -26,6 +26,8 @@
   "block.maring.microwave_oven": "微波炉",
   "block.maring.basicmetal_manufactor": "基础金属压铸机",
   
+  "block.maring.bioplastic_builder": "塑料合成机",
+  
   "item.maring.rubbish": "腐坏的食品",
   "item.maring.bread_can": "面包罐头",
   "item.maring.carrot_can": "萝卜罐头",
@@ -64,6 +66,7 @@
   "menu.powerstation_burn": "火力发电站",
   "menu.canfood_maker": "食品罐装机",
   "menu.microwave_oven": "微波炉",
-  "menu.basicmetal_manufactor": "基础铸机"
+  "menu.basicmetal_manufactor": "基础铸机",
   
+  "maring.gui.microwave.button": "启动"
 }

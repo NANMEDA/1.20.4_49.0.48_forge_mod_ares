@@ -1,6 +1,9 @@
 package com.menu.register;
 
 import com.menu.basicmetalmunufactor.BasicMetalManufactorMenu;
+import com.menu.canfoodmaker.CanfoodMakerMenu;
+import com.menu.microwaveoven.MicrowaveOvenMenu;
+import com.menu.powerstationburn.PowerStationBurnMenu;
 
 import net.minecraft.world.inventory.MenuType;
 import net.minecraftforge.common.extensions.IForgeMenuType;

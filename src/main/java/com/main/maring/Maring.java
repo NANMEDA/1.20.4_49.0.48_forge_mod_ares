@@ -1,33 +1,17 @@
 package com.main.maring;
 
 
-import com.block.register.*;
-
 import com.creativetabs.register.CreativeTabsRegister;
 import com.effect.register.EffectRegister;
 import com.item.register.*;
 import com.menu.register.MenuRegister;
 import com.mojang.logging.LogUtils;
 
-import animal.client.model.JumpSpiderModel;
-import animal.client.render.JumpSpiderRenderer;
 import animal.entity.MonsterRegister;
+import block.norm.*;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.entity.EntityRenderers;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.network.chat.Component;
-import net.minecraft.tags.TagKey;
-import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -38,13 +22,9 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
 import tags.register.AddTag;
 import tags.register.TagkeyRegister;
-
-import java.util.stream.IntStream;
 
 import org.slf4j.Logger;
 
@@ -78,7 +58,7 @@ public class Maring
         BlockRegister.BLOCKS.register(modEventBus);
         BlockRegister.BLOCK_ITEMS.register(modEventBus);
         ItemRegister.ITEMS.register(modEventBus);
-        block.entity.register.BlockEntityRegister.BLOCKENTITIES.register(modEventBus);
+        block.entity.BlockEntityRegister.BLOCKENTITIES.register(modEventBus);
         MenuRegister.MENU_TYPES.register(modEventBus);
         CreativeTabsRegister.CREATIVE_MODE_TABS.register(modEventBus);
         MonsterRegister.ENTITY_TYPES.register(modEventBus);
@@ -127,10 +107,5 @@ public class Maring
             
         }
         
-        
-		@SubscribeEvent
-	    public static void registerEntityLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
-	        event.registerLayerDefinition(JumpSpiderModel.LAYER_LOCATION,JumpSpiderModel::createBodyLayer);
-	    } 
     }
 }

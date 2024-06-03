@@ -2,13 +2,13 @@ package com.creativetabs.register;
 
 import java.util.stream.IntStream;
 
-import com.block.register.BlockBasic;
-import com.block.register.BlockElectricBasic;
-import com.block.register.BlockRegister;
 import com.item.register.ItemRegister;
 import com.item.register.itemFood;
 import com.item.register.itemMaterial;
 
+import block.norm.BlockBasic;
+import block.norm.BlockElectricBasic;
+import block.norm.BlockRegister;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -54,6 +54,8 @@ public class CreativeTabsRegister {
                 output.accept(BlockRegister.canfoodmaker_BLOCK_ITEM.get());
                 output.accept(BlockRegister.microwaveoven_BLOCK_ITEM.get());
                 output.accept(BlockRegister.basicmetalmanufactor_BLOCK_ITEM.get());
+                output.accept(BlockRegister.bioplasticbuilder_BLOCK_ITEM.get());
+                output.accept(block.norm.crystalbuilder.Register.crystalbuilder_BLOCK_ITEM.get());
             }).build());
     
     public static final RegistryObject<CreativeModeTab> MAR_MATERIAL_TAB = CREATIVE_MODE_TABS.register("mar_material_tab", () -> CreativeModeTab.builder()

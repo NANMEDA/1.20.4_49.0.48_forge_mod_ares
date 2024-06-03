@@ -2,16 +2,13 @@ package com.menu.basicmetalmunufactor;
 
 import org.jetbrains.annotations.NotNull;
 
-import com.block.register.BlockRegister;
-import com.menu.register.MenuBasic;
+import com.menu.MenuBasic;
 import com.menu.register.MenuRegister;
 
-import block.entity.register.BasicMetalManufactorEntity;
-import block.entity.register.CanfoodMakerEntity;
+import block.entity.consumer.basicmetalmanufactor.BasicMetalManufactorEntity;
+import block.norm.BlockRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.items.SlotItemHandler;

@@ -12,7 +12,9 @@ public class ItemRegister {
 	private static final String MODID = "maring";
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
 	
+	@SuppressWarnings("unchecked")
 	public static final RegistryObject<Item>[] FOOD_ITEMS = new RegistryObject[itemFood.ITEM_FOOD_NUMBER];
+	@SuppressWarnings("unchecked")
 	public static final RegistryObject<Item>[] MATERIAL_ITEMS = new RegistryObject[itemMaterial.ITEM_MATERIAL_NUMBER];
 	
 	static {

@@ -17,30 +17,31 @@ public class itemFood {
     //下面要用lambda表达式
     private static final Map<Integer, Float> EFFECTS_PROBA = new HashMap<>();
 
-    private static int tick = 20;
+    private static int ticks = 20;
+    private static int minutes = 1200;
     
     static {
-        addFoodItem(0, "rubbish", true, 1, 1, () -> new MobEffectInstance(MobEffects.CONFUSION, tick * 30), 1.0F);
-        addFoodItem(1, "carrot_can", false, 3, 6, () -> new MobEffectInstance(EffectRegister.FULLING.get(), tick * 10), 1.0F);
-        addFoodItem(2, "potato_can", false, 5, 10, () -> new MobEffectInstance(EffectRegister.FULLING.get(), tick * 20), 1.0F);
-        addFoodItem(3, "beef_can", false, 8, 12, () -> new MobEffectInstance(EffectRegister.FULLING.get(), tick * 60), 1.0F);
-        addFoodItem(4, "pork_can", false, 8, 12, () -> new MobEffectInstance(EffectRegister.FULLING.get(), tick * 60), 1.0F);
-        addFoodItem(5, "lamb_can", false, 6, 15, () -> new MobEffectInstance(EffectRegister.FULLING.get(), tick * 40), 1.0F);
-        addFoodItem(6, "fish_can", true, 6, 10, () -> new MobEffectInstance(MobEffects.WATER_BREATHING, tick * 90), 1.0F);
-        addFoodItem(7, "bread_can", false, 5, 10, () -> new MobEffectInstance(EffectRegister.FULLING.get(), tick * 30), 1.0F);
-        addFoodItem(8, "rabbit_can", true, 5, 15, () -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, tick * 60), 1.0F);
-        addFoodItem(9, "chicken_can", true, 6, 12, () -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, tick * 40), 1.0F);
+        addFoodItem(0, "rubbish", true, 1, 1, () -> new MobEffectInstance(MobEffects.CONFUSION, ticks * 30), 1.0F);
+        addFoodItem(1, "carrot_can", false, 3, 6, () -> new MobEffectInstance(EffectRegister.FULLING.get(), ticks * 10), 1.0F);
+        addFoodItem(2, "potato_can", false, 5, 10, () -> new MobEffectInstance(EffectRegister.FULLING.get(), ticks * 20), 1.0F);
+        addFoodItem(3, "beef_can", false, 8, 12, () -> new MobEffectInstance(EffectRegister.FULLING.get(), ticks * 60), 1.0F);
+        addFoodItem(4, "pork_can", false, 8, 12, () -> new MobEffectInstance(EffectRegister.FULLING.get(), ticks * 60), 1.0F);
+        addFoodItem(5, "lamb_can", false, 6, 15, () -> new MobEffectInstance(EffectRegister.FULLING.get(), ticks * 40), 1.0F);
+        addFoodItem(6, "fish_can", true, 6, 10, () -> new MobEffectInstance(MobEffects.WATER_BREATHING, ticks * 90), 1.0F);
+        addFoodItem(7, "bread_can", false, 5, 10, () -> new MobEffectInstance(EffectRegister.FULLING.get(), ticks * 30), 1.0F);
+        addFoodItem(8, "rabbit_can", true, 5, 15, () -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, ticks * 60), 1.0F);
+        addFoodItem(9, "chicken_can", true, 6, 12, () -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, ticks * 40), 1.0F);
     }
 
     static {
     	addFoodItem(10, "ominous_cake", true, 1, 20, () -> {
     	    int rand = new Random().nextInt(100) + 1;
     	    if (rand <= 30) {
-    	        return new MobEffectInstance(EffectRegister.OMINOUSLUCK.get(), tick * 420);
+    	        return new MobEffectInstance(EffectRegister.OMINOUSLUCK.get(), minutes * 7);
     	    } else if (rand <= 95) {
-    	        return new MobEffectInstance(EffectRegister.MENTALABUSE.get(), tick * 100);
+    	        return new MobEffectInstance(EffectRegister.MENTALABUSE.get(), ticks * 100);
     	    } else {
-    	        return new MobEffectInstance(MobEffects.BAD_OMEN, tick*900);
+    	        return new MobEffectInstance(MobEffects.BAD_OMEN, minutes * 15);
     	    }
     	}, 1.0F);
     }
@@ -62,6 +63,7 @@ public class itemFood {
         EFFECTS.put(id, effectSupplier);
         EFFECTS_PROBA.put(id, effect_time);
     }
+    
     public static String getFoodName(int id) {
         return FOOD_NAME.get(id);
     }
@@ -81,6 +83,7 @@ public class itemFood {
     public static Supplier<MobEffectInstance> getFoodEffect(int id) {
         return EFFECTS.get(id);
     }
+    
     public static Float getFoodEffectProbal(int id) {
         return EFFECTS_PROBA.get(id);
     }

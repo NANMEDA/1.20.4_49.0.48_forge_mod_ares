@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "UGB",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:iron_block"
+    },
+    "G": {
+      "item": "minecraft:glass"
+    },
+    "B": {
+      "item": "maring:basic_metal_parts"
+    },
+    "U": {
+      "item": "minecraft:cauldron"
+    }
+  },
+  "result": {
+    "item": "maring:bioplastic_builder",
+    "count": 1
+  }
+}

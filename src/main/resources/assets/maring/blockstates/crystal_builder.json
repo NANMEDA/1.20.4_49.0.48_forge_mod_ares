@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "maring:block/crystal_builder" },
+    "facing=east": { "model": "maring:block/crystal_builder", "y": 90 },
+    "facing=south": { "model": "maring:block/crystal_builder", "y": 180 },
+    "facing=west": { "model": "maring:block/crystal_builder", "y": 270}
+  }
+}
