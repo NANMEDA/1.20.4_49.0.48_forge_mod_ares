@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GPG",
+    "G G",
+    "XCX"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:iron_block"
+    },
+    "C": {
+      "item": "maring:crystal_parts"
+    },
+    "G": {
+      "item": "minecraft:glass"
+    },
+    "P": {
+      "item": "maring:bioplastic_parts"
+    }
+  },
+  "result": {
+    "item": "maring:water_gather",
+    "count": 1
+  }
+}

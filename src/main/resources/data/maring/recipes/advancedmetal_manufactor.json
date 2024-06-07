@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BDB",
+    "X X",
+    "XBX"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:iron_block"
+    },
+    "D": {
+      "item": "minecraft:diamond"
+    },
+    "B": {
+      "item": "maring:basic_metal_parts"
+    }
+  },
+  "result": {
+    "item": "maring:advancedmetal_manufactor",
+    "count": 1
+  }
+}

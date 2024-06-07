@@ -31,6 +31,7 @@ public class BlockBasicMetalManufactorbehind extends Block{
 	public boolean isPathfindable(BlockState p_60475_, BlockGetter p_60476_, BlockPos p_60477_, PathComputationType p_60478_) {
 		return true;
 	}
+
 	
 	@Override
     public VoxelShape getShape(BlockState p_60555_, BlockGetter p_60556_, BlockPos p_60557_, CollisionContext p_60558_) {

@@ -25,8 +25,13 @@
   "block.maring.canfood_maker": "食品罐装机",
   "block.maring.microwave_oven": "微波炉",
   "block.maring.basicmetal_manufactor": "基础金属压铸机",
-  
+  "block.maring.advancedmetal_manufactor": "高级金属雕机",
   "block.maring.bioplastic_builder": "塑料合成机",
+  "block.maring.crystal_builder": "晶体合成机",
+  "block.maring.etching_machine": "蚀刻机",
+  "block.maring.glass_builder": "玻璃合成机",
+  
+  "block.maring.water_gather": "水分收集器",
   
   "item.maring.rubbish": "腐坏的食品",
   "item.maring.bread_can": "面包罐头",
@@ -39,6 +44,7 @@
   "item.maring.rabbit_can": "兔子罐头",
   "item.maring.chicken_can": "鸡肉罐头",
   "item.maring.ominous_cake": "荧惑糕",
+  "item.maring.french_bread": "🥖",
   
   "item.maring.ominous_gemstone": "荧惑石",
   "item.maring.basic_metal_parts": "基础金属零件套件",
@@ -67,6 +73,8 @@
   "menu.canfood_maker": "食品罐装机",
   "menu.microwave_oven": "微波炉",
   "menu.basicmetal_manufactor": "基础铸机",
+  "menu.advancedmetal_manufactor": "高级雕机",
+  "menu.etching_machine": "蚀刻",
   
   "maring.gui.microwave.button": "启动"
 }

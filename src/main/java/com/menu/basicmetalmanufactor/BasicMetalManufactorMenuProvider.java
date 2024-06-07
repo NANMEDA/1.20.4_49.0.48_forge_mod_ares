@@ -1,4 +1,4 @@
-package com.menu.basicmetalmunufactor;
+package com.menu.basicmetalmanufactor;
 
 import javax.annotation.Nullable;
 

@@ -2,7 +2,7 @@ package block.norm.basicmetalmanufactor;
 
 import javax.annotation.Nullable;
 
-import com.menu.basicmetalmunufactor.BasicMetalManufactorMenuProvider;
+import com.menu.basicmetalmanufactor.BasicMetalManufactorMenuProvider;
 
 import block.entity.consumer.basicmetalmanufactor.BasicMetalManufactorEntity;
 import block.norm.BlockJSON;

@@ -39,6 +39,7 @@ public class CreativeTabsRegister {
                 IntStream.range(0, itemFood.ITEM_FOOD_NUMBER).forEach(i -> {
                 	output.accept(ItemRegister.FOOD_ITEMS[i].get());
                 });
+                output.accept(ItemRegister.frenchbread_ITEM.get());
             }).build());
     
     public static final RegistryObject<CreativeModeTab> MAR_MACHINE_TAB = CREATIVE_MODE_TABS.register("mar_machine_tab", () -> CreativeModeTab.builder()
@@ -54,8 +55,12 @@ public class CreativeTabsRegister {
                 output.accept(BlockRegister.canfoodmaker_BLOCK_ITEM.get());
                 output.accept(BlockRegister.microwaveoven_BLOCK_ITEM.get());
                 output.accept(BlockRegister.basicmetalmanufactor_BLOCK_ITEM.get());
+                output.accept(block.norm.advancedmetalmanufactor.Register.advancedmetalmanufactor_BLOCK_ITEM.get());
                 output.accept(BlockRegister.bioplasticbuilder_BLOCK_ITEM.get());
                 output.accept(block.norm.crystalbuilder.Register.crystalbuilder_BLOCK_ITEM.get());
+                output.accept(block.norm.etchingmachine.Register.etchingmachine_BLOCK_ITEM.get());
+                output.accept(block.norm.glassbuilder.Register.glassbuilder_BLOCK_ITEM.get());
+                output.accept(block.norm.watergather.Register.watergather_BLOCK_ITEM.get());
             }).build());
     
     public static final RegistryObject<CreativeModeTab> MAR_MATERIAL_TAB = CREATIVE_MODE_TABS.register("mar_material_tab", () -> CreativeModeTab.builder()

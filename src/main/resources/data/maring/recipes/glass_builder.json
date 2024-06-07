@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " XX",
+    "X P",
+    "BXX"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:iron_block"
+    },
+    "B": {
+      "item": "maring:basic_metal_parts"
+    },
+    "P": {
+      "item": "maring:bioplastic_parts"
+    }
+  },
+  "result": {
+    "item": "maring:glass_builder",
+    "count": 1
+  }
+}

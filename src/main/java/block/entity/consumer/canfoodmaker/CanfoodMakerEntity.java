@@ -30,7 +30,7 @@ public class CanfoodMakerEntity extends PowerConsumerEntity{
 	
 	public CanfoodMakerEntity(BlockPos pos, BlockState pBlockState) {
 		super(BlockEntityRegister.canfoodmaker_BLOCKENTITY.get(), pos, pBlockState);
-		this.energy_consume = 5;
+		this.FULL_ENERGY_CONSUPTION = 5;
 	}
 	
     protected final ItemStackHandler item = new ItemStackHandler(itemstack_number) {//必须要在这里创建，ItemStackHandler不可被修改

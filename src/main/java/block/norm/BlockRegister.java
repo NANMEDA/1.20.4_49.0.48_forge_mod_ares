@@ -218,5 +218,10 @@ public class BlockRegister {
     
     static {
     	block.norm.crystalbuilder.Register.init();
+    	block.norm.glassbuilder.Register.init();
+    	block.norm.watergather.Register.init();
+    	block.norm.researchtable.Register.init();
+    	block.norm.advancedmetalmanufactor.Register.init();
+    	block.norm.etchingmachine.Register.init();
     }
 }

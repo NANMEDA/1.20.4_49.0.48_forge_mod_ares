@@ -29,7 +29,7 @@ public class BioplasticBuilderEntity extends PowerConsumerEntity{
 	
 	public BioplasticBuilderEntity(BlockPos pos, BlockState pBlockState) {
 		super(BlockEntityRegister.bioplasticbuilder_BLOCKENTITY.get(), pos, pBlockState);
-		this.energy_consume = 15;
+		this.FULL_ENERGY_CONSUPTION = 15;
 	}
 	
     protected final ItemStackHandler item = new ItemStackHandler(itemstack_number) {//必须要在这里创建，ItemStackHandler不可被修改
@@ -151,7 +151,7 @@ public class BioplasticBuilderEntity extends PowerConsumerEntity{
 		}
 		stack=item.getStackInSlot(0);
 		if(stack.getCount()<64) {
-			energy_consume = 15;
+			energy_consume = FULL_ENERGY_CONSUPTION;
 			if(process_progress>0) {
 				process_progress -= (energy_supply > 75) ? 3 : ((energy_supply > 50) ? 2 : ((energy_supply > 25) ? 1 : 0));
 				setChanged();

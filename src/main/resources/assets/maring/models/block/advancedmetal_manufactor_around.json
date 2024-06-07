@@ -1,0 +1,8 @@
+{
+  "render_type": "minecraft:cutout",
+   "ambientocclusion": false,
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "maring:block/empty"
+  }
+}

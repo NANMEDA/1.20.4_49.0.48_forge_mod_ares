@@ -28,7 +28,6 @@ public class TagkeyJson {
         File file = new File(path);
         JsonObject tagJson = new JsonObject();
         Gson GSON = new GsonBuilder().setPrettyPrinting().create();
-        // Check if file exists
         if (file.exists()) {
             try (FileReader reader = new FileReader(file)) {
                 tagJson = JsonParser.parseReader(reader).getAsJsonObject();
@@ -36,16 +35,13 @@ public class TagkeyJson {
                 e.printStackTrace();
             }
         } else {
-            // Create necessary directories
             file.getParentFile().mkdirs();
         }
 
-        // Ensure the "replace" property is set to false
         if (!tagJson.has("replace")) {
             tagJson.addProperty("replace", false);
         }
 
-        // Ensure the "values" array exists
         JsonArray valuesArray;
         if (tagJson.has("values")) {
             valuesArray = tagJson.getAsJsonArray("values");
@@ -54,7 +50,6 @@ public class TagkeyJson {
             tagJson.add("values", valuesArray);
         }
 
-        // Add the new name to the "values" array if it doesn't already exist
         boolean exists = false;
         for (JsonElement element : valuesArray) {
             if (element.getAsString().equals(name)) {
@@ -67,7 +62,6 @@ public class TagkeyJson {
             valuesArray.add(name);
         }
 
-        // Write the JSON back to the file
         try (FileWriter writer = new FileWriter(file)) {
             GSON.toJson(tagJson, writer);
         } catch (IOException e) {

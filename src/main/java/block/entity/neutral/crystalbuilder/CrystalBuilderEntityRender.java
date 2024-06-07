@@ -42,7 +42,7 @@ public class CrystalBuilderEntityRender implements BlockEntityRenderer<CrystalBu
 					itemrender.renderStatic(output, ItemDisplayContext.FIXED, packedLight, packedOverlay, pPoseStack, pBuffer, Minecraft.getInstance().level, 0);
 					pPoseStack.popPose();
 				}
-				if(entity.crystal>15) {
+				if(entity.crystal>=15) {
 					Float scale = 1.0f/0.25f;
 					
 					pPoseStack.pushPose();

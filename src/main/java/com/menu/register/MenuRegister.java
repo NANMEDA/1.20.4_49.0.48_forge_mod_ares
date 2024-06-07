@@ -1,7 +1,9 @@
 package com.menu.register;
 
-import com.menu.basicmetalmunufactor.BasicMetalManufactorMenu;
+import com.menu.advancedmetalmanufactor.AdvancedMetalManufactorMenu;
+import com.menu.basicmetalmanufactor.BasicMetalManufactorMenu;
 import com.menu.canfoodmaker.CanfoodMakerMenu;
+import com.menu.etchingmachine.EtchingMachineMenu;
 import com.menu.microwaveoven.MicrowaveOvenMenu;
 import com.menu.powerstationburn.PowerStationBurnMenu;
 
@@ -26,6 +28,12 @@ public class MenuRegister {
 
     public static final RegistryObject<MenuType<BasicMetalManufactorMenu>> BASICMETALMANUFACTOR_MENU = MENU_TYPES.register("basicmetalmanufactor_menu",
             () -> IForgeMenuType.create((windowId, inv, data) -> new BasicMetalManufactorMenu(inv, windowId, data.readBlockPos())));
+
+    public static final RegistryObject<MenuType<AdvancedMetalManufactorMenu>> ADVANCEDMETALMANUFACTOR_MENU = MENU_TYPES.register("advancedmetalmanufactor_menu",
+            () -> IForgeMenuType.create((windowId, inv, data) -> new AdvancedMetalManufactorMenu(inv, windowId, data.readBlockPos())));
+
+    public static final RegistryObject<MenuType<EtchingMachineMenu>> ETCHINGMACHINE_MENU = MENU_TYPES.register("etchingmachine_menu",
+            () -> IForgeMenuType.create((windowId, inv, data) -> new EtchingMachineMenu(inv, windowId, data.readBlockPos())));
 
     
 }

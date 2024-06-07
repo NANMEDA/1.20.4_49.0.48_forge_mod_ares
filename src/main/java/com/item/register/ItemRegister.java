@@ -2,6 +2,9 @@ package com.item.register;
 
 import java.util.stream.IntStream;
 
+import com.item.register.weapon.ItemFrenchBread;
+import com.item.register.weapon.SwordTier;
+
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.DeferredRegister;
@@ -32,6 +35,7 @@ public class ItemRegister {
         IntStream.range(0, itemMaterial.ITEM_MATERIAL_NUMBER).forEach(i -> {
         	MATERIAL_ITEMS[i] = ITEMS.register(itemMaterial.getMaterialName(i), () -> new Item(new Item.Properties()));
         });
-      
 	}
+	
+	public static final RegistryObject<Item> frenchbread_ITEM = ITEMS.register(ItemFrenchBread.global_name, () -> new ItemFrenchBread(SwordTier.FrenchBread, 4, 1f, new Item.Properties()));
 }

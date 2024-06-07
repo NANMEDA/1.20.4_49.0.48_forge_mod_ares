@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "maring:block/advancedmetal_manufactor" },
+    "facing=east": { "model": "maring:block/advancedmetal_manufactor", "y": 90 },
+    "facing=south": { "model": "maring:block/advancedmetal_manufactor", "y": 180 },
+    "facing=west": { "model": "maring:block/advancedmetal_manufactor", "y": 270}
+  }
+}

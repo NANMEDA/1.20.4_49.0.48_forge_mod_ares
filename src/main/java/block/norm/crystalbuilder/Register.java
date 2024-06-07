@@ -1,4 +1,4 @@
-package block.norm.crystalbuilder;
+ package block.norm.crystalbuilder;
 
 import block.norm.BlockRegister;
 import net.minecraft.world.item.BlockItem;
@@ -11,12 +11,11 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class Register {
 	
-	@SuppressWarnings("unused")
 	public static void init() {}
 	
     public static final RegistryObject<Block> crystalbuilder_BLOCK = BlockRegister.BLOCKS.register(BlockCrystalBuilder.global_name, () -> {
 		return new BlockCrystalBuilder(BlockBehaviour.Properties.of()
-	            .sound(SoundType.STONE)
+	            .sound(SoundType.AMETHYST)
 	            .strength(5f,5f)
 	            .noOcclusion()
 	            .mapColor(MapColor.COLOR_ORANGE)); 
@@ -26,7 +25,7 @@ public class Register {
     
     public static final RegistryObject<Block> crystalbuilderup_BLOCK = BlockRegister.BLOCKS.register(BlockCrystalBuilderup.global_name, () -> {
 		return new BlockCrystalBuilderup(BlockBehaviour.Properties.of()
-	            .sound(SoundType.STONE)
+	            .sound(SoundType.AMETHYST)
 	            .strength(5f,5f)
 	            .noOcclusion()
 	            .mapColor(MapColor.NONE)); 
@@ -35,7 +34,7 @@ public class Register {
 
     public static final RegistryObject<Block> crystalbuilderleft_BLOCK = BlockRegister.BLOCKS.register(BlockCrystalBuilderleft.global_name, () -> {
 		return new BlockCrystalBuilderleft(BlockBehaviour.Properties.of()
-	            .sound(SoundType.STONE)
+	            .sound(SoundType.AMETHYST)
 	            .strength(5f,5f)
 	            .noOcclusion()
 	            .mapColor(MapColor.NONE)); 
