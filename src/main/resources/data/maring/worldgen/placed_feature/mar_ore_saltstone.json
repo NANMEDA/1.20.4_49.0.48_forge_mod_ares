@@ -1,0 +1,33 @@
+{
+  "feature": "maring:mar_ore_saltstone",
+  "placement": [
+    {
+      "type": "minecraft:count",
+      "count": {
+        "type": "minecraft:uniform",
+        "value": {
+          "min_inclusive": 0,
+          "max_inclusive": 3
+        }
+      }
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "type": "minecraft:height_range",
+      "height": {
+        "type": "minecraft:uniform",
+        "max_inclusive": {
+          "absolute": 128
+        },
+        "min_inclusive": {
+          "absolute": 32
+        }
+      }
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

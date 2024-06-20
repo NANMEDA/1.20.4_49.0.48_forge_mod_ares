@@ -8,7 +8,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 
 public enum SwordTier implements Tier {
 
-    FrenchBread(0, 100, 1.6F, 0.0F, 15, () -> {
+    FrenchBread(0, 114, 1.6F, 0.0F, 15, () -> {
 	    return Ingredient.of(Items.BREAD);
 	});
 	
@@ -21,7 +21,7 @@ public enum SwordTier implements Tier {
  
     private SwordTier(int level, int useTime, float speed, float damage, int p_i48458_7_, Supplier<Ingredient> repairSupplier)
     {
-        this.level = level;
+        this.level = level;		//好像是啥稀有等级来着
         this.uses = useTime;
         this.speed = speed;
         this.damage = damage;
@@ -29,40 +29,33 @@ public enum SwordTier implements Tier {
         this.repairIngredient = repairSupplier;
     }
 	
-	@Override
-	public int getUses() {
-		// TODO 自动生成的方法存根
-		return 0;
-	}
+    @Override
+    public int getUses() {
+        return this.uses;
+    }
 
-	@Override
-	public float getSpeed() {
-		// TODO 自动生成的方法存根
-		return 0;
-	}
+    @Override
+    public float getSpeed() {
+        return this.speed;
+    }
 
-	@Override
-	public float getAttackDamageBonus() {
-		// TODO 自动生成的方法存根
-		return 0;
-	}
+    @Override
+    public float getAttackDamageBonus() {
+        return this.damage;
+    }
 
-	@Override
-	public int getLevel() {
-		// TODO 自动生成的方法存根
-		return 0;
-	}
+    @Override
+    public int getLevel() {
+        return this.level;
+    }
 
-	@Override
-	public int getEnchantmentValue() {
-		// TODO 自动生成的方法存根
-		return 0;
-	}
+    @Override
+    public int getEnchantmentValue() {
+        return this.enchantmentValue;
+    }
 
-	@Override
-	public Ingredient getRepairIngredient() {
-		// TODO 自动生成的方法存根
-		return null;
-	}
-
+    @Override
+    public Ingredient getRepairIngredient() {
+        return this.repairIngredient.get();
+    }
 }

@@ -1,7 +1,14 @@
 {
   "block.maring.mar_surface": "火星表层土",
-  "block.maring.mar_stone": "火星石",
+  "block.maring.mar_baked_surface": "火星表层炙烤土",
+  "block.maring.mar_sand": "火星表层沙",
+  "block.maring.mar_mud": "火星表层泥",
+  "block.maring.mar_stone": "火星岩",
+  "block.maring.mar_sedimentary_stone": "火星沉积岩",
+  "block.maring.mar_sulfur_stone": "火星硫化岩",
+  "block.maring.mar_saltstone": "火星盐岩",
   "block.maring.mar_deep_stone": "火星底层石",
+  "block.maring.mar_deep_sulfur_stone": "火星底层硫化石",
   "block.maring.mar_iron_ore": "火星铁矿石",
   "block.maring.mar_deep_iron_ore": "火星深层铁矿石",
   "block.maring.mar_gold_ore": "火星金矿石",
@@ -63,6 +70,7 @@
   "effect.maring.fulling": "饱腹",
   "effect.maring.mental_abuse": "精神错乱",
   "effect.maring.ominous_luck": "？",
+  "effect.maring.lose_pressure": "失压",
   
   "mar_main_block_tab": "莪瑞斯-方块",
   "mar_food_tab": "莪瑞斯-食物",

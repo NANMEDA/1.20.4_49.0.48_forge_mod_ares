@@ -1,6 +1,9 @@
 {
   "replace": false,
   "values": [
-    "maring:mar_surface"
+    "maring:mar_surface",
+    "maring:mar_baked_surface",
+    "maring:mar_sand",
+    "maring:mar_mud"
   ]
 }

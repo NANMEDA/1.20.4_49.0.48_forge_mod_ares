@@ -13,6 +13,7 @@ import net.minecraft.world.level.levelgen.GenerationStep;
 import worldgen.ModPlacedFeatures;
 
 public class ModBiomes {
+	/*
     public static final ResourceKey<Biome> TEST_BIOME0 = ResourceKey.create(Registries.BIOME,
             new ResourceLocation("maring", "maring_hotground"));
     public static final ResourceKey<Biome> TEST_BIOME1 = ResourceKey.create(Registries.BIOME,
@@ -50,11 +51,6 @@ public class ModBiomes {
     public static Biome testBiome(BootstapContext<Biome> context) {
         MobSpawnSettings.Builder spawnBuilder = new MobSpawnSettings.Builder();
 
-        spawnBuilder.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityType.WOLF, 5, 4, 4));
-
-        BiomeDefaultFeatures.farmAnimals(spawnBuilder);
-        BiomeDefaultFeatures.commonSpawns(spawnBuilder);
-
         BiomeGenerationSettings.Builder biomeBuilder =
                 new BiomeGenerationSettings.Builder(context.lookup(Registries.PLACED_FEATURE), context.lookup(Registries.CONFIGURED_CARVER));
         //we need to follow the same order as vanilla biomes for the BiomeDefaultFeatures
@@ -64,12 +60,6 @@ public class ModBiomes {
         BiomeDefaultFeatures.addFerns(biomeBuilder);
         BiomeDefaultFeatures.addDefaultOres(biomeBuilder);
         BiomeDefaultFeatures.addExtraGold(biomeBuilder);
-
-        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.TREES_PLAINS);
-
-        BiomeDefaultFeatures.addDefaultMushrooms(biomeBuilder);
-        BiomeDefaultFeatures.addDefaultExtraVegetation(biomeBuilder);
-        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.PINE_PLACED_KEY);
 
         return new Biome.BiomeBuilder()
                 .hasPrecipitation(true)
@@ -87,5 +77,5 @@ public class ModBiomes {
                         .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
                         .build())
                 .build();
-    }
+    }*/
 }

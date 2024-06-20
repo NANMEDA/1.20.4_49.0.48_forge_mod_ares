@@ -4,7 +4,7 @@ import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.block.SoundType;
 
 public class BlockBasic {
-	public static int BLOCK_BASIC_NUMBER = 19;
+	public static int BLOCK_BASIC_NUMBER = 26;
 	private static int k = 0;
 	
     private static final String[] BLOCK_NAME = new String[BLOCK_BASIC_NUMBER];
@@ -23,8 +23,18 @@ public class BlockBasic {
     
     static{
         addBlock("mar_surface", MapColor.COLOR_ORANGE, SoundType.SAND,dirt_strength, false, "shovel", 0);
+        addBlock("mar_baked_surface", MapColor.COLOR_RED, SoundType.SAND,dirt_strength, false, "shovel", 1);
+        addBlock("mar_sand", MapColor.COLOR_ORANGE, SoundType.SAND,dirt_strength, false, "shovel", 0);
+        addBlock("mar_mud", MapColor.COLOR_ORANGE, SoundType.SAND,dirt_strength, false, "shovel", 0);
+        //4
         addBlock("mar_stone", MapColor.COLOR_ORANGE, SoundType.STONE,stone_strength, true, "pickaxe", 0);
+        addBlock("mar_sedimentary_stone", MapColor.COLOR_ORANGE, SoundType.STONE,stone_strength, true, "pickaxe", 0);
+        addBlock("mar_sulfur_stone", MapColor.COLOR_ORANGE, SoundType.STONE,stone_strength, true, "pickaxe", 0);
+        addBlock("mar_saltstone", MapColor.COLOR_ORANGE, SoundType.STONE,stone_strength, true, "pickaxe", 0);        
+        //4
         addBlock("mar_deep_stone",MapColor.COLOR_RED,SoundType.STONE,ore_strength,true,"pickaxe",0);
+        addBlock("mar_deep_sulfur_stone",MapColor.COLOR_RED,SoundType.STONE,ore_strength,true,"pickaxe",0);
+        //2
         addBlock("mar_iron_ore",MapColor.COLOR_LIGHT_GRAY,SoundType.STONE,ore_strength,true,"pickaxe",1);
         addBlock("mar_deep_iron_ore",MapColor.COLOR_GRAY,SoundType.STONE,deep_ore_strength,true,"pickaxe",1);
         addBlock("mar_gold_ore",MapColor.COLOR_YELLOW,SoundType.STONE,ore_strength,true,"pickaxe",2);
@@ -37,7 +47,8 @@ public class BlockBasic {
         addBlock("mar_deep_redstone_ore",MapColor.COLOR_RED,SoundType.STONE,deep_ore_strength,true,"pickaxe",2);
         addBlock("mar_deep_emerald_ore",MapColor.COLOR_GREEN,SoundType.STONE,deep_ore_strength,true,"pickaxe",2);  
         addBlock("mar_deep_ominous_ore",MapColor.COLOR_BLACK,SoundType.STONE,new float[]{20.0F, 50.0F},true,"pickaxe",3);
-    }//15
+        //12
+    }//22
     
     static {
     	addBlock("unbroken_cement",MapColor.TERRACOTTA_WHITE,SoundType.STONE,new float[]{-1.0F, -1.0F},false,null,0);

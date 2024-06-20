@@ -9,6 +9,8 @@ import com.mojang.logging.LogUtils;
 
 import animal.entity.MonsterRegister;
 import block.norm.*;
+import boime.BiomeEffectApplier;
+import boime.register.BiomeRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.api.distmarker.Dist;
@@ -25,6 +27,8 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
 import tags.register.AddTag;
 import tags.register.TagkeyRegister;
+import util.EntityGravity;
+import util.ItemGravity;
 
 import org.slf4j.Logger;
 
@@ -62,9 +66,13 @@ public class Maring
         MenuRegister.MENU_TYPES.register(modEventBus);
         CreativeTabsRegister.CREATIVE_MODE_TABS.register(modEventBus);
         MonsterRegister.ENTITY_TYPES.register(modEventBus);
-        
+
+        MinecraftForge.EVENT_BUS.register(new BiomeEffectApplier());
+        MinecraftForge.EVENT_BUS.register(new EntityGravity());
+        MinecraftForge.EVENT_BUS.register(new ItemGravity());
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
+        
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }

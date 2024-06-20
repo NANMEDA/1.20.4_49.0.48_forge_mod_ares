@@ -6,6 +6,7 @@ import net.minecraft.world.level.levelgen.SurfaceRules;
 import worldgen.biome.ModBiomes;
 
 public class ModSurfaceRules {
+	/*
     private static final SurfaceRules.RuleSource DIRT = makeStateRule(Blocks.DIRT);
     private static final SurfaceRules.RuleSource GRASS_BLOCK = makeStateRule(Blocks.GRASS_BLOCK);
     private static final SurfaceRules.RuleSource SAPPHIRE = makeStateRule(Blocks.GLASS);
@@ -29,5 +30,5 @@ public class ModSurfaceRules {
 
     private static SurfaceRules.RuleSource makeStateRule(Block block) {
         return SurfaceRules.state(block.defaultBlockState());
-    }
+    }*/
 }

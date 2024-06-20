@@ -16,6 +16,10 @@
     "maring:mar_deep_lapis_ore",
     "maring:mar_redstone_ore",
     "maring:mar_deep_redstone_ore",
-    "maring:methane_vents"
+    "maring:methane_vents",
+    "maring:mar_sedimentary_stone",
+    "maring:mar_sulfur_stone",
+    "maring:mar_saltstone",
+    "maring:mar_deep_sulfur_stone"
   ]
 }

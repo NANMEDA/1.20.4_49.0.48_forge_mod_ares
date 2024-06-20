@@ -13,6 +13,7 @@ import net.minecraftforge.common.world.ForgeBiomeModifiers;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class ModBiomeModifiers {
+	/*
     public static final ResourceKey<BiomeModifier> ADD_SAPPHIRE_ORE = registerKey("add_sapphire_ore");
     public static final ResourceKey<BiomeModifier> ADD_NETHER_SAPPHIRE_ORE = registerKey("add_nether_sapphire_ore");
     public static final ResourceKey<BiomeModifier> ADD_END_SAPPHIRE_ORE = registerKey("add_end_sapphire_ore");
@@ -47,5 +48,5 @@ public class ModBiomeModifiers {
 
     private static ResourceKey<BiomeModifier> registerKey(String name) {
         return ResourceKey.create(ForgeRegistries.Keys.BIOME_MODIFIERS, new ResourceLocation("maring", name));
-    }
+    }*/
 }

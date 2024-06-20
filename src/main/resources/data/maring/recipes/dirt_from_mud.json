@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "maring:mar_mud"
+    },
+    {
+      "item": "maring:mar_mud"
+    },
+    {
+      "item": "maring:mar_mud"
+    },
+    {
+      "item": "maring:mar_mud"
+    },
+    {
+      "item": "maring:mar_mud"
+    },
+    {
+      "item": "maring:bioplastic_parts"
+    },
+    {
+      "item": "maring:bioplastic_parts"
+    },
+    {
+      "item": "maring:bioplastic_parts"
+    },
+    {
+      "item": "minecraft:water_bucket"
+    }
+  ],
+  "result": {
+    "item": "minecraft:dirt",
+    "count": 5
+  }
+}

@@ -5,6 +5,8 @@ import com.menu.basicmetalmanufactor.BasicMetalManufactorMenu;
 import com.menu.canfoodmaker.CanfoodMakerMenu;
 import com.menu.etchingmachine.EtchingMachineMenu;
 import com.menu.microwaveoven.MicrowaveOvenMenu;
+import com.menu.playerextend.PlayerExtendMenu;
+import com.menu.playerextend.PlayerExtendScreen;
 import com.menu.powerstationburn.PowerStationBurnMenu;
 
 import net.minecraft.world.inventory.MenuType;
@@ -34,6 +36,9 @@ public class MenuRegister {
 
     public static final RegistryObject<MenuType<EtchingMachineMenu>> ETCHINGMACHINE_MENU = MENU_TYPES.register("etchingmachine_menu",
             () -> IForgeMenuType.create((windowId, inv, data) -> new EtchingMachineMenu(inv, windowId, data.readBlockPos())));
+
+    public static final RegistryObject<MenuType<PlayerExtendMenu>> PLAYEREXTEND_MENU = MENU_TYPES.register("player_extend",
+            () -> IForgeMenuType.create((windowId, inv, data) -> new PlayerExtendMenu(inv, windowId, data.readBlockPos())));
 
     
 }

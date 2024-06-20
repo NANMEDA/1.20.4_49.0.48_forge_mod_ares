@@ -13,6 +13,7 @@ import com.menu.basicmetalmanufactor.BasicMetalManufactorScreen;
 import com.menu.canfoodmaker.CanfoodMakerScreen;
 import com.menu.etchingmachine.EtchingMachineScreen;
 import com.menu.microwaveoven.MicrowaveOvenScreen;
+import com.menu.playerextend.PlayerExtendScreen;
 import com.menu.powerstationburn.PowerStationBurnScreen;
 import com.menu.register.MenuRegister;
 
@@ -51,6 +52,9 @@ public class ClientListener{
 		event.enqueueWork(()->MenuScreens.register(MenuRegister.ADVANCEDMETALMANUFACTOR_MENU.get(), AdvancedMetalManufactorScreen::new));
 		
 		event.enqueueWork(()->MenuScreens.register(MenuRegister.ETCHINGMACHINE_MENU.get(), EtchingMachineScreen::new));
+		
+		event.enqueueWork(()->MenuScreens.register(MenuRegister.PLAYEREXTEND_MENU.get(), PlayerExtendScreen::new));
+		
 		
 		
         event.enqueueWork(()-> EntityRenderers.register(MonsterRegister.JUMP_SPIDER.get(), JumpSpiderRenderer::new)); 

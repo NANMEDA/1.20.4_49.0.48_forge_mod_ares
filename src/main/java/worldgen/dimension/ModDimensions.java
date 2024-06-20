@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.OptionalLong;
 
 public class ModDimensions {
+	/*
 	private static String MOD_ID = "maring";
 	
     public static final ResourceKey<LevelStem> KAUPENDIM_KEY = ResourceKey.create(Registries.LEVEL_STEM,
@@ -77,5 +78,5 @@ public class ModDimensions {
         LevelStem stem = new LevelStem(dimTypes.getOrThrow(ModDimensions.KAUPEN_DIM_TYPE), noiseBasedChunkGenerator);
 
         context.register(KAUPENDIM_KEY, stem);
-    }
+    }*/
 }

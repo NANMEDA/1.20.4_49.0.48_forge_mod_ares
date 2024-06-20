@@ -1,0 +1,2 @@
+之前命名文件的时候没有注意 弄了个 maring_hot_dryriverbed .json (多了个空格)。
+望引以为鉴q
