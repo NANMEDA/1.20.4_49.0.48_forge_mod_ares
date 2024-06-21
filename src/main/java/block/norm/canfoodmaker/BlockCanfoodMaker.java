@@ -23,7 +23,9 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.extensions.IForgeServerPlayer;
 
@@ -48,7 +50,11 @@ public class BlockCanfoodMaker extends HorizontalDirectionalBlock implements Ent
 	@Override
 	   public VoxelShape getShape(BlockState p_60555_, BlockGetter p_60556_, BlockPos p_60557_, CollisionContext p_60558_) {
 		//宽高厚
-	      return Block.box(0,0,0,16,16,16);
+		return Shapes.join(
+				Block.box(0, 0, 0, 16, 16, 16), 
+				Block.box(7, 0, 7, 9, 2, 9), 
+			    BooleanOp.ONLY_FIRST
+			);
 	   }
 	
 	@SuppressWarnings("deprecation")

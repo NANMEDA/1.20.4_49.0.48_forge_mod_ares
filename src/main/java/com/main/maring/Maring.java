@@ -2,6 +2,7 @@ package com.main.maring;
 
 
 import com.creativetabs.register.CreativeTabsRegister;
+import com.effect.brew.BrewRigster;
 import com.effect.register.EffectRegister;
 import com.item.register.*;
 import com.menu.register.MenuRegister;
@@ -9,11 +10,6 @@ import com.mojang.logging.LogUtils;
 
 import animal.entity.MonsterRegister;
 import block.norm.*;
-import boime.BiomeEffectApplier;
-import boime.register.BiomeRegistry;
-import net.minecraft.client.Minecraft;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -24,7 +20,6 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.ForgeRegistries;
 import tags.register.AddTag;
 import tags.register.TagkeyRegister;
 import util.EntityGravity;
@@ -67,12 +62,13 @@ public class Maring
         CreativeTabsRegister.CREATIVE_MODE_TABS.register(modEventBus);
         MonsterRegister.ENTITY_TYPES.register(modEventBus);
 
-        MinecraftForge.EVENT_BUS.register(new BiomeEffectApplier());
+        //MinecraftForge.EVENT_BUS.register(new BiomeEffectApplier());
         MinecraftForge.EVENT_BUS.register(new EntityGravity());
         MinecraftForge.EVENT_BUS.register(new ItemGravity());
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
         
+        //BrewRigster.registerBrewingRecipes();
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
@@ -82,12 +78,10 @@ public class Maring
         // Some common setup code
         LOGGER.info("HELLO FROM COMMON SETUP");
 
-        if (Config.logDirtBlock)
-            LOGGER.info("DIRT BLOCK >> {}", ForgeRegistries.BLOCKS.getKey(Blocks.DIRT));
-
         LOGGER.info(Config.magicNumberIntroduction + Config.magicNumber);
 
         Config.items.forEach((item) -> LOGGER.info("ITEM >> {}", item.toString()));
+        
     }
     
     private void clientSetup(final FMLClientSetupEvent event) {
@@ -103,6 +97,7 @@ public class Maring
     
     
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
+    /*
     @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents
     {
@@ -115,5 +110,5 @@ public class Maring
             
         }
         
-    }
+    }*/
 }

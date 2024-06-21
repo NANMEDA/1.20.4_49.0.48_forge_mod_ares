@@ -1,7 +1,7 @@
 {
   "block.maring.mar_surface": "火星表层土",
   "block.maring.mar_baked_surface": "火星表层炙烤土",
-  "block.maring.mar_sand": "火星表层沙",
+  "block.maring.mar_sand": "火星表层砂",
   "block.maring.mar_mud": "火星表层泥",
   "block.maring.mar_stone": "火星岩",
   "block.maring.mar_sedimentary_stone": "火星沉积岩",
@@ -64,6 +64,11 @@
   "item.maring.bottled_oxygen": "装瓶氧气",
   "item.maring.big_bottled_oxygen": "大氧气瓶",
   "item.maring.raw_iron_nugget": "生铁粒",
+  
+  "item.maring.spacesuit_helmet": "宇航头盔",
+  "item.maring.spacesuit_chestplate": "宇航服",
+  "item.maring.spacesuit_leggings": "宇航裤",
+  "item.maring.spacesuit_boots": "宇航靴",
   
   "entity.maring.jump_spider": "抱子蜘蛛",
   

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XAX",
+    "XGX"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:iron_ingot"
+    },
+    "G": {
+      "item": "maring:bioplastic_parts"
+    },
+    "A": {
+      "item": "maring:advanced_metal_parts"
+    }
+  },
+  "result": {
+    "item": "maring:spacesuit_helmet",
+    "count": 1
+  }
+}

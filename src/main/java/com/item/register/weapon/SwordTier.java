@@ -8,7 +8,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 
 public enum SwordTier implements Tier {
 
-    FrenchBread(0, 114, 1.6F, 0.0F, 15, () -> {
+    frenchBread(0, 114, 1.6F, 0.0F, 15, () -> {
 	    return Ingredient.of(Items.BREAD);
 	});
 	

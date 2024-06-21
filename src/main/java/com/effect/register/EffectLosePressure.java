@@ -20,7 +20,7 @@ public class EffectLosePressure extends EffectMain {
     public void applyEffectTick(LivingEntity living, int amplified) {
         //if (living instanceof Mob mob) {
         	if(living.isAlive()) {
-        		living.setHealth(living.getHealth()-4f);
+        		living.setHealth(living.getHealth()-3f);
         	}
         //}
     }

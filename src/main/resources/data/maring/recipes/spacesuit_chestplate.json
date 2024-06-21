@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X X",
+    "XUX",
+    "XSX"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:iron_ingot"
+    },
+    "U": {
+      "item": "minecraft:cauldron"
+    },
+    "S": {
+      "item": "maring:semiconductor_parts"
+    }
+  },
+  "result": {
+    "item": "maring:spacesuit_chestplate",
+    "count": 1
+  }
+}

@@ -2,10 +2,13 @@ package com.item.register;
 
 import java.util.stream.IntStream;
 
+import com.item.register.armor.ModArmor;
+import com.item.register.armor.ModArmorMaterials;
 import com.item.register.weapon.ItemFrenchBread;
 import com.item.register.weapon.SwordTier;
 
 import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -33,9 +36,31 @@ public class ItemRegister {
         });
         
         IntStream.range(0, itemMaterial.ITEM_MATERIAL_NUMBER).forEach(i -> {
-        	MATERIAL_ITEMS[i] = ITEMS.register(itemMaterial.getMaterialName(i), () -> new Item(new Item.Properties()));
+        	if(i==0) {
+        		MATERIAL_ITEMS[i] = ITEMS.register(itemMaterial.getMaterialName(i), () -> new Item(new Item.Properties().stacksTo(4)));
+        	}else if(i<6) {
+        		MATERIAL_ITEMS[i] = ITEMS.register(itemMaterial.getMaterialName(i), () -> new Item(new Item.Properties().stacksTo(16)));
+        	}else {
+        		MATERIAL_ITEMS[i] = ITEMS.register(itemMaterial.getMaterialName(i), () -> new Item(new Item.Properties()));
+        	}
         });
 	}
 	
-	public static final RegistryObject<Item> frenchbread_ITEM = ITEMS.register(ItemFrenchBread.global_name, () -> new ItemFrenchBread(SwordTier.FrenchBread, 4, 1f, new Item.Properties()));
+	public static final RegistryObject<Item> FRENCH_BREAD = ITEMS.register(ItemFrenchBread.global_name, () -> new ItemFrenchBread(SwordTier.frenchBread, 4, 1f, new Item.Properties()));
+
+	public static final RegistryObject<Item> SPACESUIT_HELMET = ITEMS.register("spacesuit_helmet",
+	//装备材质，装备类型，物品属性
+			()->new ModArmor(ModArmorMaterials.SPACESUIT, ArmorItem.Type.HELMET,new Item.Properties().stacksTo(1)));
+	//胸甲
+	public static final RegistryObject<Item> SPACESUIT_CHESTPLATE = ITEMS.register("spacesuit_chestplate",
+			()->new ModArmor(ModArmorMaterials.SPACESUIT, ArmorItem.Type.CHESTPLATE,new Item.Properties().stacksTo(1)));
+	//裤子
+	public static final RegistryObject<Item> SPACESUIT_LEGGINGS = ITEMS.register("spacesuit_leggings",
+			()->new ModArmor(ModArmorMaterials.SPACESUIT, ArmorItem.Type.LEGGINGS,new Item.Properties().stacksTo(1)));
+	
+	//鞋子
+	public static final RegistryObject<Item> SPACESUIT_BOOTS = ITEMS.register("spacesuit_boots",
+			()->new ModArmor(ModArmorMaterials.SPACESUIT, ArmorItem.Type.BOOTS,new Item.Properties().stacksTo(1)));
+	
+
 }

@@ -39,7 +39,7 @@ public class CreativeTabsRegister {
                 IntStream.range(0, itemFood.ITEM_FOOD_NUMBER).forEach(i -> {
                 	output.accept(ItemRegister.FOOD_ITEMS[i].get());
                 });
-                output.accept(ItemRegister.frenchbread_ITEM.get());
+                output.accept(ItemRegister.FRENCH_BREAD.get());
             }).build());
     
     public static final RegistryObject<CreativeModeTab> MAR_MACHINE_TAB = CREATIVE_MODE_TABS.register("mar_machine_tab", () -> CreativeModeTab.builder()
@@ -71,5 +71,16 @@ public class CreativeTabsRegister {
                 IntStream.range(0, itemMaterial.ITEM_MATERIAL_NUMBER).forEach(i -> {
                 	output.accept(ItemRegister.MATERIAL_ITEMS[i].get());
                 });
+            }).build());
+    
+    public static final RegistryObject<CreativeModeTab> MAR_TOOL_TAB = CREATIVE_MODE_TABS.register("mar_tool_tab", () -> CreativeModeTab.builder()
+    		.title(Component.translatable("mar_tool_tab"))
+    		.withTabsBefore(MAR_MATERIAL_TAB.getId())
+            .icon(() -> ItemRegister.SPACESUIT_CHESTPLATE.get().getDefaultInstance())
+            .displayItems((parameters, output) -> {
+            	output.accept(ItemRegister.SPACESUIT_BOOTS.get());
+            	output.accept(ItemRegister.SPACESUIT_LEGGINGS.get());
+            	output.accept(ItemRegister.SPACESUIT_CHESTPLATE.get());
+            	output.accept(ItemRegister.SPACESUIT_HELMET.get());
             }).build());
 }
