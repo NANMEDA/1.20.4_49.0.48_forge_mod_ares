@@ -2,7 +2,7 @@ package block.norm.glassbuilder;
 
 import javax.annotation.Nullable;
 
-import com.item.register.ItemRegister;
+import com.item.ItemRegister;
 
 import block.entity.consumer.glassbuilder.GlassBuilderEntity;
 import block.norm.BlockJSON;

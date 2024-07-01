@@ -1,5 +1,10 @@
 package com.effect.register;
 
+import com.effect.EffectFulling;
+import com.effect.EffectLosePressure;
+import com.effect.EffectMentalAbuse;
+import com.effect.EffectOminousLuck;
+
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraftforge.registries.DeferredRegister;

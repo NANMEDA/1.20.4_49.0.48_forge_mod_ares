@@ -1,0 +1,50 @@
+{
+  "display": {
+    "icon": {
+      "item": "maring:spacesuit_helmet"
+    },
+    "title": {
+      "translate": "advancements.maringmaterial.spacesuit.title"
+    },
+    "description": {
+      "translate": "advancements.maringmaterial.spacesuit.description"
+    },
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "maring:maringmaterial/etching_machine",
+  "criteria": {
+    "spacesuit": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "maring:spacesuit_helmet"
+            ]
+          },
+          {
+            "items": [
+              "maring:spacesuit_chestplate"
+            ]
+          },
+          {
+            "items": [
+              "maring:spacesuit_leggings"
+            ]
+          },
+          {
+            "items": [
+              "maring:spacesuit_boots"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "experience": 100
+  },
+  "sends_telemetry_event": true
+}

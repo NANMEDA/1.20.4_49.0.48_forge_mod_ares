@@ -2,7 +2,7 @@ package block.norm.crystalbuilder;
 
 import javax.annotation.Nullable;
 
-import com.item.register.ItemRegister;
+import com.item.ItemRegister;
 
 import block.entity.neutral.crystalbuilder.CrystalBuilderEntity;
 import block.norm.BlockJSON;

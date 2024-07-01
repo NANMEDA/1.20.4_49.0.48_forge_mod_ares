@@ -4,11 +4,10 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.effect.MobEffectInstance;
 
 import com.effect.register.EffectRegister;
-import com.item.register.ItemRegister;
+import com.item.ItemRegister;
 
 import net.minecraft.core.BlockPos;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingTickEvent;
@@ -19,10 +18,12 @@ import net.minecraftforge.fml.common.Mod;
 public class BiomeEffectApplier {
 
     private static final int TICK_INTERVAL = 10; // 检测间隔
+    public static boolean WILL_PRESSURE_HURT = true; // 检测间隔
 
     @SuppressWarnings("resource")
 	@SubscribeEvent
     public static void onLivingUpdate(LivingTickEvent event) {
+    	if(!WILL_PRESSURE_HURT) return;
         if (event.getEntity().level().isClientSide) {
             return;
         }

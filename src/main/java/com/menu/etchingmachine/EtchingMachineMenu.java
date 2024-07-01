@@ -2,8 +2,8 @@ package com.menu.etchingmachine;
 
 import org.jetbrains.annotations.NotNull;
 
-import com.item.register.ItemRegister;
-import com.menu.MenuBasic;
+import com.item.ItemRegister;
+import com.menu.BlockEntityMenuBasic;
 import com.menu.register.MenuRegister;
 
 import block.entity.consumer.etchingmachine.EtchingMachineEntity;
@@ -13,12 +13,15 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.items.SlotItemHandler;
 
-public class EtchingMachineMenu extends MenuBasic{
+public class EtchingMachineMenu extends BlockEntityMenuBasic{
+
+	private final EtchingMachineEntity blockentity;
 
 	public EtchingMachineMenu( Inventory pInventory, int pID,BlockPos pos) {
 		super(MenuRegister.ETCHINGMACHINE_MENU.get(), pID, pos, block.norm.etchingmachine.Register.etchingmachine_BLOCK.get(), 6, 0, 5);
+		this.blockentity = (EtchingMachineEntity) pInventory.player.level().getBlockEntity(pos);
 		if(pInventory.player.level().getBlockEntity(pos) instanceof EtchingMachineEntity etchingmachineEntity) {
-
+			
 			addSlot(new SlotItemHandler(etchingmachineEntity.getItems(), 0, 51, 11) {
 				 @Override
 				    public boolean mayPlace(@NotNull ItemStack stack)
@@ -78,6 +81,10 @@ public class EtchingMachineMenu extends MenuBasic{
 			});
 		}
 		addPlayerInventory(pInventory,8,84);
+	}
+
+	public EtchingMachineEntity getBlockEntity() {
+		return blockentity;
 	}
 	
 }

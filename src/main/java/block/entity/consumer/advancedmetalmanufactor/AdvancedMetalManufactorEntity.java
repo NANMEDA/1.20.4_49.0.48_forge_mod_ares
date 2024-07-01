@@ -1,6 +1,6 @@
 package block.entity.consumer.advancedmetalmanufactor;
 
-import com.item.register.ItemRegister;
+import com.item.ItemRegister;
 
 import block.entity.BlockEntityRegister;
 import block.entity.consumer.PowerConsumerEntity;
@@ -25,6 +25,11 @@ public class AdvancedMetalManufactorEntity extends PowerConsumerEntity{
 	public int water = 0;
 	private short process_progress = 0;
 	static protected int itemstack_number=4;	//4金属零件+8青金石+钻石
+	private int render = 0;
+	
+	public int getRenderDis() {
+		return render;
+	}
 	
 	public AdvancedMetalManufactorEntity(BlockPos pos, BlockState pBlockState) {
 		super(BlockEntityRegister.advancedmetalmanufactor_BLOCKENTITY.get(), pos, pBlockState);
@@ -114,10 +119,12 @@ public class AdvancedMetalManufactorEntity extends PowerConsumerEntity{
 	
 	private final String TAG_NAME = "Item";
 	private final String TAG_PROGRESS = "Progress";
+	private final String TAG_RENDER = "render";	//不放在tag里面的不会被同步到client ！！！!!!即使设置同步
 	
 	protected void savedata(CompoundTag tag) {
 		tag.put(TAG_NAME, item.serializeNBT());
 		tag.putShort(TAG_PROGRESS, process_progress);
+		tag.putInt(TAG_RENDER, render);
 	}
 	
 	protected void loaddata(CompoundTag tag) {
@@ -126,6 +133,9 @@ public class AdvancedMetalManufactorEntity extends PowerConsumerEntity{
 		}
 		if(tag.contains(TAG_PROGRESS)) {
 			process_progress = (tag.getShort(TAG_PROGRESS));
+		}
+		if(tag.contains(TAG_RENDER)) {
+			render = tag.getShort(TAG_RENDER);
 		}
 	}
 	
@@ -137,6 +147,11 @@ public class AdvancedMetalManufactorEntity extends PowerConsumerEntity{
 			if(process_progress != 0) {
 				process_progress = 0;
 				energy_consume = 0;
+		        int render = 0; //移动像素/距离
+				if(render != this.render) {
+					this.render = render;
+					level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_CLIENTS);
+				}
 				setChanged();
 				}
 			return;
@@ -150,13 +165,27 @@ public class AdvancedMetalManufactorEntity extends PowerConsumerEntity{
 				) {//检查 物品类型是否正确 在 放进去 的时候就要检测
 			process_progress = 0;
 			energy_consume = 0;
+	        int render = 0; //移动像素/距离
+			if(render != this.render) {
+				this.render = render;
+				level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_CLIENTS);
+			}
 			setChanged();
 			return;
 		}
+		stack[3] = item.getStackInSlot(3);
 		if(stack[3].getCount()<64) {
 			energy_consume = FULL_ENERGY_CONSUPTION;
 			if(process_progress<1500) {//25s*20*3
 				process_progress += (energy_supply > 75) ? 3 : ((energy_supply > 50) ? 2 : ((energy_supply > 25) ? 1 : 0));
+				
+				int progress = process_progress/150;//除到10
+		        int render = progress * 22 / 10; //移动像素/距离
+				if(render != this.render) {
+					this.render = render;
+					level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_CLIENTS);
+				}
+				
 				setChanged();
 				return;
 			}

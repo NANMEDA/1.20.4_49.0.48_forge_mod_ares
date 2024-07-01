@@ -1,0 +1,15 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "maring:item/default_texture"
+  },
+  "overrides": [
+    { "predicate": { "custom_model_data": 0 }, "model": "maring:item/mixed_can" },
+    { "predicate": { "custom_model_data": 1 }, "model": "maring:item/vegetable_can" },
+    { "predicate": { "custom_model_data": 2 }, "model": "maring:item/meat_can" },
+    { "predicate": { "custom_model_data": 3 }, "model": "maring:item/fish_cans" },
+    { "predicate": { "custom_model_data": 4 }, "model": "maring:item/corn_can" },
+    { "predicate": { "custom_model_data": 5 }, "model": "maring:item/fruit_can" },
+    { "predicate": { "custom_model_data": 6 }, "model": "maring:item/mixed_can" }
+  ]
+}

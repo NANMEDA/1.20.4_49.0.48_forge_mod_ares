@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "RSI",
+    "RSI",
+    "RSI"
+  ],
+  "key": {
+    "R": {
+      "item": "maring:radiation_layer"
+    },
+    "S": {
+      "item": "maring:sructure_layer"
+    },
+    "I": {
+      "item": "maring:insulation_layer"
+    }
+  },
+  "result": {
+    "item": "maring:rocket_shell",
+    "count": 3
+  }
+}

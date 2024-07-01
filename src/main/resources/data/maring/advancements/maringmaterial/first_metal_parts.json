@@ -1,0 +1,37 @@
+{
+  "display": {
+    "icon": {
+      "item": "maring:basic_metal_parts"
+    },
+    "title": {
+      "translate": "advancements.maringmaterial.first_metal_parts.title"
+    },
+    "description": {
+      "translate": "advancements.maringmaterial.first_metal_parts.description"
+    },
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "maring:maringmaterial/root",
+  "criteria": {
+    "first_metal_parts": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "maring:basic_metal_parts"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "first_metal_parts"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

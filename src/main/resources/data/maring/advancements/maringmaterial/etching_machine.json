@@ -1,0 +1,32 @@
+{
+  "display": {
+    "icon": {
+      "item": "maring:etching_machine"
+    },
+    "title": {
+      "translate": "advancements.maringmaterial.etching_machine.title"
+    },
+    "description": {
+      "translate": "advancements.maringmaterial.etching_machine.description"
+    },
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "maring:maringmaterial/advancedmetal_manufactor",
+  "criteria": {
+    "etching_machine": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "maring:etching_machine"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "sends_telemetry_event": true
+}

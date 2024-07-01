@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XAX",
+    "X C",
+    "XAX"
+  ],
+  "key": {
+    "X": {
+      "item": "maring:rocket_shell"
+    },
+    "A": {
+      "item": "maring:advanced_metal_parts"
+    },
+    "C": {
+      "item": "maring:crystal_parts"
+    }
+  },
+  "result": {
+    "item": "maring:rocket_active_space",
+    "count": 1
+  }
+}

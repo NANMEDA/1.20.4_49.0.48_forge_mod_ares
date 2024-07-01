@@ -1,5 +1,6 @@
 {
   "type": "maring:maringmar",
+  "effects": "mymod:planet_sky",
   "generator": {
     "type": "minecraft:noise",
     "settings": "maring:maringmar",

@@ -72,13 +72,13 @@ public class BlockAdvancedMetalManufactor extends Block implements EntityBlock{
 					if(hold.isEmpty() || hold.getItem()==out.getItem()) {
 						int count = 64-hold.getCount();
 						if(count>=out.getCount()) {
-							player.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(hold.getItem(),hold.getCount()+out.getCount()));
+							player.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(out.getItem(),hold.getCount()+out.getCount()));
 							entity.getItems().setStackInSlot(3, ItemStack.EMPTY);
 							level.sendBlockUpdated(pos, blockstate, blockstate, Block.UPDATE_ALL);
 							return InteractionResult.SUCCESS;
 						}else {
-							player.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(hold.getItem(),64));
-							entity.getItems().setStackInSlot(3, new ItemStack(hold.getItem(),out.getCount()-count));
+							player.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(out.getItem(),64));
+							entity.getItems().setStackInSlot(3, new ItemStack(out.getItem(),out.getCount()-count));
 							level.sendBlockUpdated(pos, blockstate, blockstate, Block.UPDATE_ALL);
 							return InteractionResult.SUCCESS;
 						}

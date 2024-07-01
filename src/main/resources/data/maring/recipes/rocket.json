@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " C ",
+    "FOA",
+    "SSS"
+  ],
+  "key": {
+    "C": {
+      "item": "maring:rocket_cowling"
+    },
+    "F": {
+      "item": "maring:rocket_fuel_tank"
+    },
+    "O": {
+      "item": "maring:rocket_oxygen_tank"
+    },
+    "A": {
+      "item": "maring:rocket_active_space"
+    },
+    "S": {
+      "item": "maring:rocket_spout"
+    }
+  },
+  "result": {
+    "item": "maring:rocket",
+    "count": 1
+  }
+}

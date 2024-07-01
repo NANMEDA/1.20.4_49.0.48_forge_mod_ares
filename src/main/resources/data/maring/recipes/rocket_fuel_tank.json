@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "X X",
+    "XSX"
+  ],
+  "key": {
+    "X": {
+      "item": "maring:rocket_shell"
+    },
+    "S": {
+      "item": "maring:semiconductor_parts"
+    }
+  },
+  "result": {
+    "item": "maring:rocket_fuel_tank",
+    "count": 1
+  }
+}

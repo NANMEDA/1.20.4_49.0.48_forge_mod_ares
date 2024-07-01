@@ -2,8 +2,8 @@ package com.menu.advancedmetalmanufactor;
 
 import org.jetbrains.annotations.NotNull;
 
-import com.item.register.ItemRegister;
-import com.menu.MenuBasic;
+import com.item.ItemRegister;
+import com.menu.BlockEntityMenuBasic;
 import com.menu.register.MenuRegister;
 
 import block.entity.consumer.advancedmetalmanufactor.AdvancedMetalManufactorEntity;
@@ -14,10 +14,13 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.items.SlotItemHandler;
 
-public class AdvancedMetalManufactorMenu extends MenuBasic{
+public class AdvancedMetalManufactorMenu extends BlockEntityMenuBasic{
 
+	private final AdvancedMetalManufactorEntity blockentity;
+	
 	public AdvancedMetalManufactorMenu( Inventory pInventory, int pID,BlockPos pos) {
 		super(MenuRegister.ADVANCEDMETALMANUFACTOR_MENU.get(), pID, pos, block.norm.advancedmetalmanufactor.Register.advancedmetalmanufactor_BLOCK.get(), 4, 0, 3);
+		blockentity = (AdvancedMetalManufactorEntity) pInventory.player.level().getBlockEntity(pos);
 		if(pInventory.player.level().getBlockEntity(pos) instanceof AdvancedMetalManufactorEntity advancedmetalmanufactorEntity) {
 
 			addSlot(new SlotItemHandler(advancedmetalmanufactorEntity.getItems(), 0, 51, 11) {
@@ -61,4 +64,8 @@ public class AdvancedMetalManufactorMenu extends MenuBasic{
 		addPlayerInventory(pInventory,8,84);
 	}
 	
+	public AdvancedMetalManufactorEntity getBlockEntity() {
+		return blockentity;
+	}
+
 }

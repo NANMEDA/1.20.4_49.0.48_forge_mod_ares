@@ -1,0 +1,32 @@
+{
+  "display": {
+    "icon": {
+      "item": "maring:canfood_maker"
+    },
+    "title": {
+      "translate": "advancements.maringmaterial.canfood_maker.title"
+    },
+    "description": {
+      "translate": "advancements.maringmaterial.canfood_maker.description"
+    },
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "maring:maringmaterial/first_metal_parts",
+  "criteria": {
+    "canfood_maker": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "maring:canfood_maker"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "sends_telemetry_event": true
+}

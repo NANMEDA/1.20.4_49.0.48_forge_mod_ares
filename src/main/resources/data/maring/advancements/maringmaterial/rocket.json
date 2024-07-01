@@ -1,0 +1,35 @@
+{
+  "display": {
+    "icon": {
+      "item": "maring:rocket"
+    },
+    "title": {
+      "translate": "advancements.maringmaterial.rocket.title"
+    },
+    "description": {
+      "translate": "advancements.maringmaterial.rocket.description"
+    },
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "maring:maringmaterial/etching_machine",
+  "criteria": {
+    "spacesuit": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "maring:rocket"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "experience": 10
+  },
+  "sends_telemetry_event": true
+}

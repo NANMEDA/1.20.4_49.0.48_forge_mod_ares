@@ -12,13 +12,14 @@ public class TagkeyRegister {
 	
 	public static TagKey<Block> UNBREAKABLE_BLOCK_TAG;
 	public static TagKey<Item> CAN_FOOD_TAG;
+	public static TagKey<Item> CAN_FOOD_MATERIAL_TAG;
 	
 	public static void init() {
 		UNBREAKABLE_BLOCK_TAG = BlockTags.create(new ResourceLocation(MODID, "unbreakable_block"));
 		
 		
 		CAN_FOOD_TAG = ItemTags.create(new ResourceLocation(MODID, "can_food"));
-
+		CAN_FOOD_MATERIAL_TAG = ItemTags.create(new ResourceLocation(MODID, "can_food_material"));
 	}
 	
     /*

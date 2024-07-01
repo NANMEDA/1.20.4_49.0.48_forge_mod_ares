@@ -1,0 +1,32 @@
+{
+  "display": {
+    "icon": {
+      "item": "maring:crystal_builder"
+    },
+    "title": {
+      "translate": "advancements.maringmaterial.crystal_builder.title"
+    },
+    "description": {
+      "translate": "advancements.maringmaterial.crystal_builder.description"
+    },
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "maring:maringmaterial/first_metal_parts",
+  "criteria": {
+    "crystal_builder": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "maring:crystal_builder"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "sends_telemetry_event": true
+}

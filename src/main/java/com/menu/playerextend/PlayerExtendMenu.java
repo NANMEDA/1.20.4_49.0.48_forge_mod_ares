@@ -2,8 +2,8 @@ package com.menu.playerextend;
 
 import org.jetbrains.annotations.NotNull;
 
-import com.item.register.ItemRegister;
-import com.menu.MenuBasic;
+import com.item.ItemRegister;
+import com.menu.BlockEntityMenuBasic;
 import com.menu.register.MenuRegister;
 
 import block.entity.consumer.advancedmetalmanufactor.AdvancedMetalManufactorEntity;
@@ -17,7 +17,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
-public class PlayerExtendMenu extends MenuBasic{
+public class PlayerExtendMenu extends BlockEntityMenuBasic{
 	
 
 	protected static final ItemStackHandler item = new ItemStackHandler(3) {//必须要在这里创建，ItemStackHandler不可被修改

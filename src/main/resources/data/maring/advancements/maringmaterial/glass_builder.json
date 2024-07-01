@@ -1,0 +1,32 @@
+{
+  "display": {
+    "icon": {
+      "item": "maring:glass_builder"
+    },
+    "title": {
+      "translate": "advancements.maringmaterial.glass_builder.title"
+    },
+    "description": {
+      "translate": "advancements.maringmaterial.glass_builder.description"
+    },
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "parent": "maring:maringmaterial/bioplastic_builder",
+  "criteria": {
+    "glass_builder": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "maring:glass_builder"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "sends_telemetry_event": true
+}

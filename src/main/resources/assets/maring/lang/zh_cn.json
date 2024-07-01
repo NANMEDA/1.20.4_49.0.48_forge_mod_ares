@@ -37,7 +37,6 @@
   "block.maring.crystal_builder": "晶体合成机",
   "block.maring.etching_machine": "蚀刻机",
   "block.maring.glass_builder": "玻璃合成机",
-  
   "block.maring.water_gather": "水分收集器",
   
   "item.maring.rubbish": "腐坏的食品",
@@ -70,6 +69,24 @@
   "item.maring.spacesuit_leggings": "宇航裤",
   "item.maring.spacesuit_boots": "宇航靴",
   
+  "item.can.show.vegetable": "  蔬菜值: %d",
+  "item.can.show.meat": "  肉值: %d",
+  "item.can.show.fish": "  鱼值: %d",
+  "item.can.show.corn": "  谷物值: %d",
+  "item.can.show.fruit": "  果值: %d",
+  "cans.first.iscorn": "主食",
+  "cans.first.nocorn": "拌",
+  "cans.first.is": " 炒 ",
+  "cans.second.havefish": "鱼茸",
+  "cans.second.havemeat": "碎肉",
+  "cans.second.is": " 搭配 ",
+  "cans.third.havefruitandvegetable": "蔬果沙拉",
+  "cans.third.havevegetable": "时蔬",
+  "cans.third.havefruit": "水果",
+  "cans.last": " 罐头",
+  "cans.axolotl": "美西螈大餐罐头",
+  
+  
   "entity.maring.jump_spider": "抱子蜘蛛",
   
   "effect.maring.fulling": "饱腹",
@@ -81,6 +98,7 @@
   "mar_food_tab": "莪瑞斯-食物",
   "mar_machine_tab": "莪瑞斯-机器",
   "mar_material_tab": "莪瑞斯-材料",
+  "mar_tool_tab": "莪瑞斯-工具护甲",
   
   "menu.powerstation_burn": "火力发电站",
   "menu.canfood_maker": "食品罐装机",
@@ -89,5 +107,65 @@
   "menu.advancedmetal_manufactor": "高级雕机",
   "menu.etching_machine": "蚀刻",
   
-  "maring.gui.microwave.button": "启动"
+  "maring.gui.microwave.button": "启动",
+  
+  "advancements.maringmaterial.maringmaterial_init.title": "火星材料",
+  "advancements.maringmaterial.maringmaterial_init.description": "这是个初始化的成就",
+  "advancements.maringmaterial.first_metal_parts.title": "第一个基础材料",
+  "advancements.maringmaterial.first_metal_parts.description": "使用8个铁锭包围一个金锭, 可以合成一个基础金属零件",
+  "advancements.maringmaterial.basicmetal_manufactor.title": "基础的金属铸机",
+  "advancements.maringmaterial.basicmetal_manufactor.description": "更节省材料合成零件的方法",
+  "advancements.maringmaterial.advancedmetal_manufactor.title": "高级的金属铸机",
+  "advancements.maringmaterial.advancedmetal_manufactor.description": "可以合成高级的金属零件",
+  "advancements.maringmaterial.crystal_builder.title": "晶体合成仪",
+  "advancements.maringmaterial.crystal_builder.description": "以石英为基础，重组晶体结构，可使用催化剂加速",
+  "advancements.maringmaterial.bioplastic_builder.title": "生物塑料合成仪",
+  "advancements.maringmaterial.bioplastic_builder.description": "提取生物质",
+  "advancements.maringmaterial.glass_builder.title": "玻璃合成仪",
+  "advancements.maringmaterial.glass_builder.description": "另一种方式获得玻璃",
+  "advancements.maringmaterial.canfood_maker.title": "罐头合成机",
+  "advancements.maringmaterial.canfood_maker.description": "来做点罐头吧",
+  "advancements.maringmaterial.etching_machine.title": "蚀刻机",
+  "advancements.maringmaterial.etching_machine.description": "工业的顶端",
+  "advancements.maringmaterial.rocket.title": "即刻出发",
+  "advancements.maringmaterial.rocket.description": "制造出普通火箭",
+  "advancements.maringmaterial.microwave_oven.title": "微波炉",
+  "advancements.maringmaterial.microwave_oven.description": "非常快速的处理大量食物或湿海绵的工具 (但注意不要加热鸡蛋或罐头)",
+  "advancements.maringmaterial.spacesuit.title": "我要当太空人",
+  "advancements.maringmaterial.spacesuit.description": "拥有一套完整的太空服",
+  
+  "advancements.traveltomar.traveltomar_init.title": "前往火星",
+  "advancements.traveltomar.traveltomar_init.description": "这是个初始化的成就",
+  "advancements.traveltomar.enter_the_mar.title": "到达火星",
+  "advancements.traveltomar.enter_the_mar.description": "乘坐火箭抵达火星",
+  "advancements.traveltomar.ominous_gemstone.title": "也是深藏不漏",
+  "advancements.traveltomar.ominous_gemstone.description": "使用钻石镐或以上获得荧惑石",
+  "advancements.traveltomar.find_bacterial.title": "古老菌群",
+  "advancements.traveltomar.find_bacterial.description": "发现火星上残留生命力的群系",
+  "advancements.traveltomar.water_is_life.title": "水是生命之源",
+  "advancements.traveltomar.water_is_life.description": "建设水分收集器",
+  "advancements.traveltomar.raw_iron_nugget.title": "粉碎石头",
+  "advancements.traveltomar.raw_iron_nugget.description": "从火星的岩石中提取额外的铁",
+  "advancements.traveltomar.ominous_luck.title": "塞翁失马, 焉知祸福?",
+  "advancements.traveltomar.ominous_luck.description": "获得荧惑石内在的力量",
+  
+  "advancements.ends.end_1.title": "一切的结束 [结局1/3]",
+  "advancements.ends.end_1.description": "神说: 不再有光了; 于是世界永远的陷入了黑暗, 时间也失掉了意义",
+  "advancements.ends.end_2.title": "幸存 [结局2/3]",
+  "advancements.ends.end_2.description": "虽然地球毁灭了, 但人类的火种仍然苟延残喘, 末日还会再到来吗? ",
+  "advancements.ends.end_3.title": "升华 [结局3/3]",
+  "advancements.ends.end_3.description": "这真的是一条路吗?",
+  
+  "maring.command.doomsdaycome.change.true": "末日情况设置: z",
+  "maring.command.doomsdaycome.change.false": "末日情况设置: 不来",
+  "maring.command.doomsdaycome.set": "末日设置天数: %d",
+  "maring.command.doomsdaycome.set.inlegal": "天数不合理 (建议从10-150)",
+  "maring.command.willpressurehurt.true": "火星生物伤害: 有",
+  "maring.command.willpressurehurt.false": "火星生物伤害: 无 (不再需要宇航服)",
+  
+  
+  "maring.disaster.spider_day.init": "天上好像有什么东西掉下来了",
+  "maring.disaster.dooms_day.warning": "假如再不离开的话, 可能再也离开不了了",
+
+  "death.attack.damage.pressure": "%1$s暴露于不适宜的大气中"
 }

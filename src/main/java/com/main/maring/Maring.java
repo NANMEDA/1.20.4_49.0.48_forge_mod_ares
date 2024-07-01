@@ -4,12 +4,18 @@ package com.main.maring;
 import com.creativetabs.register.CreativeTabsRegister;
 import com.effect.brew.BrewRigster;
 import com.effect.register.EffectRegister;
-import com.item.register.*;
+import com.item.*;
+import com.item.can.CanHelper;
+import com.item.can.ItemCanNBT;
 import com.menu.register.MenuRegister;
 import com.mojang.logging.LogUtils;
 
 import animal.entity.MonsterRegister;
 import block.norm.*;
+import event.client.MarSky;
+import event.disaster.DisasterConfig;
+import net.minecraft.client.renderer.DimensionSpecialEffects;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -20,10 +26,12 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import network.NetworkHandler;
 import tags.register.AddTag;
 import tags.register.TagkeyRegister;
 import util.EntityGravity;
 import util.ItemGravity;
+import vehicle.VehicleRegister;
 
 import org.slf4j.Logger;
 
@@ -62,16 +70,21 @@ public class Maring
         CreativeTabsRegister.CREATIVE_MODE_TABS.register(modEventBus);
         MonsterRegister.ENTITY_TYPES.register(modEventBus);
 
+        VehicleRegister.ENTITIES.register(modEventBus);
+        
         //MinecraftForge.EVENT_BUS.register(new BiomeEffectApplier());
         MinecraftForge.EVENT_BUS.register(new EntityGravity());
         MinecraftForge.EVENT_BUS.register(new ItemGravity());
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
         
-        //BrewRigster.registerBrewingRecipes();
+        BrewRigster.registerBrewingRecipes();
+        CanHelper.init();
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+      
     }
+    
 
     private void commonSetup(final FMLCommonSetupEvent event)
     {
@@ -82,6 +95,7 @@ public class Maring
 
         Config.items.forEach((item) -> LOGGER.info("ITEM >> {}", item.toString()));
         
+        NetworkHandler.register();
     }
     
     private void clientSetup(final FMLClientSetupEvent event) {

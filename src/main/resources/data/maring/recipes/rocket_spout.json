@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " A ",
+    "XSX"
+  ],
+  "key": {
+    "X": {
+      "item": "maring:rocket_shell"
+    },
+    "S": {
+      "item": "maring:semiconductor_parts"
+    },
+    "A": {
+      "item": "maring:advanced_metal_parts"
+    }
+  },
+  "result": {
+    "item": "maring:rocket_spout",
+    "count": 1
+  }
+}

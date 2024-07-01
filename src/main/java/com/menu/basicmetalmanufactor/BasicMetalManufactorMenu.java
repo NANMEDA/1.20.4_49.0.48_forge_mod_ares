@@ -2,10 +2,11 @@ package com.menu.basicmetalmanufactor;
 
 import org.jetbrains.annotations.NotNull;
 
-import com.menu.MenuBasic;
+import com.menu.BlockEntityMenuBasic;
 import com.menu.register.MenuRegister;
 
 import block.entity.consumer.basicmetalmanufactor.BasicMetalManufactorEntity;
+import block.entity.consumer.etchingmachine.EtchingMachineEntity;
 import block.norm.BlockRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Inventory;
@@ -13,10 +14,13 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.items.SlotItemHandler;
 
-public class BasicMetalManufactorMenu extends MenuBasic{
+public class BasicMetalManufactorMenu extends BlockEntityMenuBasic{
 
+	private final BasicMetalManufactorEntity blockentity;
+	
 	public BasicMetalManufactorMenu( Inventory pInventory, int pID,BlockPos pos) {
 		super(MenuRegister.BASICMETALMANUFACTOR_MENU.get(), pID, pos, BlockRegister.basicmetalmanufactor_BLOCK.get(), 6, 0, 5);
+		blockentity = (BasicMetalManufactorEntity) pInventory.player.level().getBlockEntity(pos);
 		if(pInventory.player.level().getBlockEntity(pos) instanceof BasicMetalManufactorEntity basicmetalmanufactorEntity) {
 
 			addSlot(new SlotItemHandler(basicmetalmanufactorEntity.getItems(), 0, 51, 11) {
@@ -78,6 +82,10 @@ public class BasicMetalManufactorMenu extends MenuBasic{
 			});
 		}
 		addPlayerInventory(pInventory,8,84);
+	}
+	
+	public BasicMetalManufactorEntity getBlockEntity() {
+		return blockentity;
 	}
 	
 }

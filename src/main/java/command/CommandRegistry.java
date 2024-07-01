@@ -1,0 +1,41 @@
+package command;
+
+import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.arguments.BoolArgumentType;
+import com.mojang.brigadier.arguments.IntegerArgumentType;
+import com.mojang.brigadier.tree.LiteralCommandNode;
+
+import command.disaster.DisasterDo;
+import command.disaster.DoomsSetDays;
+import command.player.PressureHurt;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
+import net.minecraftforge.event.RegisterCommandsEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+
+@Mod.EventBusSubscriber(modid = "maring")
+public class CommandRegistry {
+	private static final String MODID = "maring";
+	
+	 @SubscribeEvent
+	    public static void onServerStarting(RegisterCommandsEvent event) {
+	        CommandDispatcher<CommandSourceStack> dispatcher = event.getDispatcher();
+	        
+	        dispatcher.register(
+	            Commands.literal(MODID)
+	                .then(Commands.literal("rule")
+	                    .requires(commandSourceStack -> commandSourceStack.hasPermission(2))
+	                    .then(Commands.literal("whenDisasterCome")
+		                        .then(Commands.argument("value", IntegerArgumentType.integer())
+		                            .executes(DoomsSetDays.INSTANCE)))
+	                    .then(Commands.literal("willDisasterCome")
+	                        .then(Commands.argument("value", BoolArgumentType.bool())
+	                            .executes(DisasterDo.INSTANCE)))
+	                    .then(Commands.literal("willPressureHurt")
+		                        .then(Commands.argument("value", BoolArgumentType.bool())
+		                            .executes(PressureHurt.INSTANCE)))
+	                )
+	        );
+	    }
+}

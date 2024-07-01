@@ -1,0 +1,18 @@
+{
+  "type": "maring:limbo",
+  "generator": {
+    "type": "minecraft:flat",
+    "settings": {
+      "biome": "maring:limbo_void",
+      "lakes": false,
+      "features": false,
+      "layers": [
+        {
+          "block": "maring:unbroken_void",
+          "height": 1
+        }
+      ],
+      "structure_overrides": "minecraft:end_cities"
+    }
+  }
+}

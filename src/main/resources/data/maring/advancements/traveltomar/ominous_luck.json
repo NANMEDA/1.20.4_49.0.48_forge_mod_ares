@@ -1,0 +1,32 @@
+{
+  "display": {
+    "icon": {
+      "item": "maring:ominous_gemstone"
+    },
+    "title": {
+      "translate": "advancements.traveltomar.ominous_luck.title"
+    },
+    "description": {
+      "translate": "advancements.traveltomar.ominous_luck.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "maring:traveltomar/ominous_gemstone",
+  "criteria": {
+    "ominous_luck": {
+      "trigger": "minecraft:effects_changed",
+      "conditions": {
+        "effects": {
+          "maring:ominous_luck": {}
+        }
+      }
+    }
+  },
+  "rewards": {
+    "experience": 1000
+  },
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,32 @@
+{
+  "display": {
+    "icon": {
+      "item": "maring:raw_iron_nugget"
+    },
+    "title": {
+      "translate": "advancements.traveltomar.raw_iron_nugget.title"
+    },
+    "description": {
+      "translate": "advancements.traveltomar.raw_iron_nugget.description"
+    },
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "parent": "maring:traveltomar/reach_mar",
+  "criteria": {
+    "water_is_life": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "maring:raw_iron_nugget"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "sends_telemetry_event": true
+}

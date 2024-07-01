@@ -26,12 +26,17 @@ import tags.register.TagkeyRegister;
 
 public class MicrowaveOvenEntity extends PowerConsumerEntity{
 
+	private int pg_max = 100;
+	private int render = 0;
 	private short process_progress = -1;//这是倒着来着，看下面就知道了
 	public boolean is_button = false;
 	private boolean should_playsound = false;
 	
 	static protected int itemstack_number = 2;
 	
+	public int getRenderDis() {
+		return render;
+	}
 	
 	public MicrowaveOvenEntity(BlockPos pos, BlockState pBlockState) {
 		super(BlockEntityRegister.microwaveoven_BLOCKENTITY.get(), pos, pBlockState);
@@ -124,11 +129,13 @@ public class MicrowaveOvenEntity extends PowerConsumerEntity{
 	private final String TAG_NAME = "Item";
 	private final String TAG_PROGRESS = "progress";
 	private final String tAG_IS_BUTTON = "button";
+	private final String TAG_RENDER = "render";	//不放在tag里面的不会被同步到client ！！！!!!即使设置同步
 	
 	protected void savedata(CompoundTag tag) {
 		tag.put(TAG_NAME, item.serializeNBT());
 		tag.putShort(TAG_PROGRESS, process_progress);
 		tag.putBoolean(tAG_IS_BUTTON, is_button);
+		tag.putInt(TAG_RENDER, render);
 	}
 	
 	protected void loaddata(CompoundTag tag) {
@@ -140,6 +147,9 @@ public class MicrowaveOvenEntity extends PowerConsumerEntity{
 		}
 		if(tag.contains(tAG_IS_BUTTON)) {
 			is_button = tag.getBoolean(tAG_IS_BUTTON);
+		}
+		if(tag.contains(TAG_RENDER)) {
+			render = tag.getShort(TAG_RENDER);
 		}
 	}
 	
@@ -154,12 +164,22 @@ public class MicrowaveOvenEntity extends PowerConsumerEntity{
 		if(stack[0]==ItemStack.EMPTY){
 			is_button = false;			//按钮弹起
 			process_progress = -1;		//-1状态就是准备好了的状态
-			//System.out.println("0 EMPTY");
+			
+	        int render = 0;
+			if(render != this.render) {
+				this.render = render;
+				level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_CLIENTS);
+			}
 			return false;
 		}
 		if(stack[1]!=ItemStack.EMPTY) {
 			is_button = false;//按钮弹起
 			process_progress = -1;
+	        int render = 0;
+			if(render != this.render) {
+				this.render = render;
+				level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_CLIENTS);
+			}
 			//System.out.println("1 is nor EMEPTY");
 			return false;
 		}
@@ -168,6 +188,14 @@ public class MicrowaveOvenEntity extends PowerConsumerEntity{
 			process_progress -= (energy_supply > 75) ? 3 : ((energy_supply > 50) ? 2 : ((energy_supply > 25) ? 1 : 0));
 			if(process_progress<0) {process_progress = 0;}
 			energy_consume = 8;
+			
+			//int progress = process_progress/150;//除到10
+			int progress = 10 - 10*process_progress/pg_max;
+	        int render = progress * 22 / 10; //移动像素/距离
+			if(render != this.render) {
+				this.render = render;
+			}
+			
 			setChanged();
 			level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_ALL);
 			return false;
@@ -186,6 +214,7 @@ public class MicrowaveOvenEntity extends PowerConsumerEntity{
 		} else if (uncookfood == Items.MUTTON) {cook_food=5;
 		} else if (uncookfood == Items.RABBIT) {cook_food=6;
 		} else if (uncookfood == Items.PORKCHOP) {cook_food=7;
+		} else if (uncookfood == Items.WET_SPONGE) {cook_food=8;
 		} else {
 		    //for (int i = 1; i <= 9; i++) {
 		        //if (uncookfood == ItemRegister.FOOD_ITEMS[i].get()) {
@@ -199,6 +228,13 @@ public class MicrowaveOvenEntity extends PowerConsumerEntity{
 			//System.out.println("food not UNCOOK");
 			is_button = false;//按钮弹起
 			process_progress = -1;
+			
+	        int render = 0;
+			if(render != this.render) {
+				this.render = render;
+				level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_CLIENTS);
+			}
+			
 			return false;
 		}
 		int uncookfood_number = stack[0].getCount();
@@ -231,6 +267,9 @@ public class MicrowaveOvenEntity extends PowerConsumerEntity{
 		    case 7:
 		        cooked_food = new ItemStack(Items.COOKED_PORKCHOP, uncookfood_number);
 		        break;
+		    case 8:
+		        cooked_food = new ItemStack(Items.SPONGE, uncookfood_number);
+		        break;
 		    default:
 		        return false;
 		}
@@ -238,9 +277,12 @@ public class MicrowaveOvenEntity extends PowerConsumerEntity{
 			process_progress=-1;
 			is_button = false;//按钮弹起
 			should_playsound = true;
+			render = 0;
+			level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_CLIENTS);
 		}else if(process_progress==-1) {
 			process_progress = (short) ((uncookfood_number > 32) ? 30*60 : ((uncookfood_number > 16) ? 20*60 : ((uncookfood_number > 6) ? 10*60 : 5*60)));
 			//为什么要这么做呢，3*是因为当满电时，process_progress减的速度是3;  *20因为一秒20tick,3*20=60
+		    pg_max = process_progress;
 		}
 		setChanged();
 		return false;

@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " N ",
+    "XSX",
+    "X X"
+  ],
+  "key": {
+    "X": {
+      "item": "maring:rocket_shell"
+    },
+    "N": {
+      "item": "minecraft:netherite_block"
+    },
+    "S": {
+      "item": "maring:semiconductor_parts"
+    }
+  },
+  "result": {
+    "item": "maring:rocket_cowling",
+    "count": 1
+  }
+}

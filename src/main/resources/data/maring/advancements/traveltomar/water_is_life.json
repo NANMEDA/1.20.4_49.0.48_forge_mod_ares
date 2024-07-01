@@ -1,0 +1,32 @@
+{
+  "display": {
+    "icon": {
+      "item": "maring:water_gather"
+    },
+    "title": {
+      "translate": "advancements.traveltomar.water_is_life.title"
+    },
+    "description": {
+      "translate": "advancements.traveltomar.water_is_life.description"
+    },
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "parent": "maring:traveltomar/root",
+  "criteria": {
+    "water_is_life": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "maring:water_gather"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "sends_telemetry_event": true
+}

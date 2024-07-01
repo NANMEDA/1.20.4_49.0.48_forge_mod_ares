@@ -1,7 +1,7 @@
 package block.entity.neutral.researchtable;
 
 
-import com.item.register.ItemRegister;
+import com.item.ItemRegister;
 
 import block.entity.BlockEntityRegister;
 import block.entity.consumer.PowerConsumerEntity;

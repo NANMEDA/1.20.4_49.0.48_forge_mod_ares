@@ -1,0 +1,32 @@
+{
+  "display": {
+    "icon": {
+      "item": "maring:bioplastic_builder"
+    },
+    "title": {
+      "translate": "advancements.maringmaterial.bioplastic_builder.title"
+    },
+    "description": {
+      "translate": "advancements.maringmaterial.bioplastic_builder.description"
+    },
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "maring:maringmaterial/first_metal_parts",
+  "criteria": {
+    "bioplastic_builder": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "maring:bioplastic_builder"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "sends_telemetry_event": true
+}

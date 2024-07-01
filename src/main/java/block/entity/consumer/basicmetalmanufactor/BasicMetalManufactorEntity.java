@@ -1,7 +1,7 @@
 package block.entity.consumer.basicmetalmanufactor;
 
 
-import com.item.register.ItemRegister;
+import com.item.ItemRegister;
 
 import block.entity.BlockEntityRegister;
 import block.entity.consumer.PowerConsumerEntity;
@@ -25,6 +25,11 @@ import net.minecraftforge.items.ItemStackHandler;
 public class BasicMetalManufactorEntity extends PowerConsumerEntity{
 
 	private short process_progress = 0;
+	private int render = 0;
+	
+	public int getRenderDis() {
+		return render;
+	}
 
 	static protected int itemstack_number=6;
 	
@@ -118,10 +123,12 @@ public class BasicMetalManufactorEntity extends PowerConsumerEntity{
 	
 	private final String TAG_NAME = "Item";
 	private final String TAG_PROGRESS = "Progress";
+	private final String TAG_RENDER = "render";	//不放在tag里面的不会被同步到client ！！！!!!即使设置同步
 	
 	protected void savedata(CompoundTag tag) {
 		tag.put(TAG_NAME, item.serializeNBT());
 		tag.putShort(TAG_PROGRESS, process_progress);
+		tag.putInt(TAG_RENDER, render);
 	}
 	
 	protected void loaddata(CompoundTag tag) {
@@ -131,32 +138,55 @@ public class BasicMetalManufactorEntity extends PowerConsumerEntity{
 		if(tag.contains(TAG_PROGRESS)) {
 			process_progress = (tag.getShort(TAG_PROGRESS));
 		}
+		if(tag.contains(TAG_RENDER)) {
+			render = tag.getShort(TAG_RENDER);
+		}
 	}
-	
 
 	@Override
 	public void servertick() {
 		ItemStack[] stack = new ItemStack[6];
 		if(energy_supply<25) {
-			process_progress = 20*10*3;
+			process_progress = 0;
+			
+	        int render = 0;
+			if(render != this.render) {
+				this.render = render;
+				level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_CLIENTS);
+			}
+			
 			return;
 		}
 		for (int i = 0; i < 5; i++) {//不要弄错成6了，最后一个是输出
 		    stack[i] = item.getStackInSlot(i);
 		    if(stack[i]==ItemStack.EMPTY) {
-		    	process_progress = 20*10*3;
+		    	process_progress = 0;
+		        int render = 0;
+				if(render != this.render) {
+					this.render = render;
+					level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_CLIENTS);
+				}
 		    	return;
 		    }
 		}
 		stack[5]=item.getStackInSlot(5);
 		if(stack[5].getCount()<64) {
 			energy_consume = FULL_ENERGY_CONSUPTION;
-			if(process_progress>0) {
-				process_progress -= (energy_supply > 75) ? 3 : ((energy_supply > 50) ? 2 : ((energy_supply > 25) ? 1 : 0));
+			if(process_progress<600) {
+				process_progress += (energy_supply > 75) ? 3 : ((energy_supply > 50) ? 2 : ((energy_supply > 25) ? 1 : 0));
+				
+				int progress = process_progress/60;//除到10
+		        int render = progress * 22 / 10; //移动像素/距离
+				if(render != this.render) {
+					this.render = render;
+					level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_CLIENTS);
+				}
+				
 				setChanged();
 				return;
+			
 			}
-			process_progress = 20*10*3;
+			process_progress = 0;
 			ItemStack items0 = new ItemStack(Items.IRON_INGOT, stack[0].getCount()-1);
 			ItemStack items1 = new ItemStack(Items.IRON_INGOT, stack[1].getCount()-1);
 			ItemStack items2 = new ItemStack(Items.IRON_INGOT, stack[2].getCount()-1);
@@ -179,7 +209,5 @@ public class BasicMetalManufactorEntity extends PowerConsumerEntity{
 	public void clienttick() {
 		return;
 	}
-
 	
-
 }

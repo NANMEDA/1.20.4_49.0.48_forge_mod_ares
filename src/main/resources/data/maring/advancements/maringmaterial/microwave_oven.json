@@ -1,0 +1,32 @@
+{
+  "display": {
+    "icon": {
+      "item": "maring:microwave_oven"
+    },
+    "title": {
+      "translate": "advancements.maringmaterial.microwave_oven.title"
+    },
+    "description": {
+      "translate": "advancements.maringmaterial.microwave_oven.description"
+    },
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "parent": "maring:maringmaterial/etching_machine",
+  "criteria": {
+    "etching_machine": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "maring:microwave_oven"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "sends_telemetry_event": true
+}

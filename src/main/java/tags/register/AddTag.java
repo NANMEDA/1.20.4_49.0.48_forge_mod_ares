@@ -1,6 +1,6 @@
 package tags.register;
 
-import com.item.register.itemFood;
+import com.item.itemFood;
 
 public class AddTag {
 	

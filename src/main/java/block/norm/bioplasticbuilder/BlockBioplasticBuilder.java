@@ -2,7 +2,8 @@ package block.norm.bioplasticbuilder;
 
 import javax.annotation.Nullable;
 
-import com.item.register.ItemRegister;
+import com.item.ItemRegister;
+
 import block.entity.consumer.bioplasticbuilder.BioplasticBuilderEntity;
 import block.norm.BlockJSON;
 import block.norm.BlockRegister;

@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "maring:mar_surface"
+    },
+    "title": {
+      "translate": "advancements.traveltomar.enter_the_mar.title"
+    },
+    "description": {
+      "translate": "advancements.traveltomar.enter_the_mar.description"
+    },
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "maring:traveltomar/root",
+  "criteria": {
+    "enter_the_mar": {
+      "trigger": "minecraft:changed_dimension",
+      "conditions": {
+        "to": "maring:maringmar"
+      }
+    }
+  },
+  "sends_telemetry_event": true
+}

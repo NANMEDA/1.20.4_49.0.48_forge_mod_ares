@@ -1,0 +1,32 @@
+{
+  "display": {
+    "icon": {
+      "item": "maring:basicmetal_manufactor"
+    },
+    "title": {
+      "translate": "advancements.maringmaterial.basicmetal_manufactor.title"
+    },
+    "description": {
+      "translate": "advancements.maringmaterial.basicmetal_manufactor.description"
+    },
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "maring:maringmaterial/first_metal_parts",
+  "criteria": {
+    "advancedmetal_manufactor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "maring:basicmetal_manufactor"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "sends_telemetry_event": true
+}
