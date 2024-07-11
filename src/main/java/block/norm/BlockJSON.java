@@ -223,7 +223,7 @@ public class BlockJSON {
     	    case 3 -> tool = "needs_diamond_tool";
     	    default -> throw new IllegalArgumentException("Unexpected tool_level needs: level = " + level);
     	}
-        if(tool == null) {return;}
+        if(tool == null) return;
         File file = new File("/forge-1.20.4-49.0.48-mdk/src/main/resources/data/minecraft/tags/blocks/" + tool + ".json");
 
         if (!file.exists()) {

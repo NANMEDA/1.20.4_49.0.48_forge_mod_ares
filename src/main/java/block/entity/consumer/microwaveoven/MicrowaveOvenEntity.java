@@ -1,6 +1,8 @@
 package block.entity.consumer.microwaveoven;
 
 
+import com.item.ItemRegister;
+
 import block.entity.BlockEntityRegister;
 import block.entity.consumer.PowerConsumerEntity;
 import net.minecraft.core.BlockPos;
@@ -222,7 +224,7 @@ public class MicrowaveOvenEntity extends PowerConsumerEntity{
 		            return true;
 		        }
 		    //}
-			if(uncookfood == Items.EGG ){
+			if(uncookfood == Items.EGG||uncookfood == ItemRegister.CAN.get()){
 				return true;
 			} 
 			//System.out.println("food not UNCOOK");

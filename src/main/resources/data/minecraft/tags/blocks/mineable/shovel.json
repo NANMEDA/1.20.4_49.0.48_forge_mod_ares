@@ -4,6 +4,8 @@
     "maring:mar_surface",
     "maring:mar_baked_surface",
     "maring:mar_sand",
-    "maring:mar_mud"
+    "maring:mar_mud",
+    "maring:dry_mucus",
+    "maring:moist_mucus"
   ]
 }

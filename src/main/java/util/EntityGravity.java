@@ -10,18 +10,21 @@ import com.google.common.collect.Maps;
 
 import event.forge.LivingGravityEvent;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.MinecraftForge;
-
 public class EntityGravity {
 
     public static final UUID ARTIFICIAL_GRAVITY_ID = UUID.fromString("242A6B8D-DA4E-4C3C-1234-96EA6096568D");
-
+    private static ResourceKey<Level> marKey = ResourceKey.create(Registries.DIMENSION, new ResourceLocation("maring", "maringmar"));
+    
     public record GravitySource(BlockPos centre, float gravity, int range) {
     }
 
@@ -73,7 +76,9 @@ public class EntityGravity {
         /** SET GRAVITIES */
         if (!entity.getPersistentData().getBoolean(TAG)) {
             float entityGravity = 0.02f;
-        	if(level.getBiome(new BlockPos(0,1,0)).get().getFoliageColor() == 9334293) {
+            if(level.isClientSide) return;
+            level = (ServerLevel) level;
+        	if(level.dimension()==level.getServer().getLevel(marKey).dimension()) {
         		setGravity(entity, attributeInstance, entityGravity, true);
         	}else{
         		setGravity(entity, attributeInstance, attribute.getDefaultValue(), false);

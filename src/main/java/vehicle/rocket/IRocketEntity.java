@@ -1,40 +1,36 @@
 package vehicle.rocket;
 
 import com.google.common.collect.Sets;
-import io.netty.buffer.Unpooled;
-import keybinds.KeyVariables;
+
+import block.norm.BlockBasic;
+import block.norm.BlockRegister;
+import event.forge.TeleportAndCreateLanderEvent;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.MenuProvider;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.vehicle.DismountHelper;
-import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.HitResult;
@@ -42,7 +38,6 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.common.extensions.IForgeServerPlayer;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.ItemStackHandler;
@@ -52,27 +47,32 @@ import util.gauge.GaugeValueHelper;
 import util.gauge.IGaugeValue;
 import util.gauge.IGaugeValuesProvider;
 import vehicle.ModVehicle;
+import vehicle.VehicleRegister;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
+import java.util.Random;
 
 public abstract class IRocketEntity extends ModVehicle implements IGaugeValuesProvider{
 
 	private static final String MODID = "maring";
 
     public static final EntityDataAccessor<Boolean> ROCKET_START = SynchedEntityData.defineId(IRocketEntity.class, EntityDataSerializers.BOOLEAN);
+    public static final EntityDataAccessor<Boolean> ROCKET_IS_DROP = SynchedEntityData.defineId(IRocketEntity.class, EntityDataSerializers.BOOLEAN);
     public static final EntityDataAccessor<Integer> FUEL = SynchedEntityData.defineId(IRocketEntity.class, EntityDataSerializers.INT);
     public static final EntityDataAccessor<Integer> START_TIMER = SynchedEntityData.defineId(IRocketEntity.class, EntityDataSerializers.INT);
 
+    
 	private static final int BUCKET_SIZE = 1000;
 	
 
     public IRocketEntity(EntityType<?> entityType, Level level) {
         super(entityType, level);
         this.entityData.define(ROCKET_START, false);
+        this.entityData.define(ROCKET_IS_DROP, false);
         this.entityData.define(FUEL, 0);
         this.entityData.define(START_TIMER, 0);
     }
@@ -196,6 +196,7 @@ public abstract class IRocketEntity extends ModVehicle implements IGaugeValuesPr
         compound.put("InventoryCustom", this.inventory.serializeNBT());
 
         compound.putBoolean("rocket_start", this.getEntityData().get(ROCKET_START));
+        compound.putBoolean("rocket_is_drop", this.getEntityData().get(ROCKET_IS_DROP));
         compound.putInt("fuel", this.getEntityData().get(FUEL));
         compound.putInt("start_timer", this.getEntityData().get(START_TIMER));
     }
@@ -210,6 +211,7 @@ public abstract class IRocketEntity extends ModVehicle implements IGaugeValuesPr
         }
 
         this.getEntityData().set(ROCKET_START, compound.getBoolean("rocket_start"));
+        this.getEntityData().set(ROCKET_IS_DROP, compound.getBoolean("rocket_is_drop"));
         this.getEntityData().set(FUEL, compound.getInt("fuel"));
         this.getEntityData().set(START_TIMER, compound.getInt("start_timer"));
     }
@@ -300,14 +302,78 @@ public abstract class IRocketEntity extends ModVehicle implements IGaugeValuesPr
         this.rocketExplosion();
         this.burnEntities();
 
-        if ( this.entityData.get(ROCKET_START)) {
+        if (this.entityData.get(ROCKET_START)) {
             this.spawnParticle();
             this.startTimerAndFlyMovement();
             this.GoingTo();
+        }else if(this.entityData.get(ROCKET_IS_DROP)) {
+        	this.IsDrop();
         }
     }
+    
+    private void changeNineBelowBlock() {
+    	Level level = this.level();
+    	if(level.isClientSide) return;
+    	BlockPos entityPos = this.blockPosition();
+    	Random random = new Random();
+    	for (int x = -8; x <= 8; x++) {
+            for (int y = -2; y <= 0; y++) {
+                for (int z = -8; z <= 8; z++) {
+                    if (random.nextBoolean()) continue;
+                	BlockPos position = entityPos.offset(x, y, z);
+		    		BlockState state = level.getBlockState(position);
+		    		if(state.is(Blocks.GRASS_BLOCK)||state.is(Blocks.DIRT)||state.is(Blocks.ROOTED_DIRT)||state.is(Blocks.MUD)) {
+		    			BlockState newState = Blocks.COARSE_DIRT.defaultBlockState();
+		    			level.setBlock(position, newState, 0);
+		    			level.sendBlockUpdated(position, newState, newState, Block.UPDATE_CLIENTS);
+		    		}else if(state.is(Blocks.SAND)||state.is(Blocks.RED_SAND)) {
+		    			BlockState newState = Blocks.GLASS.defaultBlockState();
+		    			level.setBlock(position, newState, 0);
+		    			level.sendBlockUpdated(position, newState, newState, Block.UPDATE_CLIENTS);
+		    		}else if(state.is(BlockRegister.COMMON_BLOCKS[BlockBasic.getIdFromName("mar_surface")].get())||state.is(BlockRegister.COMMON_BLOCKS[BlockBasic.getIdFromName("methane_vents")].get())) {
+		    			BlockState newState = BlockRegister.COMMON_BLOCKS[BlockBasic.getIdFromName("mar_baked_surface")].get().defaultBlockState();
+		    			level.setBlock(position, newState, 0);
+		    			level.sendBlockUpdated(position, newState, newState, Block.UPDATE_CLIENTS);
+		    		}
+                }
+            }
+    	}
 
-    public abstract void spawnParticle();
+    }
+    
+    static double dropSpeed = -2;
+
+    private void IsDrop() {
+		BlockPos entityPos = this.blockPosition();
+		// 向下搜索非空气方块
+		double dis = 0;
+		if(this.level().isClientSide) return;
+		Level level = this.level();
+		if(level.isEmptyBlock(new BlockPos(entityPos.getX(), entityPos.getY()-20, entityPos.getZ()))) {
+			dropSpeed = this.getDeltaMovement().y;
+			return;
+		}
+		BlockPos mutablePos = new BlockPos(entityPos.getX(), entityPos.getY(), entityPos.getZ());
+		while (dis<20 && level.isEmptyBlock(mutablePos)) {
+			mutablePos = mutablePos.below();
+			dis++;
+		}
+		double K = dis/20.0;
+        if (this.getDeltaMovement().y < -0.05&& dis>1) {
+            this.setDeltaMovement(this.getDeltaMovement().x, dropSpeed*K*K, this.getDeltaMovement().z);
+        } else{
+            this.setDeltaMovement(this.getDeltaMovement().x, 0, this.getDeltaMovement().z);
+			SynchedEntityData data = this.getEntityData();
+			if (data.get(IRocketEntity.ROCKET_IS_DROP)) {
+                data.set(IRocketEntity.ROCKET_IS_DROP, false);
+            }
+			changeNineBelowBlock();
+        }
+        this.setPos(this.xo+this.getDeltaMovement().x, this.yo+ this.getDeltaMovement().y, this.zo + this.getDeltaMovement().z);
+
+	}
+
+	public abstract void spawnParticle();
 
     public void fillUpRocket() {
         ItemStack slotItem0 = this.getInventory().getStackInSlot(0);
@@ -413,30 +479,32 @@ public abstract class IRocketEntity extends ModVehicle implements IGaugeValuesPr
     }
 
     public void startTimerAndFlyMovement() {
-        if (this.entityData.get(START_TIMER) < 200) {
+    	int start_time = this.entityData.get(START_TIMER);
+        if (start_time < 200) {
         	System.out.println("add timer to: " + this.entityData.get(START_TIMER));
-            this.entityData.set(START_TIMER, this.entityData.get(START_TIMER) + 1);
+            this.entityData.set(START_TIMER, start_time + 1);
+            if(start_time==199) {
+            	changeNineBelowBlock();
+            }
         }
 
-        if (this.entityData.get(START_TIMER) == 200) {
+        if (start_time == 200) {
         	//System.out.println("ok for fly");
-            if (this.getDeltaMovement().y < this.getRocketSpeed() - 0.03) {
-                this.setDeltaMovement(this.getDeltaMovement().x, this.getDeltaMovement().y + 0.03, this.getDeltaMovement().z);
+            if (this.getDeltaMovement().y < this.getRocketSpeed() - 0.1) {
+                this.setDeltaMovement(this.getDeltaMovement().x, this.getDeltaMovement().y + 0.1, this.getDeltaMovement().z);
             } else {
                 this.setDeltaMovement(this.getDeltaMovement().x, this.getRocketSpeed(), this.getDeltaMovement().z);
             }
-            //System.out.println("Entity position: (" + this.xo + ", " + this.yo + ", " + this.zo + ")");
-            //System.out.println("Entity position from get: (" + this.getX() + ", " +  this.getY() + ", " +  this.getZ() + ")");
-            //System.out.println("Delta movement: (" + this.getDeltaMovement().x + ", " + this.getDeltaMovement().y + ", " + this.getDeltaMovement().z + ")");
             this.setPos(this.xo+this.getDeltaMovement().x, this.yo+ this.getDeltaMovement().y, this.zo + this.getDeltaMovement().z);
         }
     }
     
+  
     private static ResourceKey<Level> limboKey = ResourceKey.create(Registries.DIMENSION, new ResourceLocation("maring", "limbo"));
     private static ResourceKey<Level> marKey = ResourceKey.create(Registries.DIMENSION, new ResourceLocation("maring", "maringmar"));
  
     public void GoingTo() {
-    	if (this.yo > 1000) {
+    	if (this.yo > 100) {
     	Player player = this.getFirstPlayerPassenger();
         if(player==null) return;
         Level level = this.level();
@@ -449,18 +517,55 @@ public abstract class IRocketEntity extends ModVehicle implements IGaugeValuesPr
 			double sendX = player.getX();
 			double sendZ = player.getZ();
 			player.teleportTo(mar, sendX/4, 800, sendZ/4, null, player.getYRot(), player.getXRot());
+			Level newLevel = player.level();
+			if(!newLevel.isClientSide) {
+				RocketEntity newRocket = new RocketEntity(VehicleRegister.ROCKET_ENTITY.get(), newLevel);
+				SynchedEntityData data = newRocket.getEntityData();
+				if (!data.get(IRocketEntity.ROCKET_IS_DROP)) {
+                    data.set(IRocketEntity.ROCKET_IS_DROP, true);
+                }
+				newRocket.moveTo(player.position());
+				newLevel.addFreshEntity(newRocket);
+				MinecraftForge.EVENT_BUS.post(new TeleportAndCreateLanderEvent(newRocket, player));
+				player.startRiding(newRocket);
+			}
 			return;
     	}else if(!level.isClientSide && level.dimension() == level.getServer().getLevel(marKey).dimension()){
     		ServerLevel overworld = level.getServer().getLevel(Level.OVERWORLD);
 			double sendX = player.getX();
 			double sendZ = player.getZ();
 			player.teleportTo(overworld, sendX*4, 800, sendZ*4, null, player.getYRot(), player.getXRot());
+			Level newLevel = player.level();
+			if(!newLevel.isClientSide) {
+				RocketEntity newRocket = new RocketEntity(VehicleRegister.ROCKET_ENTITY.get(), newLevel);
+				SynchedEntityData data = newRocket.getEntityData();
+				if (!data.get(IRocketEntity.ROCKET_IS_DROP)) {
+                    data.set(IRocketEntity.ROCKET_IS_DROP, true);
+                }
+				newRocket.moveTo(player.position());
+				newLevel.addFreshEntity(newRocket);
+				MinecraftForge.EVENT_BUS.post(new TeleportAndCreateLanderEvent(newRocket, player));
+				player.startRiding(newRocket);
+			}
 			return;
     	}else if(!level.isClientSide){
     		ServerLevel overworld = level.getServer().getLevel(Level.OVERWORLD);
 			double sendX = player.getX();
 			double sendZ = player.getZ();
-			player.teleportTo(overworld, sendX*4, 800, sendZ*4, null, player.getYRot(), player.getXRot());
+			player.teleportTo(overworld, sendX*4, 300, sendZ*4, null, player.getYRot(), player.getXRot());
+			Level newLevel = player.level();
+			if(!newLevel.isClientSide) {
+				RocketEntity newRocket = new RocketEntity(VehicleRegister.ROCKET_ENTITY.get(), newLevel);
+				SynchedEntityData data = newRocket.getEntityData();
+				if (!data.get(IRocketEntity.ROCKET_IS_DROP)) {
+                    data.set(IRocketEntity.ROCKET_IS_DROP, true);
+                }
+				newRocket.moveTo(player.position());
+				newLevel.addFreshEntity(newRocket);
+				MinecraftForge.EVENT_BUS.post(new TeleportAndCreateLanderEvent(newRocket, player));
+				player.startRiding(newRocket);
+			}
+			return;
     	}
             if (player != null) {
 
@@ -494,18 +599,13 @@ public abstract class IRocketEntity extends ModVehicle implements IGaugeValuesPr
                 if (!this.level().isClientSide) {
                     this.remove(RemovalReason.DISCARDED);
                 }
-            } else {
-                if (!this.level().isClientSide) {
-                    this.level().explode(this, this.getX(), this.getBoundingBox().maxY, this.getZ(), 10, false, Level.ExplosionInteraction.TNT);
-                    this.remove(RemovalReason.DISCARDED);
-                }
             }
     	}
     }
 
     public void rocketExplosion() {
         if (this.entityData.get(START_TIMER) == 200) {
-            if (this.getDeltaMovement().y < -0.07) {
+            if (this.getDeltaMovement().y < -10.0) {
                 if (!this.level().isClientSide) {
                     this.level().explode(this, this.getX(), this.getBoundingBox().maxY, this.getZ(), 10, true, Level.ExplosionInteraction.TNT);
                     this.remove(RemovalReason.DISCARDED);

@@ -2,9 +2,11 @@ package block.norm;
 
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.block.SoundType;
+import java.util.HashMap;
+import java.util.Map;
 
 public class BlockBasic {
-	public static int BLOCK_BASIC_NUMBER = 27;
+	public static int BLOCK_BASIC_NUMBER = 39;
 	private static int k = 0;
 	
     private static final String[] BLOCK_NAME = new String[BLOCK_BASIC_NUMBER];
@@ -17,9 +19,9 @@ public class BlockBasic {
     
     //不一定准
     static float[] dirt_strength = new float[]{0.5F, 0.5F};
-    static float[] stone_strength = new float[]{2.0F, 6.0F};
-    static float[] ore_strength = new float[]{3.0F, 6.0F};
-    static float[] deep_ore_strength = new float[]{4.0F, 6.0F};
+    static float[] stone_strength = new float[]{1.5F, 6.0F};
+    static float[] ore_strength = new float[]{3.0F, 3.0F};
+    static float[] deep_ore_strength = new float[]{4.5F, 3.0F};
     
     static{
         addBlock("mar_surface", MapColor.COLOR_ORANGE, SoundType.SAND,dirt_strength, false, "shovel", 0);
@@ -51,18 +53,53 @@ public class BlockBasic {
     }//22
     
     static {
-    	addBlock("unbroken_cement",MapColor.TERRACOTTA_WHITE,SoundType.STONE,new float[]{-1.0F, -1.0F},false,null,0);
-    	addBlock("unbroken_decoration_green",MapColor.COLOR_GREEN,SoundType.STONE,new float[]{-1.0F, -1.0F},false,null,0);
-    	addBlock("unbroken_decoration_lightblue",MapColor.COLOR_LIGHT_BLUE,SoundType.STONE,new float[]{-1.0F, -1.0F},false,null,0);
-    	addBlock("unbroken_void",MapColor.COLOR_GREEN,SoundType.EMPTY,new float[]{-1.0F, -1.0F},false,null,0);
-    }
+    	addBlock("unbroken_cement",MapColor.TERRACOTTA_WHITE,SoundType.STONE,new float[]{-1.0F, 3600000.0F},false,null,0);
+    	addBlock("unbroken_decoration_green",MapColor.COLOR_GREEN,SoundType.STONE,new float[]{-1.0F, 3600000.0F},false,null,0);
+    	addBlock("unbroken_decoration_lightblue",MapColor.COLOR_LIGHT_BLUE,SoundType.STONE,new float[]{-1.0F, 3600000.0F},false,null,0);
+    	addBlock("unbroken_void",MapColor.COLOR_GREEN,SoundType.EMPTY,new float[]{-1.0F, 3600000.0F},false,null,0);
+    }//4
     
     static {
-    	addBlock("methane_vents", MapColor.COLOR_ORANGE, SoundType.STONE, stone_strength, true, "pickaxe", 0);
+    	addBlock("methane_vents", MapColor.COLOR_YELLOW, SoundType.STONE, stone_strength, true, "pickaxe", 0);//还需要 active（在类里面）
     }
     
-
-   
+    //洞穴
+    static {
+    	addBlock("phosphor", MapColor.COLOR_GRAY, SoundType.STONE, stone_strength, true, "pickaxe", 0);	//磷光体
+    	addBlock("deep_phosphor", MapColor.COLOR_GRAY, SoundType.STONE, ore_strength, true, "pickaxe", 0);	
+    	addBlock("abundant_phosphor", MapColor.COLOR_GRAY, SoundType.STONE, stone_strength, true, "pickaxe", 0);	//富集磷光体
+    	addBlock("deep_abundant_phosphor", MapColor.COLOR_GRAY, SoundType.STONE, ore_strength, true, "pickaxe", 0);
+    	addBlock("slumber_phosphor", MapColor.COLOR_BLACK, SoundType.STONE, stone_strength, true, "pickaxe", 0);		//沉睡磷光体
+    	addBlock("deep_slumber_phosphor", MapColor.COLOR_BLACK, SoundType.STONE, stone_strength, true, "pickaxe", 0);	
+    	addBlock("dead_stone", MapColor.COLOR_BLACK, SoundType.STONE, dirt_strength, true, "pickaxe", 0);
+    	addBlock("slumber_stone", MapColor.COLOR_BLACK, SoundType.STONE, stone_strength, true, "pickaxe", 1);
+    	addBlock("dry_mucus", MapColor.COLOR_YELLOW, SoundType.SLIME_BLOCK, dirt_strength, false, "shovel", 0);	//干枯粘液
+    	addBlock("moist_mucus", MapColor.COLOR_YELLOW, SoundType.HONEY_BLOCK, dirt_strength, false, "shovel", 0);	//湿润粘液
+    }//10
+    
+    //火山
+    static {
+    	addBlock("dense_volcanic_ash", MapColor.COLOR_GRAY, SoundType.STONE, dirt_strength, true, "pickaxe", 0);
+    	addBlock("volcanic_stone", MapColor.COLOR_GRAY, SoundType.STONE, stone_strength, true, "pickaxe", 1);
+    }
+    
+    /*
+     * 先这种通过名字查询id的Map可以多弄几个
+     * 在别的像这样注册的类里面
+     * 避免通过id查询，然后结果添加或者减少的时候导致 id 变了
+     * */
+    private static final Map<String, Integer> nameToIdMap = new HashMap<>();
+    static {
+        for (int i = 0; i < BLOCK_BASIC_NUMBER; i++) {
+            nameToIdMap.put(BLOCK_NAME[i], i);
+        }
+    }
+    
+    public static Integer getIdFromName(String name) {
+        Integer id = nameToIdMap.get(name);
+        return (id != null) ? id : 0;
+    }
+    
     private static void addBlock(String name, MapColor color, SoundType sound, float[] strength, Boolean tool, String tools, int level) {
     	BLOCK_NAME[k] = name;
         MAP_COLORS[k] = color;
@@ -114,95 +151,3 @@ public class BlockBasic {
         return TOOL_MIN_LEVEL[id];
     }
 }
-/*
-public class BlockBasic {
-    private static final Map<Integer, String> BLOCK_NAME = new HashMap<>();
-    private static final Map<Integer, MapColor> MAP_COLORS = new HashMap<>();
-    private static final Map<Integer, SoundType> SOUNDS = new HashMap<>();
-    private static final Map<Integer, float[]> STRENGTHS = new HashMap<>();
-    private static final Map<Integer, Boolean> NEED_TOOL = new HashMap<>();
-    private static final Map<Integer, String> TOOL = new HashMap<>();
-    private static final Map<Integer, Integer> TOOL_MIN_LEVEL = new HashMap<>();
-    //用hashmap会不会太浪费了？
-    
-    //参考
-    //泥土0.5 0.5
-    //石头  2 6
-    //末地岩 2 45
-    //黑曜石 50 ？
-    //矿石、深版岩 3 ？
-    //好像都不是很准的样子,总体大差不差
-    static float[] dirt_strength = new float[]{0.5F, 0.5F};
-    static float[] stone_strength = new float[]{2.0F, 6.0F};
-    static float[] ore_strength = new float[]{3.0F, 6.0F};
-    static float[] deep_ore_strength = new float[]{4.0F, 6.0F};
-    
-    static {
-        addBlock(0,"mar_surface",MapColor.COLOR_ORANGE,SoundType.SAND,dirt_strength,false,"shovel",0);
-        addBlock(1,"mar_stone",MapColor.COLOR_RED,SoundType.STONE,stone_strength,true,"pickaxe",0);
-        addBlock(2,"mar_deep_stone",MapColor.COLOR_RED,SoundType.STONE,ore_strength,true,"pickaxe",0);
-        addBlock(3,"mar_iron_ore",MapColor.COLOR_LIGHT_GRAY,SoundType.STONE,ore_strength,true,"pickaxe",1);
-        addBlock(4,"mar_deep_iron_ore",MapColor.COLOR_GRAY,SoundType.STONE,deep_ore_strength,true,"pickaxe",1);
-        addBlock(5,"mar_gold_ore",MapColor.COLOR_LIGHT_GRAY,SoundType.STONE,ore_strength,true,"pickaxe",2);
-        addBlock(6,"mar_deep_gold_ore",MapColor.COLOR_GRAY,SoundType.STONE,deep_ore_strength,true,"pickaxe",2);
-        addBlock(7,"mar_copper_ore",MapColor.COLOR_ORANGE,SoundType.STONE,ore_strength,true,"pickaxe",1);
-        addBlock(8,"mar_deep_copper_ore",MapColor.COLOR_ORANGE,SoundType.STONE,deep_ore_strength,true,"pickaxe",1);
-        addBlock(9,"mar_deep_emerald_ore",MapColor.COLOR_GREEN,SoundType.STONE,deep_ore_strength,true,"pickaxe",2);    
-    }
-    
-    static {
-    	addBlock(10,"mar_deep_ominous_ore",MapColor.COLOR_BLACK,SoundType.STONE,new float[]{20.0F, 50.0F},true,"pickaxe",3);
-    	addBlock(11,"unbroken_cement",MapColor.TERRACOTTA_WHITE,SoundType.STONE,new float[]{-1.0F, -1.0F},false,null,0);
-    	addBlock(12,"unbroken_glass",MapColor.NONE,SoundType.GLASS,new float[]{-1.0F, -1.0F},false,null,0);
-    	addBlock(13,"unbroken_decoration_green",MapColor.COLOR_GREEN,SoundType.STONE,new float[]{-1.0F, -1.0F},false,null,0);
-    	addBlock(14,"unbroken_decoration_lightblue",MapColor.COLOR_LIGHT_BLUE,SoundType.STONE,new float[]{-1.0F, -1.0F},false,null,0);
-    }
-    
-    public static int BLOCK_BASIC_NUMBER = BLOCK_NAME.size();
-     
-    static {
-    for (Map.Entry<Integer, String> entry : BLOCK_NAME.entrySet()) {
-        String name = entry.getValue();
-        BlockJSON.GenModelsJSONBasic(name);
-        BlockJSON.GenBlockStateJSONBasic(name);
-        BlockJSON.GenItemJSONBasic(name);
-        BlockJSON.GenLootTableJSONBasic(name);
-        BlockJSON.GenToolJSON(Tools(entry.getKey()), name);
-        BlockJSON.GenToolLevelJSON(getToolLevel(entry.getKey()), name);
-    	}
-    }
-    
-    private static void addBlock(
-    		int id, String name, MapColor color, SoundType sound,float[] strength,Boolean tool,String tools,int level) {
-    	BLOCK_NAME.put(id, name);
-        MAP_COLORS.put(id, color);
-        SOUNDS.put(id, sound);
-        STRENGTHS.put(id, strength);
-        NEED_TOOL.put(id, tool);
-        TOOL.put(id, tools);
-        TOOL_MIN_LEVEL.put(id,level);
-    }
-
-    public static String getBlockName(int id) {
-        return BLOCK_NAME.get(id);
-    }
-    public static MapColor getBlockMapColor(int id) {
-        return MAP_COLORS.get(id);
-    }
-    public static SoundType getBlockSound(int id) {
-        return SOUNDS.get(id);
-    }
-    public static float[] getBlockStrength(int id) {
-        return STRENGTHS.get(id);
-    }
-    public static Boolean needTool(int id) {
-        return NEED_TOOL.get(id);
-    }
-    public static String Tools(int id) {
-        return TOOL.get(id);
-    }
-    public static Integer getToolLevel(int id) {
-        return TOOL_MIN_LEVEL.get(id);
-    }
-}
-*/

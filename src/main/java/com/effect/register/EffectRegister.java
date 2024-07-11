@@ -4,6 +4,7 @@ import com.effect.EffectFulling;
 import com.effect.EffectLosePressure;
 import com.effect.EffectMentalAbuse;
 import com.effect.EffectOminousLuck;
+import com.effect.EffectParasite;
 
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -24,6 +25,7 @@ public class EffectRegister {
     new EffectOminousLuck(MobEffectCategory.BENEFICIAL, 0x000033, false,1));
     public static final RegistryObject<MobEffect> LOSEPRESSURE = EFFECTS.register("lose_pressure", () ->
     new EffectLosePressure(MobEffectCategory.HARMFUL, 0x000033, false,1));
-    
+    public static final RegistryObject<MobEffect> PARASITE = EFFECTS.register("parasite", () ->
+    new EffectParasite(MobEffectCategory.BENEFICIAL, 0x000033, false,1));
     
 }

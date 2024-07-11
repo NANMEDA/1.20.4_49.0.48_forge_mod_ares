@@ -6,12 +6,18 @@ import com.item.armor.ModArmor;
 import com.item.armor.ModArmorMaterials;
 import com.item.can.ItemCan;
 import com.item.rocket.RocketItem;
+import com.item.tool.OminousAxe;
+import com.item.tool.OminousHoe;
+import com.item.tool.OminousPickaxe;
+import com.item.tool.OminousShovel;
 import com.item.weapon.ItemFrenchBread;
 import com.item.weapon.SwordTier;
 
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.Tiers;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -69,5 +75,12 @@ public class ItemRegister {
     public static final RegistryObject<RocketItem> ROCKET_ITEM = ITEMS.register("rocket", 
     		() -> new RocketItem(new Item.Properties()));
 	
-	
+    public static final RegistryObject<Item> OMINOUS_AXE = ITEMS.register(OminousAxe.global_name,
+            () -> new OminousAxe(Tiers.GOLD, 6.0F, -3.0F, new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> OMINOUS_HOE = ITEMS.register(OminousHoe.global_name,
+            () -> new OminousHoe(Tiers.GOLD, 0, -3.0F, new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> OMINOUS_PICKAXE = ITEMS.register(OminousPickaxe.global_name,
+            () -> new OminousPickaxe(Tiers.GOLD, 1, -2.8F, new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> OMINOUS_SHOVEL = ITEMS.register(OminousShovel.global_name,
+            () -> new OminousShovel(Tiers.GOLD, 6.0F, -3.0F, new Item.Properties().stacksTo(1)));
 }

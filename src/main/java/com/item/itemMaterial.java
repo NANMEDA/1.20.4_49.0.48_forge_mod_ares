@@ -22,6 +22,7 @@ public class itemMaterial {
         "bottled_fuel",//上面的8倍
         "raw_iron_nugget",
         
+        "insulation_material",
         "insulation_layer",
         "sructure_layer",
         "radiation_layer",

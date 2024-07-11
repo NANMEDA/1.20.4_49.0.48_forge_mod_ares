@@ -31,6 +31,7 @@
       "maring:mar_ore_sedimentary_stone",
       "maring:mar_ore_sulfur_stone",
       "maring:mar_ore_deep_sulfur_stone",
+      "maring:mar_ore_volcanic_stone",
 	  "maring:mar_ore_iron",
 	  "maring:mar_ore_iron_high",
       "maring:mar_ore_gold",
@@ -45,6 +46,8 @@
     [],
     [],
     [],
-    []
+    [
+      "maring:ancient_rocket"
+    ]
   ]
 }

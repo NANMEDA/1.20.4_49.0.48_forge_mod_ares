@@ -4,6 +4,7 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.LightBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraftforge.registries.DeferredRegister;
@@ -44,12 +45,17 @@ public class BlockRegister {
     public static final RegistryObject<Item> PowerStationBurn_BLOCK_ITEM;
     public static final RegistryObject<Block> PowerStationSun_BLOCK;
     public static final RegistryObject<Item> PowerStationSun_BLOCK_ITEM;
-    public static final RegistryObject<Block> canfoodmaker_BLOCK;
-    public static final RegistryObject<Item> canfoodmaker_BLOCK_ITEM;
+    public static final RegistryObject<Block> awakeningstone_BLOCK;
+    public static final RegistryObject<Item> awakeningstone_BLOCK_ITEM;
     //public static final RegistryObject<Block> basicmetalmanufactor_BLOCK;
     //public static final RegistryObject<Item> basicmetalmanufactor_BLOCK_ITEM;
     
+    
     static {
+    	int id_phosphor = BlockBasic.getIdFromName("phosphor");
+    	int id_abundant_phosphor = BlockBasic.getIdFromName("abundant_phosphor");
+    	int id_moist_mucus = BlockBasic.getIdFromName("moist_mucus");
+    	int id_awakening_stone = BlockBasic.getIdFromName("awakening_stone");
         IntStream.range(0, BlockBasic.BLOCK_BASIC_NUMBER).forEach(i -> {
         	COMMON_BLOCKS[i] = BLOCKS.register(BlockBasic.getBlockName(i), () -> {
         	    BlockBehaviour.Properties properties = BlockBehaviour.Properties.of()
@@ -59,10 +65,19 @@ public class BlockRegister {
         	    if (BlockBasic.needTool(i)) {
         	        properties.requiresCorrectToolForDrops();
         	    }
+        	    if (i == id_phosphor||i == (id_phosphor+1)) {
+        	    	properties.lightLevel((blockstate)->6);
+        	    }else if (i == id_abundant_phosphor||i == (id_abundant_phosphor+1)) {
+        	    	properties.lightLevel((blockstate)->10);
+        	    }else if (i==id_moist_mucus) {
+        	    	properties.noOcclusion();
+        	    }
         	    return new Block(properties);
         	});
         	COMMON_BLOCK_ITEMS[i] = BLOCK_ITEMS.register(BlockBasic.getBlockName(i), () -> new BlockItem(COMMON_BLOCKS[i].get(), new Item.Properties()));
         });
+        
+        
         IntStream.range(0, BlockElectricBasic.BLOCK_ELECTRIC_NUMBER).forEach(i -> {
         	ELECTRIC_BLOCKS[i] = BLOCKS.register(BlockElectricBasic.getBlockName(i), () -> {
         	    BlockBehaviour.Properties properties = BlockBehaviour.Properties.of()
@@ -72,6 +87,9 @@ public class BlockRegister {
         	            .mapColor(BlockElectricBasic.getBlockMapColor(i));
         	    if (BlockElectricBasic.needTool(i)) {
         	        properties.requiresCorrectToolForDrops();
+        	    }
+        	    if(i>1) {
+        	    	properties.lightLevel((blockState) -> 8);
         	    }
         	    return new Block(properties) {
         	    };
@@ -97,16 +115,13 @@ public class BlockRegister {
     	PowerStationSun_BLOCK_ITEM = BLOCK_ITEMS.register(PowerStationSun.global_name, () -> new BlockItem(PowerStationSun_BLOCK.get(), new Item.Properties()));
 
     	
-    	
-    	
-    	canfoodmaker_BLOCK = BLOCKS.register(BlockCanfoodMaker.global_name, () -> {
-    		return new BlockCanfoodMaker(BlockBehaviour.Properties.of()
+    	awakeningstone_BLOCK = BLOCKS.register(BlockAwakeningStone.global_name, () -> {
+    		return new BlockAwakeningStone(BlockBehaviour.Properties.of()
     	            .sound(SoundType.STONE)
-    	            .strength(5f,5f)
+    	            .strength(1.5f,6f)
     	            .mapColor(MapColor.COLOR_GRAY)); 
     	});
-    	canfoodmaker_BLOCK_ITEM = BLOCK_ITEMS.register(BlockCanfoodMaker.global_name, () -> new BlockItem(canfoodmaker_BLOCK.get(), new Item.Properties()));
-
+    	awakeningstone_BLOCK_ITEM = BLOCK_ITEMS.register(BlockAwakeningStone.global_name, () -> new BlockItem(awakeningstone_BLOCK.get(), new Item.Properties()));
     }
     
     
@@ -223,5 +238,6 @@ public class BlockRegister {
     	block.norm.researchtable.Register.init();
     	block.norm.advancedmetalmanufactor.Register.init();
     	block.norm.etchingmachine.Register.init();
+    	block.norm.canfoodmaker.Register.init();
     }
 }

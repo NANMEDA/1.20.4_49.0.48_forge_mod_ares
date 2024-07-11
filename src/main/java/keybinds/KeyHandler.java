@@ -18,8 +18,6 @@ public class KeyHandler {
         // 注意这里是客户端发送的，所以并不是所有玩家都能看到的。
         if(KeyVariables.DRINKING_KEY.consumeClick()){
         	LocalPlayer player = Minecraft.getInstance().player;
-        	player.getServer();
-        	player.sendSystemMessage(Component.literal("Press the key!"));
             KeyMethods.startRocket(player);
         }
     }

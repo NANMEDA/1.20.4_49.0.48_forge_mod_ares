@@ -20,7 +20,7 @@ public class CanfoodMakerMenu extends BlockEntityMenuBasic{
 	private final CanfoodMakerEntity blockEntity;
 
 	public CanfoodMakerMenu(Inventory pInventory, int pID,BlockPos pos) {
-		super(MenuRegister.CANFOODMAKER_MENU.get(), pID, pos, BlockRegister.canfoodmaker_BLOCK.get(), 5, 0, 4);
+		super(MenuRegister.CANFOODMAKER_MENU.get(), pID, pos, block.norm.canfoodmaker.Register.canfoodmaker_BLOCK.get(), 5, 0, 4);
 		this.blockEntity = (CanfoodMakerEntity) pInventory.player.level().getBlockEntity(pos);
 		//this.blockEntity = (CanfoodMakerEntity) pInventory.player.level().getBlockEntity(pos);
 		if(pInventory.player.level().getBlockEntity(pos) instanceof CanfoodMakerEntity canfoodmakerEntity) {

@@ -145,7 +145,6 @@ public class CanfoodMakerEntity extends PowerConsumerEntity{
 		}
 	}
 	
-	@SuppressWarnings("deprecation")
 	@Override
 	public void servertick() {
 		energy_consume = 0;

@@ -8,19 +8,25 @@ import com.mojang.serialization.MapCodec;
 import block.entity.consumer.canfoodmaker.CanfoodMakerEntity;
 import block.norm.BlockJSON;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.BooleanOp;
@@ -108,13 +114,107 @@ public class BlockCanfoodMaker extends HorizontalDirectionalBlock implements Ent
 	@Override
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
         if (pState.getBlock() != pNewState.getBlock()) {
+            cleanAllBlock(pState, pLevel, pPos);
             BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
             if (blockEntity instanceof CanfoodMakerEntity) {
                 ((CanfoodMakerEntity) blockEntity).drop();
             }
         }
-
         super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
+    }
+	
+	public void cleanAllBlock(BlockState pState, Level pLevel, BlockPos pPos) {
+		BlockPos left = null;
+		Direction direction = pState.getValue(BlockStateProperties.FACING).getOpposite();
+		switch (direction) {
+		    case NORTH:
+			default:
+		        left = pPos.north();
+			break;
+		    case EAST:
+		        left = pPos.east();
+		        break;
+		    case SOUTH:
+		        left = pPos.south();
+		        break;
+		    case WEST:
+		        left = pPos.west();
+		        break;
+		}
+		pLevel.setBlock(left, Blocks.AIR.defaultBlockState(), 2);
+	}
+	
+	
+	@Nullable
+    @Override
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        if (context.getClickedFace() == Direction.DOWN||context.getClickedFace() == Direction.UP) {
+        	Direction playerDirection = context.getNearestLookingDirection().getOpposite();
+        	if(playerDirection==Direction.DOWN||playerDirection==Direction.UP) {
+        		playerDirection = Direction.NORTH; 
+        	} 
+        	if(checkSpaceEnough(playerDirection,context)) {
+        		return this.defaultBlockState().setValue(BlockStateProperties.FACING, playerDirection);
+        	}
+        	return null;
+        } else {
+            return null;
+        }
+    }
+	
+	private Boolean checkSpaceEnough(Direction direction,BlockPlaceContext context) {
+		BlockPos left = null;
+		direction = direction.getOpposite();
+		switch (direction) {
+		    case NORTH:
+			default:
+		        left = context.getClickedPos().north();
+		        break;
+		    case EAST:
+		        left = context.getClickedPos().east();
+		        break;
+		    case SOUTH:
+		        left = context.getClickedPos().south();
+		        break;
+		    case WEST:
+		        left = context.getClickedPos().west();
+		        break;
+		}
+		Level plevel = context.getLevel();
+		if(plevel.getBlockState(left).getBlock()==Blocks.AIR) {
+			return true;
+		}
+		return false;
+	}
+	
+	@Override
+	public void setPlacedBy(Level pLevel, BlockPos pos, BlockState pstate, @Nullable LivingEntity p_49850_, ItemStack p_49851_) {
+		super.setPlacedBy(pLevel, pos, pstate, p_49850_, p_49851_);
+		if(!pLevel.isClientSide()) {
+		BlockPos left = null;
+		Direction direction = pstate.getValue(BlockStateProperties.FACING).getOpposite();
+		switch (direction) {
+		    case NORTH:
+			default:
+		        left = pos.north();
+		        break;
+		    case EAST:
+		        left = pos.east();
+		        break;
+		    case SOUTH:
+		        left = pos.south();
+		        break;
+		    case WEST:
+		        left = pos.west();
+		        break;
+		}
+		pLevel.setBlock(left, Register.canfoodmakerleft_BLOCK.get().defaultBlockState().setValue(BlockStateProperties.FACING, direction), 2);
+		}
+	}
+	
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(BlockStateProperties.FACING);
     }
 
 	@Override
@@ -122,11 +222,6 @@ public class BlockCanfoodMaker extends HorizontalDirectionalBlock implements Ent
 		return null;
 	}
 	
-	@Override
-	public BlockState playerWillDestroy(Level pLevel, BlockPos pBlockPos, BlockState pBlockState, Player player) {
-		super.playerWillDestroy(pLevel, pBlockPos, pBlockState, player);
-		return pBlockState;
-	}
 	
 	 static {
 	        BlockJSON.GenModelsJSONBasic(global_name);

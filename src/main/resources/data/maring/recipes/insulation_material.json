@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CBC",
+    "CSC",
+    "CBC"
+  ],
+  "key": {
+    "C": {
+      "item": "maring:crystal_parts"
+    },
+    "B": {
+      "item": "maring:bioplastic_parts"
+    },
+    "S": {
+      "item": "maring:semiconductor_parts"
+    }
+  },
+  "result": {
+    "item": "maring:insulation_material",
+    "count": 1
+  }
+}

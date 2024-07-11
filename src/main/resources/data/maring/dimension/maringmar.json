@@ -29,11 +29,74 @@
           }
         },
         {
+          "biome": "maring:maring_very_hotground",
+          "parameters": {
+            "temperature": [
+              0.8,
+              1
+            ],
+            "humidity": [
+              -1,
+              1
+            ],
+            "continentalness": [
+              0.2,
+              1
+            ],
+            "erosion": 0,
+            "weirdness": 0,
+            "depth": 1,
+            "offset": 0
+          }
+        },
+        {
           "biome": "maring:maring_hotground",
           "parameters": {
             "temperature": [
               0.5,
               0.8
+            ],
+            "humidity": [
+              -1,
+              1
+            ],
+            "continentalness": [
+              0.2,
+              1
+            ],
+            "erosion": 0,
+            "weirdness": 0,
+            "depth": 0,
+            "offset": 0
+          }
+        },
+        {
+          "biome": "maring:maring_hotground",
+          "parameters": {
+            "temperature": [
+              0.5,
+              0.8
+            ],
+            "humidity": [
+              -1,
+              1
+            ],
+            "continentalness": [
+              0.2,
+              1
+            ],
+            "erosion": 0,
+            "weirdness": 0,
+            "depth": 1,
+            "offset": 0
+          }
+        },
+        {
+          "biome": "maring:maring_normalground",
+          "parameters": {
+            "temperature": [
+              -0.5,
+              0.5
             ],
             "humidity": [
               -1,
@@ -66,7 +129,7 @@
             ],
             "erosion": 0,
             "weirdness": 0,
-            "depth": 0,
+            "depth": 1,
             "offset": 0
           }
         },
@@ -92,11 +155,74 @@
           }
         },
         {
+          "biome": "maring:maring_coldground",
+          "parameters": {
+            "temperature": [
+              -1,
+              -0.5
+            ],
+            "humidity": [
+              -1,
+              1
+            ],
+            "continentalness": [
+              0.2,
+              1
+            ],
+            "erosion": 0,
+            "weirdness": 0,
+            "depth": 1,
+            "offset": 0
+          }
+        },
+        {
           "biome": "maring:maring_hot_dryseabed",
           "parameters": {
             "temperature": [
               0.6,
               0.8
+            ],
+            "humidity": [
+              -1,
+              1
+            ],
+            "continentalness": [
+              -1,
+              0
+            ],
+            "erosion": 0,
+            "weirdness": 0,
+            "depth": 0,
+            "offset": 0
+          }
+        },
+        {
+          "biome": "maring:maring_hot_dryseabed",
+          "parameters": {
+            "temperature": [
+              0.6,
+              0.8
+            ],
+            "humidity": [
+              -1,
+              1
+            ],
+            "continentalness": [
+              -1,
+              0
+            ],
+            "erosion": 0,
+            "weirdness": 0,
+            "depth": 1,
+            "offset": 0
+          }
+        },
+        {
+          "biome": "maring:maring_normal_dryseabed",
+          "parameters": {
+            "temperature": [
+              -0.4,
+              0.4
             ],
             "humidity": [
               -1,
@@ -129,7 +255,7 @@
             ],
             "erosion": 0,
             "weirdness": 0,
-            "depth": 0,
+            "depth": 1,
             "offset": 0
           }
         },
@@ -155,6 +281,27 @@
           }
         },
         {
+          "biome": "maring:maring_cold_dryseabed",
+          "parameters": {
+            "temperature": [
+              -1,
+              -0.4
+            ],
+            "humidity": [
+              -1,
+              1
+            ],
+            "continentalness": [
+              -1,
+              0
+            ],
+            "erosion": 0,
+            "weirdness": 0,
+            "depth": 1,
+            "offset": 0
+          }
+        },
+        {
           "biome": "maring:maring_bacterial_wasteland",
           "parameters": {
             "temperature": [
@@ -176,6 +323,27 @@
           }
         },
         {
+          "biome": "maring:maring_bacterial_wasteland",
+          "parameters": {
+            "temperature": [
+              0.2,
+              0.4
+            ],
+            "humidity": [
+              0,
+              0.6
+            ],
+            "continentalness": 0,
+            "erosion": 0,
+            "weirdness": [
+              -0.1,
+              0.1
+            ],
+            "depth": 1,
+            "offset": 0
+          }
+        },
+        {
           "biome": "maring:maring_erosion",
           "parameters": {
             "temperature": [
@@ -193,6 +361,174 @@
             "erosion": 1,
             "weirdness": 0,
             "depth": 0,
+            "offset": 0
+          }
+        },
+        {
+          "biome": "maring:maring_erosion",
+          "parameters": {
+            "temperature": [
+              -0.5,
+              0.5
+            ],
+            "humidity": [
+              -1,
+              1
+            ],
+            "continentalness": [
+              0.2,
+              1
+            ],
+            "erosion": 1,
+            "weirdness": 0,
+            "depth": 1,
+            "offset": 0
+          }
+        },
+        {
+          "biome": "maring:maring_extinct_volcano",
+          "parameters": {
+            "temperature": [
+              -0.2,
+              0.7
+            ],
+            "humidity": [
+              -0.6,
+              0
+            ],
+            "continentalness": [
+              0.2,
+              1
+            ],
+            "erosion": 0,
+            "weirdness": 0,
+            "depth": 0,
+            "offset": 0
+          }
+        },
+        {
+          "biome": "maring:maring_extinct_volcano",
+          "parameters": {
+            "temperature": [
+              -0.2,
+              0.7
+            ],
+            "humidity": [
+              -0.6,
+              0
+            ],
+            "continentalness": [
+              0.2,
+              1
+            ],
+            "erosion": 0,
+            "weirdness": 0,
+            "depth": 1,
+            "offset": 0
+          }
+        },
+        {
+          "biome": "maring:maring_snowy_extinct_volcano",
+          "parameters": {
+            "temperature": [
+              -1,
+              -0.3
+            ],
+            "humidity": [
+              0,
+              0.8
+            ],
+            "continentalness": [
+              0.2,
+              1
+            ],
+            "erosion": 0.9,
+            "weirdness": 0,
+            "depth": 0,
+            "offset": 0
+          }
+        },
+        {
+          "biome": "maring:maring_snowy_extinct_volcano",
+          "parameters": {
+            "temperature": [
+              -1,
+              -0.3
+            ],
+            "humidity": [
+              0,
+              0.8
+            ],
+            "continentalness": [
+              0.2,
+              1
+            ],
+            "erosion": 0.9,
+            "weirdness": 0,
+            "depth": 1,
+            "offset": 0
+          }
+        },
+        {
+          "biome": "maring:under_phosphor",
+          "parameters": {
+            "temperature": [
+              -0.8,
+              0
+            ],
+            "humidity": [
+              -1,
+              0
+            ],
+            "continentalness": 0,
+            "erosion": 0,
+            "weirdness": 0,
+            "depth": [
+              0.2,
+              0.9
+            ],
+            "offset": 0
+          }
+        },
+        {
+          "biome": "maring:under_mucus",
+          "parameters": {
+            "temperature": [
+              0,
+              0.8
+            ],
+            "humidity": [
+              0.2,
+              0.8
+            ],
+            "continentalness": 0,
+            "erosion": 0,
+            "weirdness": 0,
+            "depth": [
+              0.2,
+              0.9
+            ],
+            "offset": 0
+          }
+        },
+        {
+          "biome": "maring:under_silent",
+          "parameters": {
+            "temperature": [
+              0.6,
+              0.8
+            ],
+            "humidity": [
+              0,
+              0.3
+            ],
+            "continentalness": 0,
+            "erosion": 0,
+            "weirdness": 0,
+            "depth": [
+              0.2,
+              0.9
+            ],
             "offset": 0
           }
         }

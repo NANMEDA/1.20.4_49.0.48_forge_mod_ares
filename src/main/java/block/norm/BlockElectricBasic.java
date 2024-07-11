@@ -1,10 +1,14 @@
 package block.norm;
 
 import net.minecraft.world.level.material.MapColor;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import net.minecraft.world.level.block.SoundType;
 
 public class BlockElectricBasic {
-	public static int BLOCK_ELECTRIC_NUMBER = 1;
+	public static int BLOCK_ELECTRIC_NUMBER = 7;
 	private static int k = 0;
 	
     private static final String[] BLOCK_NAME = new String[BLOCK_ELECTRIC_NUMBER];
@@ -18,14 +22,33 @@ public class BlockElectricBasic {
     //不一定准
     //private static float[] dirt_strength = new float[]{0.5F, 0.5F};
     //private static float[] stone_strength = new float[]{2.0F, 6.0F};
-    //private static float[] ore_strength = new float[]{3.0F, 6.0F};
+    private static float[] ore_strength = new float[]{3.0F, 6.0F};
     private static float[] deep_ore_strength = new float[]{4.0F, 6.0F};
     
     static{
     	addBlock("electric_oven",MapColor.COLOR_GRAY,SoundType.AMETHYST,deep_ore_strength,false,null,0);
+    	addBlock("villager_handmake_table",MapColor.COLOR_GRAY,SoundType.STONE,deep_ore_strength,false,null,0);
     }
     
-
+    static {
+    	addBlock("broken_structure_block",MapColor.COLOR_GRAY,SoundType.AMETHYST,deep_ore_strength,false,null,0);
+    	addBlock("broken_chemical_block",MapColor.COLOR_GRAY,SoundType.AMETHYST,ore_strength,false,null,0);
+    	addBlock("broken_metal_block",MapColor.COLOR_GRAY,SoundType.AMETHYST,deep_ore_strength,false,null,0);
+    	addBlock("broken_electronic_block",MapColor.COLOR_GRAY,SoundType.AMETHYST,ore_strength,false,null,0);
+    	addBlock("broken_advanced_electronic_block",MapColor.COLOR_GRAY,SoundType.AMETHYST,deep_ore_strength,false,null,0);
+    }
+    
+    private static final Map<String, Integer> nameToIdMap = new HashMap<>();
+    static {
+        for (int i = 0; i < BLOCK_ELECTRIC_NUMBER; i++) {
+            nameToIdMap.put(BLOCK_NAME[i], i);
+        }
+    }
+    
+    public static Integer getIdFromName(String name) {
+        Integer id = nameToIdMap.get(name);
+        return (id != null) ? id : 0;
+    }
    
     private static void addBlock(String name, MapColor color, SoundType sound, float[] strength, Boolean tool, String tools, int level) {
     	BLOCK_NAME[k] = name;

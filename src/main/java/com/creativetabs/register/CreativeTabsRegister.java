@@ -28,6 +28,7 @@ public class CreativeTabsRegister {
                 IntStream.range(0, BlockBasic.BLOCK_BASIC_NUMBER).forEach(i -> {
                 	output.accept(BlockRegister.COMMON_BLOCK_ITEMS[i].get());
                 });
+                output.accept(BlockRegister.awakeningstone_BLOCK_ITEM.get());
                 output.accept(BlockRegister.unbrokenglass_BLOCK_ITEM.get());
             }).build());
     
@@ -39,7 +40,6 @@ public class CreativeTabsRegister {
                 IntStream.range(0, itemFood.ITEM_FOOD_NUMBER).forEach(i -> {
                 	output.accept(ItemRegister.FOOD_ITEMS[i].get());
                 });
-                output.accept(ItemRegister.FRENCH_BREAD.get());
             }).build());
     
     public static final RegistryObject<CreativeModeTab> MAR_MACHINE_TAB = CREATIVE_MODE_TABS.register("mar_machine_tab", () -> CreativeModeTab.builder()
@@ -52,7 +52,7 @@ public class CreativeTabsRegister {
                 });
                 output.accept(BlockRegister.PowerStationBurn_BLOCK_ITEM.get());
                 output.accept(BlockRegister.PowerStationSun_BLOCK_ITEM.get());
-                output.accept(BlockRegister.canfoodmaker_BLOCK_ITEM.get());
+                output.accept(block.norm.canfoodmaker.Register.canfoodmaker_BLOCK_ITEM.get());
                 output.accept(BlockRegister.microwaveoven_BLOCK_ITEM.get());
                 output.accept(BlockRegister.basicmetalmanufactor_BLOCK_ITEM.get());
                 output.accept(block.norm.advancedmetalmanufactor.Register.advancedmetalmanufactor_BLOCK_ITEM.get());
@@ -76,11 +76,17 @@ public class CreativeTabsRegister {
     public static final RegistryObject<CreativeModeTab> MAR_TOOL_TAB = CREATIVE_MODE_TABS.register("mar_tool_tab", () -> CreativeModeTab.builder()
     		.title(Component.translatable("mar_tool_tab"))
     		.withTabsBefore(MAR_MATERIAL_TAB.getId())
-            .icon(() -> ItemRegister.SPACESUIT_CHESTPLATE.get().getDefaultInstance())
+            .icon(() -> ItemRegister.FRENCH_BREAD.get().getDefaultInstance())
             .displayItems((parameters, output) -> {
             	output.accept(ItemRegister.SPACESUIT_BOOTS.get());
             	output.accept(ItemRegister.SPACESUIT_LEGGINGS.get());
             	output.accept(ItemRegister.SPACESUIT_CHESTPLATE.get());
             	output.accept(ItemRegister.SPACESUIT_HELMET.get());
+                output.accept(ItemRegister.FRENCH_BREAD.get());
+            	output.accept(ItemRegister.OMINOUS_AXE.get());
+            	output.accept(ItemRegister.OMINOUS_HOE.get());
+            	output.accept(ItemRegister.OMINOUS_PICKAXE.get());
+            	output.accept(ItemRegister.OMINOUS_SHOVEL.get());
+                output.accept(ItemRegister.FRENCH_BREAD.get());
             }).build());
 }

@@ -31,6 +31,8 @@
     "minecraft:apple",
     "minecraft:golden_apple",
     "minecraft:enchanted_golden_apple",
-    "minecraft:melon_slice"
+    "minecraft:melon_slice",
+    "minecraft:red_mushroom",
+    "minecraft:brown_mushroom"
   ]
 }

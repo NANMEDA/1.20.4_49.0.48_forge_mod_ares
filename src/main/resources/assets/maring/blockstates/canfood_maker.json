@@ -1,7 +1,8 @@
 {
   "variants": {
-    "": {
-      "model": "maring:block/canfood_maker"
-    }
+    "facing=north": { "model": "maring:block/canfood_maker" },
+    "facing=east": { "model": "maring:block/canfood_maker", "y": 90 },
+    "facing=south": { "model": "maring:block/canfood_maker", "y": 180 },
+    "facing=west": { "model": "maring:block/canfood_maker", "y": 270}
   }
 }

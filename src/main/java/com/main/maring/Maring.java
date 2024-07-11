@@ -11,6 +11,7 @@ import com.menu.register.MenuRegister;
 import com.mojang.logging.LogUtils;
 
 import animal.entity.MonsterRegister;
+import animal.entity.villager.ModVillager;
 import block.norm.*;
 import event.client.MarSky;
 import event.disaster.DisasterConfig;
@@ -32,6 +33,7 @@ import tags.register.TagkeyRegister;
 import util.EntityGravity;
 import util.ItemGravity;
 import vehicle.VehicleRegister;
+import worldgen.feature.FeatureRegistry;
 
 import org.slf4j.Logger;
 
@@ -69,9 +71,11 @@ public class Maring
         MenuRegister.MENU_TYPES.register(modEventBus);
         CreativeTabsRegister.CREATIVE_MODE_TABS.register(modEventBus);
         MonsterRegister.ENTITY_TYPES.register(modEventBus);
-
+        FeatureRegistry.FEATURES.register(modEventBus);
         VehicleRegister.ENTITIES.register(modEventBus);
         
+        ModVillager.POIRegister(modEventBus);
+        ModVillager.VillagerRegister(modEventBus);
         //MinecraftForge.EVENT_BUS.register(new BiomeEffectApplier());
         MinecraftForge.EVENT_BUS.register(new EntityGravity());
         MinecraftForge.EVENT_BUS.register(new ItemGravity());

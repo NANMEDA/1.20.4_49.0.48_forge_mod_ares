@@ -1,0 +1,55 @@
+{
+  "temperature": 0.5,
+  "downfall": 0,
+  "has_precipitation": false,
+  "effects": {
+    "sky_color": 13202737,
+    "fog_color": 15654279,
+    "water_color": 4159204,
+    "water_fog_color": 329011,
+    "grass_color": 9407262,
+    "foliage_color": 9334293
+  },
+  "spawners": {},
+  "spawn_costs": {},
+  "carvers": {
+    "air": [
+      "minecraft:cave",
+      "minecraft:cave_extra_underground",
+      "minecraft:canyon"
+    ]
+  },
+  "features": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [
+      "maring:mar_ore_saltstone",
+      "maring:mar_ore_sedimentary_stone",
+      "maring:mar_ore_sulfur_stone",
+      "maring:mar_ore_deep_sulfur_stone",
+      "maring:mar_ore_volcanic_stone",
+      "maring:mar_ore_iron",
+      "maring:mar_ore_iron_high",
+      "maring:mar_ore_gold",
+      "maring:mar_ore_gold_buried",
+      "maring:mar_ore_copper",
+      "maring:mar_ore_lapis",
+      "maring:mar_ore_lapis_buried",
+      "maring:mar_ore_emerald",
+      "maring:mar_ore_redstone_lower",
+      "maring:mar_ore_ominous"
+    ],
+    [],
+    [],
+    [
+      "maring:mar_patch_volcanic_stone"
+    ],
+    [
+      "maring:ancient_rocket"
+    ]
+  ]
+}

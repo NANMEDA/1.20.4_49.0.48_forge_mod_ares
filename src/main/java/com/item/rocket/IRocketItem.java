@@ -53,7 +53,7 @@ public abstract class IRocketItem extends VehicleItem {
     public InteractionResult useOn(UseOnContext context) {
         Player player = context.getPlayer();
         Level level = context.getLevel();
-        BlockPos pos = context.getClickedPos();
+        BlockPos pos = context.getClickedPos().above();
         BlockState state = level.getBlockState(pos);
         InteractionHand hand = context.getHand();
         ItemStack itemStack = context.getItemInHand();
@@ -74,44 +74,43 @@ public abstract class IRocketItem extends VehicleItem {
             Vec3 vec3 = Vec3.upFromBottomCenterOf(blockpos, this.getRocketPlaceHigh());
             AABB aabb = this.getEntityType().getDimensions().makeBoundingBox(vec3.x(), vec3.y(), vec3.z());
 
-            if (level.noCollision(aabb)) {
+            if (level.noCollision(aabb)||true) {
 
                 /** CHECK IF NO ENTITY ON THE LAUNCH PAD */
+            	/*
                 AABB scanAbove = new AABB(x, y, z, x + 1, y + 1, z + 1);
                 List<Entity> entities = player.getCommandSenderWorld().getEntitiesOfClass(Entity.class, scanAbove);
+*/
+                IRocketEntity rocket = this.getRocket(context.getLevel());
 
-                if (entities.isEmpty()) {
-                    IRocketEntity rocket = this.getRocket(context.getLevel());
+                /** SET PRE POS */
+                rocket.setPos(pos.getX() + 0.5D,  pos.getY() + 1, pos.getZ() + 0.5D);
 
-                    /** SET PRE POS */
-                    rocket.setPos(pos.getX() + 0.5D,  pos.getY() + 1, pos.getZ() + 0.5D);
+                double d0 = IRocketItem.getYOffset(level, pos, true, rocket.getBoundingBox());
+                float f = (float) Mth.floor((Mth.wrapDegrees(context.getRotation() - 180.0F) + 45.0F) / 90.0F) * 90.0F;
 
-                    double d0 = IRocketItem.getYOffset(level, pos, true, rocket.getBoundingBox());
-                    float f = (float) Mth.floor((Mth.wrapDegrees(context.getRotation() - 180.0F) + 45.0F) / 90.0F) * 90.0F;
+                /** SET FINAL POS */
+                rocket.moveTo(pos.getX() + 0.5D, pos.getY() + d0, pos.getZ() + 0.5D, f, 0.0F);
 
-                    /** SET FINAL POS */
-                    rocket.moveTo(pos.getX() + 0.5D, pos.getY() + d0, pos.getZ() + 0.5D, f, 0.0F);
+                rocket.yRotO = rocket.getYRot();
 
-                    rocket.yRotO = rocket.getYRot();
+                level.addFreshEntity(rocket);
 
-                    level.addFreshEntity(rocket);
+                /** SET TAGS */
+                rocket.getEntityData().set(RocketEntity.FUEL, itemStack.getOrCreateTag().getInt(FUEL_TAG));
 
-                    /** SET TAGS */
-                    rocket.getEntityData().set(RocketEntity.FUEL, itemStack.getOrCreateTag().getInt(FUEL_TAG));
+                /** CALL PLACE ROCKET EVENT */
+                MinecraftForge.EVENT_BUS.post(new PlaceRocketEvent(rocket, context));
 
-                    /** CALL PLACE ROCKET EVENT */
-                    MinecraftForge.EVENT_BUS.post(new PlaceRocketEvent(rocket, context));
-
-                    /** ITEM REMOVE */
-                    if (!player.getAbilities().instabuild) {
-                        player.setItemInHand(hand, ItemStack.EMPTY);
-                    }
-
-                    /** PLACE SOUND */
-                    this.rocketPlaceSound(pos, level);
-
-                    return InteractionResult.SUCCESS;
+                /** ITEM REMOVE */
+                if (!player.getAbilities().instabuild) {
+                    player.setItemInHand(hand, ItemStack.EMPTY);
                 }
+
+                /** PLACE SOUND */
+                this.rocketPlaceSound(pos, level);
+
+                return InteractionResult.SUCCESS;
             }
         }
 

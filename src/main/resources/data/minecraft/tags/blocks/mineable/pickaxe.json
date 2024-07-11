@@ -20,6 +20,17 @@
     "maring:mar_sedimentary_stone",
     "maring:mar_sulfur_stone",
     "maring:mar_saltstone",
-    "maring:mar_deep_sulfur_stone"
+    "maring:mar_deep_sulfur_stone",
+    "maring:phosphor",
+    "maring:abundant_phosphor",
+    "maring:slumber_phosphor",
+    "maring:dead_stone",
+    "maring:slumber_stone",
+    "maring:awakening_stone",
+    "maring:dense_volcanic_ash",
+    "maring:volcanic_stone",
+    "maring:deep_phosphor",
+    "maring:deep_abundant_phosphor",
+    "maring:deep_slumber_phosphor"
   ]
 }

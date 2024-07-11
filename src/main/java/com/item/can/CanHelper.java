@@ -31,6 +31,10 @@ public class CanHelper {
         registerValues(Items.KELP, 1, 0, 0, 0, 0);
         registerExtra(Items.KELP, 1, 0.3F);
         registerValues(Items.DRIED_KELP, 1, 0, 0, 0, 0);
+        registerValues(Items.RED_MUSHROOM, 1, 0, 0, 0, 0);
+        registerExtra(Items.RED_MUSHROOM, 1, 0.3F);
+        registerValues(Items.BROWN_MUSHROOM, 1, 0, 0, 0, 0);
+        registerExtra(Items.BROWN_MUSHROOM, 1, 0.3F);
 
         // 肉类食物
         registerValues(Items.BEEF, 0, 2, 0, 0, 0);

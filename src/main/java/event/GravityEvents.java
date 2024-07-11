@@ -60,7 +60,7 @@ public class GravityEvents {
                 modifier = null;
             }
             if (modifier == null) {
-                modifier = new AttributeModifier(EntityGravity.ARTIFICIAL_GRAVITY_ID, "beyond_earth:artificial_grabity",
+                modifier = new AttributeModifier(EntityGravity.ARTIFICIAL_GRAVITY_ID, "maring:artificial_grabity",
                         artificialGravity, Operation.ADDITION);
                 attributeInstance.addTransientModifier(modifier);
             }
