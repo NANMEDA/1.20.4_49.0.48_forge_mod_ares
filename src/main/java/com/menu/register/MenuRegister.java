@@ -4,10 +4,12 @@ import com.menu.advancedmetalmanufactor.AdvancedMetalManufactorMenu;
 import com.menu.basicmetalmanufactor.BasicMetalManufactorMenu;
 import com.menu.canfoodmaker.CanfoodMakerMenu;
 import com.menu.etchingmachine.EtchingMachineMenu;
+import com.menu.fuelrefiner.FuelRefinerMenu;
 import com.menu.microwaveoven.MicrowaveOvenMenu;
 import com.menu.playerextend.PlayerExtendMenu;
 import com.menu.playerextend.PlayerExtendScreen;
 import com.menu.powerstationburn.PowerStationBurnMenu;
+import com.menu.stonewasher.StoneWasherMenu;
 
 import net.minecraft.world.inventory.MenuType;
 import net.minecraftforge.common.extensions.IForgeMenuType;
@@ -39,6 +41,13 @@ public class MenuRegister {
 
     public static final RegistryObject<MenuType<PlayerExtendMenu>> PLAYEREXTEND_MENU = MENU_TYPES.register("player_extend",
             () -> IForgeMenuType.create((windowId, inv, data) -> new PlayerExtendMenu(inv, windowId, data.readBlockPos())));
+    
+    public static final RegistryObject<MenuType<StoneWasherMenu>> STONEWASHER_MENU = MENU_TYPES.register("stonewasher_menu",
+            () -> IForgeMenuType.create((windowId, inv, data) -> new StoneWasherMenu(inv, windowId, data.readBlockPos())));
+    
+    public static final RegistryObject<MenuType<FuelRefinerMenu>> FUELREFINER_MENU = MENU_TYPES.register("fuelrefiner_menu",
+            () -> IForgeMenuType.create((windowId, inv, data) -> new FuelRefinerMenu(inv, windowId, data.readBlockPos())));
+
 /*
     public static final RegistryObject<MenuType<PlayerExtendMenu>> ROCKET_MENU = MENU_TYPES.register("rocket_menu",
             () -> IForgeMenuType.create((windowId, inv, data) -> new RocketMenu(inv, windowId, Rocket::new)));*/

@@ -8,7 +8,7 @@ import java.util.Map;
 import net.minecraft.world.level.block.SoundType;
 
 public class BlockElectricBasic {
-	public static int BLOCK_ELECTRIC_NUMBER = 7;
+	public static int BLOCK_ELECTRIC_NUMBER = 9;
 	private static int k = 0;
 	
     private static final String[] BLOCK_NAME = new String[BLOCK_ELECTRIC_NUMBER];
@@ -36,6 +36,14 @@ public class BlockElectricBasic {
     	addBlock("broken_metal_block",MapColor.COLOR_GRAY,SoundType.AMETHYST,deep_ore_strength,false,null,0);
     	addBlock("broken_electronic_block",MapColor.COLOR_GRAY,SoundType.AMETHYST,ore_strength,false,null,0);
     	addBlock("broken_advanced_electronic_block",MapColor.COLOR_GRAY,SoundType.AMETHYST,deep_ore_strength,false,null,0);
+    }
+    
+    static {
+    	addBlock("villager_burried_package",MapColor.COLOR_GRAY,SoundType.WOOL,new float[]{0.2F, 0.5F},false,null,0);
+    }
+    
+    static {
+    	addBlock("unbroken_dorm_junction",MapColor.COLOR_GRAY,SoundType.WOOL,new float[]{-1.0F, 3600000.0F},false,null,0);
     }
     
     private static final Map<String, Integer> nameToIdMap = new HashMap<>();

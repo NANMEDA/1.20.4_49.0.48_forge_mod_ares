@@ -57,7 +57,7 @@ public class BasicMetalManufactorEntityRender implements BlockEntityRenderer<Bas
 					pPoseStack.popPose();
 				}
 		});
-		
+
 	}
 
 }

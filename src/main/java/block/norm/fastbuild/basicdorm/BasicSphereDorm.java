@@ -1,0 +1,175 @@
+package block.norm.fastbuild.basicdorm;
+
+import block.norm.BlockBasic;
+import block.norm.BlockJSON;
+import block.norm.BlockRegister;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+
+public class BasicSphereDorm extends Block {
+    public static final String global_name = "basic_sphere_dorm";
+    
+    private static final BlockState UNBROKEN_GLASS_STATE = BlockRegister.unbrokenglass_BLOCK.get().defaultBlockState();
+    private static final BlockState UNBROKEN_CEMENT_STATE = BlockRegister.COMMON_BLOCKS[BlockBasic.getIdFromName("unbroken_cement")].get().defaultBlockState();
+    private static final BlockState UNBROKEN_FOG_STATE = BlockRegister.unbrokenfog_BLOCK.get().defaultBlockState();
+    private static final BlockState A_AIR_STATE = BlockRegister.A_AIR.get().defaultBlockState();
+
+    public BasicSphereDorm(Properties properties) {
+        super(properties);
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    public InteractionResult use(BlockState blockstate, Level level, BlockPos pos, Player player, InteractionHand interactionhand, BlockHitResult blockHitResult) {
+        super.use(blockstate, level, pos, player, interactionhand, blockHitResult);
+        if (!level.isClientSide()) {
+            createGlassSphere(level, pos);
+            createCementBase(level, pos);
+        }
+        return InteractionResult.SUCCESS;
+    }
+
+    private void createCementBase(Level world, BlockPos centerPos) {
+    	int radius = 10;
+        int radius_outer_sq = 100;
+        int radius_inner_sq = 64;
+        BlockPos start = centerPos.offset(-radius, -2, -radius);
+        BlockPos end = centerPos.offset(0,-2,0);
+
+        for (BlockPos pos : BlockPos.betweenClosed(start, end)) {
+            int distSq = (int) pos.distSqr(centerPos);
+            if (distSq <= radius_outer_sq) {
+                BlockPos posX = new BlockPos(centerPos.getX() + (centerPos.getX() - pos.getX()), pos.getY(), pos.getZ());
+                BlockPos posZ = new BlockPos(pos.getX(), pos.getY(), centerPos.getZ() + (centerPos.getZ() - pos.getZ()));
+                BlockPos posXZ = new BlockPos(centerPos.getX() + (centerPos.getX() - pos.getX()), pos.getY(), centerPos.getZ() + (centerPos.getZ() - pos.getZ()));
+
+                world.setBlockAndUpdate(posX, UNBROKEN_CEMENT_STATE);
+                world.setBlockAndUpdate(posZ, UNBROKEN_CEMENT_STATE);
+                world.setBlockAndUpdate(posXZ, UNBROKEN_CEMENT_STATE);
+                world.setBlockAndUpdate(pos, UNBROKEN_CEMENT_STATE);
+            }
+        }
+        start = centerPos.offset(-radius, -1, -radius);
+        end = centerPos.offset(0,-1,0);
+
+        for (BlockPos pos : BlockPos.betweenClosed(start, end)) {
+            int distSq = (int) pos.distSqr(centerPos);
+            if (distSq <= radius_outer_sq) {
+                BlockPos posX = new BlockPos(centerPos.getX() + (centerPos.getX() - pos.getX()), pos.getY(), pos.getZ());
+                BlockPos posZ = new BlockPos(pos.getX(), pos.getY(), centerPos.getZ() + (centerPos.getZ() - pos.getZ()));
+                BlockPos posXZ = new BlockPos(centerPos.getX() + (centerPos.getX() - pos.getX()), pos.getY(), centerPos.getZ() + (centerPos.getZ() - pos.getZ()));
+            	if(distSq >= radius_inner_sq) {
+                world.setBlockAndUpdate(posX, UNBROKEN_CEMENT_STATE);
+                world.setBlockAndUpdate(posZ, UNBROKEN_CEMENT_STATE);
+                world.setBlockAndUpdate(posXZ, UNBROKEN_CEMENT_STATE);
+                world.setBlockAndUpdate(pos, UNBROKEN_CEMENT_STATE);
+            	}else {
+                    world.setBlockAndUpdate(posX, A_AIR_STATE);
+                    world.setBlockAndUpdate(posZ, A_AIR_STATE);
+                    world.setBlockAndUpdate(posXZ, A_AIR_STATE);
+                    world.setBlockAndUpdate(pos, A_AIR_STATE);
+            	}
+            }
+        }
+	}
+
+	private void createGlassSphere(Level world, BlockPos centerPos) {
+        int radius = 10;
+        int radius_outer_sq = 100;
+        int radius_inner_sq = 81;
+
+        BlockPos start = centerPos.offset(-radius, 0, -radius);
+        BlockPos end = centerPos.offset(0, radius, 0);
+        
+        int dx = 0;
+        int dz = 0;
+        BlockPos posX;
+        BlockPos posZ;
+        BlockPos posXZ;
+        for (BlockPos pos : BlockPos.betweenClosed(start, end)) {
+            if (Math.abs(pos.getX() - centerPos.getX()) + Math.abs(pos.getY() - centerPos.getY()) + Math.abs(pos.getZ() - centerPos.getZ()) < 9) {
+        		dx = centerPos.getX() - pos.getX();
+        		dz = centerPos.getZ() - pos.getZ();
+            	posX = new BlockPos(centerPos.getX() + dx, pos.getY(), pos.getZ());
+                posZ = new BlockPos(pos.getX(), pos.getY(), centerPos.getZ() + dz);
+                posXZ = new BlockPos(centerPos.getX() + dx, pos.getY(), centerPos.getZ() + dz);
+                world.setBlockAndUpdate(posX, A_AIR_STATE);
+                world.setBlockAndUpdate(posZ, A_AIR_STATE);
+                world.setBlockAndUpdate(posXZ, A_AIR_STATE);
+                world.setBlockAndUpdate(pos, A_AIR_STATE);
+            	continue;
+            }
+            int distSq = (int) pos.distSqr(centerPos);
+            if (distSq <= radius_outer_sq) {
+        		dx = centerPos.getX() - pos.getX();
+        		dz = centerPos.getZ() - pos.getZ();
+                posX = new BlockPos(centerPos.getX() + dx, pos.getY(), pos.getZ());
+                posZ = new BlockPos(pos.getX(), pos.getY(), centerPos.getZ() + dz);
+                posXZ = new BlockPos(centerPos.getX() + dx, pos.getY(), centerPos.getZ() + dz);
+            	if(distSq >= radius_inner_sq) {
+	                if(Math.abs(dx)<3||Math.abs(dz)<3) {
+	                	if(dx==0&&dz==0) {
+			                world.setBlockAndUpdate(pos, UNBROKEN_FOG_STATE);
+	                	}else {
+	                		world.setBlockAndUpdate(posX, UNBROKEN_CEMENT_STATE);
+			                world.setBlockAndUpdate(posZ, UNBROKEN_CEMENT_STATE);
+			                world.setBlockAndUpdate(posXZ, UNBROKEN_CEMENT_STATE);
+			                world.setBlockAndUpdate(pos, UNBROKEN_CEMENT_STATE);
+	                	}
+	                }else {
+		                world.setBlockAndUpdate(posX, UNBROKEN_GLASS_STATE);
+		                world.setBlockAndUpdate(posZ, UNBROKEN_GLASS_STATE);
+		                world.setBlockAndUpdate(posXZ, UNBROKEN_GLASS_STATE);
+		                world.setBlockAndUpdate(pos, UNBROKEN_GLASS_STATE);
+	                }
+            	}else {
+                    world.setBlockAndUpdate(posX, A_AIR_STATE);
+                    world.setBlockAndUpdate(posZ, A_AIR_STATE);
+                    world.setBlockAndUpdate(posXZ, A_AIR_STATE);
+                    world.setBlockAndUpdate(pos, A_AIR_STATE);
+            	}
+            }
+        }
+    }
+/*
+    private void setBiome(ServerLevel world, BlockPos pos, ResourceKey<Biome> biomeKey) {
+    	if(true) {
+    		
+    	}
+        Holder<Biome> holder = world.registryAccess().registryOrThrow(Registries.BIOME).getHolderOrThrow(biomeKey);
+        ChunkAccess chunk = world.getChunk(pos);
+
+        BoundingBox boundingBox = BoundingBox.fromCorners(pos, pos);
+        MutableInt mutableInt = new MutableInt(0);
+        chunk.fillBiomesFromNoise(makeResolver(mutableInt, chunk, boundingBox, holder), world.getChunkSource().randomState().sampler());
+        chunk.setUnsaved(true);
+    }
+
+    private BiomeResolver makeResolver(MutableInt mutableInt, ChunkAccess chunk, BoundingBox boundingBox, Holder<Biome> holder) {
+        return (quartX, quartY, quartZ, biomeNoise) -> {
+            int blockX = QuartPos.toBlock(quartX);
+            int blockY = QuartPos.toBlock(quartY);
+            int blockZ = QuartPos.toBlock(quartZ);
+            Holder<Biome> currentHolder = chunk.getNoiseBiome(quartX, quartY, quartZ);
+            if (boundingBox.isInside(blockX, blockY, blockZ)) {
+                mutableInt.increment();
+                return holder;
+            } else {
+                return currentHolder;
+            }
+        };
+    }
+*/
+    static {
+        BlockJSON.GenModelsJSONBasic(global_name);
+        BlockJSON.GenBlockStateJSONBasic(global_name);
+        BlockJSON.GenItemJSONBasic(global_name);
+        BlockJSON.GenLootTableJSONBasic(global_name);
+    }
+}

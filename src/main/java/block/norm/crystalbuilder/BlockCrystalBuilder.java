@@ -234,9 +234,9 @@ public class BlockCrystalBuilder extends Block implements EntityBlock{
 		        break;
 		}
 		Level plevel = context.getLevel();
-		if(plevel.getBlockState(left).getBlock()==Blocks.AIR
-				&&plevel.getBlockState(up).getBlock()==Blocks.AIR
-				&&plevel.getBlockState(leftup).getBlock()==Blocks.AIR) {
+		if(plevel.isEmptyBlock(left)
+				&&plevel.isEmptyBlock(up)
+				&&plevel.isEmptyBlock(leftup)) {
 			return true;
 		}
 		return false;

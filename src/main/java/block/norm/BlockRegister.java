@@ -3,8 +3,8 @@ package block.norm;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.AirBlock;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.LightBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraftforge.registries.DeferredRegister;
@@ -22,7 +22,6 @@ import block.norm.bioplasticbuilder.BlockBioplasticBuilder;
 import block.norm.bioplasticbuilder.BlockBioplasticBuilderbehind;
 import block.norm.bioplasticbuilder.BlockBioplasticBuilderleft;
 import block.norm.bioplasticbuilder.BlockBioplasticBuilderup;
-import block.norm.canfoodmaker.BlockCanfoodMaker;
 import block.norm.microwaveoven.BlockMicrowaveOven;
 import block.norm.powerstation.burn.PowerStationBurn;
 import block.norm.powerstation.sun.PowerStationSun;
@@ -55,7 +54,6 @@ public class BlockRegister {
     	int id_phosphor = BlockBasic.getIdFromName("phosphor");
     	int id_abundant_phosphor = BlockBasic.getIdFromName("abundant_phosphor");
     	int id_moist_mucus = BlockBasic.getIdFromName("moist_mucus");
-    	int id_awakening_stone = BlockBasic.getIdFromName("awakening_stone");
         IntStream.range(0, BlockBasic.BLOCK_BASIC_NUMBER).forEach(i -> {
         	COMMON_BLOCKS[i] = BLOCKS.register(BlockBasic.getBlockName(i), () -> {
         	    BlockBehaviour.Properties properties = BlockBehaviour.Properties.of()
@@ -87,9 +85,6 @@ public class BlockRegister {
         	            .mapColor(BlockElectricBasic.getBlockMapColor(i));
         	    if (BlockElectricBasic.needTool(i)) {
         	        properties.requiresCorrectToolForDrops();
-        	    }
-        	    if(i>1) {
-        	    	properties.lightLevel((blockState) -> 8);
         	    }
         	    return new Block(properties) {
         	    };
@@ -231,6 +226,20 @@ public class BlockRegister {
     public static final RegistryObject<Item> bioplasticbuilderbehind_BLOCK_ITEM = BLOCK_ITEMS.register(BlockBioplasticBuilderbehind.global_name,
     		() -> new BlockItem(bioplasticbuilderbehind_BLOCK.get(), new Item.Properties()));
     
+    public static final RegistryObject<Block> unbrokenfog_BLOCK = BLOCKS.register(BlockUnbrokenFog.global_name, () -> {
+		return new BlockUnbrokenFog(BlockBehaviour.Properties.of()
+	            .sound(SoundType.STONE)
+	            .strength(-1.0f,360000f)
+	            .noOcclusion()
+	            .noCollission()
+	            .mapColor(MapColor.NONE)); 
+	});
+    public static final RegistryObject<Item> unbrokenfog_BLOCK_ITEM = BLOCK_ITEMS.register(BlockUnbrokenFog.global_name,
+    		() -> new BlockItem(unbrokenfog_BLOCK.get(), new Item.Properties()));
+    
+    public static final RegistryObject<Block> A_AIR = BLOCKS.register("a_air",
+    		() -> new AirBlock(BlockBehaviour.Properties.of().replaceable().noCollission().noLootTable().air()));
+    
     static {
     	block.norm.crystalbuilder.Register.init();
     	block.norm.glassbuilder.Register.init();
@@ -239,5 +248,11 @@ public class BlockRegister {
     	block.norm.advancedmetalmanufactor.Register.init();
     	block.norm.etchingmachine.Register.init();
     	block.norm.canfoodmaker.Register.init();
+    	block.norm.stonewasher.Register.init();
+    	block.norm.fuelrefiner.Register.init();
+    }
+    
+    static {
+    	block.norm.fastbuild.Register.init();
     }
 }

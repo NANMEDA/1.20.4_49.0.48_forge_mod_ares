@@ -3,10 +3,9 @@ package block.norm;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.TintedGlassBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class BlockUnbrokenGlass extends TintedGlassBlock {
+public class BlockUnbrokenGlass extends Block {
 
 	public static final String global_name = "unbroken_glass";
 	private boolean up = false;

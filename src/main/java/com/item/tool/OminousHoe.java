@@ -3,7 +3,6 @@ package com.item.tool;
 import com.item.ItemJSON;
 
 import net.minecraft.world.item.HoeItem;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Tier;
 
 public class OminousHoe extends HoeItem{

@@ -62,10 +62,11 @@ public class Maring
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::clientSetup);
        
-        EffectRegister.EFFECTS.register(modEventBus);
 
         BlockRegister.BLOCKS.register(modEventBus);
         BlockRegister.BLOCK_ITEMS.register(modEventBus);
+        EffectRegister.EFFECTS.register(modEventBus);
+        
         ItemRegister.ITEMS.register(modEventBus);
         block.entity.BlockEntityRegister.BLOCKENTITIES.register(modEventBus);
         MenuRegister.MENU_TYPES.register(modEventBus);

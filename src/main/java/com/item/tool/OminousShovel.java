@@ -2,7 +2,6 @@ package com.item.tool;
 
 import com.item.ItemJSON;
 
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ShovelItem;
 import net.minecraft.world.item.Tier;
 

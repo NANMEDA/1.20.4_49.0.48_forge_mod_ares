@@ -7,8 +7,10 @@ import block.entity.consumer.canfoodmaker.CanfoodMakerEntity;
 import block.entity.consumer.etchingmachine.EtchingMachineEntity;
 import block.entity.consumer.glassbuilder.GlassBuilderEntity;
 import block.entity.consumer.microwaveoven.MicrowaveOvenEntity;
+import block.entity.consumer.stonewasher.StoneWasherEntity;
 import block.entity.consumer.watergather.WaterGatherEntity;
 import block.entity.neutral.crystalbuilder.CrystalBuilderEntity;
+import block.entity.neutral.fuelrefiner.FuelRefinerEntity;
 import block.entity.neutral.researchtable.ResearchTableEntity;
 import block.entity.station.PowerStationBurnEntity;
 import block.norm.BlockRegister;
@@ -53,5 +55,11 @@ public class BlockEntityRegister {
 
 	public static final RegistryObject<BlockEntityType<EtchingMachineEntity>> etchingmachine_BLOCKENTITY = 
 			BLOCKENTITIES.register("etching_machine", () -> BlockEntityType.Builder.of(EtchingMachineEntity::new, block.norm.etchingmachine.Register.etchingmachine_BLOCK.get()).build(null));
+
+	public static final RegistryObject<BlockEntityType<StoneWasherEntity>> stonewasher_BLOCKENTITY = 
+			BLOCKENTITIES.register("stone_washer", () -> BlockEntityType.Builder.of(StoneWasherEntity::new, block.norm.stonewasher.Register.stonewasher_BLOCK.get()).build(null));
+
+	public static final RegistryObject<BlockEntityType<FuelRefinerEntity>> fuelrefiner_BLOCKENTITY = 
+			BLOCKENTITIES.register("fuel_refiner", () -> BlockEntityType.Builder.of(FuelRefinerEntity::new, block.norm.fuelrefiner.Register.fuelrefiner_BLOCK.get()).build(null));
 
 }

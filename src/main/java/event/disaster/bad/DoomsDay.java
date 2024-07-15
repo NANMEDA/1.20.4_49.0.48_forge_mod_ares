@@ -36,9 +36,9 @@ public class DoomsDay {
 					return;
 				}
 				level.getServer().getPlayerList().getPlayers().forEach(player -> {
-                    if (player instanceof ServerPlayer serverPlayer) {
-                        serverPlayer.teleportTo(limbo, 0, -63, 0, serverPlayer.getYRot(), serverPlayer.getXRot());
-                    }});
+                    
+                        player.teleportTo(limbo, 0, -63, 0, player.getYRot(), player.getXRot());
+                    });
 			}
 			return;
 		}
@@ -56,9 +56,8 @@ public class DoomsDay {
 					return;
 				}
 				level.getServer().getPlayerList().getPlayers().forEach(player -> {
-                    if (player instanceof ServerPlayer serverPlayer) {
-                        serverPlayer.teleportTo(limbo, 0, -63, 0, serverPlayer.getYRot(), serverPlayer.getXRot());
-                    }
+					player.teleportTo(limbo, 0, -63, 0, player.getYRot(), player.getXRot());
+                    
                 });
 				//deleteOverworld(event.level.getServer());
 			}else if(time>=DOOMS_DAY_START) {

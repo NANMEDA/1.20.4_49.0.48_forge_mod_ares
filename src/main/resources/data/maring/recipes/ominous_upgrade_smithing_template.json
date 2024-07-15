@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MDM",
+    "GMG",
+    "MGM"
+  ],
+  "key": {
+    "M": {
+      "item": "maring:mar_stone"
+    },
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "D": {
+      "item": "minecraft:diamond"
+    }
+  },
+  "result": {
+    "item": "maring:ominous_upgrade_smithing_template",
+    "count": 1
+  }
+}

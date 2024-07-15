@@ -61,6 +61,8 @@ public class CreativeTabsRegister {
                 output.accept(block.norm.etchingmachine.Register.etchingmachine_BLOCK_ITEM.get());
                 output.accept(block.norm.glassbuilder.Register.glassbuilder_BLOCK_ITEM.get());
                 output.accept(block.norm.watergather.Register.watergather_BLOCK_ITEM.get());
+                output.accept(block.norm.stonewasher.Register.stonewasher_BLOCK_ITEM.get());
+                output.accept(block.norm.fuelrefiner.Register.fuelrefiner_BLOCK_ITEM.get());
             }).build());
     
     public static final RegistryObject<CreativeModeTab> MAR_MATERIAL_TAB = CREATIVE_MODE_TABS.register("mar_material_tab", () -> CreativeModeTab.builder()
@@ -88,5 +90,14 @@ public class CreativeTabsRegister {
             	output.accept(ItemRegister.OMINOUS_PICKAXE.get());
             	output.accept(ItemRegister.OMINOUS_SHOVEL.get());
                 output.accept(ItemRegister.FRENCH_BREAD.get());
+            }).build());
+    
+    public static final RegistryObject<CreativeModeTab> MAR_DORM_TAB = CREATIVE_MODE_TABS.register("mar_dorm_tab", () -> CreativeModeTab.builder()
+    		.title(Component.translatable("mar_dorm_tab"))
+    		.withTabsBefore(MAR_TOOL_TAB.getId())
+            .icon(() -> block.norm.fastbuild.Register.basicspheredorm_BLOCK_ITEM.get().getDefaultInstance())
+            .displayItems((parameters, output) -> {
+            	output.accept(block.norm.fastbuild.Register.basicspheredorm_BLOCK_ITEM.get());
+            	output.accept(block.norm.fastbuild.Register.basicflatspheredorm_BLOCK_ITEM.get());
             }).build());
 }

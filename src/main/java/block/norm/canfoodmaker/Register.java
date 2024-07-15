@@ -23,13 +23,13 @@ public class Register {
     public static final RegistryObject<Item> canfoodmaker_BLOCK_ITEM = BlockRegister.BLOCK_ITEMS.register(BlockCanfoodMaker.global_name,
     		() -> new BlockItem(canfoodmaker_BLOCK.get(), new Item.Properties()));
     
-    public static final RegistryObject<Block> canfoodmakerleft_BLOCK = BlockRegister.BLOCKS.register(BlockCanfoodleft.global_name, () -> {
-		return new BlockCanfoodleft(BlockBehaviour.Properties.of()
+    public static final RegistryObject<Block> canfoodmakerleft_BLOCK = BlockRegister.BLOCKS.register(BlockCanfoodMakerleft.global_name, () -> {
+		return new BlockCanfoodMakerleft(BlockBehaviour.Properties.of()
 	            .sound(SoundType.AMETHYST)
 	            .strength(5f,5f)
 	            .noOcclusion()
 	            .mapColor(MapColor.NONE)); 
 	});
-    public static final RegistryObject<Item> canfoodmakerleft_BLOCK_ITEM = BlockRegister.BLOCK_ITEMS.register(BlockCanfoodleft.global_name, () -> new BlockItem(canfoodmakerleft_BLOCK.get(), new Item.Properties()));
+    public static final RegistryObject<Item> canfoodmakerleft_BLOCK_ITEM = BlockRegister.BLOCK_ITEMS.register(BlockCanfoodMakerleft.global_name, () -> new BlockItem(canfoodmakerleft_BLOCK.get(), new Item.Properties()));
 	
 }

@@ -7,7 +7,7 @@
       "translate": "advancements.maringmaterial.maringmaterial_init.title"
     },
     "description": {
-      "translate": "advancements.maringmaterial.maringmaterial_init_init.description"
+      "translate": "advancements.maringmaterial.maringmaterial_init.description"
     },
     "background": "maring:textures/gui/advancements/backgrounds/maringmaterial.png",
     "show_toast": false,

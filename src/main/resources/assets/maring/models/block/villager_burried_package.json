@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "end": "block/villager_burried_package_end",
+        "side": "block/villager_burried_package_side"
+    }
+}

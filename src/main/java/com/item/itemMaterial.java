@@ -32,7 +32,9 @@ public class itemMaterial {
         "rocket_oxygen_tank",
         "rocket_active_space",
         "rocket_cowling",
-        "rocket_spout"
+        "rocket_spout",
+        
+        "ominous_upgrade_smithing_template"
     };
 
     public static final int ITEM_MATERIAL_NUMBER = MATERIAL_NAMES.length;

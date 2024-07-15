@@ -1,0 +1,72 @@
+{
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:cocoa_beans",
+          "weight": 2,
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "💩"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "translate": "villager.poops.valuable"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:cocoa_beans",
+          "weight": 53,
+          "functions": [
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "translate": "villager.poops"
+                }
+              ]
+            },
+            {
+              "function": "minecraft:set_name",
+              "name": "💩"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "maring:basic_metal_parts",
+          "weight": 8
+        },
+        {
+          "type": "minecraft:item",
+          "name": "maring:advanced_metal_parts",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "maring:bioplastic_parts",
+          "weight": 6
+        },
+        {
+          "type": "minecraft:item",
+          "name": "maring:semiconductor_parts",
+          "weight": 1
+        },
+        {
+          "type": "minecraft:item",
+          "name": "maring:crystal_parts",
+          "weight": 3
+        }
+      ]
+    }
+  ]
+}

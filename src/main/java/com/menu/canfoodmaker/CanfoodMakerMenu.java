@@ -28,7 +28,7 @@ public class CanfoodMakerMenu extends BlockEntityMenuBasic{
 				 @Override
 				    public boolean mayPlace(@NotNull ItemStack stack)
 				    {
-				    	if(stack.is(TagkeyRegister.CAN_FOOD_MATERIAL_TAG)) {
+				    	if(stack.is(TagkeyRegister.CAN_FOOD_MATERIAL_TAG)||stack.getItem().isEdible()) {
 				    		return true;
 				    	}
 				        return false;
@@ -38,7 +38,7 @@ public class CanfoodMakerMenu extends BlockEntityMenuBasic{
 				 @Override
 				    public boolean mayPlace(@NotNull ItemStack stack)
 				    {
-				    	if(stack.is(TagkeyRegister.CAN_FOOD_MATERIAL_TAG)) {
+				    	if(stack.is(TagkeyRegister.CAN_FOOD_MATERIAL_TAG)||stack.getItem().isEdible()) {
 				    		return true;
 				    	}
 				        return false;
@@ -48,7 +48,7 @@ public class CanfoodMakerMenu extends BlockEntityMenuBasic{
 				 @Override
 				    public boolean mayPlace(@NotNull ItemStack stack)
 				    {
-				    	if(stack.is(TagkeyRegister.CAN_FOOD_MATERIAL_TAG)) {
+				    	if(stack.is(TagkeyRegister.CAN_FOOD_MATERIAL_TAG)||stack.getItem().isEdible()) {
 				    		return true;
 				    	}
 				        return false;

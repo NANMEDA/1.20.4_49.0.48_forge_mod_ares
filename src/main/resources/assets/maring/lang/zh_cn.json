@@ -51,12 +51,19 @@
   "block.maring.etching_machine": "蚀刻机",
   "block.maring.glass_builder": "玻璃合成机",
   "block.maring.water_gather": "水分收集器",
+  "block.maring.stone_washer": "洗石器",
+  "block.maring.fuel_refiner": "燃料精炼机",
+  
   "block.maring.villager_handmake_table": "村民手搓台",
   "block.maring.broken_structure_block": "远古破损结构块",
   "block.maring.broken_chemical_block": "远古残留生物质",
   "block.maring.broken_metal_block": "远古破损金属块",
   "block.maring.broken_electronic_block": "远古损坏仪器",
   "block.maring.broken_advanced_electronic_block": "远古损坏仪器",
+  "block.maring.villager_burried_package": "村民埋藏的包裹 <据称>",
+  
+  "block.maring.basic_sphere_dorm": "球形穹顶 I",
+  "block.maring.basic_flat_sphere_dorm": "扁球形穹顶 I",
   
   "item.maring.rubbish": "腐坏的食品",
   "item.maring.bread_can": "面包罐头",
@@ -103,6 +110,7 @@
   "item.maring.ominous_hoe": "强化金锄头",
   "item.maring.ominous_pickaxe": "强化金镐",
   "item.maring.ominous_shovel": "强化金铲",
+  "item.maring.ominous_upgrade_smithing_template": "荧惑升级器",
   
   "item.can.show.vegetable": "  蔬菜值: %d",
   "item.can.show.meat": "  肉值: %d",
@@ -123,7 +131,7 @@
   
   
   "entity.maring.jump_spider": "抱子蜘蛛",
-  "entity.maring.villager.handmake_master": "手搓大师",
+  "entity.minecraft.villager.handmake_master": "手搓大师",
   
   "effect.maring.fulling": "饱腹",
   "effect.maring.mental_abuse": "精神错乱",
@@ -135,13 +143,16 @@
   "mar_machine_tab": "莪瑞斯-机器",
   "mar_material_tab": "莪瑞斯-材料",
   "mar_tool_tab": "莪瑞斯-工具护甲",
+  "mar_dorm_tab": "莪瑞斯-建筑",
   
   "menu.powerstation_burn": "火力发电站",
-  "menu.canfood_maker": "食品罐装机",
+  "menu.canfood_maker": "食品罐装",
   "menu.microwave_oven": "微波炉",
   "menu.basicmetal_manufactor": "基础铸机",
   "menu.advancedmetal_manufactor": "高级雕机",
   "menu.etching_machine": "蚀刻",
+  "menu.stone_washer": "洗洗",
+  "menu.fuel_refiner": "精炼",
   
   "maring.gui.microwave.button": "启动",
   
@@ -195,10 +206,10 @@
   "advancements.ends.end_3.title": "升华 [结局3/3]",
   "advancements.ends.end_3.description": "这真的是一条路吗?",
   
-  "maring.command.doomsdaycome.change.true": "末日情况设置: z",
+  "maring.command.doomsdaycome.change.true": "末日情况设置: 来",
   "maring.command.doomsdaycome.change.false": "末日情况设置: 不来",
   "maring.command.doomsdaycome.set": "末日设置天数: %d",
-  "maring.command.doomsdaycome.set.inlegal": "天数不合理 (建议从10-150)",
+  "maring.command.doomsdaycome.set.inlegal": "天数不合理 (建议10-150)",
   "maring.command.willpressurehurt.true": "火星生物伤害: 有",
   "maring.command.willpressurehurt.false": "火星生物伤害: 无 (不再需要宇航服)",
   
@@ -206,5 +217,8 @@
   "maring.disaster.spider_day.init": "天上好像有什么东西掉下来了",
   "maring.disaster.dooms_day.warning": "假如再不离开的话, 可能再也离开不了了",
 
-  "death.attack.damage.pressure": "%1$s暴露于不适宜的大气中"
+  "death.attack.damage.pressure": "%1$s暴露于不适宜的大气中",
+  
+  "villager.poops": "普通的",
+  "villager.poops.valuable": "典藏的"
 }

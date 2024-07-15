@@ -22,10 +22,10 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 
-public class BlockCanfoodleft extends Block{
+public class BlockCanfoodMakerleft extends Block{
 	public static String global_name = "canfood_maker_left"; 
 	
-	public BlockCanfoodleft(Properties properties) {
+	public BlockCanfoodMakerleft(Properties properties) {
 		super(properties);
 	}
 	

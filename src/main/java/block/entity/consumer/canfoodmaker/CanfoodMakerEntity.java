@@ -29,6 +29,7 @@ public class CanfoodMakerEntity extends PowerConsumerEntity{
 	
 	public short process_progress;
 	private int renderHeight;
+	private static boolean materialChangeLabel = true;
 	
 	public int getRenderHeight() {
 		return renderHeight;
@@ -49,11 +50,12 @@ public class CanfoodMakerEntity extends PowerConsumerEntity{
 
         @Override
         protected void onContentsChanged(int slot) {
+        	materialChangeLabel = true;
             setChanged();
-            /*
-            if(slot==4) {
-            	level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_ALL);
-            }*/
+            
+            if(slot==3) {
+            	level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_CLIENTS);
+            }
         }
     };
 
@@ -153,7 +155,7 @@ public class CanfoodMakerEntity extends PowerConsumerEntity{
 		for (int i = 0; i < 5; i++) {
 		    stack[i] = item.getStackInSlot(i);
 		}
-		if(!stack[0].is(TagkeyRegister.CAN_FOOD_MATERIAL_TAG)||!stack[1].is(TagkeyRegister.CAN_FOOD_MATERIAL_TAG)||!stack[2].is(TagkeyRegister.CAN_FOOD_MATERIAL_TAG)) {
+		if(stack[0].isEmpty()||stack[1].isEmpty()||stack[2].isEmpty()) {
 			process_progress = 0;
 	        int renderHeight = 0;
 			if(renderHeight != this.renderHeight) {
@@ -162,20 +164,8 @@ public class CanfoodMakerEntity extends PowerConsumerEntity{
 			}
 			return;
 		}
-		/*
-		if(!(stack[0].getItem()==stack[1].getItem())||!(stack[0].getItem()==stack[2].getItem())) {
-			//System.out.println("not equal food");
-			process_progress = 0;
-	        int renderHeight = 0;
-			if(renderHeight != this.renderHeight) {
-				this.renderHeight = renderHeight;
-				level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_CLIENTS);
-			}
-			return;
-		}*/
 		
 		if ((stack[3].getItem() == Items.IRON_NUGGET && stack[3].getCount()<9)||stack[3]==ItemStack.EMPTY) {
-			//System.out.println("no iron");
 			process_progress = 0;
 	        int renderHeight = 0;
 			if(renderHeight != this.renderHeight) {
@@ -186,7 +176,7 @@ public class CanfoodMakerEntity extends PowerConsumerEntity{
 		}
 		if(energy_supply>0) {
 
-			if(stack[4].isEmpty()) {
+			if(stack[4].isEmpty()||(stack[4].getItem()==ItemRegister.CAN.get()&&stack[4].getCount()<64)) {
 				//System.out.println("into making");
 				energy_consume = 5;
 				if(process_progress<300) {
@@ -202,12 +192,6 @@ public class CanfoodMakerEntity extends PowerConsumerEntity{
 					setChanged();
 					return;
 				}
-				process_progress = 0;
-				int renderHeight = 0;
-				if(renderHeight != this.renderHeight) {
-					this.renderHeight = renderHeight;
-					level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_CLIENTS);
-				}
 				
 				Item m0 = stack[0].getItem();
 				Item m1 = stack[1].getItem();
@@ -219,33 +203,61 @@ public class CanfoodMakerEntity extends PowerConsumerEntity{
 				int fish = CanHelper.getFishValue(m0)+CanHelper.getFishValue(m1)+CanHelper.getFishValue(m2);
 				int fruit = CanHelper.getFruitValue(m0)+CanHelper.getFruitValue(m1)+CanHelper.getFruitValue(m2);
 				int corn = CanHelper.getCornValue(m0)+CanHelper.getCornValue(m1)+CanHelper.getCornValue(m2);
-				stack[0].shrink(1);
-				stack[1].shrink(1);
-				stack[2].shrink(1);
-				item.setStackInSlot(0, stack[0]);
-				item.setStackInSlot(1, stack[1]);
-				item.setStackInSlot(2, stack[2]);
-				if(stack[3].getItem()==Items.IRON_INGOT) {
-					stack[3].shrink(1);
+				
+				if(!stack[4].isEmpty()) {
+					if(materialChangeLabel
+						&&corn == ItemCanNBT.getCorn(stack[4])
+						&&vegetable == ItemCanNBT.getVegetable(stack[4])
+						&&meat == ItemCanNBT.getMeat(stack[4])
+						&&fish == ItemCanNBT.getFish(stack[4])
+						&&fruit == ItemCanNBT.getFruit(stack[4])
+						&&nutrition == ItemCanNBT.getNutrition(stack[4])
+						&&saturation == ItemCanNBT.getSaturation(stack[4])
+							) {
+							stack[4].grow(1);
+							item.setStackInSlot(4, stack[4]);
+						}else {
+							materialChangeLabel = false;
+							return;
+						}
+					
 				}else {
-					stack[3].shrink(9);
+					stack[0].shrink(1);
+					stack[1].shrink(1);
+					stack[2].shrink(1);
+					item.setStackInSlot(0, stack[0]);
+					item.setStackInSlot(1, stack[1]);
+					item.setStackInSlot(2, stack[2]);
+					if(stack[3].getItem()==Items.IRON_INGOT) {
+						stack[3].shrink(1);
+					}else {
+						stack[3].shrink(9);
+					}
+					item.setStackInSlot(3, stack[3]);
+					//item.setStackInSlot(4, corresponding_items);
+					
+					Item itemCan = ItemRegister.CAN.get();
+					ItemStack can = new ItemStack(itemCan,1);
+					
+					ItemCanNBT.setNutrition(can, nutrition);
+					ItemCanNBT.setSaturation(can, saturation);
+					ItemCanNBT.setVegetable(can, vegetable);
+					ItemCanNBT.setMeat(can, meat);
+					ItemCanNBT.setFish(can, fish);
+					ItemCanNBT.setCorn(can, corn);
+					ItemCanNBT.setFruit(can, fruit);
+					CanHelper.setModel(can, vegetable, meat, fish, corn, fruit);
+					// 设置槽位4中的物品为itemStack
+					
+					item.setStackInSlot(4, can);
 				}
-				item.setStackInSlot(3, stack[3]);
-				//item.setStackInSlot(4, corresponding_items);
+				process_progress = 0;
+				int renderHeight = 0;
+				if(renderHeight != this.renderHeight) {
+					this.renderHeight = renderHeight;
+					level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_CLIENTS);
+				}
 				
-				Item itemCan = ItemRegister.CAN.get();
-				ItemStack can = new ItemStack(itemCan,1);
-				
-				ItemCanNBT.setNutrition(can, nutrition);
-				ItemCanNBT.setSaturation(can, saturation);
-				ItemCanNBT.setVegetable(can, vegetable);
-				ItemCanNBT.setMeat(can, meat);
-				ItemCanNBT.setFish(can, fish);
-				ItemCanNBT.setCorn(can, corn);
-				ItemCanNBT.setFruit(can, fruit);
-				CanHelper.setModel(can, vegetable, meat, fish, corn, fruit);
-				// 设置槽位4中的物品为itemStack
-				item.setStackInSlot(4, can);
 			}
 		//15s*20=300 maring J，10s*20=200 maring J
 		//一个木板 = 200到300 maring J。

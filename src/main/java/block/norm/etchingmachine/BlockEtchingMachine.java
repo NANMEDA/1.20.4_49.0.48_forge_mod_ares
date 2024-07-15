@@ -194,7 +194,7 @@ public class BlockEtchingMachine extends Block implements EntityBlock{
 		};
 		Level plevel = context.getLevel();
 		for(BlockPos pos : all ) {
-			if(plevel.getBlockState(pos).getBlock()!=Blocks.AIR) {
+			if(!plevel.isEmptyBlock(pos)) {
 				return false;
 			}
 		}

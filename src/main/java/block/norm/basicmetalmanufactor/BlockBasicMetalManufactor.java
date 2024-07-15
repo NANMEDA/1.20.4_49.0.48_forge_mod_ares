@@ -234,13 +234,13 @@ public class BlockBasicMetalManufactor extends Block implements EntityBlock{
 		        break;
 		}
 		Level plevel = context.getLevel();
-		if(plevel.getBlockState(left).getBlock()==Blocks.AIR
-				&&plevel.getBlockState(up).getBlock()==Blocks.AIR
-				&&plevel.getBlockState(leftup).getBlock()==Blocks.AIR
-				&&plevel.getBlockState(behind).getBlock()==Blocks.AIR
-				&&plevel.getBlockState(behindup).getBlock()==Blocks.AIR
-				&&plevel.getBlockState(leftbehind).getBlock()==Blocks.AIR
-				&&plevel.getBlockState(leftbehindup).getBlock()==Blocks.AIR) {
+		if(plevel.isEmptyBlock(left)
+				&&plevel.isEmptyBlock(up)
+				&&plevel.isEmptyBlock(leftup)
+				&&plevel.isEmptyBlock(behind)
+				&&plevel.isEmptyBlock(behindup)
+				&&plevel.isEmptyBlock(leftbehind)
+				&&plevel.isEmptyBlock(leftbehindup)) {
 			return true;
 		}
 		return false;

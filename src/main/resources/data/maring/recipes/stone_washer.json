@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BTB",
+    "X X",
+    "XUX"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:iron_block"
+    },
+    "U": {
+      "item": "minecraft:cauldron"
+    },
+    "B": {
+      "item": "maring:basic_metal_parts"
+    },
+    "T": {
+      "item": "minecraft:anvil"
+    }
+  },
+  "result": {
+    "item": "maring:stone_washer",
+    "count": 1
+  }
+}

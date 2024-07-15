@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "maring:block/unbroken_dorm_junction"
+  }
+}

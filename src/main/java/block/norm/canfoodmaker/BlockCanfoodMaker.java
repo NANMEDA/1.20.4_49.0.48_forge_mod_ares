@@ -54,14 +54,14 @@ public class BlockCanfoodMaker extends HorizontalDirectionalBlock implements Ent
 	}
 	
 	@Override
-	   public VoxelShape getShape(BlockState p_60555_, BlockGetter p_60556_, BlockPos p_60557_, CollisionContext p_60558_) {
+    public VoxelShape getShape(BlockState p_60555_, BlockGetter p_60556_, BlockPos p_60557_, CollisionContext p_60558_) {
 		//宽高厚
 		return Shapes.join(
-				Block.box(0, 0, 0, 16, 16, 16), 
-				Block.box(7, 0, 7, 9, 2, 9), 
-			    BooleanOp.ONLY_FIRST
-			);
-	   }
+		 		Block.box(0, 0, 0, 16, 16, 16), 
+		 		Block.box(7, 0, 7, 9, 2, 9), 
+		 	    BooleanOp.ONLY_FIRST
+		 	);
+    }
 	
 	@SuppressWarnings("deprecation")
 	@Override
@@ -70,17 +70,6 @@ public class BlockCanfoodMaker extends HorizontalDirectionalBlock implements Ent
 		if(!level.isClientSide()) {
 			var BlockEntity = level.getBlockEntity(pos);
 			if(BlockEntity instanceof CanfoodMakerEntity entity) {
-				ItemStack hand = player.getMainHandItem();
-				ItemStack slots = entity.getItems().getStackInSlot(4);
-				if (!slots.isEmpty() &&
-				    (hand.isEmpty() ||
-				    (hand.getItem() == slots.getItem() &&
-				    (hand.getCount() + slots.getCount() <= 64)))) {
-						player.setItemInHand(InteractionHand.MAIN_HAND, hand.isEmpty() ? slots:new ItemStack(hand.getItem(),hand.getCount()+slots.getCount()));
-						entity.getItems().setStackInSlot(4, ItemStack.EMPTY);
-						level.sendBlockUpdated(pos, blockstate, blockstate, Block.UPDATE_ALL);
-						return InteractionResult.SUCCESS;
-				}
 				IForgeServerPlayer ifpe = (IForgeServerPlayer)player;
 				ifpe.openMenu(new CanfoodMakerMenuProvider(pos), pos);
 				
@@ -181,7 +170,7 @@ public class BlockCanfoodMaker extends HorizontalDirectionalBlock implements Ent
 		        break;
 		}
 		Level plevel = context.getLevel();
-		if(plevel.getBlockState(left).getBlock()==Blocks.AIR) {
+		if(plevel.isEmptyBlock(left)) {
 			return true;
 		}
 		return false;
