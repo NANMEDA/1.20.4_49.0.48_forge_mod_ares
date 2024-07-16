@@ -13,6 +13,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 
+/**
+ * 显示基础金属零件
+ * @author NANMEDA
+ * */
 public class BasicMetalManufactorEntityRender implements BlockEntityRenderer<BasicMetalManufactorEntity> {
 	
 	public BasicMetalManufactorEntityRender(BlockEntityRendererProvider.Context context) {

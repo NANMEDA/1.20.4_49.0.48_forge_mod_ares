@@ -34,7 +34,11 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-
+/**
+ * 晶体重构机
+ * - 晶体零件
+ * @author NANMEDA
+ * */
 public class BlockCrystalBuilder extends Block implements EntityBlock{
 	public static String global_name = "crystal_builder"; 
 	

@@ -12,6 +12,11 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Style;
 
+/**
+ * 代码主要来自
+ * BeyondEarth
+ * https://github.com/MrScautHD/Beyond-Earth
+ * */
 public class GaugeTextBuilder {
 	private final IGaugeValue value;
 	private final String translationKey;

@@ -35,6 +35,10 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.extensions.IForgeServerPlayer;
 
+/**
+ * 食品罐装机
+ * @author NANMEDA
+ * */
 public class BlockCanfoodMaker extends HorizontalDirectionalBlock implements EntityBlock {
 	public static String global_name = "canfood_maker"; 
 	

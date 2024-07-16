@@ -35,7 +35,11 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-
+/**
+ * 生物塑料仪
+ * - 生物塑料零件
+ * @author NANMEDA
+ * */
 public class BlockBioplasticBuilder extends Block implements EntityBlock{
 	public static String global_name = "bioplastic_builder"; 
 	

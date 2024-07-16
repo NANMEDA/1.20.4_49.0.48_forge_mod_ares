@@ -4,6 +4,11 @@ import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 
+/**
+ * 效果：？？
+ * 控制玩家的血量在一定范围内
+ * @author NANMEDA
+ * */
 public class EffectOminousLuck extends EffectMain {
     private int amplified;
 

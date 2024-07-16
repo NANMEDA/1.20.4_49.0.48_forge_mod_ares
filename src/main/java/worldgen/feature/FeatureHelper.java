@@ -5,6 +5,9 @@ import block.norm.BlockElectricBasic;
 import block.norm.BlockRegister;
 import net.minecraft.world.level.block.Block;
 
+/**
+ * 定义了需要的方块
+ * */
 public class FeatureHelper {
 	
     public static final Block MOIST_MUCUS = BlockRegister.COMMON_BLOCKS[BlockBasic.getIdFromName("moist_mucus")].get();

@@ -26,7 +26,13 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-
+/**
+ * 研究台
+ * - 注意
+ * - 所有研究都应该在这里进行
+ * - 研究的结果可以使用FlashDisk进行读取或覆盖
+ * @author NANMEDA
+ * */
 public class BlockResearchTable extends Block implements EntityBlock{
 	public static String global_name = "research_table"; 
 	

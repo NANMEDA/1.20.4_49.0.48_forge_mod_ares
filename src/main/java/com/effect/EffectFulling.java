@@ -4,6 +4,11 @@ import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 
+/**
+ * 效果：饱腹
+ * 每隔一段时间增加玩家的食物属性
+ * @author NANMEDA
+ * */
 public class EffectFulling extends EffectMain {
     private int amplified;
 

@@ -18,6 +18,16 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
 
+/**
+ * 火力发电站
+ * 能量参考的核心单位
+ * 一个木板 = 200到300 maring J
+ * 输入燃料，获得 燃料值
+ *  燃料值 提高 水温
+ *  水温 产生 蒸汽
+ *  蒸汽 产生 电力
+ * @author NANMEDA
+ * */
 public class PowerStationBurnEntity extends PowerStationEntity {
 	private float temperature=20.0f;
 	private short heat=0;

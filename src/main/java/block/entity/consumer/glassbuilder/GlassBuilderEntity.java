@@ -22,6 +22,12 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
+/**
+ * 生物塑料零件 -> 3玻璃
+ * 晶体零件 -> 5玻璃
+ * 12s
+ * @author NANMEDA
+ * */
 public class GlassBuilderEntity extends PowerConsumerEntity{
 
 	public short process_progress = 0;

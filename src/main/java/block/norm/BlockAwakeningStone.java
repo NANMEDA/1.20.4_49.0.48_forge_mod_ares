@@ -12,6 +12,15 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.effect.MobEffectInstance;
 
+/**
+ * 觉醒石
+ * 和火星地下孢子群系有关
+ * 挖掘后导致疾病
+ * 为什么会有人尝试去挖掘呢
+ * 沉眠石和它材质相同
+ * 但沉眠石有用
+ * @author NANMEDA
+ * */
 public class BlockAwakeningStone extends Block{
 	public static String global_name = "awakening_stone"; 
 	

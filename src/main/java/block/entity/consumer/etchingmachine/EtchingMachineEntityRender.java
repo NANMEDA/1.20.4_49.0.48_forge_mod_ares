@@ -11,6 +11,10 @@ import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 
+/**
+ * 显示半导体零件
+ * @author NANMEDA
+ * */
 public class EtchingMachineEntityRender implements BlockEntityRenderer<EtchingMachineEntity> {
 	
 	public EtchingMachineEntityRender(BlockEntityRendererProvider.Context context) {

@@ -18,6 +18,11 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
+/**
+ * 获得水，满载10桶
+ * 36000一桶
+ * @author NANMEDA
+ * */
 public class WaterGatherEntity extends PowerConsumerEntity{
 
 	public int water = 0;
@@ -91,7 +96,7 @@ public class WaterGatherEntity extends PowerConsumerEntity{
     }
     
 	public void drop() {
-		for (int slot = 0; slot < item.getSlots()-1; slot++) {//减一，不会掉落最后一个slot,加速的不会返回
+		for (int slot = 0; slot < item.getSlots()-1; slot++) {//减一，不会掉落最后一个slot,催化剂不会返回
 		    ItemStack stackInSlot = item.getStackInSlot(slot);
 		    if (!stackInSlot.isEmpty()) {
 		        Containers.dropContents(this.level, this.worldPosition, NonNullList.of(ItemStack.EMPTY, stackInSlot));
@@ -130,7 +135,7 @@ public class WaterGatherEntity extends PowerConsumerEntity{
 	@Override
 	public void servertick() {
 		//ItemStack stack = item.getStackInSlot(0);
-		if(water<180000) {//5minute->1,5*60*20*3=18000
+		if(water<360000) {//10 minute->1 bucket,10*60*20*3=36000
 			energy_consume=FULL_ENERGY_CONSUPTION;
 			water += (energy_supply > 75) ? 3 : ((energy_supply > 50) ? 2 : ((energy_supply > 25) ? 1 : 0));
 			setChanged();
@@ -138,7 +143,9 @@ public class WaterGatherEntity extends PowerConsumerEntity{
 		}else {
 			energy_consume = 0;
 		}
-		//应该要和level和weather有关
+		/***
+		 * 要和level和weather有关
+		 * ***/
 	}
 	
 	@Override

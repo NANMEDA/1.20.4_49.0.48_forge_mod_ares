@@ -24,6 +24,11 @@ public class BiomeEffectApplier {
     public static boolean WILL_PRESSURE_HURT = true; // 检测间隔
     private static BlockState A_AIR_STATE = null;// = BlockRegister.A_AIR.get().defaultBlockState();
 
+    /***
+     * 赋予药水效果
+     * 检测玩家在火星群系的颜色 和 所处方块
+     * @author NANMEDA
+     * ***/
     @SubscribeEvent
     public static void onLivingUpdate(LivingTickEvent event) {
     	if(!WILL_PRESSURE_HURT) return;

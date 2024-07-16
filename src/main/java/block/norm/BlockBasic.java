@@ -5,6 +5,13 @@ import net.minecraft.world.level.block.SoundType;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 添加一些主要的方块
+ * 尽量避免修改顺序
+ * 因为前面的一部分寻找索引我是根据其位置来寻找的
+ * 根据名称寻找索引是后来添加的，之后会删除掉 BLOCK_NAME 这个数组，直接用HASHMAP
+ * @author NANMEDA
+ * */
 public class BlockBasic {
 	public static int BLOCK_BASIC_NUMBER = 39;
 	private static int k = 0;
@@ -17,7 +24,6 @@ public class BlockBasic {
     private static final String[] TOOL = new String[BLOCK_BASIC_NUMBER];
     private static final Integer[] TOOL_MIN_LEVEL = new Integer[BLOCK_BASIC_NUMBER];
     
-    //不一定准
     static float[] dirt_strength = new float[]{0.5F, 0.5F};
     static float[] stone_strength = new float[]{1.5F, 6.0F};
     static float[] ore_strength = new float[]{3.0F, 3.0F};
@@ -52,6 +58,9 @@ public class BlockBasic {
         //12
     }//22
     
+    /***
+     * 和穹顶相关的
+     * ***/
     static {
     	addBlock("unbroken_cement",MapColor.TERRACOTTA_WHITE,SoundType.STONE,new float[]{-1.0F, 3600000.0F},false,null,0);
     	addBlock("unbroken_decoration_green",MapColor.COLOR_GREEN,SoundType.STONE,new float[]{-1.0F, 3600000.0F},false,null,0);
@@ -63,7 +72,9 @@ public class BlockBasic {
     	addBlock("methane_vents", MapColor.COLOR_YELLOW, SoundType.STONE, stone_strength, true, "pickaxe", 0);//还需要 active（在类里面）
     }
     
-    //洞穴
+    /***
+     * 洞穴相关的
+     * ***/
     static {
     	addBlock("phosphor", MapColor.COLOR_GRAY, SoundType.STONE, stone_strength, true, "pickaxe", 0);	//磷光体
     	addBlock("deep_phosphor", MapColor.COLOR_GRAY, SoundType.STONE, ore_strength, true, "pickaxe", 0);	
@@ -77,17 +88,19 @@ public class BlockBasic {
     	addBlock("moist_mucus", MapColor.COLOR_YELLOW, SoundType.HONEY_BLOCK, dirt_strength, false, "shovel", 0);	//湿润粘液
     }//10
     
-    //火山
+    /***
+     * 火山相关的
+     * ***/
     static {
     	addBlock("dense_volcanic_ash", MapColor.COLOR_GRAY, SoundType.STONE, dirt_strength, true, "pickaxe", 0);
     	addBlock("volcanic_stone", MapColor.COLOR_GRAY, SoundType.STONE, stone_strength, true, "pickaxe", 1);
     }
     
-    /*
+    /***
      * 先这种通过名字查询id的Map可以多弄几个
      * 在别的像这样注册的类里面
      * 避免通过id查询，然后结果添加或者减少的时候导致 id 变了
-     * */
+     * ***/
     private static final Map<String, Integer> nameToIdMap = new HashMap<>();
     static {
         for (int i = 0; i < BLOCK_BASIC_NUMBER; i++) {

@@ -14,6 +14,11 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 
+/**
+ * 显示玻璃
+ * 显示玻璃滴落效果
+ * @author NANMEDA
+ * */
 public class GlassBuilderEntityRender implements BlockEntityRenderer<GlassBuilderEntity> {
 	
 	private float drip = -1f;

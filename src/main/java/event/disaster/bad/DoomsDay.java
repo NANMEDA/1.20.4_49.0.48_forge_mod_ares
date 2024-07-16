@@ -24,6 +24,13 @@ public class DoomsDay {
 	public static boolean WARNING = false;
 	private static ResourceKey<Level> limboKey = ResourceKey.create(Registries.DIMENSION, new ResourceLocation("maring", "limbo"));
 	
+	
+	/***
+	 * 最后的毁灭的日子
+	 * 将所有主世界玩家传送到Limbo
+	 * 提前一天要警告
+	 * @author NANMEDA
+	 * ***/
 	@SubscribeEvent
 	public static void doomsDay(LevelTickEvent event) {
 		if(!DOOMS_WILL_ARRIVE) return;

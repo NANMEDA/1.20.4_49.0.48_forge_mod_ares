@@ -6,6 +6,11 @@ import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidTank;
 
+/**
+ * 代码主要来自
+ * BeyondEarth
+ * https://github.com/MrScautHD/Beyond-Earth
+ * */
 public class GaugeValueHelper {
 
 	private static final String MODID = "maring";

@@ -22,6 +22,11 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.List;
 
+/**
+ * 代码主要来自
+ * BeyondEarth
+ * https://github.com/MrScautHD/Beyond-Earth
+ * */
 @OnlyIn(Dist.CLIENT)
 public abstract class VehicleRenderer<T extends ModVehicle, M extends EntityModel<T>> extends EntityRenderer<T> implements RenderLayerParent<T, M> {
     protected M model;

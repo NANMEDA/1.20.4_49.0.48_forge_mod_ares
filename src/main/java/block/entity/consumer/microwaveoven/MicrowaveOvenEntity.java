@@ -1,6 +1,5 @@
 package block.entity.consumer.microwaveoven;
 
-
 import com.item.ItemRegister;
 
 import block.entity.BlockEntityRegister;
@@ -26,6 +25,12 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import tags.register.TagkeyRegister;
 
+/**
+ * 加热食物或海绵
+ * 加热罐头或者鸡蛋导致爆炸
+ * 时间不定
+ * @author NANMEDA
+ * */
 public class MicrowaveOvenEntity extends PowerConsumerEntity{
 
 	private int pg_max = 100;

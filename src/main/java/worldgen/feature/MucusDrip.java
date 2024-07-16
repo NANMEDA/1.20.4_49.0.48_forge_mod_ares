@@ -8,16 +8,19 @@ import com.mojang.serialization.Codec;
 import block.norm.BlockBasic;
 import block.norm.BlockRegister;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
+/**
+ * 这是 在粘液地下群系中
+ * 从天花板向下垂落的粘液柱子
+ * 越向下，越有可能是干枯的粘液
+ * @author NANMEDA
+ * */
 public class MucusDrip extends Feature<NoneFeatureConfiguration> {
 
     private static final Block MOIST_MUCUS = BlockRegister.COMMON_BLOCKS[BlockBasic.getIdFromName("moist_mucus")].get();

@@ -1,13 +1,17 @@
 package com.item.tool;
 
 import java.util.function.Supplier;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.util.LazyLoadedValue;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.crafting.Ingredient;
 
+@SuppressWarnings("deprecation")
 public enum ToolTier implements Tier {
+	/***
+	 * 下面是参考的原版的注释
+	 * 最好勿删
+	 * ***/
 	/*
    WOOD(0, 59, 2.0F, 0.0F, 15, () -> {
       return Ingredient.of(ItemTags.PLANKS);

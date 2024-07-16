@@ -21,6 +21,12 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
+/**
+ * bio 来自方块的use
+ * 100bio -> 生物塑料零件
+ * 15s
+ * @author NANMEDA
+ * */
 public class BioplasticBuilderEntity extends PowerConsumerEntity{
 
 	private short process_progress = 900;

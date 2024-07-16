@@ -12,6 +12,10 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
+/**
+ * 扁球形穹顶 I
+ * @author NANMEDA
+ * */
 public class BasicFlatSphereDorm extends Block {
     public static final String global_name = "basic_flat_sphere_dorm";
     
@@ -35,10 +39,16 @@ public class BasicFlatSphereDorm extends Block {
         return InteractionResult.SUCCESS;
     }
 
+    /***
+     * 用来生成底座的
+     * 一般认为
+     * 底座是-2底层 圆盘
+     * -1底层圆环，圆环半径 = 2
+     * ***/
     private void createCementBase(Level world, BlockPos centerPos) {
     	int radius = 12;
         int radius_outer_sq = 144;
-        int radius_inner_sq = 121;
+        int radius_inner_sq = 100;
         BlockPos start = centerPos.offset(-radius, -2, -radius);
         BlockPos end = centerPos.offset(0,-2,0);
 
@@ -78,7 +88,13 @@ public class BasicFlatSphereDorm extends Block {
             }
         }
 	}
-
+    
+    /***
+     * 生成圆壳用的
+     * 这是个9 12 15 的三角形割开 半径15生成的球的上半部分
+     * 十字形基本骨架
+     * 检测 1/4 另外 3/4 是 copy的，节省计算量
+     * ***/
 	private void createGlassSphere(Level world, BlockPos centerPos) {
 		int radius = 15;
         int cut_radius = 12;
@@ -95,18 +111,6 @@ public class BasicFlatSphereDorm extends Block {
         BlockPos posZ;
         BlockPos posXZ;
         for (BlockPos pos : BlockPos.betweenClosed(start, end)) {
-            if (Math.abs(pos.getX() - centerPos.getX()) + Math.abs(pos.getY() - centerPos.getY()) + Math.abs(pos.getZ() - centerPos.getZ()) < 14) {
-        		dx = centerPos.getX() - pos.getX();
-        		dz = centerPos.getZ() - pos.getZ();
-            	posX = new BlockPos(centerPos.getX() + dx, pos.getY(), pos.getZ());
-                posZ = new BlockPos(pos.getX(), pos.getY(), centerPos.getZ() + dz);
-                posXZ = new BlockPos(centerPos.getX() + dx, pos.getY(), centerPos.getZ() + dz);
-                world.setBlockAndUpdate(posX, A_AIR_STATE);
-                world.setBlockAndUpdate(posZ, A_AIR_STATE);
-                world.setBlockAndUpdate(posXZ, A_AIR_STATE);
-                world.setBlockAndUpdate(pos, A_AIR_STATE);
-            	continue;
-            }
             int distSq = (int) pos.distSqr(centerPos);
             if (distSq <= radius_outer_sq) {
         		dx = centerPos.getX() - pos.getX();
@@ -139,35 +143,7 @@ public class BasicFlatSphereDorm extends Block {
             }
         }
     }
-/*
-    private void setBiome(ServerLevel world, BlockPos pos, ResourceKey<Biome> biomeKey) {
-    	if(true) {
-    		
-    	}
-        Holder<Biome> holder = world.registryAccess().registryOrThrow(Registries.BIOME).getHolderOrThrow(biomeKey);
-        ChunkAccess chunk = world.getChunk(pos);
 
-        BoundingBox boundingBox = BoundingBox.fromCorners(pos, pos);
-        MutableInt mutableInt = new MutableInt(0);
-        chunk.fillBiomesFromNoise(makeResolver(mutableInt, chunk, boundingBox, holder), world.getChunkSource().randomState().sampler());
-        chunk.setUnsaved(true);
-    }
-
-    private BiomeResolver makeResolver(MutableInt mutableInt, ChunkAccess chunk, BoundingBox boundingBox, Holder<Biome> holder) {
-        return (quartX, quartY, quartZ, biomeNoise) -> {
-            int blockX = QuartPos.toBlock(quartX);
-            int blockY = QuartPos.toBlock(quartY);
-            int blockZ = QuartPos.toBlock(quartZ);
-            Holder<Biome> currentHolder = chunk.getNoiseBiome(quartX, quartY, quartZ);
-            if (boundingBox.isInside(blockX, blockY, blockZ)) {
-                mutableInt.increment();
-                return holder;
-            } else {
-                return currentHolder;
-            }
-        };
-    }
-*/
     static {
         BlockJSON.GenModelsJSONBasic(global_name);
         BlockJSON.GenBlockStateJSONBasic(global_name);

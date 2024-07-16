@@ -1,13 +1,14 @@
 package com.effect;
 
-import com.google.j2objc.annotations.ReflectionSupport.Level;
-
 import damage.DamageSourceRegistry;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
-import vehicle.rocket.RocketEntity;
 
-
+/**
+ * 效果：失压
+ * 火星相关
+ * @author NANMEDA
+ * */
 public class EffectLosePressure extends EffectMain {
     private int amplified;
 

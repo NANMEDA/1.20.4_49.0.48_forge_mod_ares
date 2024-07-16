@@ -20,6 +20,11 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
+/**
+ * 4基础金属零件+8青金石+钻石 -> 高级金属零件
+ * 25s
+ * @author NANMEDA
+ * */
 public class AdvancedMetalManufactorEntity extends PowerConsumerEntity{
 
 	public int water = 0;

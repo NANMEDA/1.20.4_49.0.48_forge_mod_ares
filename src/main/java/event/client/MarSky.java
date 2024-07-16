@@ -89,7 +89,12 @@ public class MarSky extends DimensionSpecialEffects {
 		return false;
 	}
 	
-	
+	/***
+	 * 火星的天空
+	 * 无云 + 无月亮 + 蓝色的日出日落
+	 * 建议保留部分源码以及修改的注释
+	 * 以方便参考
+	 * ***/
 	@SuppressWarnings("unused")
 	@Override
     public boolean renderSky(ClientLevel level, int ticks, float partialTick, PoseStack poseStack, Camera camera,
@@ -285,16 +290,15 @@ public class MarSky extends DimensionSpecialEffects {
 		      return p_234268_.end();
 		   }
 	   
+	   /***
+	    * 星星的生成
+	    * 有小小的修改
+	    * ***/
 	   private BufferBuilder.RenderedBuffer drawStars(BufferBuilder p_234260_) {
-		    // 创建一个随机数生成器，种子值为 10842L
 		    RandomSource randomsource = RandomSource.create(10842L);
-
-		    // 开始构建顶点，使用四边形（QUADS）模式，顶点格式为位置（POSITION）
 		    p_234260_.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION);
 
-		    // 循环 1500 次，生成 1500 个星星
 		    for(int i = 0; i < 1500; ++i) {
-		        // 随机生成三个坐标 (-1.0 到 1.0)
 		    	float d0_ = randomsource.nextFloat();
 		    	double d1;
 		    	if(d0_>0.3) {

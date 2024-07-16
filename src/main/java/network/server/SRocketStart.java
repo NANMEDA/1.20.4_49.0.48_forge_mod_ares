@@ -23,7 +23,8 @@ public class SRocketStart {
     return new SRocketStart(buf.readItem());
   }
 
-  public static void handle(SRocketStart msg, CustomPayloadEvent.Context ctx) {
+  @SuppressWarnings("resource")
+public static void handle(SRocketStart msg, CustomPayloadEvent.Context ctx) {
     ctx.enqueueWork(() -> {
       LocalPlayer clientPlayer = Minecraft.getInstance().player;
 

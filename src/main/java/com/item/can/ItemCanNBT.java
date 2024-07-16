@@ -3,6 +3,9 @@ package com.item.can;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 
+/**
+ * 这是NBT相关的
+ * */
 public class ItemCanNBT {
 
     public static final String TAG_NUTRITION = "Nutrition";

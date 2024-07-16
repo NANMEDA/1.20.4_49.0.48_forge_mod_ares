@@ -1,6 +1,5 @@
 package block.entity.consumer.basicmetalmanufactor;
 
-
 import com.item.ItemRegister;
 
 import block.entity.BlockEntityRegister;
@@ -22,6 +21,11 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
+/**
+ * 4铁 + 1黄金 -> 基础金属零件
+ * 10s
+ * @author NANMEDA
+ * */
 public class BasicMetalManufactorEntity extends PowerConsumerEntity{
 
 	private short process_progress = 0;

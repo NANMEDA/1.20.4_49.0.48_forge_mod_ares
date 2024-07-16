@@ -18,6 +18,13 @@ import net.minecraftforge.fml.common.Mod;
 public class CommandRegistry {
 	private static final String MODID = "maring";
 	
+	/***
+	 * maring 的 rule 相关指令
+	 * whenDisasterCome - 最终灾难来临时间
+	 * willDisasterCome - 是否有最终灾难(只影响最终那个)
+	 * willPressureHurt - 火星生物伤害（不穿宇航服是否受伤）
+	 * @author NANMEDA
+	 * ***/
 	 @SubscribeEvent
 	    public static void onServerStarting(RegisterCommandsEvent event) {
 	        CommandDispatcher<CommandSourceStack> dispatcher = event.getDispatcher();

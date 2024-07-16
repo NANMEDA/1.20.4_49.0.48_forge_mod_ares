@@ -11,6 +11,9 @@ import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 
+/**
+ * 没写
+ * */
 public class WaterGatherEntityRender implements BlockEntityRenderer<WaterGatherEntity> {
 	
 	public WaterGatherEntityRender(BlockEntityRendererProvider.Context context) {

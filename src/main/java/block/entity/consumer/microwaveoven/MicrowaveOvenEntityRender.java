@@ -13,6 +13,11 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 
+/**
+ * 显示加热的物品
+ * 加热时物品旋转
+ * @author NANMEDA
+ * */
 public class MicrowaveOvenEntityRender implements BlockEntityRenderer<MicrowaveOvenEntity> {
 	private float Rotation = 0f;
 	

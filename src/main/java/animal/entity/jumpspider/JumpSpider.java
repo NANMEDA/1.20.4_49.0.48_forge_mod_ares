@@ -1,5 +1,6 @@
-package animal.entity;
+package animal.entity.jumpspider;
 
+import animal.entity.MonsterRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -13,6 +14,13 @@ import net.minecraft.world.entity.monster.Spider;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
+/**
+ * 抱子蜘蛛
+ * 死后有概率召唤更多抱子蜘蛛
+ * 和 灾难事件 有关
+ * 不会自然生成
+ * @author NANMEDA
+ * */
 public class JumpSpider extends Spider {
 
     public JumpSpider(EntityType<? extends Spider> entityType, Level level) {

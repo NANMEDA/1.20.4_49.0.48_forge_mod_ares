@@ -13,8 +13,8 @@ import net.minecraftforge.fml.common.Mod;
 
 import java.util.Random;
 
-import animal.entity.JumpSpider;
 import animal.entity.MonsterRegister;
+import animal.entity.jumpspider.JumpSpider;
 import event.disaster.DisasterConfig;
 
 @Mod.EventBusSubscriber(modid = "maring", bus = Mod.EventBusSubscriber.Bus.FORGE)
@@ -29,6 +29,10 @@ public class SpiderComing {
     public static boolean SPIDER_DAY_OCCUR = false;
     public static boolean SPIDER_DAY_INIT = false;
 	
+    /***
+     * 不间断的召唤抱子蜘蛛
+     * @author NANMEDA
+     * ***/
 	@SubscribeEvent
     public static void spiderDay(PlayerTickEvent event) {
 		if(!DOOMS_WILL_ARRIVE) return;

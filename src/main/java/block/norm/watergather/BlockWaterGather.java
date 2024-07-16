@@ -29,7 +29,12 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-
+/**
+ * 水分收集台
+ * - 需要配套的水分阻隔栏
+ * - 水分阻隔栏需要放在收集台上方3*3*3的范围内，并且要和收集台垂直方向上有连接
+ * @author NANMEDA
+ * */
 public class BlockWaterGather extends Block implements EntityBlock{
 	public static String global_name = "water_gather"; 
 	

@@ -13,6 +13,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 
+/**
+ * 显示生物塑料零件
+ * @author NANMEDA
+ * */
 public class BioplasticBuilderEntityRender implements BlockEntityRenderer<BioplasticBuilderEntity> {
 	
 	public BioplasticBuilderEntityRender(BlockEntityRendererProvider.Context context) {

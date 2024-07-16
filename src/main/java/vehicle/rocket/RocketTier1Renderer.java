@@ -6,6 +6,11 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import vehicle.VehicleRenderer;
 
+/**
+ * 代码主要来自
+ * BeyondEarth
+ * https://github.com/MrScautHD/Beyond-Earth
+ * */
 @OnlyIn(Dist.CLIENT)
 public class RocketTier1Renderer extends VehicleRenderer<RocketEntity, RocketModel<RocketEntity>> {
 

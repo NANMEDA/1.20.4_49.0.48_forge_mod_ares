@@ -28,9 +28,6 @@ public class CRocketStart {
 
   public static void handle(CRocketStart msg, CustomPayloadEvent.Context ctx) {
 	  ctx.enqueueWork(() -> {
-          // This part executes on the main server thread
-          // Perform rocket starting logic using msg.carried
-          // For example:
 		  ServerPlayer player = getPlayerByUUID(msg.carried);
           RocketEntity rocket = (RocketEntity) player.getVehicle();
           if (rocket != null) {

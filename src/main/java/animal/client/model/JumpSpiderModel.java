@@ -3,8 +3,8 @@ package animal.client.model;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 
-import animal.entity.JumpSpider;
-import animal.entity.JumpSpiderAnimation;
+import animal.entity.jumpspider.JumpSpider;
+import animal.entity.jumpspider.JumpSpiderAnimation;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;

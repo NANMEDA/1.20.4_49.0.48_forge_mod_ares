@@ -31,7 +31,11 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.extensions.IForgeServerPlayer;
 
-
+/**
+ * 蚀刻机
+ * - 半导体零件
+ * @author NANMEDA
+ * */
 public class BlockEtchingMachine extends Block implements EntityBlock{
 	public static String global_name = "etching_machine"; 
 	

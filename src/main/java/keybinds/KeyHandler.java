@@ -16,7 +16,7 @@ public class KeyHandler {
     public static void onKeyInput(InputEvent.Key event) {
         // 如果我们的热键被按下了，那么就给玩家发送一个消息press the key
         // 注意这里是客户端发送的，所以并不是所有玩家都能看到的。
-        if(KeyVariables.DRINKING_KEY.consumeClick()){
+        if(KeyVariables.ROCKET_SETOFF_KEY.consumeClick()){
         	LocalPlayer player = Minecraft.getInstance().player;
             KeyMethods.startRocket(player);
         }

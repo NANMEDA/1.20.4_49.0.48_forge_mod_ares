@@ -37,7 +37,10 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.extensions.IForgeServerPlayer;
 
-
+/**
+ * 微波炉
+ * @author NANMEDA
+ * */
 public class BlockMicrowaveOven extends Block implements EntityBlock{
 	public static String global_name = "microwave_oven"; 
 	

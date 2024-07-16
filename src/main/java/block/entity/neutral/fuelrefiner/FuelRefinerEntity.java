@@ -1,21 +1,15 @@
 package block.entity.neutral.fuelrefiner;
 
 
-import java.util.Random;
-
 import com.item.ItemRegister;
 import block.entity.BlockEntityRegister;
 import block.entity.consumer.PowerConsumerEntity;
-import block.norm.BlockBasic;
-import block.norm.BlockRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.Containers;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -28,6 +22,14 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
+/**
+ * 10 小瓶甲烷（1-8） / 10 煤炭 -> 1 燃料 （1-64）
+ * 可以发现提取后可以烧的东西变少了
+ * 作为提取燃料的消耗
+ * 火箭只能接受燃料
+ * 20s
+ * @author NANMEDA
+ * */
 public class FuelRefinerEntity extends PowerConsumerEntity{
 
 	private int render = 0;

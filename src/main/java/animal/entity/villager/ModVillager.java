@@ -15,6 +15,10 @@ import net.minecraftforge.registries.DeferredRegister;
 import java.util.function.Predicate;
 import net.minecraft.core.Holder;
 
+/**
+ * 新增村民的职业和兴趣点
+ * @author NANMEDA
+ * */
 public class ModVillager {
 	
     private static final String MODID = "maring";

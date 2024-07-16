@@ -12,6 +12,9 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
+/**
+ * 尚未完成
+ * */
 public class BacterialBush extends Feature<NoneFeatureConfiguration> {
 
     private static final Block MAR_SURFACE = BlockRegister.COMMON_BLOCKS[BlockBasic.getIdFromName("mar_surface")].get();

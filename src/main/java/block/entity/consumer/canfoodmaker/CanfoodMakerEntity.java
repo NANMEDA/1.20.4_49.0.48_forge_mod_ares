@@ -23,8 +23,12 @@ import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
-import tags.register.TagkeyRegister;
 
+/**
+ * 罐头
+ * 5s
+ * @author NANMEDA
+ * */
 public class CanfoodMakerEntity extends PowerConsumerEntity{
 	
 	public short process_progress;

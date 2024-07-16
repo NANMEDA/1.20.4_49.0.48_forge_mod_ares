@@ -14,6 +14,10 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
+/**
+ * 修改自冰刺
+ * 替换成了火星表面
+ * */
 public class ErosionStick extends Feature<NoneFeatureConfiguration> {
 
     private static final Block MAR_SAND = BlockRegister.COMMON_BLOCKS[BlockBasic.getIdFromName("mar_sand")].get();

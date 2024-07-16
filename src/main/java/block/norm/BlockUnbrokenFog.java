@@ -1,16 +1,19 @@
 package block.norm;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.item.FallingBlockEntity;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+/**
+ * 一般生成在穹顶顶部
+ * 无碰撞箱
+ * 因为穹顶的外壳是不可破坏的，要防止玩家被困在穹顶内部
+ * @author NANMEDA
+ * */
 public class BlockUnbrokenFog extends Block{
 	public static String global_name = "unbroken_fog"; 
 	

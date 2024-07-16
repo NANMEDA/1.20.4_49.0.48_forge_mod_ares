@@ -12,6 +12,10 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
+/**
+ * 球形穹顶 I
+ * @author NANMEDA
+ * */
 public class BasicSphereDorm extends Block {
     public static final String global_name = "basic_sphere_dorm";
     
@@ -35,6 +39,12 @@ public class BasicSphereDorm extends Block {
         return InteractionResult.SUCCESS;
     }
 
+    /***
+     * 用来生成底座的
+     * 一般认为
+     * 底座是-2底层 圆盘
+     * -1底层圆环，圆环半径 = 2
+     * ***/
     private void createCementBase(Level world, BlockPos centerPos) {
     	int radius = 10;
         int radius_outer_sq = 100;
@@ -79,6 +89,12 @@ public class BasicSphereDorm extends Block {
         }
 	}
 
+    /***
+     * 生成圆壳用的
+     * 半径10生成的球的上半部分
+     * 十字形基本骨架
+     * 检测 1/4 另外 3/4 是 copy的，节省计算量
+     * ***/
 	private void createGlassSphere(Level world, BlockPos centerPos) {
         int radius = 10;
         int radius_outer_sq = 100;

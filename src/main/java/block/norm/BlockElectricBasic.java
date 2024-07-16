@@ -7,6 +7,13 @@ import java.util.Map;
 
 import net.minecraft.world.level.block.SoundType;
 
+/**
+ * 添加一些主要的电子相关的方块
+ * 尽量避免修改顺序
+ * 因为前面的一部分寻找索引我是根据其位置来寻找的
+ * 根据名称寻找索引是后来添加的，之后会删除掉 BLOCK_NAME 这个数组，直接用HASHMAP
+ * @author NANMEDA
+ * */
 public class BlockElectricBasic {
 	public static int BLOCK_ELECTRIC_NUMBER = 9;
 	private static int k = 0;
@@ -19,7 +26,6 @@ public class BlockElectricBasic {
     private static final String[] TOOL = new String[BLOCK_ELECTRIC_NUMBER];
     private static final Integer[] TOOL_MIN_LEVEL = new Integer[BLOCK_ELECTRIC_NUMBER];
     
-    //不一定准
     //private static float[] dirt_strength = new float[]{0.5F, 0.5F};
     //private static float[] stone_strength = new float[]{2.0F, 6.0F};
     private static float[] ore_strength = new float[]{3.0F, 6.0F};

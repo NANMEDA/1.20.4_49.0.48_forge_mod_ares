@@ -2,8 +2,6 @@ package com.effect;
 
 import java.util.Random;
 
-import com.google.j2objc.annotations.ReflectionSupport.Level;
-
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -11,6 +9,11 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.registries.ForgeRegistries;
 
+/**
+ * 效果：精神
+ * 播放音效
+ * @author NANMEDA
+ * */
 public class EffectMentalAbuse extends EffectMain {
     private int amplified;
 

@@ -16,6 +16,10 @@ import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
+/**
+ * 所有创造模式物品栏在此注册
+ * @author NANMEDA
+ * */
 public class CreativeTabsRegister {
 	private static final String MODID = "maring";
 	public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
@@ -99,5 +103,8 @@ public class CreativeTabsRegister {
             .displayItems((parameters, output) -> {
             	output.accept(block.norm.fastbuild.Register.basicspheredorm_BLOCK_ITEM.get());
             	output.accept(block.norm.fastbuild.Register.basicflatspheredorm_BLOCK_ITEM.get());
+            	output.accept(block.norm.fastbuild.Register.basiceclipsedorm_BLOCK_ITEM.get());
+            	output.accept(block.norm.fastbuild.Register.basicflateclipsedorm_BLOCK_ITEM.get());
+            	output.accept(block.norm.fastbuild.Register.spheredoor_BLOCK_ITEM.get());
             }).build());
 }

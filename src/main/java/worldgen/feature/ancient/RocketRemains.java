@@ -11,6 +11,10 @@ import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import worldgen.feature.FeatureHelper;
 
+/**
+ * 这是 远古遗址 之一 远古火箭遗址
+ * @author NANMEDA
+ * */
 public class RocketRemains extends Feature<NoneFeatureConfiguration> {
     
 	private static final BlockState METAL = FeatureHelper.METAL.defaultBlockState();

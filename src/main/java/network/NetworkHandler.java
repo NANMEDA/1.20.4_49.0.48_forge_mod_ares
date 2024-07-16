@@ -20,6 +20,11 @@ public class NetworkHandler {
 
 	  public static SimpleChannel INSTANCE;
 
+	  
+	  /***
+	   * 实现 C 和 S 互相传包
+	   * 比如 按下火箭发射键后 要把这个信息传到 Server
+	   * ***/
 	  public static void register() {
 
 	    INSTANCE = ChannelBuilder.named(new ResourceLocation(MODID, "main"))
@@ -27,11 +32,11 @@ public class NetworkHandler {
 	        .clientAcceptedVersions(Channel.VersionTest.exact(PTC_VERSION))
 	        .serverAcceptedVersions(Channel.VersionTest.exact(PTC_VERSION)).simpleChannel();
 
-	    //Client Packets
+	    //Client 2 Server
 	    register(CRocketStart.class, CRocketStart::encode, CRocketStart::decode,
 	    		CRocketStart::handle);
 
-	    // Server Packets
+	    // Server 2 Client
 	    register(SRocketStart.class, SRocketStart::encode, SRocketStart::decode,
 	    		SRocketStart::handle);//没用到
 	   

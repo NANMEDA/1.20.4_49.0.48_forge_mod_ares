@@ -1,4 +1,4 @@
-package animal.entity;
+package animal.entity.jumpspider;
 
 import net.minecraft.client.animation.AnimationChannel;
 import net.minecraft.client.animation.AnimationDefinition;

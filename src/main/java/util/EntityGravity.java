@@ -1,6 +1,7 @@
 package util;
 
 import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -8,7 +9,6 @@ import java.util.function.Consumer;
 
 import com.google.common.collect.Maps;
 
-import event.forge.LivingGravityEvent;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
@@ -19,7 +19,12 @@ import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.ForgeMod;
-import net.minecraftforge.common.MinecraftForge;
+
+/**
+ * 代码主要来自
+ * BeyondEarth
+ * https://github.com/MrScautHD/Beyond-Earth
+ * */
 public class EntityGravity {
 
     public static final UUID ARTIFICIAL_GRAVITY_ID = UUID.fromString("242A6B8D-DA4E-4C3C-1234-96EA6096568D");

@@ -21,6 +21,6 @@ public class PressureHurt implements Command<CommandSourceStack>{
         }else {
         	context.getSource().getPlayer().sendSystemMessage(Component.translatable("maring.command.willpressurehurt.false"));
         }
-        return 1; // 返回1表示命令成功执行
+        return 1;
     }
 }

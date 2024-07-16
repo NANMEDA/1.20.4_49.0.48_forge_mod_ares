@@ -34,7 +34,11 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.extensions.IForgeServerPlayer;
 
-
+/**
+ * 基础金属雕机
+ * - 基础金属零件
+ * @author NANMEDA
+ * */
 public class BlockBasicMetalManufactor extends Block implements EntityBlock{
 	public static String global_name = "basicmetal_manufactor"; 
 	

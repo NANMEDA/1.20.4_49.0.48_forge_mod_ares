@@ -20,6 +20,11 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
+/**
+ * 2 生物塑料零件 + 1钻石 + 16红石 + 2金 + 4铜 -> 半导体零件
+ * 30s
+ * @author NANMEDA
+ * */
 public class EtchingMachineEntity extends PowerConsumerEntity{
 
 	public int water = 0;
@@ -180,7 +185,7 @@ public class EtchingMachineEntity extends PowerConsumerEntity{
 		stack[5] = item.getStackInSlot(5);
 		if(stack[5].getCount()<64) {
 			energy_consume = FULL_ENERGY_CONSUPTION;
-			if(process_progress<1500) {//25s*20*3
+			if(process_progress<1800) {//30s*20*3
 				process_progress += (energy_supply > 75) ? 3 : ((energy_supply > 50) ? 2 : ((energy_supply > 25) ? 1 : 0));
 				
 				int progress = process_progress/150;	//除到10

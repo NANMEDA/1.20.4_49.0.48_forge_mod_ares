@@ -21,6 +21,13 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
+/**
+ * 研究台
+ * 研究可以由 FlashDisk 进行提取或者覆盖
+ * 注意，每个研究分支都是用Tag来记录，要保证和 FlashDisk 同步
+ * 比如 <高级穹顶 III> 相当于 TAG: dormHigh 的值为 2 ,从0开始
+ * @author NANMEDA
+ * */
 public class ResearchTableEntity extends PowerConsumerEntity{
 
 	private short process_progress = 0;

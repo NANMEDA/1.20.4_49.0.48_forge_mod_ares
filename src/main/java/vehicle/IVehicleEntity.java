@@ -15,6 +15,11 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.PowderSnowBlock;
 import net.minecraft.world.phys.Vec3;
 
+/**
+ * 代码主要来自
+ * BeyondEarth
+ * https://github.com/MrScautHD/Beyond-Earth
+ * */
 public abstract class IVehicleEntity extends Entity {
     private int lerpSteps;
     private double lerpX;

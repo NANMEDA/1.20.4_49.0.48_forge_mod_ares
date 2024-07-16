@@ -33,7 +33,11 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.extensions.IForgeServerPlayer;
 
-
+/**
+ * 先进金属铸机
+ * - 高级金属零件
+ * @author NANMEDA
+ * */
 public class BlockAdvancedMetalManufactor extends Block implements EntityBlock{
 	public static String global_name = "advancedmetal_manufactor"; 
 	

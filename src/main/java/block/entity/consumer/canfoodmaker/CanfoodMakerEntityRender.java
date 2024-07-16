@@ -13,6 +13,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 
+/**
+ * 显示罐头
+ * @author NANMEDA
+ * */
 public class CanfoodMakerEntityRender implements BlockEntityRenderer<CanfoodMakerEntity> {
 	
 	public CanfoodMakerEntityRender(BlockEntityRendererProvider.Context context) {

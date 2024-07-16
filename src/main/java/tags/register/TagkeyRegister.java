@@ -22,10 +22,4 @@ public class TagkeyRegister {
 		CAN_FOOD_MATERIAL_TAG = ItemTags.create(new ResourceLocation(MODID, "can_food_material"));
 	}
 	
-    /*
-    if (block.defaultBlockState().is(TagKeyRegister.EXAMPLE_BLOCK_TAG)) {
-        // Do something with the block
-    }
-*/
-	
 }

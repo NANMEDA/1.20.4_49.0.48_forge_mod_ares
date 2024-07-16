@@ -11,6 +11,10 @@ import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 
+/**
+ * 显示高级金属零件
+ * @author NANMEDA
+ * */
 public class AdvancedMetalManufactorEntityRender implements BlockEntityRenderer<AdvancedMetalManufactorEntity> {
 	
 	public AdvancedMetalManufactorEntityRender(BlockEntityRendererProvider.Context context) {

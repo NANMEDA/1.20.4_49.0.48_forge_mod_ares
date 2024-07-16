@@ -56,6 +56,11 @@ import java.util.List;
 import java.util.Set;
 import java.util.Random;
 
+/**
+ * 代码主要来自
+ * BeyondEarth
+ * https://github.com/MrScautHD/Beyond-Earth
+ * */
 public abstract class IRocketEntity extends ModVehicle implements IGaugeValuesProvider{
 
 	private static final String MODID = "maring";

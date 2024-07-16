@@ -12,6 +12,11 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 
+/**
+ * 显示水晶零件
+ * 显示催化剂
+ * @author NANMEDA
+ * */
 public class CrystalBuilderEntityRender implements BlockEntityRenderer<CrystalBuilderEntity> {
 	
 	public CrystalBuilderEntityRender(BlockEntityRendererProvider.Context context) {

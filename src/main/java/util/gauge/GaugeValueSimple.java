@@ -8,6 +8,11 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Component.Serializer;
 import net.minecraft.resources.ResourceLocation;
 
+/**
+ * 代码主要来自
+ * BeyondEarth
+ * https://github.com/MrScautHD/Beyond-Earth
+ * */
 public class GaugeValueSimple implements IGaugeValue {
 
 	public static final int FALLBACK_COLOR = 0xA0FFFFFF;

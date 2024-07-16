@@ -13,6 +13,11 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.MinecraftForge;
 
+/**
+ * 代码主要来自
+ * BeyondEarth
+ * https://github.com/MrScautHD/Beyond-Earth
+ * */
 public class RocketEntity extends IRocketEntity {
 
 	public static final int DEFAULT_FUEL_BUCKETS = 3;

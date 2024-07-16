@@ -33,7 +33,11 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.extensions.IForgeServerPlayer;
 
-
+/**
+ * 燃料提取机
+ * - 获得燃料
+ * @author NANMEDA
+ * */
 public class BlockFuelRefiner extends Block implements EntityBlock{
 	public static String global_name = "fuel_refiner"; 
 	

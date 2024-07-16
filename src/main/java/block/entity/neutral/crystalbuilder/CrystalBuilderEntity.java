@@ -21,6 +21,12 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
+/**
+ * 水晶零件
+ * 2m 一般
+ * 催化剂加速（use函数）
+ * @author NANMEDA
+ * */
 public class CrystalBuilderEntity extends PowerConsumerEntity{
 
 	private short process_progress = 0;

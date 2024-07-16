@@ -31,7 +31,11 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-
+/**
+ * 玻璃合成机
+ * - 火星没有沙子
+ * @author NANMEDA
+ * */
 public class BlockGlassBuilder extends Block implements EntityBlock{
 	public static String global_name = "glass_builder"; 
 	

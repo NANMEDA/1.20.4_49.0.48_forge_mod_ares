@@ -26,6 +26,10 @@ import block.norm.microwaveoven.BlockMicrowaveOven;
 import block.norm.powerstation.burn.PowerStationBurn;
 import block.norm.powerstation.sun.PowerStationSun;
 
+/**
+ * 所有方块和方块类物品的注册
+ * @author NANMEDA
+ * */
 public class BlockRegister {
 	private static final String MODID = "maring";
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MODID);
@@ -240,6 +244,9 @@ public class BlockRegister {
     public static final RegistryObject<Block> A_AIR = BLOCKS.register("a_air",
     		() -> new AirBlock(BlockBehaviour.Properties.of().replaceable().noCollission().noLootTable().air()));
     
+    /***
+     * 推荐这样子注册机器
+     * ***/
     static {
     	block.norm.crystalbuilder.Register.init();
     	block.norm.glassbuilder.Register.init();

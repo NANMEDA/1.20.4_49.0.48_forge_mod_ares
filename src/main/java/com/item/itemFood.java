@@ -20,6 +20,10 @@ public class itemFood {
     private static int ticks = 20;
     private static int minutes = 1200;
     
+    /***
+     * 已废弃
+     * 但尚未删除
+     * ***/
     static {
         addFoodItem(0, "rubbish", true, 1, 1, () -> new MobEffectInstance(MobEffects.CONFUSION, ticks * 30), 1.0F);
         addFoodItem(1, "carrot_can", false, 3, 6, () -> new MobEffectInstance(EffectRegister.FULLING.get(), ticks * 10), 1.0F);

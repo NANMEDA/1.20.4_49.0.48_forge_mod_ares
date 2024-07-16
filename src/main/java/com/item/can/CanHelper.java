@@ -7,6 +7,12 @@ import net.minecraft.world.item.Items;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 注册了所有需要的食物的属性
+ * 假如寻找不到，会返回一个默认值
+ * 在 食品罐装机 的Entity中有用
+ * @author NANMEDA
+ * */
 public class CanHelper {
 	
     private static final Map<Item, Integer> vegetableMap = new HashMap<>();
@@ -106,13 +112,13 @@ public class CanHelper {
         return fruitMap.getOrDefault(item, 0);
     }
     
-    
-    
+    /***
+     * 设置模型
+     * 根据不同属性设置model
+     * ***/
     public static void setModel(ItemStack stack,int Vegetable,int Meat, int Fish,int Corn,int Fruit) {
-        // 找到最大值
         int max = Math.max(Math.max(Math.max(Math.max(Vegetable, Meat), Fish), Corn), Fruit);
         int custom_model_data;
-        // 统计最大值的数量
         int maxCount = 0;
         if (Vegetable == max) maxCount++;
         if (Meat == max) maxCount++;
@@ -124,7 +130,6 @@ public class CanHelper {
         	custom_model_data = 6;
         }
 
-        // 返回对应最大值的模型
         if (Vegetable == max) {
         	custom_model_data = 1;
         } else if (Meat == max) {

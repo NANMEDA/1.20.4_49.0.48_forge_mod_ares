@@ -10,6 +10,10 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 
+/**
+ * 菜单的基类
+ * 忘记从哪里抄的了
+ * */
 public abstract class BlockEntityMenuBasic extends AbstractContainerMenu{
 
 	public final BlockPos pos;

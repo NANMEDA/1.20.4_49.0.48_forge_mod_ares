@@ -14,6 +14,10 @@ import com.google.gson.JsonPrimitive;
 
 public class BlockJSON {
 	
+	
+	/***
+	 * 生成的是model里面的，默认
+	 * ***/
 	public static void GenModelsJSONBasic(String name) {
 	    File file = new File("/forge-1.20.4-49.0.48-mdk/src/main/resources/assets/maring/models/block/" + name + ".json");
 	    if (file.exists()) {
@@ -34,6 +38,10 @@ public class BlockJSON {
 	    }
 	}
 	
+	/***
+	 * 生成的use
+	 * 比如说, 部分方块要用透明材质
+	 * ***/
 	public static void GenModelsJSONBasic(String name,String use) {
 	    File file = new File("/forge-1.20.4-49.0.48-mdk/src/main/resources/assets/maring/models/block/" + name + ".json");
 	    if (file.exists()) {
@@ -57,6 +65,9 @@ public class BlockJSON {
 	    }
 	}
 	
+	/***
+	 * blockstate
+	 * ***/
 	public static void GenBlockStateJSONBasic(String name) {
 	    File file = new File("/forge-1.20.4-49.0.48-mdk/src/main/resources/assets/maring/blockstates/" + name + ".json");
 	    if (file.exists()) {
@@ -80,6 +91,10 @@ public class BlockJSON {
 	    }
 	}
 	
+	/***
+	 * 物品item的模型
+	 * 默认是handheld
+	 * ***/
 	public static void GenItemJSONBasic(String name) {
 	    File file = new File("/forge-1.20.4-49.0.48-mdk/src/main/resources/assets/maring/models/item/" + name + ".json");
 	    if (file.exists()) {
@@ -99,6 +114,9 @@ public class BlockJSON {
 	    }
 	}
 	
+	/***
+	 * 掉落物，默认自身
+	 * ***/
     public static void GenLootTableJSONBasic(String name) {
         File file = new File("/forge-1.20.4-49.0.48-mdk/src/main/resources/data/maring/loot_tables/blocks/" + name + ".json");
         if (file.exists()) {
@@ -132,7 +150,12 @@ public class BlockJSON {
             e.printStackTrace();
         }
     }
-
+    
+    /***
+     * 掉落物
+     * 一般用于
+     * 像是机器，拆除旁边的，掉落本体 
+     * ***/
     public static void GenLootTableJSONBasic(String name,String loot) {
         File file = new File("/forge-1.20.4-49.0.48-mdk/src/main/resources/data/maring/loot_tables/blocks/" + name + ".json");
         if (file.exists()) {
@@ -167,6 +190,9 @@ public class BlockJSON {
         }
     }
     
+    /***
+     * 挖掘所需的工具种类
+     * ***/
     public static void GenToolJSON(String tool, String name) {
         if (tool == null) {
             return;
@@ -214,6 +240,9 @@ public class BlockJSON {
         }
     }
     
+    /***
+     * 挖掘所需的等级
+     * ***/
     public static void GenToolLevelJSON(Integer level, String name) {
     	String tool;
     	switch (level) {

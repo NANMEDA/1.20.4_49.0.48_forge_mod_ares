@@ -1,7 +1,6 @@
 package util;
 
 import event.forge.ItemGravityEvent;
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -9,6 +8,11 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.MinecraftForge;
 
+/**
+ * 代码主要来自
+ * BeyondEarth
+ * https://github.com/MrScautHD/Beyond-Earth
+ * */
 public class ItemGravity {
 
     public static final double DEFAULT_ITEM_GRAVITY = 0.04;//注意这个初始值

@@ -4,6 +4,10 @@ import com.item.itemFood;
 
 public class AddTag {
 	
+	/***
+	 * 说实话没有屁用
+	 * 最后还是我自己添加的
+	 * ***/
 	public static void init(){
 		System.out.println("Come to init tags");
 		

@@ -9,6 +9,11 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.util.INBTSerializable;
 
+/**
+ * 代码主要来自
+ * BeyondEarth
+ * https://github.com/MrScautHD/Beyond-Earth
+ * */
 public class GaugeValueSerializer<T extends INBTSerializable<CompoundTag>> {
 
 	public static final GaugeValueSerializer<IGaugeValue> Serializer = new GaugeValueSerializer<>();

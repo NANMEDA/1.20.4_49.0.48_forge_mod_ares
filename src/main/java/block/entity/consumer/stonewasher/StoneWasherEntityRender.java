@@ -13,6 +13,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 
+/**
+ * 还没写
+ * */
 public class StoneWasherEntityRender implements BlockEntityRenderer<StoneWasherEntity> {
 	private float Rotation = 0f;
 	

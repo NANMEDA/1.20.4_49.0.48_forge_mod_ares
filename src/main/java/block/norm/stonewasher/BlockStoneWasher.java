@@ -34,7 +34,11 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.extensions.IForgeServerPlayer;
 
-
+/**
+ * 洗石机
+ * - 从火星的石头提取铁，并获得原版石头
+ * @author NANMEDA
+ * */
 public class BlockStoneWasher extends Block implements EntityBlock{
 	public static String global_name = "stone_washer"; 
 	

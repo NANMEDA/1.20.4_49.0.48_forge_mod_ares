@@ -18,6 +18,11 @@ import net.minecraftforge.fml.common.Mod;
 import util.EntityGravity;
 import util.ItemGravity;
 
+/**
+ * 代码主要来自
+ * BeyondEarth
+ * https://github.com/MrScautHD/Beyond-Earth
+ * */
 @Mod.EventBusSubscriber(modid = "maring")
 public class GravityEvents {
 

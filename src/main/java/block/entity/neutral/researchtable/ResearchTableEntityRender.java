@@ -12,6 +12,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 
+/**
+ * 没写
+ * */
 public class ResearchTableEntityRender implements BlockEntityRenderer<ResearchTableEntity> {
 	
 	public ResearchTableEntityRender(BlockEntityRendererProvider.Context context) {

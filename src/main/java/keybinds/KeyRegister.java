@@ -9,6 +9,6 @@ import net.minecraftforge.api.distmarker.Dist;
 public class KeyRegister {
     @SubscribeEvent
     public static void onKeyRegister(RegisterKeyMappingsEvent event) {
-        event.register(KeyVariables.DRINKING_KEY);
+        event.register(KeyVariables.ROCKET_SETOFF_KEY);
     }
 }

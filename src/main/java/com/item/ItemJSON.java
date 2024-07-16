@@ -10,6 +10,11 @@ import com.google.gson.JsonObject;
 
 public class ItemJSON {
     
+	/***
+	 * 生成的是handheld的Item模型
+	 * 和Block那里的不同
+	 * 不可以混用
+	 * ***/
     public static void GenJSON(String name) {
         File file = new File("/forge-1.20.4-49.0.48-mdk/src/main/resources/assets/maring/models/item/"+name+".json");
         if (file.exists()) {

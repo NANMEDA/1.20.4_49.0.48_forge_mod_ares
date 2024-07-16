@@ -1,6 +1,5 @@
 package block.entity.consumer.stonewasher;
 
-
 import java.util.Random;
 
 import com.item.ItemRegister;
@@ -28,6 +27,12 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
+/**
+ * 获得原版石头
+ * 一定概率有生铁粒
+ * 2.5s 一般
+ * @author NANMEDA
+ * */
 public class StoneWasherEntity extends PowerConsumerEntity{
 
 	private int render = 0;

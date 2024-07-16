@@ -5,6 +5,11 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
+/**
+ * 结构玻璃
+ * 不可破坏
+ * @author NANMEDA
+ * */
 public class BlockUnbrokenGlass extends Block {
 
 	public static final String global_name = "unbroken_glass";
@@ -28,6 +33,11 @@ public class BlockUnbrokenGlass extends Block {
 	}
 	*/
 	
+	/***
+	 * 试图做连接无边缘
+	 * 类似optifine那种
+	 * 但做不出来
+	 * ***/
 	@Override
 	public void neighborChanged(BlockState pBlockState, Level pLevel, BlockPos pos, Block pBlock, BlockPos pos2, boolean don) {{}
 		BlockPos upPos = pos.above();

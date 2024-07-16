@@ -64,6 +64,9 @@
   
   "block.maring.basic_sphere_dorm": "球形穹顶 I",
   "block.maring.basic_flat_sphere_dorm": "扁球形穹顶 I",
+  "block.maring.basic_eclipse_dorm": "椭球形穹顶 I",
+  "block.maring.basic_flat_eclipse_dorm": "扁椭球形穹顶 I",
+  "block.maring.sphere_door": "出口阀",
   
   "item.maring.rubbish": "腐坏的食品",
   "item.maring.bread_can": "面包罐头",
