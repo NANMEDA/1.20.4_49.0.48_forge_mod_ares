@@ -14,6 +14,7 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -26,9 +27,9 @@ public class BasicFlatEclipseDorm extends Block {
     public static final String global_name = "basic_flat_eclipse_dorm";
     
     private static final BlockState UNBROKEN_GLASS_STATE = BlockRegister.unbrokenglass_BLOCK.get().defaultBlockState();
-    private static final BlockState UNBROKEN_CEMENT_STATE = BlockRegister.COMMON_BLOCKS[BlockBasic.getIdFromName("unbroken_cement")].get().defaultBlockState();
+    private static final BlockState UNBROKEN_CEMENT_STATE = BlockRegister.unbrokencement_BLOCK.get().defaultBlockState();
     private static final BlockState UNBROKEN_FOG_STATE = BlockRegister.unbrokenfog_BLOCK.get().defaultBlockState();
-    private static final BlockState A_AIR_STATE = BlockRegister.A_AIR.get().defaultBlockState();
+    private static final BlockState AIR_STATE = BlockRegister.A_AIR.get().defaultBlockState();
 
     public BasicFlatEclipseDorm(Properties properties) {
         super(properties);
@@ -108,10 +109,10 @@ public class BasicFlatEclipseDorm extends Block {
                     world.setBlockAndUpdate(posXZ, UNBROKEN_CEMENT_STATE);
                     world.setBlockAndUpdate(pos, UNBROKEN_CEMENT_STATE);
                 } else {
-                    world.setBlockAndUpdate(posX, A_AIR_STATE);
-                    world.setBlockAndUpdate(posZ, A_AIR_STATE);
-                    world.setBlockAndUpdate(posXZ, A_AIR_STATE);
-                    world.setBlockAndUpdate(pos, A_AIR_STATE);
+                    world.setBlockAndUpdate(posX, AIR_STATE);
+                    world.setBlockAndUpdate(posZ, AIR_STATE);
+                    world.setBlockAndUpdate(posXZ, AIR_STATE);
+                    world.setBlockAndUpdate(pos, AIR_STATE);
                 }
             }
         }
@@ -171,10 +172,10 @@ public class BasicFlatEclipseDorm extends Block {
                         world.setBlockAndUpdate(pos, UNBROKEN_GLASS_STATE);
                     }
                 } else {
-                    world.setBlockAndUpdate(posX, A_AIR_STATE);
-                    world.setBlockAndUpdate(posZ, A_AIR_STATE);
-                    world.setBlockAndUpdate(posXZ, A_AIR_STATE);
-                    world.setBlockAndUpdate(pos, A_AIR_STATE);
+                    world.setBlockAndUpdate(posX, AIR_STATE);
+                    world.setBlockAndUpdate(posZ, AIR_STATE);
+                    world.setBlockAndUpdate(posXZ, AIR_STATE);
+                    world.setBlockAndUpdate(pos, AIR_STATE);
                 }
             }
         }

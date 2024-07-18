@@ -1,6 +1,7 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "block/cube_column",
   "textures": {
-    "all": "maring:block/villager_handmake_table"
+    "end": "maring:block/villager_handmake_table_top",
+    "side": "maring:block/villager_handmake_table_side"
   }
 }

@@ -191,19 +191,20 @@ public class BasicMetalManufactorEntity extends PowerConsumerEntity{
 			
 			}
 			process_progress = 0;
-			ItemStack items0 = new ItemStack(Items.IRON_INGOT, stack[0].getCount()-1);
-			ItemStack items1 = new ItemStack(Items.IRON_INGOT, stack[1].getCount()-1);
-			ItemStack items2 = new ItemStack(Items.IRON_INGOT, stack[2].getCount()-1);
-			ItemStack items3 = new ItemStack(Items.IRON_INGOT, stack[3].getCount()-1);
-			ItemStack items4 = new ItemStack(Items.GOLD_INGOT, stack[4].getCount()-1);
+			stack[0].shrink(1);
+			stack[1].shrink(1);
+			stack[2].shrink(1);
+			stack[3].shrink(1);
+			stack[4].shrink(1);
 			ItemStack items5 = new ItemStack(ItemRegister.MATERIAL_ITEMS[1].get(), stack[5].getCount()+1);
 			
-			item.setStackInSlot(0, items0);
-			item.setStackInSlot(1, items1);
-			item.setStackInSlot(2, items2);
-			item.setStackInSlot(3, items3);
-			item.setStackInSlot(4, items4);
+			item.setStackInSlot(0, stack[0]);
+			item.setStackInSlot(1, stack[1]);
+			item.setStackInSlot(2, stack[2]);
+			item.setStackInSlot(3, stack[3]);
+			item.setStackInSlot(4, stack[4]);
 			item.setStackInSlot(5, items5);
+			level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_CLIENTS);
 			setChanged();
 		}
 		

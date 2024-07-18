@@ -10,6 +10,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 
 /**
@@ -20,9 +21,9 @@ public class BasicSphereDorm extends Block {
     public static final String global_name = "basic_sphere_dorm";
     
     private static final BlockState UNBROKEN_GLASS_STATE = BlockRegister.unbrokenglass_BLOCK.get().defaultBlockState();
-    private static final BlockState UNBROKEN_CEMENT_STATE = BlockRegister.COMMON_BLOCKS[BlockBasic.getIdFromName("unbroken_cement")].get().defaultBlockState();
+    private static final BlockState UNBROKEN_CEMENT_STATE = BlockRegister.unbrokencement_BLOCK.get().defaultBlockState();
     private static final BlockState UNBROKEN_FOG_STATE = BlockRegister.unbrokenfog_BLOCK.get().defaultBlockState();
-    private static final BlockState A_AIR_STATE = BlockRegister.A_AIR.get().defaultBlockState();
+    private static final BlockState AIR_STATE = BlockRegister.A_AIR.get().defaultBlockState();
 
     public BasicSphereDorm(Properties properties) {
         super(properties);
@@ -80,10 +81,10 @@ public class BasicSphereDorm extends Block {
                 world.setBlockAndUpdate(posXZ, UNBROKEN_CEMENT_STATE);
                 world.setBlockAndUpdate(pos, UNBROKEN_CEMENT_STATE);
             	}else {
-                    world.setBlockAndUpdate(posX, A_AIR_STATE);
-                    world.setBlockAndUpdate(posZ, A_AIR_STATE);
-                    world.setBlockAndUpdate(posXZ, A_AIR_STATE);
-                    world.setBlockAndUpdate(pos, A_AIR_STATE);
+                    world.setBlockAndUpdate(posX, AIR_STATE);
+                    world.setBlockAndUpdate(posZ, AIR_STATE);
+                    world.setBlockAndUpdate(posXZ, AIR_STATE);
+                    world.setBlockAndUpdate(pos, AIR_STATE);
             	}
             }
         }
@@ -115,10 +116,10 @@ public class BasicSphereDorm extends Block {
             	posX = new BlockPos(centerPos.getX() + dx, pos.getY(), pos.getZ());
                 posZ = new BlockPos(pos.getX(), pos.getY(), centerPos.getZ() + dz);
                 posXZ = new BlockPos(centerPos.getX() + dx, pos.getY(), centerPos.getZ() + dz);
-                world.setBlockAndUpdate(posX, A_AIR_STATE);
-                world.setBlockAndUpdate(posZ, A_AIR_STATE);
-                world.setBlockAndUpdate(posXZ, A_AIR_STATE);
-                world.setBlockAndUpdate(pos, A_AIR_STATE);
+                world.setBlockAndUpdate(posX, AIR_STATE);
+                world.setBlockAndUpdate(posZ, AIR_STATE);
+                world.setBlockAndUpdate(posXZ, AIR_STATE);
+                world.setBlockAndUpdate(pos, AIR_STATE);
             	continue;
             }
             int distSq = (int) pos.distSqr(centerPos);
@@ -145,10 +146,10 @@ public class BasicSphereDorm extends Block {
 		                world.setBlockAndUpdate(pos, UNBROKEN_GLASS_STATE);
 	                }
             	}else {
-                    world.setBlockAndUpdate(posX, A_AIR_STATE);
-                    world.setBlockAndUpdate(posZ, A_AIR_STATE);
-                    world.setBlockAndUpdate(posXZ, A_AIR_STATE);
-                    world.setBlockAndUpdate(pos, A_AIR_STATE);
+                    world.setBlockAndUpdate(posX, AIR_STATE);
+                    world.setBlockAndUpdate(posZ, AIR_STATE);
+                    world.setBlockAndUpdate(posXZ, AIR_STATE);
+                    world.setBlockAndUpdate(pos, AIR_STATE);
             	}
             }
         }

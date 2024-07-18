@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>材料罐头</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header, footer {
+            background-color: #9acd32;
+            color: black;
+            text-align: center;
+            padding: 10px 0;
+        }
+        main {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            background-image: url('../pic/dorm.png'); /* Replace with your background image path */
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .overlay {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            width: 80%;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .content {
+            text-align: center;
+        }
+        .title {
+            font-size: 2em;
+            margin: 20px 0;
+        }
+        .subtitle {
+            font-size: 1.6em;
+            margin: 20px 0;
+        }
+.container {
+    display: flex; /* 使用 flexbox 布局 */
+    flex-wrap: nowrap; /* 不换行 */
+    justify-content: center; /* 水平居中对齐 */
+    align-items: center; /* 垂直居中对齐 */
+    max-width: 800px; /* 可选：限制容器最大宽度 */
+    margin: 0 auto; /* 设置左右外边距为 auto，自动居中 */
+}
+        .text {
+            font-size: 1.2em;
+            margin: 20px 0;
+            text-align: left;
+            text-indent: 4em;
+        }
+        .images {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin: 10px;
+        }
+        .images img {
+            max-width: 100%;
+            height: auto;
+            max-height: 256px; /* Condense image if height exceeds 256px */
+        }
+        .image-description {
+            font-size: 0.8em;
+            color: gray;
+            font-weight: bold;
+            margin-top: 5px;
+            text-align: center;
+        }
+        .button-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .jump-button {
+            background-color: lime;
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 1em;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .jump-button:hover {
+            background-color: #9acd32;
+            color: white;
+        }
+        .link {
+            text-decoration: none;
+            font-size: 1.2em;
+            display: block;
+            margin: 10px 0;
+        }
+        .link:hover {
+            color: #9acd32;
+        }
+        .thin-line {
+            border-top: 1px solid #9acd32;
+            margin: 20px auto;
+            width: 80%;
+        }
+        .thick-line {
+            border-top: 3px solid #9acd32;
+            margin: 30px auto;
+            width: 80%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1></h1>
+    </header>
+    <main>
+        <div class="overlay">
+            <div class="content">
+                <div class="title">
+                    罐头合成和食品
+                </div>
+	<div class="text">
+   	 罐头合成可以帮助你更加充分地利用食物，并获得不同的增益，同时避免灾难导致的食物腐烂<br>&emsp;&emsp;&emsp;&emsp;
+    	首先，需要合成一个罐头合成机
+	</div>
+                <div class="images">
+                    <img src="material2/m1.png" alt="Main Image">
+                    <div class="image-description">合成罐头合成机</div>
+                </div>
+                <div class="thin-line"></div>
+
+                <div class="text">
+                     使用罐头合成机器
+                </div>
+                <div class="images">
+                    <img src="material2/m2.png" alt="Image">
+                    <div class="image-description">使用罐头合成机</div>
+                </div>
+
+                <div class="text">
+                     我们将罐头属性分成5种，当某一种属性比较高时，食用可以获得增益。
+                </div>
+                <div class="images">
+                    <img src="material2/m3.png" alt="Image">
+                    <div class="image-description">合成罐头合成机</div>
+                </div>
+	<div class="thin-line"></div>
+
+                <div class="text">
+                     当你获得荧惑石后，可以制作特殊食物：荧惑糕。食用后有不同概率获得不同效果
+                </div>
+                <div class="images">
+                    <img src="material2/m4.png" alt="Image">
+                    <div class="image-description">制作荧惑糕</div>
+                </div>
+
+                <div class="text">
+                     当然，有更高效的制作方式
+                </div>
+                <div class="images">
+                    <img src="material2/m5.png" alt="Image">
+                    <div class="image-description">高效制作荧惑糕</div>
+                </div>
+
+	<div class="thin-line"></div>
+
+    <div class="text">
+        可以制作 微波炉，来快速加热大批量食物。放入食物后，下蹲+右键进行加热
+    </div>
+<div class="container">
+    <div class="images">
+        <img src="material2/m6.png" alt="Main Image">
+        <div class="image-description">合成 微波炉</div>
+    </div>
+    <div class="images">
+        <img src="material2/m7.png" alt="Main Image">
+        <div class="image-description">放入食物</div>
+    </div>
+    <div class="images">
+        <img src="material2/m8.png" alt="Main Image">
+        <div class="image-description">下蹲+右键使用</div>
+    </div>
+</div>
+
+    <div class="text">
+        当然，你也可以加热一些别的物品
+    </div>
+<div class="container">
+    <div class="images">
+        <img src="material2/m9.png" alt="Main Image">
+        <div class="image-description">干燥海绵</div>
+    </div>
+    <div class="images">
+        <img src="material2/m10.png" alt="Main Image">
+        <div class="image-description">试试看吧</div>
+    </div>
+</div>
+
+
+        <div class="button-container">
+            <button class="jump-button" onclick="location.href='material3.html';">
+                <img src="https://via.placeholder.com/20" alt="Return Logo" style="vertical-align: middle;"> 
+	继续
+            </button>
+        </div>
+
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p></p>
+        <div class="button-container">
+            <button class="jump-button" onclick="location.href='../tutorial_main.html';">
+                <img src="https://via.placeholder.com/20" alt="Return Logo" style="vertical-align: middle;"> 返回
+            </button>
+        </div>
+    </footer>
+</body>
+</html>

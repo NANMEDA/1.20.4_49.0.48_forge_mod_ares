@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BSM",
+    " S ",
+    " S "
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "M": {
+      "item": "maring:basic_metal_parts"
+    },
+    "B": {
+      "item": "maring:bioplastic_parts"
+    }
+  },
+  "result": {
+    "item": "maring:change_stick",
+    "count": 1
+  }
+}

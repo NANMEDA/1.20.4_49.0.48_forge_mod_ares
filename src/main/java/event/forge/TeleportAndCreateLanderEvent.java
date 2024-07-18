@@ -4,6 +4,11 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.eventbus.api.Event;
 import vehicle.rocket.RocketEntity;
 
+/**
+ * 火箭发射到达后
+ * 生成新的火箭并绑定玩家
+ * @author NANMEDA
+ * */
 public class TeleportAndCreateLanderEvent extends Event {
 
     private final RocketEntity rocketEntity;

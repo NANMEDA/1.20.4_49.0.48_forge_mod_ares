@@ -53,10 +53,10 @@ public class itemFood {
     public static int ITEM_FOOD_NUMBER = FOOD_NAME.size();
     
     static {
-    for (Map.Entry<Integer, String> entry : FOOD_NAME.entrySet()) {
-        String name = entry.getValue();
-        ItemJSON.GenJSON(name);
-    }
+	    for (Map.Entry<Integer, String> entry : FOOD_NAME.entrySet()) {
+	        String name = entry.getValue();
+	        ItemJSON.GenJSON(name);
+	    }
     }
     
     public static void addFoodItem(int id, String name, boolean can_eat, int nutrition, float full, Supplier<MobEffectInstance> effectSupplier, float effect_time) {

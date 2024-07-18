@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>主页</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header, footer {
+            background-color: #9acd32;
+            color: black;
+            text-align: center;
+            padding: 10px 0;
+        }
+        main {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            background-image: url('../pic/dorm.png'); /* Replace with your background image path */
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .overlay {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            width: 80%;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .content {
+            text-align: center;
+        }
+        .title {
+            font-size: 2em;
+            margin: 20px 0;
+        }
+        .subtitle {
+            font-size: 1.6em;
+            margin: 20px 0;
+        }
+.container {
+    display: flex; /* 使用 flexbox 布局 */
+    flex-wrap: nowrap; /* 不换行 */
+    justify-content: center; /* 水平居中对齐 */
+    align-items: center; /* 垂直居中对齐 */
+    max-width: 800px; /* 可选：限制容器最大宽度 */
+    margin: 0 auto; /* 设置左右外边距为 auto，自动居中 */
+}
+        .text {
+            font-size: 1.2em;
+            margin: 20px 0;
+            text-align: left;
+            text-indent: 4em;
+        }
+        .images {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin: 10px;
+        }
+        .images img {
+            max-width: 100%;
+            height: auto;
+            max-height: 256px; /* Condense image if height exceeds 256px */
+        }
+        .image-description {
+            font-size: 0.8em;
+            color: gray;
+            font-weight: bold;
+            margin-top: 5px;
+            text-align: center;
+        }
+        .button-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .jump-button {
+            background-color: lime;
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 1em;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .jump-button:hover {
+            background-color: #9acd32;
+            color: white;
+        }
+        .link {
+            text-decoration: none;
+            font-size: 1.2em;
+            display: block;
+            margin: 10px 0;
+        }
+        .link:hover {
+            color: #9acd32;
+        }
+        .thin-line {
+            border-top: 1px solid #9acd32;
+            margin: 20px auto;
+            width: 80%;
+        }
+        .thick-line {
+            border-top: 3px solid #9acd32;
+            margin: 30px auto;
+            width: 80%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>作者</h1>
+    </header>
+    <main>
+        <div class="overlay">
+            <div class="content">
+                <div class="title">
+                    基本材料
+                </div>
+	<div class="text">
+   	 在获得至少八个铁锭和一个黄金锭后，你就可以开始着手准备相关材料了。<br>&emsp;&emsp;&emsp;&emsp;
+    	首先，尝试使用八个铁锭和一个金锭合成一个基础金属材料
+	</div>
+                <div class="images">
+                    <img src="material/m1.png" alt="Main Image">
+                    <div class="image-description">合成配方</div>
+                </div>
+                <div class="thin-line"></div>
+
+    <div class="text">
+        一共有五种最基本的材料。
+    </div>
+<div class="container">
+    <div class="images">
+        <img src="material/m2.png" alt="Main Image">
+        <div class="image-description">基础金属零件</div>
+    </div>
+    <div class="images">
+        <img src="material/m3.png" alt="Main Image">
+        <div class="image-description">生物塑料零件</div>
+    </div>
+    <div class="images">
+        <img src="material/m4.png" alt="Main Image">
+        <div class="image-description">水晶零件</div>
+    </div>
+    <div class="images">
+        <img src="material/m5.png" alt="Main Image">
+        <div class="image-description">高级金属零件</div>
+    </div>
+    <div class="images">
+        <img src="material/m6.png" alt="Main Image">
+        <div class="image-description">半导体零件</div>
+    </div>
+</div>
+
+    <div class="text">
+        在制作了基础金属零件铸机后，可以使用更少的材料合成基础金属零件。
+    </div>
+<div class="container">
+    <div class="images">
+        <img src="material/m7.png" alt="Main Image">
+        <div class="image-description">合成 基础金属零件铸机</div>
+    </div>
+    <div class="images">
+        <img src="material/m8.png" alt="Main Image">
+        <div class="image-description">使用</div>
+    </div>
+</div>
+
+    <div class="text">
+        使用高级金属零件雕机，获得高级金属零件。
+    </div>
+<div class="container">
+    <div class="images">
+        <img src="material/m9.png" alt="Main Image">
+        <div class="image-description">合成 高级金属零件雕机</div>
+    </div>
+    <div class="images">
+        <img src="material/m10.png" alt="Main Image">
+        <div class="image-description">使用</div>
+    </div>
+</div>
+
+    <div class="text">
+        使用生物塑料合成仪，手持右键放入如 土豆，小麦等物品，合成生物塑料零件。
+    </div>
+<div class="container">
+    <div class="images">
+        <img src="material/m11.png" alt="Main Image">
+        <div class="image-description">合成 生物塑料合成仪</div>
+    </div>
+    <div class="images">
+        <img src="material/m12.png" alt="Main Image">
+        <div class="image-description">使用</div>
+    </div>
+</div>
+
+    <div class="text">
+        使用水晶重构仪，手持右键放入 石英 ，逐渐转化成晶体零件。可以使用 钻石，绿宝石，荧惑石 进行加速
+    </div>
+<div class="container">
+    <div class="images">
+        <img src="material/m13.png" alt="Main Image">
+        <div class="image-description">合成 水晶重构仪</div>
+    </div>
+    <div class="images">
+        <img src="material/m14.png" alt="Main Image">
+        <div class="image-description">使用催化剂加速</div>
+    </div>
+</div>
+
+    <div class="text">
+        使用蚀刻机，合成半导体零件
+    </div>
+<div class="container">
+    <div class="images">
+        <img src="material/m15.png" alt="Main Image">
+        <div class="image-description">合成 蚀刻机</div>
+    </div>
+    <div class="images">
+        <img src="material/m16.png" alt="Main Image">
+        <div class="image-description">使用</div>
+    </div>
+</div>
+
+<div class="thin-line"></div>
+
+    <div class="text">
+        当然，你也可以通过村民职业进行获得
+    </div>
+<div class="container">
+    <div class="images">
+        <img src="material/m17.png" alt="Main Image">
+        <div class="image-description">合成 村民手搓台</div>
+    </div>
+    <div class="images">
+        <img src="material/m18.png" alt="Main Image">
+        <div class="image-description">村民职业对照</div>
+    </div>
+</div>
+
+        <div class="button-container">
+            <button class="jump-button" onclick="location.href='material2.html';">
+                <img src="https://via.placeholder.com/20" alt="Return Logo" style="vertical-align: middle;"> 
+	继续
+            </button>
+        </div>
+
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p></p>
+        <div class="button-container">
+            <button class="jump-button" onclick="location.href='../tutorial_main.html';">
+                <img src="https://via.placeholder.com/20" alt="Return Logo" style="vertical-align: middle;"> 返回
+            </button>
+        </div>
+    </footer>
+</body>
+</html>

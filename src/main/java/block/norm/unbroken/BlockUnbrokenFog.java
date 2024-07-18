@@ -1,5 +1,6 @@
-package block.norm;
+package block.norm.unbroken;
 
+import block.norm.BlockJSON;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;

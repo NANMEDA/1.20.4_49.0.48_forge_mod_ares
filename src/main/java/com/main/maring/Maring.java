@@ -1,7 +1,7 @@
 package com.main.maring;
 
 
-import com.creativetabs.register.CreativeTabsRegister;
+import com.creativetabs.CreativeTabsRegister;
 import com.effect.brew.BrewRigster;
 import com.effect.register.EffectRegister;
 import com.item.*;

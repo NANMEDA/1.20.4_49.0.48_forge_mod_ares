@@ -3,7 +3,6 @@ package block.norm;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.AirBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
@@ -25,9 +24,16 @@ import block.norm.bioplasticbuilder.BlockBioplasticBuilderup;
 import block.norm.microwaveoven.BlockMicrowaveOven;
 import block.norm.powerstation.burn.PowerStationBurn;
 import block.norm.powerstation.sun.PowerStationSun;
+import block.norm.unbroken.BlockUnbrokenCement;
+import block.norm.unbroken.BlockUnbrokenFog;
+import block.norm.unbroken.BlockUnbrokenGlass;
+import block.norm.unbroken.BlockUnbrokenGreen;
+import block.norm.unbroken.BlockUnbrokenLightblue;
 
 /**
  * 所有方块和方块类物品的注册
+ * 一般建议越复杂的放到越后面
+ * 复杂的可能会用到简单的
  * @author NANMEDA
  * */
 public class BlockRegister {
@@ -241,8 +247,32 @@ public class BlockRegister {
     public static final RegistryObject<Item> unbrokenfog_BLOCK_ITEM = BLOCK_ITEMS.register(BlockUnbrokenFog.global_name,
     		() -> new BlockItem(unbrokenfog_BLOCK.get(), new Item.Properties()));
     
+    /***
+     * 不可破坏块
+     * ***/
+    public static final RegistryObject<Block> unbrokencement_BLOCK = BLOCKS.register( BlockUnbrokenCement.global_name, () -> {
+		return new BlockUnbrokenCement(BlockBehaviour.Properties.of()
+				.sound(SoundType.STONE));
+	});
+    public static final RegistryObject<Item> unbrokencement_BLOCK_ITEM = BLOCK_ITEMS.register(BlockUnbrokenCement.global_name,
+    		() -> new BlockItem(unbrokencement_BLOCK.get(), new Item.Properties()));
+    
+    public static final RegistryObject<Block> unbrokengreen_BLOCK = BLOCKS.register(BlockUnbrokenGreen.global_name, () -> {
+		return new BlockUnbrokenGreen(BlockBehaviour.Properties.of()
+				.sound(SoundType.STONE));
+	});
+    public static final RegistryObject<Item> unbrokengreen_BLOCK_ITEM = BLOCK_ITEMS.register(BlockUnbrokenGreen.global_name,
+    		() -> new BlockItem(unbrokengreen_BLOCK.get(), new Item.Properties()));
+    
+    public static final RegistryObject<Block> unbrokenlightblue_BLOCK = BLOCKS.register(BlockUnbrokenLightblue.global_name, () -> {
+		return new BlockUnbrokenLightblue(BlockBehaviour.Properties.of()
+				.sound(SoundType.STONE));
+	});
+    public static final RegistryObject<Item> unbrokenlightblue_BLOCK_ITEM = BLOCK_ITEMS.register(BlockUnbrokenLightblue.global_name,
+    		() -> new BlockItem(unbrokenlightblue_BLOCK.get(), new Item.Properties()));
+    
     public static final RegistryObject<Block> A_AIR = BLOCKS.register("a_air",
-    		() -> new AirBlock(BlockBehaviour.Properties.of().replaceable().noCollission().noLootTable().air()));
+    		() -> new BlockAAIR(BlockBehaviour.Properties.of().replaceable().noCollission().noLootTable().air()));
     
     /***
      * 推荐这样子注册机器

@@ -87,4 +87,7 @@ public class ItemRegister {
             () -> new OminousPickaxe(Tiers.GOLD, 1, -2.8F, new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> OMINOUS_SHOVEL = ITEMS.register(OminousShovel.global_name,
             () -> new OminousShovel(Tiers.GOLD, 6.0F, -3.0F, new Item.Properties().stacksTo(1)));
+    
+    public static final RegistryObject<Item> CHANGE_STICK = ITEMS.register(ItemChangeStick.global_name,
+            () -> new ItemChangeStick(new Item.Properties().stacksTo(1)));
 }

@@ -1,4 +1,4 @@
-package com.creativetabs.register;
+package com.creativetabs;
 
 import java.util.stream.IntStream;
 
@@ -94,6 +94,7 @@ public class CreativeTabsRegister {
             	output.accept(ItemRegister.OMINOUS_PICKAXE.get());
             	output.accept(ItemRegister.OMINOUS_SHOVEL.get());
                 output.accept(ItemRegister.FRENCH_BREAD.get());
+                output.accept(ItemRegister.CHANGE_STICK.get());
             }).build());
     
     public static final RegistryObject<CreativeModeTab> MAR_DORM_TAB = CREATIVE_MODE_TABS.register("mar_dorm_tab", () -> CreativeModeTab.builder()

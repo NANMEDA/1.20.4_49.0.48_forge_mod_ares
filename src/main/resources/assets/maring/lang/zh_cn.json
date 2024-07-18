@@ -114,6 +114,7 @@
   "item.maring.ominous_pickaxe": "强化金镐",
   "item.maring.ominous_shovel": "强化金铲",
   "item.maring.ominous_upgrade_smithing_template": "荧惑升级器",
+  "item.maring.change_stick": "穹顶编辑器",
   
   "item.can.show.vegetable": "  蔬菜值: %d",
   "item.can.show.meat": "  肉值: %d",
@@ -134,7 +135,7 @@
   
   
   "entity.maring.jump_spider": "抱子蜘蛛",
-  "entity.minecraft.villager.handmake_master": "手搓大师",
+  "entity.minecraft.villager.maring.handmake_master": "手搓大师",
   
   "effect.maring.fulling": "饱腹",
   "effect.maring.mental_abuse": "精神错乱",
@@ -197,6 +198,8 @@
   "advancements.traveltomar.find_bacterial.description": "发现火星上残留生命力的群系",
   "advancements.traveltomar.water_is_life.title": "水是生命之源",
   "advancements.traveltomar.water_is_life.description": "建设水分收集器",
+  "advancements.traveltomar.first_dorm.title": "火星公民",
+  "advancements.traveltomar.first_dorm.description": "获得最基本的穹顶",
   "advancements.traveltomar.raw_iron_nugget.title": "粉碎石头",
   "advancements.traveltomar.raw_iron_nugget.description": "从火星的岩石中提取额外的铁",
   "advancements.traveltomar.ominous_luck.title": "塞翁失马, 焉知祸福?",

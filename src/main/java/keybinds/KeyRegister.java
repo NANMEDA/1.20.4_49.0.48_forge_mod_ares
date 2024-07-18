@@ -7,6 +7,7 @@ import net.minecraftforge.api.distmarker.Dist;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD,value = Dist.CLIENT)
 public class KeyRegister {
+	
     @SubscribeEvent
     public static void onKeyRegister(RegisterKeyMappingsEvent event) {
         event.register(KeyVariables.ROCKET_SETOFF_KEY);

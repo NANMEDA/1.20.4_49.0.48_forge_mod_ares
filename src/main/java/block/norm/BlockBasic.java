@@ -13,7 +13,7 @@ import java.util.Map;
  * @author NANMEDA
  * */
 public class BlockBasic {
-	public static int BLOCK_BASIC_NUMBER = 39;
+	public static int BLOCK_BASIC_NUMBER = 36;
 	private static int k = 0;
 	
     private static final String[] BLOCK_NAME = new String[BLOCK_BASIC_NUMBER];
@@ -58,15 +58,14 @@ public class BlockBasic {
         //12
     }//22
     
-    /***
-     * 和穹顶相关的
-     * ***/
+
     static {
+    	/*
     	addBlock("unbroken_cement",MapColor.TERRACOTTA_WHITE,SoundType.STONE,new float[]{-1.0F, 3600000.0F},false,null,0);
     	addBlock("unbroken_decoration_green",MapColor.COLOR_GREEN,SoundType.STONE,new float[]{-1.0F, 3600000.0F},false,null,0);
-    	addBlock("unbroken_decoration_lightblue",MapColor.COLOR_LIGHT_BLUE,SoundType.STONE,new float[]{-1.0F, 3600000.0F},false,null,0);
+    	addBlock("unbroken_decoration_lightblue",MapColor.COLOR_LIGHT_BLUE,SoundType.STONE,new float[]{-1.0F, 3600000.0F},false,null,0);*/
     	addBlock("unbroken_void",MapColor.COLOR_GREEN,SoundType.EMPTY,new float[]{-1.0F, 3600000.0F},false,null,0);
-    }//4
+    }//1
     
     static {
     	addBlock("methane_vents", MapColor.COLOR_YELLOW, SoundType.STONE, stone_strength, true, "pickaxe", 0);//还需要 active（在类里面）

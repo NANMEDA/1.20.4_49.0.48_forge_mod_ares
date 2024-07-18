@@ -1,32 +1,45 @@
 package event.forge;
 
+import block.norm.BlockRegister;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.Containers;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
+/**
+ * 检测，
+ * 假如在火星中放置，且周围没有人工空气
+ * 火把，萤火，破坏
+ * 草,花,树苗->枯树
+ * 苔藓块,草块 -> 泥土
+ * @author NANMEDA
+ * */
 @Mod.EventBusSubscriber(modid = "maring", bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class MarPlaceEdit {
+	
+	private static BlockState A_AIR_BLOCK_STATE = null;
 	
 	@SubscribeEvent
     public static void onBlockPlaced(BlockEvent.EntityPlaceEvent event) {
 		if(event.getLevel().isClientSide()) return;
 		if(event.getLevel().getBiome(event.getPos()).get().getFoliageColor() != 9334293) return;
+		if(A_AIR_BLOCK_STATE == null) A_AIR_BLOCK_STATE = BlockRegister.A_AIR.get().defaultBlockState();
+ 		if(checkAnyAAIR(event.getLevel(),event.getPos())) return;
 		Block block = event.getPlacedBlock().getBlock();
         if (posIsSapling(block)) {
             event.getLevel().setBlock(event.getPos(), Blocks.DEAD_BUSH.defaultBlockState(), 2);
             return;
-        }else if(block == Blocks.TORCH||block == Blocks.CAMPFIRE) {
+        }else if(block == Blocks.WALL_TORCH||block == Blocks.TORCH||block == Blocks.CAMPFIRE) {
         	event.getLevel().setBlock(event.getPos(), Blocks.AIR.defaultBlockState(), 2);
             ItemStack stickStack = new ItemStack(Items.STICK);
-            
-            //ItemEntity itemEntity = new ItemEntity(event.getLevel(), event.getPos().getX(), event.getPos().getY(), event.getPos().getZ(), stickStack);
-            //event.getLevel().addFreshEntity(itemEntity)
             Containers.dropContents(event.getEntity().level(),event.getPos(), NonNullList.of(ItemStack.EMPTY, stickStack));
             return;
         }else if(posIsFlower(block)) {
@@ -43,6 +56,23 @@ public class MarPlaceEdit {
         }
         
     }
+	
+	private static boolean checkAnyAAIR(LevelAccessor levelAccessor,BlockPos pos) {
+		BlockPos[] ps = {
+				pos.above(),
+				pos.below(),
+				pos.east(),
+				pos.west(),
+				pos.south(),
+				pos.north()
+		};
+		for(BlockPos p : ps) {
+			if(levelAccessor.getBlockState(p)==A_AIR_BLOCK_STATE) {
+				return true;
+			}
+		}
+		return false;
+	}
 	
 	public static boolean posIsSapling(Block block) {
         return block == Blocks.OAK_SAPLING ||

@@ -16,18 +16,25 @@ import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-
+/**
+ * 这里定义了所有村民交易具体的内容
+ * */
 @Mod.EventBusSubscriber(modid = "maring")
 public class VillagerEvent {
 	
+	/***
+	 * 这个为玩家提供基本的五大零件
+	 * 加上一个礼包
+	 * @author NANMEDA
+	 * ***/
 	@SubscribeEvent
     public static void addCustomTrades(VillagerTradesEvent event) {
 		Random random = new Random();
         if(event.getType() == ModVillager.HANDMAKE_MASTER.get()) {
         	Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
             ItemStack stack1 = new ItemStack(ItemRegister.MATERIAL_ITEMS[1].get(), 1);
-            ItemStack stack2 = new ItemStack(ItemRegister.MATERIAL_ITEMS[5].get(), 1);
-            ItemStack stack3 = new ItemStack(ItemRegister.MATERIAL_ITEMS[3].get(), 1);
+            ItemStack stack2 = new ItemStack(ItemRegister.MATERIAL_ITEMS[3].get(), 1);
+            ItemStack stack3 = new ItemStack(ItemRegister.MATERIAL_ITEMS[5].get(), 1);
             ItemStack stack4 = new ItemStack(ItemRegister.MATERIAL_ITEMS[2].get(), 1);
             ItemStack stack5 = new ItemStack(ItemRegister.MATERIAL_ITEMS[4].get(), 1);//小心顺序哦
             ItemStack stack6 = new ItemStack(BlockRegister.ELECTRIC_BLOCK_ITEMS[BlockElectricBasic.getIdFromName("villager_burried_package")].get(), 1);
