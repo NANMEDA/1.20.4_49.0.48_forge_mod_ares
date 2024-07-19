@@ -53,6 +53,9 @@ public class MarPlaceEdit {
             ItemStack egg = new ItemStack(Items.EGG);
             Containers.dropContents(event.getEntity().level(),event.getPos(), NonNullList.of(ItemStack.EMPTY, egg));
         	return;
+        }else if(block == Blocks.WATER||block == Blocks.ICE) {
+        	event.getLevel().setBlock(event.getPos(), Blocks.PACKED_ICE.defaultBlockState(), 2);
+        	return;
         }
         
     }

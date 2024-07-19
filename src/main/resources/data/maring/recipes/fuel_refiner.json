@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BVB",
+    "UCU",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:iron_block"
+    },
+    "U": {
+      "item": "minecraft:cauldron"
+    },
+    "V": {
+      "item": "minecraft:hopper"
+    },
+    "C": {
+      "item": "maring:crystal_parts"
+    },
+    "B": {
+      "item": "maring:basic_metal_parts"
+    }
+  },
+  "result": {
+    "item": "maring:fuel_refiner",
+    "count": 1
+  }
+}

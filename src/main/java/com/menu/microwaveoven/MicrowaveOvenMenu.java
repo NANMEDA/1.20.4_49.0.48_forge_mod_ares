@@ -2,6 +2,7 @@ package com.menu.microwaveoven;
 
 import org.jetbrains.annotations.NotNull;
 
+import com.item.ItemRegister;
 import com.menu.BlockEntityMenuBasic;
 import com.menu.register.MenuRegister;
 
@@ -28,7 +29,7 @@ public class MicrowaveOvenMenu extends BlockEntityMenuBasic{
 			    public boolean mayPlace(@NotNull ItemStack stack)
 			    {
 					Item item = stack.getItem();
-			        if(!item.isEdible()&&item!=Items.EGG&&item!=Items.WET_SPONGE) {
+			        if(!item.isEdible()&&item!=Items.EGG&&item!=Items.WET_SPONGE&&item!=ItemRegister.CAN.get()) {
 			        	return false;
 			        }
 			        return true;
