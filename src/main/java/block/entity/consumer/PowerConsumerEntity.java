@@ -2,6 +2,7 @@ package block.entity.consumer;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -31,6 +32,10 @@ public abstract class PowerConsumerEntity extends BlockEntity {
     protected abstract void clienttick();
     
     protected void getEnergySupply() {
+    	
+    }
+    
+    public void receiveItemStack(ItemStack stack) {
     	
     }
 }

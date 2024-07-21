@@ -18,6 +18,27 @@ public class Register {
 
 	public static void init() {}
 	
+    public static final RegistryObject<Block> dormjunction_BLOCK = BlockRegister.BLOCKS.register(DormJunction.global_name, () -> {
+		return new DormJunction(BlockBehaviour.Properties.of()
+	            .sound(SoundType.AMETHYST)
+	            .strength(-1.0f,360000.0f)
+	            .noOcclusion()
+	            .mapColor(MapColor.COLOR_ORANGE)); 
+	});
+    public static final RegistryObject<Item> dormjunction_BLOCK_ITEM = BlockRegister.BLOCK_ITEMS.register(DormJunction.global_name,
+    		() -> new BlockItem(dormjunction_BLOCK.get(), new Item.Properties()));
+    
+    public static final RegistryObject<Block> dormjunctioncontrol_BLOCK = BlockRegister.BLOCKS.register(DormJunctionControl.global_name, () -> {
+		return new DormJunctionControl(BlockBehaviour.Properties.of()
+	            .sound(SoundType.AMETHYST)
+	            .strength(-1.0f,360000.0f)
+	            .noOcclusion()
+	            .mapColor(MapColor.COLOR_ORANGE)); 
+	});
+    public static final RegistryObject<Item> dormjunctioncontrol_BLOCK_ITEM = BlockRegister.BLOCK_ITEMS.register(DormJunctionControl.global_name,
+    		() -> new BlockItem(dormjunctioncontrol_BLOCK.get(), new Item.Properties()));
+ 
+	
     public static final RegistryObject<Block> basicspheredorm_BLOCK = BlockRegister.BLOCKS.register(BasicSphereDorm.global_name, () -> {
 		return new BasicSphereDorm(BlockBehaviour.Properties.of()
 	            .sound(SoundType.AMETHYST)
@@ -67,5 +88,6 @@ public class Register {
 	});
     public static final RegistryObject<Item> spheredoor_BLOCK_ITEM = BlockRegister.BLOCK_ITEMS.register(SphereDoor.global_name,
     		() -> new BlockItem(spheredoor_BLOCK.get(), new Item.Properties()));
- 
+    
+
 }

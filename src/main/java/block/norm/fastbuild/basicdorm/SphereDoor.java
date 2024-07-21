@@ -2,7 +2,6 @@ package block.norm.fastbuild.basicdorm;
 
 import javax.annotation.Nullable;
 
-import block.norm.BlockBasic;
 import block.norm.BlockJSON;
 import block.norm.BlockRegister;
 import net.minecraft.core.BlockPos;
@@ -14,7 +13,6 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -23,7 +21,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
  * 出口穹顶
  * 有4个方向
  * 比如说，当玩家朝着北方放置该方块
- * 右键后，出口朝向南方（玩家背面）
+ * 右键后，出口(方块方向)朝向南方（玩家背面）
  * @author NANMEDA
  * */
 public class SphereDoor extends Block {
@@ -46,9 +44,30 @@ public class SphereDoor extends Block {
         if (!level.isClientSide()) {
             createGlassSphere(level, pos, direction);
             createCementBase(level, pos, direction);
+            createJunctionBase(level,pos.below(),direction);
         }
         return InteractionResult.SUCCESS;
     }
+    
+    private void createJunctionBase(Level level, BlockPos pos,Direction direction) {
+    	switch (direction) {
+		case NORTH: 
+			block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(0,0,5),6);
+			break;
+		case SOUTH: 
+			block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(0,0,-5),2);
+			break;
+		case EAST: 
+			block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(5,0,0),0);
+			break;
+		case WEST: 
+			block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(-5,0,0),4);
+			break;
+		default:
+			throw new IllegalArgumentException("Unexpected value: " + direction);
+		}
+    	
+	}
 
     /***
      * 用来生成底座的

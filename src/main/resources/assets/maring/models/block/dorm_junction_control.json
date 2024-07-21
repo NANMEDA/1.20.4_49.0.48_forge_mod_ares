@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "end": "maring:block/dorm_junction_control_top",
+        "side": "maring:block/dorm_junction_control_side"
+    }
+}

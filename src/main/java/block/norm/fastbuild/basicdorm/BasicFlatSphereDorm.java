@@ -36,9 +36,18 @@ public class BasicFlatSphereDorm extends Block {
         if (!level.isClientSide()) {
             createGlassSphere(level, pos);
             createCementBase(level, pos);
+            createJunctionBase(level,pos.below());
         }
         return InteractionResult.SUCCESS;
     }
+    
+    private void createJunctionBase(Level level, BlockPos pos) {
+    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(0,0,14),6);
+    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(0,0,-14),2);
+    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(14,0,0),0);
+    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(-14,0,0),4);
+    	
+	}
 
     /***
      * 用来生成底座的

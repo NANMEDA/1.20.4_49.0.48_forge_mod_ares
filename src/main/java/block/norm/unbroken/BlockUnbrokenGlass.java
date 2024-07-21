@@ -49,27 +49,27 @@ public class BlockUnbrokenGlass extends Block {
 	    
 	    // Check each direction and set the corresponding boolean
 	    if (this.up != (pLevel.getBlockState(upPos).getBlock() == this)) {
-	        System.out.println("up has changed");
+	        //System.out.println("up has changed");
 	        this.up = pLevel.getBlockState(upPos).getBlock() == this;
 	        return;
 	    } else if (this.down != (pLevel.getBlockState(downPos).getBlock() == this)) {
-	        System.out.println("down has changed");
+	        //System.out.println("down has changed");
 	        this.down = pLevel.getBlockState(downPos).getBlock() == this;
 	        return;
 	    } else if (this.left != (pLevel.getBlockState(leftPos).getBlock() == this)) {
-	        System.out.println("left has changed");
+	        //System.out.println("left has changed");
 	        this.left = pLevel.getBlockState(leftPos).getBlock() == this;
 	        return;
 	    } else if (this.right != (pLevel.getBlockState(rightPos).getBlock() == this)) {
-	        System.out.println("right has changed");
+	        //System.out.println("right has changed");
 	        this.right = pLevel.getBlockState(rightPos).getBlock() == this;
 	        return;
 	    } else if (this.front != (pLevel.getBlockState(frontPos).getBlock() == this)) {
-	        System.out.println("front has changed");
+	        //System.out.println("front has changed");
 	        this.front = pLevel.getBlockState(frontPos).getBlock() == this;
 	        return;
 	    } else if (this.behind != (pLevel.getBlockState(behindPos).getBlock() == this)) {
-	        System.out.println("behind has changed");
+	        //System.out.println("behind has changed");
 	        this.behind = pLevel.getBlockState(behindPos).getBlock() == this;
 	        return;
 	    }

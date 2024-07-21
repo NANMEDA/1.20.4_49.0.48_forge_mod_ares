@@ -12,7 +12,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-
 /**
  * 球形穹顶 I
  * @author NANMEDA
@@ -36,11 +35,25 @@ public class BasicSphereDorm extends Block {
         if (!level.isClientSide()) {
             createGlassSphere(level, pos);
             createCementBase(level, pos);
+            createJunctionBase(level,pos.below());
         }
         return InteractionResult.SUCCESS;
     }
 
-    /***
+    private void createJunctionBase(Level level, BlockPos pos) {
+    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(0,0,12),6);
+    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(0,0,-12),2);
+    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(12,0,0),0);
+    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(-12,0,0),4);
+    	
+    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(9,0,9),7);
+    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(9,0,-9),1);
+    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(-9,0,9),5);
+    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(-9,0,-9),3);
+    	
+	}
+
+	/***
      * 用来生成底座的
      * 一般认为
      * 底座是-2底层 圆盘

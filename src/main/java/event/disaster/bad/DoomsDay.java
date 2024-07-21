@@ -50,7 +50,7 @@ public class DoomsDay {
 			return;
 		}
 		if(event.level.getDayTime()%20==0) {
-			System.out.println("当前距离doom tick: "+ (DOOMS_DAY_START - event.level.getDayTime()));
+			//System.out.println("当前距离doom tick: "+ (DOOMS_DAY_START - event.level.getDayTime()));
 		}
 		Level level = event.level;
 		if(!level.isClientSide() && level.dimension()==Level.OVERWORLD) {

@@ -10,6 +10,7 @@ import block.entity.consumer.microwaveoven.MicrowaveOvenEntity;
 import block.entity.consumer.stonewasher.StoneWasherEntity;
 import block.entity.consumer.watergather.WaterGatherEntity;
 import block.entity.neutral.crystalbuilder.CrystalBuilderEntity;
+import block.entity.neutral.fastbuild.DormJunctionControlEntity;
 import block.entity.neutral.fuelrefiner.FuelRefinerEntity;
 import block.entity.neutral.researchtable.ResearchTableEntity;
 import block.entity.station.PowerStationBurnEntity;
@@ -61,5 +62,8 @@ public class BlockEntityRegister {
 
 	public static final RegistryObject<BlockEntityType<FuelRefinerEntity>> fuelrefiner_BLOCKENTITY = 
 			BLOCKENTITIES.register("fuel_refiner", () -> BlockEntityType.Builder.of(FuelRefinerEntity::new, block.norm.fuelrefiner.Register.fuelrefiner_BLOCK.get()).build(null));
+
+	public static final RegistryObject<BlockEntityType<DormJunctionControlEntity>> dormjunctioncontrol_BLOCKENTITY = 
+			BLOCKENTITIES.register("dorm_junction_control", () -> BlockEntityType.Builder.of(DormJunctionControlEntity::new, block.norm.fastbuild.Register.dormjunctioncontrol_BLOCK.get()).build(null));
 
 }

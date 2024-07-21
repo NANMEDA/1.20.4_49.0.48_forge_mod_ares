@@ -51,11 +51,27 @@ public class BasicEclipseDorm extends Block {
     		}
             createGlassSphere(level, pos,rotate);
             createCementBase(level, pos,rotate);
+            createJunctionBase(level,pos.below(),rotate);
         }
         return InteractionResult.SUCCESS;
     }
+    
+    private void createJunctionBase(Level level, BlockPos pos,boolean rotate) {
+    	if(rotate) {
+	    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(-10,0,8),5);
+	    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(10,0,-8),1);
+	    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(10,0,8),7);
+	    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(-10,0,-8),3);
+    	}else {
+	    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(-8,0,10),5);
+	    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(8,0,-10),1);
+	    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(8,0,10),7);
+	    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(-8,0,-10),3);
+    	}
+    	
+	}
 
-    /***
+	/***
      * 用来生成底座的
      * 一般认为
      * 底座是-2底层 圆盘

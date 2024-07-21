@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>前往火星</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header, footer {
+            background-color: #9acd32;
+            color: black;
+            text-align: center;
+            padding: 10px 0;
+        }
+        main {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            background-image: url('../pic/dorm.png'); /* Replace with your background image path */
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .overlay {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            width: 80%;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .content {
+            text-align: center;
+        }
+        .title {
+            font-size: 2em;
+            margin: 20px 0;
+        }
+        .subtitle {
+            font-size: 1.6em;
+            margin: 20px 0;
+        }
+.container {
+    display: flex; /* 使用 flexbox 布局 */
+    flex-wrap: nowrap; /* 不换行 */
+    justify-content: center; /* 水平居中对齐 */
+    align-items: center; /* 垂直居中对齐 */
+    max-width: 800px; /* 可选：限制容器最大宽度 */
+    margin: 0 auto; /* 设置左右外边距为 auto，自动居中 */
+}
+        .text {
+            font-size: 1.2em;
+            margin: 20px 0;
+            text-align: left;
+            text-indent: 4em;
+        }
+        .images {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin: 10px;
+        }
+        .images img {
+            max-width: 100%;
+            height: auto;
+            max-height: 256px; /* Condense image if height exceeds 256px */
+        }
+        .image-description {
+            font-size: 0.8em;
+            color: gray;
+            font-weight: bold;
+            margin-top: 5px;
+            text-align: center;
+        }
+        .button-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .jump-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 1em;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .jump-button:hover {
+            background-color: #4CAF50;
+            color: black;
+        }
+        .link {
+            text-decoration: none;
+            font-size: 1.2em;
+            display: block;
+            margin: 10px 0;
+        }
+        .link:hover {
+            color: #9acd32;
+        }
+        .thin-line {
+            border-top: 1px solid #9acd32;
+            margin: 20px auto;
+            width: 80%;
+        }
+        .thick-line {
+            border-top: 3px solid #9acd32;
+            margin: 30px auto;
+            width: 80%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1></h1>
+    </header>
+    <main>
+        <div class="overlay">
+            <div class="content">
+                <div class="title">
+                    穹顶及其建设
+                </div>
+	<div class="text">
+   	在建设穹顶前，首先建议你先有以下两种装备：（没有也行）
+	</div>
+	<div class="container">
+                <div class="images">
+                    <img src="gotomar2/g1.png" alt="Main Image">
+                    <div class="image-description">穹顶编辑器</div>
+                </div>
+                <div class="images">
+                    <img src="gotomar2/g2.png" alt="Main Image">
+                    <div class="image-description">穹顶连接器</div>
+                </div>
+	</div>
+
+	<div class="text">
+   	制作方法如下
+	</div>
+	<div class="container">
+                <div class="images">
+                    <img src="gotomar2/g3.png" alt="Main Image">
+                    <div class="image-description">穹顶编辑器合成</div>
+                </div>
+                <div class="images">
+                    <img src="gotomar2/g4.png" alt="Main Image">
+                    <div class="image-description">穹顶连接器合成</div>
+                </div>
+	</div>
+
+                <div class="thin-line"></div>
+                
+	<div class="text">
+   	要建设穹顶，首先需要穹顶方块<br>如图所示，是一个扁球形的基本穹顶块
+	</div>
+                <div class="images">
+                    <img src="gotomar2/g5.png" alt="Main Image">
+                    <div class="image-description">扁球形的基本穹顶块</div>
+                </div>
+	<div class="text">
+   	放置在地上，并右键
+	</div>
+                <div class="images">
+                    <img src="gotomar2/g6.png" alt="Main Image">
+                    <div class="image-description">效果</div>
+                </div>
+	</div>
+                <div class="images">
+                    <img src="gotomar2/g7.png" alt="Main Image">
+                    <div class="image-description">穹顶壳体不可破坏</div>
+                </div>
+	<div class="text">
+   	使用穹顶编辑器右键，可以实现结构混凝土和结构玻璃之间转化
+	</div>
+                <div class="images">
+                    <img src="gotomar2/g8.png" alt="Main Image">
+                    <div class="image-description">转化</div>
+                </div>
+	<div class="text">
+   	使用颜料右键，可以实现染色
+	</div>
+                <div class="images">
+                    <img src="gotomar2/g9.png" alt="Main Image">
+                    <div class="image-description">效果</div>
+                </div>
+
+	<div class="text">
+   	使用穹顶连接器，可以自动连接两个穹顶
+	</div>
+	<div class="container">
+                <div class="images">
+                    <img src="gotomar2/g10.png" alt="Main Image">
+                    <div class="image-description">选择某一个穹顶的连接控制器</div>
+                </div>
+                <div class="images">
+                    <img src="gotomar2/g11.png" alt="Main Image">
+                    <div class="image-description">选择另一个穹顶的连接控制器</div>
+                </div>
+	</div>
+                <div class="images">
+                    <img src="gotomar2/g12.png" alt="Main Image">
+                    <div class="image-description">实现连接</div>
+                </div>
+
+        <div class="button-container">
+            <button class="jump-button" onclick="location.href='gotomar3.html';">
+                <img src="https://via.placeholder.com/20" alt="Return Logo" style="vertical-align: middle;"> 
+	继续
+            </button>
+        </div>
+
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p></p>
+        <div class="button-container">
+            <button class="jump-button" onclick="location.href='../tutorial_main.html';">
+                <img src="https://via.placeholder.com/20" alt="Return Logo" style="vertical-align: middle;"> 返回
+            </button>
+        </div>
+    </footer>
+</body>
+</html>

@@ -95,6 +95,7 @@ public class CreativeTabsRegister {
             	output.accept(ItemRegister.OMINOUS_SHOVEL.get());
                 output.accept(ItemRegister.FRENCH_BREAD.get());
                 output.accept(ItemRegister.CHANGE_STICK.get());
+                output.accept(ItemRegister.JUNCTION_CONNECTOR.get());
             }).build());
     
     public static final RegistryObject<CreativeModeTab> MAR_DORM_TAB = CREATIVE_MODE_TABS.register("mar_dorm_tab", () -> CreativeModeTab.builder()

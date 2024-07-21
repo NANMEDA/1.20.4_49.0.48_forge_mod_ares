@@ -1,6 +1,5 @@
 package com.item;
 
-import block.norm.BlockBasic;
 import block.norm.BlockRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionResult;
@@ -11,7 +10,7 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public class ItemChangeStick extends Item {
     
-    private static final BlockState UNBROKEN_CEMENT_BLOCKSTATE = BlockRegister.COMMON_BLOCKS[BlockBasic.getIdFromName("unbroken_cement")].get().defaultBlockState();
+    private static final BlockState UNBROKEN_CEMENT_BLOCKSTATE = BlockRegister.unbrokencement_BLOCK.get().defaultBlockState();
     private static final BlockState UNBROKEN_GLASS_BLOCKSTATE = BlockRegister.unbrokenglass_BLOCK.get().defaultBlockState();
 	public static final String global_name = "change_stick";
             
@@ -34,10 +33,7 @@ public class ItemChangeStick extends Item {
             return InteractionResult.SUCCESS;
         }
 
-        return InteractionResult.CONSUME;
+        return InteractionResult.PASS;
     }
     
-	static {
-		ItemJSON.GenJSON(global_name);
-	}
 }

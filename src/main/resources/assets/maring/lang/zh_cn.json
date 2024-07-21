@@ -62,6 +62,8 @@
   "block.maring.broken_advanced_electronic_block": "远古损坏仪器",
   "block.maring.villager_burried_package": "村民埋藏的包裹 <据称>",
   
+  "block.maring.dorm_junction": "穹顶连接框",
+  "block.maring.dorm_junction_control": "穹顶连接控制器",
   "block.maring.basic_sphere_dorm": "球形穹顶 I",
   "block.maring.basic_flat_sphere_dorm": "扁球形穹顶 I",
   "block.maring.basic_eclipse_dorm": "椭球形穹顶 I",
@@ -115,6 +117,7 @@
   "item.maring.ominous_shovel": "强化金铲",
   "item.maring.ominous_upgrade_smithing_template": "荧惑升级器",
   "item.maring.change_stick": "穹顶编辑器",
+  "item.maring.junction_connector": "穹顶连接器",
   
   "item.can.show.vegetable": "  蔬菜值: %d",
   "item.can.show.meat": "  肉值: %d",
@@ -224,6 +227,13 @@
   "maring.disaster.dooms_day.warning": "假如再不离开的话, 可能再也离开不了了",
 
   "death.attack.damage.pressure": "%1$s暴露于不适宜的大气中",
+  
+  "dorm.connection.able": "试图进行连接...",
+  "dorm.connection.unable.anglechangetoofast": "穹顶转角过快 <比如北方向不能连东方向>",
+  "dorm.connection.unable.tooclose": "连接点过近<曼哈顿距离小于8>",
+  "dorm.connection.unable.toosteep": "连接点过陡峭<斜率至少小于1/6>",
+  "dorm.connection.unable.toofar": "连接点过远<曼哈顿距离大于100>",
+  "dorm.connection.unable.anglenotgood": "不适合的角度 <我的算法里检测两个连接点向其方向发射的射线是否相交，以避免出现奇怪的情况>",
   
   "villager.poops": "普通的",
   "villager.poops.valuable": "典藏的"

@@ -51,9 +51,25 @@ public class BasicFlatEclipseDorm extends Block {
     		}
             createGlassSphere(level, pos,rotate);
             createCementBase(level, pos,rotate);
+            createJunctionBase(level,pos.below(),rotate);
         }
         return InteractionResult.SUCCESS;
     }
+    
+    private void createJunctionBase(Level level, BlockPos pos,boolean rotate) {
+    	if(rotate) {
+	    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(0,0,12),6);
+	    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(0,0,-12),2);
+	    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(17,0,0),0);
+	    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(-17,0,0),4);
+    	}else {
+        	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(0,0,17),6);
+        	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(0,0,-17),2);
+        	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(12,0,0),0);
+        	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(-12,0,0),4);
+    	}
+    	
+	}
 
     /***
      * 用来生成底座的
