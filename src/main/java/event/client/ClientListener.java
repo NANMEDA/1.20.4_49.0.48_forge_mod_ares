@@ -13,6 +13,7 @@ import vehicle.rocket.RocketTier1Renderer;
 
 import com.menu.advancedmetalmanufactor.AdvancedMetalManufactorScreen;
 import com.menu.basicmetalmanufactor.BasicMetalManufactorScreen;
+import com.menu.blueprintbuilder.BlueprintBuilderScreen;
 import com.menu.canfoodmaker.CanfoodMakerScreen;
 import com.menu.etchingmachine.EtchingMachineScreen;
 import com.menu.fuelrefiner.FuelRefinerScreen;
@@ -20,6 +21,7 @@ import com.menu.microwaveoven.MicrowaveOvenScreen;
 import com.menu.playerextend.PlayerExtendScreen;
 import com.menu.powerstationburn.PowerStationBurnScreen;
 import com.menu.register.MenuRegister;
+import com.menu.reseachtable.ResearchTableScreen;
 import com.menu.stonewasher.StoneWasherScreen;
 
 import animal.client.model.JumpSpiderModel;
@@ -60,6 +62,10 @@ public class ClientListener{
 		event.enqueueWork(()->MenuScreens.register(MenuRegister.FUELREFINER_MENU.get(), FuelRefinerScreen::new));
 		
 		event.enqueueWork(()->MenuScreens.register(MenuRegister.PLAYEREXTEND_MENU.get(), PlayerExtendScreen::new));
+		
+		event.enqueueWork(()->MenuScreens.register(MenuRegister.RESEARCHTABLE_MENU.get(), ResearchTableScreen::new));
+		
+		event.enqueueWork(()->MenuScreens.register(MenuRegister.BLUEPRINTBUILDER_MENU.get(), BlueprintBuilderScreen::new));
 		
 		
 		

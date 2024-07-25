@@ -45,7 +45,9 @@
 	],
     [],
     [],
-    [],
+    [
+      "maring:exposed_iron"
+    ],
     [
       "maring:ancient_rocket"
     ]

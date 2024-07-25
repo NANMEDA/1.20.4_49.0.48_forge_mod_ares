@@ -1,11 +1,10 @@
 package command.disaster;
 
+import com.main.maring.ExtraConfig;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 
-import event.disaster.DisasterConfig;
-import event.disaster.bad.DoomsDay;
 import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.network.chat.Component;
@@ -22,11 +21,16 @@ public class DoomsSetDays implements Command<CommandSourceStack> {
         			.setStyle(Style.EMPTY.withColor(ChatFormatting.RED)));
         	return 1;
         }
-        DoomsDay.DOOMS_DAY_START = (day*DisasterConfig.DAY_TICKS + DisasterConfig.NIGHT_TICKS); 
-        DoomsDay.DOOMS_DAY_TOMORROW = (DoomsDay.DOOMS_DAY_START - DisasterConfig.DAY_TICKS);
-        DoomsDay.DOOMS_DAY_END = (DoomsDay.DOOMS_DAY_START + DisasterConfig.DOOM_EVENT_DURATION);
+        //DoomsDay.DOOMS_DAY_START = (day*ExtraConfig.DAY_TICKS + ExtraConfig.NIGHT_TICKS); 
+        //DoomsDay.DOOMS_DAY_TOMORROW = (DoomsDay.DOOMS_DAY_START - ExtraConfig.DAY_TICKS);
+        //DoomsDay.DOOMS_DAY_END = (DoomsDay.DOOMS_DAY_START + ExtraConfig.DOOM_EVENT_DURATION);
+        
+        ExtraConfig.DOOMS_DAY_START = (day*ExtraConfig.DAY_TICKS + ExtraConfig.NIGHT_TICKS); 
+        ExtraConfig.DOOMS_DAY_TOMORROW = (ExtraConfig.DOOMS_DAY_START - ExtraConfig.DAY_TICKS);
+        ExtraConfig.DOOMS_DAY_END = (ExtraConfig.DOOMS_DAY_START + ExtraConfig.DOOM_EVENT_DURATION);
         
         context.getSource().getPlayer().sendSystemMessage(Component.translatable("maring.command.doomsdaycome.set",day));
-        return 1; // 返回1表示命令成功执行
+        ExtraConfig.save(context.getSource().getServer());
+        return 1;
     }
 }

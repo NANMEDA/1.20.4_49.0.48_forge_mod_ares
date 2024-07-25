@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SSS",
+    "R I",
+    "SSS"
+  ],
+  "key": {
+    "R": {
+      "item": "maring:radiation_layer"
+    },
+    "S": {
+      "item": "maring:sructure_layer"
+    },
+    "I": {
+      "item": "maring:insulation_layer"
+    }
+  },
+  "result": {
+    "item": "maring:building_structure",
+    "count": 3
+  }
+}

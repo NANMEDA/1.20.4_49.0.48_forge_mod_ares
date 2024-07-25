@@ -1,7 +1,8 @@
 {
   "variants": {
-    "": {
-      "model": "maring:block/research_table"
-    }
+    "facing=north": { "model": "maring:block/research_table" },
+    "facing=east": { "model": "maring:block/research_table", "y": 90 },
+    "facing=south": { "model": "maring:block/research_table", "y": 180 },
+    "facing=west": { "model": "maring:block/research_table", "y": 270}
   }
 }

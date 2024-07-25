@@ -119,7 +119,7 @@ public class ItemCan extends Item {
     	int corn= ItemCanNBT.getCorn(stack);
     	int Fruit= ItemCanNBT.getFruit(stack);
     	MutableComponent name = Component.empty();
-    	if(Vegetable>=4) {
+    	if(Fish>=4) {
     		return Component.translatable("cans.axolotl");
     	}
     	

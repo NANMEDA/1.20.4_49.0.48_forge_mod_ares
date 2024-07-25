@@ -1,7 +1,6 @@
 package block.norm.machineparts;
 
 import block.norm.BlockRegister;
-import block.norm.crystalbuilder.BlockCrystalBuilder;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;

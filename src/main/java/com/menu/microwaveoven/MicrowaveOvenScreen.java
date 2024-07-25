@@ -3,11 +3,8 @@ package com.menu.microwaveoven;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 
-import block.entity.consumer.etchingmachine.EtchingMachineEntity;
 import block.entity.consumer.microwaveoven.MicrowaveOvenEntity;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.components.Button;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;

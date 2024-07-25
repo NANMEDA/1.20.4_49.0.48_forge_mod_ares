@@ -4,6 +4,7 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraftforge.registries.DeferredRegister;
@@ -127,6 +128,8 @@ public class BlockRegister {
     	            .mapColor(MapColor.COLOR_GRAY)); 
     	});
     	awakeningstone_BLOCK_ITEM = BLOCK_ITEMS.register(BlockAwakeningStone.global_name, () -> new BlockItem(awakeningstone_BLOCK.get(), new Item.Properties()));
+    
+    	block.norm.decoration.Register.init();
     }
     
     
@@ -138,15 +141,6 @@ public class BlockRegister {
 	            .mapColor(MapColor.COLOR_GRAY)); 
 	});
     public static final RegistryObject<Item> microwaveoven_BLOCK_ITEM = BLOCK_ITEMS.register(BlockMicrowaveOven.global_name, () -> new BlockItem(microwaveoven_BLOCK.get(), new Item.Properties()));
-
-    public static final RegistryObject<Block> unbrokenglass_BLOCK = BLOCKS.register(BlockUnbrokenGlass.global_name, () -> {
-		return new BlockUnbrokenGlass(BlockBehaviour.Properties.of()
-	            .sound(SoundType.GLASS)
-	            .strength(-1.0f,-1.0f)
-	            .noOcclusion()
-	            .mapColor(MapColor.NONE)); 
-	});
-    public static final RegistryObject<Item> unbrokenglass_BLOCK_ITEM = BLOCK_ITEMS.register(BlockUnbrokenGlass.global_name, () -> new BlockItem(unbrokenglass_BLOCK.get(), new Item.Properties()));
 
     public static final RegistryObject<Block> basicmetalmanufactor_BLOCK = BLOCKS.register(BlockBasicMetalManufactor.global_name, () -> {
 		return new BlockBasicMetalManufactor(BlockBehaviour.Properties.of()
@@ -239,7 +233,7 @@ public class BlockRegister {
     public static final RegistryObject<Block> unbrokenfog_BLOCK = BLOCKS.register(BlockUnbrokenFog.global_name, () -> {
 		return new BlockUnbrokenFog(BlockBehaviour.Properties.of()
 	            .sound(SoundType.STONE)
-	            .strength(-1.0f,360000f)
+	            .strength(-1.0f,360000.0f)
 	            .noOcclusion()
 	            .noCollission()
 	            .mapColor(MapColor.NONE)); 
@@ -250,6 +244,15 @@ public class BlockRegister {
     /***
      * 不可破坏块
      * ***/
+    public static final RegistryObject<Block> unbrokenglass_BLOCK = BLOCKS.register(BlockUnbrokenGlass.global_name, () -> {
+		return new BlockUnbrokenGlass(BlockBehaviour.Properties.of()
+	            .sound(SoundType.GLASS)
+	            .strength(-1.0f,3600000.0f)
+	            .noOcclusion()
+	            .mapColor(MapColor.NONE)); 
+	});
+    public static final RegistryObject<Item> unbrokenglass_BLOCK_ITEM = BLOCK_ITEMS.register(BlockUnbrokenGlass.global_name, () -> new BlockItem(unbrokenglass_BLOCK.get(), new Item.Properties()));
+    
     public static final RegistryObject<Block> unbrokencement_BLOCK = BLOCKS.register( BlockUnbrokenCement.global_name, () -> {
 		return new BlockUnbrokenCement(BlockBehaviour.Properties.of()
 				.sound(SoundType.STONE));
@@ -291,5 +294,6 @@ public class BlockRegister {
     
     static {
     	block.norm.fastbuild.Register.init();
+    	block.norm.blueprintbuilder.Register.init();
     }
 }

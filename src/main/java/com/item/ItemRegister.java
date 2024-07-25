@@ -4,6 +4,7 @@ import java.util.stream.IntStream;
 
 import com.item.armor.ModArmor;
 import com.item.armor.ModArmorMaterials;
+import com.item.blueprint.ItemBlueprint;
 import com.item.can.ItemCan;
 import com.item.rocket.RocketItem;
 import com.item.tool.OminousAxe;
@@ -94,4 +95,10 @@ public class ItemRegister {
     
     public static final RegistryObject<Item> JUNCTION_CONNECTOR = ITEMS.register(ItemJunctionConnector.global_name,
             () -> new ItemJunctionConnector(new Item.Properties().stacksTo(1)));
+    
+    public static final RegistryObject<Item> BLUE_PRINT = ITEMS.register(ItemBlueprint.global_name,
+            () -> new ItemBlueprint(new Item.Properties().stacksTo(1)));
+    
+    public static final RegistryObject<Item> BUILDING_STRUCTURE = ITEMS.register(ItemBuildingStructure.global_name,
+            () -> new ItemBuildingStructure(new Item.Properties().stacksTo(128)));
 }

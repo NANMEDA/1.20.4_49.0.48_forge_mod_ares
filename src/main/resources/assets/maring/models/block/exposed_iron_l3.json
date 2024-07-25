@@ -1,0 +1,77 @@
+{
+	"credit": "Made with Blockbench",
+	"texture_size": [64, 64],
+	"textures": {
+		"0": "maring:block/exposed_iron_l3",
+		"particle": "maring:block/exposed_iron_l3"
+	},
+	"elements": [
+		{
+			"from": [1, 0, 3],
+			"to": [4, 2, 5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [2, 0, 3]},
+			"faces": {
+				"north": {"uv": [5.75, 6.5, 6.5, 7], "texture": "#0"},
+				"east": {"uv": [3.25, 7, 3.75, 7.5], "texture": "#0"},
+				"south": {"uv": [6.5, 6.5, 7.25, 7], "texture": "#0"},
+				"west": {"uv": [3.75, 7, 4.25, 7.5], "texture": "#0"},
+				"up": {"uv": [2.5, 7.5, 1.75, 7], "texture": "#0"},
+				"down": {"uv": [3.25, 7, 2.5, 7.5], "texture": "#0"}
+			}
+		},
+		{
+			"from": [3, 0, 1],
+			"to": [10, 10, 11],
+			"rotation": {"angle": 0, "axis": "y", "origin": [3, 0, 1]},
+			"faces": {
+				"north": {"uv": [4.5, 0, 6.25, 2.5], "texture": "#0"},
+				"east": {"uv": [0, 0, 2.5, 2.5], "texture": "#0"},
+				"south": {"uv": [2.5, 4.5, 4.25, 7], "texture": "#0"},
+				"west": {"uv": [0, 2.5, 2.5, 5], "texture": "#0"},
+				"up": {"uv": [6.25, 5, 4.5, 2.5], "texture": "#0"},
+				"down": {"uv": [1.75, 5, 0, 7.5], "texture": "#0"}
+			}
+		},
+		{
+			"from": [10, 0, 3],
+			"to": [12, 4, 7],
+			"rotation": {"angle": 0, "axis": "y", "origin": [3, 0, 0]},
+			"faces": {
+				"north": {"uv": [1.75, 5, 2.25, 6], "texture": "#0"},
+				"east": {"uv": [4.25, 6.5, 5.25, 7.5], "texture": "#0"},
+				"south": {"uv": [1.75, 6, 2.25, 7], "texture": "#0"},
+				"west": {"uv": [6.5, 4.5, 7.5, 5.5], "texture": "#0"},
+				"up": {"uv": [5.75, 7.5, 5.25, 6.5], "texture": "#0"},
+				"down": {"uv": [7, 5.5, 6.5, 6.5], "texture": "#0"}
+			}
+		},
+		{
+			"from": [7, 0, 5],
+			"to": [15, 6, 14],
+			"rotation": {"angle": 0, "axis": "y", "origin": [1, 0, -1]},
+			"faces": {
+				"north": {"uv": [6.25, 1.5, 8.25, 3], "texture": "#0"},
+				"east": {"uv": [4.25, 5, 6.5, 6.5], "texture": "#0"},
+				"south": {"uv": [6.25, 3, 8.25, 4.5], "texture": "#0"},
+				"west": {"uv": [6.25, 0, 8.5, 1.5], "texture": "#0"},
+				"up": {"uv": [4.5, 2.25, 2.5, 0], "texture": "#0"},
+				"down": {"uv": [4.5, 2.25, 2.5, 4.5], "texture": "#0"}
+			}
+		}
+	],
+	"display": {
+		"gui": {
+			"rotation": [20, 40, 0],
+			"translation": [0.75, 2.7, 0],
+			"scale": [0.8, 0.8, 0.8]
+		}
+	},
+	"groups": [
+		{
+			"name": "VoxelShapes",
+			"origin": [4, 0, -4],
+			"color": 0,
+			"children": [0, 1, 2, 3]
+		}
+	]
+}

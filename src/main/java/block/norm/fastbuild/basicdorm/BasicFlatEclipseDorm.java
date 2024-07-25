@@ -5,8 +5,10 @@ import javax.annotation.Nullable;
 import block.norm.BlockBasic;
 import block.norm.BlockJSON;
 import block.norm.BlockRegister;
+import block.norm.fastbuild.DormHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Vec3i;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -39,15 +41,20 @@ public class BasicFlatEclipseDorm extends Block {
     @Override
     public InteractionResult use(BlockState blockstate, Level level, BlockPos pos, Player player, InteractionHand interactionhand, BlockHitResult blockHitResult) {
         super.use(blockstate, level, pos, player, interactionhand, blockHitResult);
-        boolean rotate = false;
+        boolean rotate = true;
         if (!level.isClientSide()) {
         	Direction direction = blockstate.getValue(BlockStateProperties.FACING);
     		switch (direction) {
     		    case NORTH:
     		    case SOUTH:
     			default:
-    				rotate = true;
+    				rotate = false;
     			break;
+    		}
+    		if(rotate){
+    			if(DormHelper.checkPlaceDormOccupied(level, pos, new Vec3i(-15, -2, -10),new Vec3i(15, 7, 10), player)) return InteractionResult.FAIL;
+    		}else {
+    			if(DormHelper.checkPlaceDormOccupied(level, pos, new Vec3i(-10, -2, -15),new Vec3i(10, 7, 15), player)) return InteractionResult.FAIL;
     		}
             createGlassSphere(level, pos,rotate);
             createCementBase(level, pos,rotate);

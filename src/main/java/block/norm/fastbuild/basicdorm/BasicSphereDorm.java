@@ -1,6 +1,5 @@
 package block.norm.fastbuild.basicdorm;
 
-import block.norm.BlockBasic;
 import block.norm.BlockJSON;
 import block.norm.BlockRegister;
 import net.minecraft.core.BlockPos;
@@ -10,8 +9,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import block.norm.fastbuild.DormHelper;
+
 /**
  * 球形穹顶 I
  * @author NANMEDA
@@ -33,6 +33,7 @@ public class BasicSphereDorm extends Block {
     public InteractionResult use(BlockState blockstate, Level level, BlockPos pos, Player player, InteractionHand interactionhand, BlockHitResult blockHitResult) {
         super.use(blockstate, level, pos, player, interactionhand, blockHitResult);
         if (!level.isClientSide()) {
+        	if(DormHelper.checkPlaceDormOccupied(level, pos, 12, player)) return InteractionResult.FAIL;
             createGlassSphere(level, pos);
             createCementBase(level, pos);
             createJunctionBase(level,pos.below());

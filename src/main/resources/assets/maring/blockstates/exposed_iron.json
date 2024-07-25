@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "kind=1": { "model": "maring:block/exposed_iron_l1" },
+    "kind=2": { "model": "maring:block/exposed_iron_l2" },
+    "kind=3": { "model": "maring:block/exposed_iron_l3" },
+    "kind=4": { "model": "maring:block/exposed_iron_l4" }
+  }
+}

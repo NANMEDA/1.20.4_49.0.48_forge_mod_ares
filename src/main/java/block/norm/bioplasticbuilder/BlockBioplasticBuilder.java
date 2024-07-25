@@ -311,6 +311,21 @@ public class BlockBioplasticBuilder extends Block implements EntityBlock{
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(BlockStateProperties.FACING);
     }
+    
+	@Override
+    public VoxelShape getVisualShape(BlockState p_312193_, BlockGetter p_310654_, BlockPos p_310658_, CollisionContext p_311129_) {
+	      return Shapes.empty();
+	}
+	
+	@Override
+	public float getShadeBrightness(BlockState p_312407_, BlockGetter p_310193_, BlockPos p_311965_) {
+	   return 1.0F;
+	}
+
+	@Override
+    public boolean propagatesSkylightDown(BlockState p_312717_, BlockGetter p_312877_, BlockPos p_312899_) {
+       return true;
+    }
 	
 	 static {
 	        BlockJSON.GenModelsJSONBasic(global_name);

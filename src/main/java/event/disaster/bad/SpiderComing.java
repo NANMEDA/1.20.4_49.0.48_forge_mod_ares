@@ -13,17 +13,18 @@ import net.minecraftforge.fml.common.Mod;
 
 import java.util.Random;
 
+import com.main.maring.ExtraConfig;
+
 import animal.entity.MonsterRegister;
 import animal.entity.jumpspider.JumpSpider;
-import event.disaster.DisasterConfig;
 
 @Mod.EventBusSubscriber(modid = "maring", bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class SpiderComing {
 	
-	private static final boolean DOOMS_WILL_ARRIVE = DisasterConfig.DOOMS_WILL_ARRIVE;
-	private static final long DOOMS_DAY_TOMORROW = DisasterConfig.DOOMS_DAY_TOMORROW;
-	private static final long SPIDER_EVENT_START = DisasterConfig.SPIDER_EVENT_START;
-	private static final int SPIDER_EVENT_DURATION = DisasterConfig.SPIDER_EVENT_DURATION;
+	private static final boolean DOOMS_WILL_ARRIVE = ExtraConfig.DOOMS_WILL_ARRIVE;
+	private static final long DOOMS_DAY_TOMORROW = ExtraConfig.DOOMS_DAY_TOMORROW;
+	private static final long SPIDER_EVENT_START = ExtraConfig.SPIDER_EVENT_START;
+	private static final int SPIDER_EVENT_DURATION = ExtraConfig.SPIDER_EVENT_DURATION;
 	
 	public static final int SPAWN_INTERVAL_TICKS = 60;
     public static boolean SPIDER_DAY_OCCUR = false;

@@ -3,7 +3,9 @@ package block.norm.fastbuild.basicdorm;
 import block.norm.BlockBasic;
 import block.norm.BlockJSON;
 import block.norm.BlockRegister;
+import block.norm.fastbuild.DormHelper;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Vec3i;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -34,6 +36,7 @@ public class BasicFlatSphereDorm extends Block {
     public InteractionResult use(BlockState blockstate, Level level, BlockPos pos, Player player, InteractionHand interactionhand, BlockHitResult blockHitResult) {
         super.use(blockstate, level, pos, player, interactionhand, blockHitResult);
         if (!level.isClientSide()) {
+        	if(DormHelper.checkPlaceDormOccupied(level, pos, new Vec3i(-13, -2, -13),new Vec3i(13, 6, 13), player)) return InteractionResult.FAIL;
             createGlassSphere(level, pos);
             createCementBase(level, pos);
             createJunctionBase(level,pos.below());

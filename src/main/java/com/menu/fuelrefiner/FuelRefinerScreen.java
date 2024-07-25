@@ -45,29 +45,14 @@ public class FuelRefinerScreen extends AbstractContainerScreen<FuelRefinerMenu> 
 	
 	@Override
     protected void init() {
-		/*
-        this.button = new Button.Builder(Component.translatable("maring.gui.microwave.button"), pButton -> {
-        	System.out.println("HERE");
-        	onClose();
-        }).pos(this.width / 2 - 40, this.height-40).size(80, 20).build();*/
         super.init();
     }
-	
+
 	@Override
     public void render(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
         //this.button.render(pGuiGraphics, pMouseX, pMouseY, pPartialTick);
         super.render(pGuiGraphics, pMouseX, pMouseY, pPartialTick);
     }
 
-	
-/*
-    private void onButtonClick(Button button) {
-        // Handle button click
-        if (this.menu.getBlockEntity() instanceof PowerStationBurnEntity) {
-            PowerStationBurnEntity blockEntity = (PowerStationBurnEntity) this.menu.getBlockEntity();
-            blockEntity.setClicking(true);  // Make sure you have a setClicking method in your block entity
-            // Send a packet to the server to synchronize the state if needed
-        }
-    }*/
     
 }

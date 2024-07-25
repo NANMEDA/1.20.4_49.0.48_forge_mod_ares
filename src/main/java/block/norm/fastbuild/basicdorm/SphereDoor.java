@@ -4,6 +4,7 @@ import javax.annotation.Nullable;
 
 import block.norm.BlockJSON;
 import block.norm.BlockRegister;
+import block.norm.fastbuild.DormHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
@@ -42,6 +43,7 @@ public class SphereDoor extends Block {
         super.use(blockstate, level, pos, player, interactionhand, blockHitResult);
         Direction direction = blockstate.getValue(BlockStateProperties.FACING);
         if (!level.isClientSide()) {
+        	if(DormHelper.checkPlaceDormOccupied(level, pos, 6, player)) return InteractionResult.FAIL;
             createGlassSphere(level, pos, direction);
             createCementBase(level, pos, direction);
             createJunctionBase(level,pos.below(),direction);

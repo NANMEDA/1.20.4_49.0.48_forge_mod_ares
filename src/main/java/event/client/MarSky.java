@@ -85,7 +85,6 @@ public class MarSky extends DimensionSpecialEffects {
 
 	@Override
 	public boolean isFoggyAt(int p_108874_, int p_108875_) {
-		// TODO 自动生成的方法存根
 		return false;
 	}
 	
@@ -274,9 +273,15 @@ public class MarSky extends DimensionSpecialEffects {
 		      this.skyBuffer.upload(bufferbuilder$renderedbuffer);
 		      VertexBuffer.unbind();
 		   }
+	   
+	    @Override
+	    public boolean renderSnowAndRain(ClientLevel level, int ticks, float partialTick, LightTexture lightTexture, double camX, double camY, double camZ)
+	    {
+	        return false;
+	    }
 
 	   @SuppressWarnings("unused")
-	private static BufferBuilder.RenderedBuffer buildSkyDisc(BufferBuilder p_234268_, float p_234269_) {
+	   private static BufferBuilder.RenderedBuffer buildSkyDisc(BufferBuilder p_234268_, float p_234269_) {
 		      float f = Math.signum(p_234269_) * 512.0F;
 		      float f1 = 512.0F;
 		      RenderSystem.setShader(GameRenderer::getPositionShader);

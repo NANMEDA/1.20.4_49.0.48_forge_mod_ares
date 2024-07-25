@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BXB",
+    "X X"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:iron_block"
+    },
+    "B": {
+      "item": "maring:basic_metal_parts"
+    }
+  },
+  "result": {
+    "item": "maring:blueprint_builder",
+    "count": 1
+  }
+}

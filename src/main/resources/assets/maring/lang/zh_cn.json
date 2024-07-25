@@ -39,6 +39,7 @@
   "block.maring.moist_mucus": "湿润粘液块",
   "block.maring.dense_volcanic_ash": "紧密火山灰",
   "block.maring.volcanic_stone": "火星火山岩",
+  "block.maring.exposed_iron": "裸露铁矿",
   
   "block.maring.powerstation_burn": "火力发电机",
   "block.maring.powerstation_sun": "太阳能发电机",
@@ -53,6 +54,8 @@
   "block.maring.water_gather": "水分收集器",
   "block.maring.stone_washer": "洗石器",
   "block.maring.fuel_refiner": "燃料精炼机",
+  "block.maring.research_table": "研究台",
+  "block.maring.blueprint_builder": "蓝图制作桌",
   
   "block.maring.villager_handmake_table": "村民手搓台",
   "block.maring.broken_structure_block": "远古破损结构块",
@@ -69,6 +72,13 @@
   "block.maring.basic_eclipse_dorm": "椭球形穹顶 I",
   "block.maring.basic_flat_eclipse_dorm": "扁椭球形穹顶 I",
   "block.maring.sphere_door": "出口阀",
+  
+  "blueprint.last": "蓝图",
+  "dorm.basic.sphere": "基础球形穹顶",
+  "dorm.basic.door": "出口阀",
+  "dorm.basic.flatsphere": "基础扁球穹顶",
+  "dorm.basic.eclipse": "基础椭球形穹顶",
+  "dorm.basic.flateclipse": "基础扁椭球形穹顶",
   
   "item.maring.rubbish": "腐坏的食品",
   "item.maring.bread_can": "面包罐头",
@@ -106,6 +116,7 @@
   "item.maring.rocket_cowling": "火箭整流锥",
   "item.maring.rocket_spout": "推力喷口",
   "item.maring.rocket": "火箭",
+  "item.maring.building_structure": "建筑壳体",
   
   "item.maring.spacesuit_helmet": "宇航头盔",
   "item.maring.spacesuit_chestplate": "宇航服",
@@ -160,6 +171,8 @@
   "menu.etching_machine": "蚀刻",
   "menu.stone_washer": "洗洗",
   "menu.fuel_refiner": "精炼",
+  "menu.research_table": "研究台",
+  "menu.blueprint_builder": "蓝图制作",
   
   "maring.gui.microwave.button": "启动",
   
@@ -228,6 +241,10 @@
 
   "death.attack.damage.pressure": "%1$s暴露于不适宜的大气中",
   
+  "dorm.place.able": "尝试放置穹顶",
+  "dorm.place.unable.noenoughplace": "没有足够空间",
+  "dorm.place.unable.toohigh": "位置太高",
+  "dorm.place.unable.toolow": "位置太低",
   "dorm.connection.able": "试图进行连接...",
   "dorm.connection.unable.anglechangetoofast": "穹顶转角过快 <比如北方向不能连东方向>",
   "dorm.connection.unable.tooclose": "连接点过近<曼哈顿距离小于8>",

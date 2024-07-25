@@ -25,6 +25,7 @@ public class ResearchTableEntityRender implements BlockEntityRenderer<ResearchTa
 	public void render(ResearchTableEntity entity, float partialTick, PoseStack pPoseStack, MultiBufferSource pBuffer,
 			int packedLight, int packedOverlay) {
 			entity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(ItemHandler->{
+				/*
 				ItemStack output = ItemHandler.getStackInSlot(0);
 				var itemrender = Minecraft.getInstance().getItemRenderer();
 				if(!output.isEmpty()) {
@@ -63,7 +64,7 @@ public class ResearchTableEntityRender implements BlockEntityRenderer<ResearchTa
 						itemrender.renderStatic(new ItemStack(Items.QUARTZ,1), ItemDisplayContext.FIXED, packedLight, packedOverlay, pPoseStack, pBuffer, Minecraft.getInstance().level, 0);
 						pPoseStack.popPose();
 					}
-				}
+				}*/
 		});
 	}
 

@@ -11,6 +11,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 
 import com.effect.register.EffectRegister;
 import com.item.ItemRegister;
+import com.main.maring.ExtraConfig;
 
 import net.minecraft.core.BlockPos;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingTickEvent;
@@ -25,7 +26,7 @@ import net.minecraftforge.fml.common.Mod;
 public class BiomeEffectApplier {
 
     private static final int TICK_INTERVAL = 10; // 检测间隔
-    public static boolean WILL_PRESSURE_HURT = true; // 检测间隔
+    //public static boolean WILL_PRESSURE_HURT = ; // 检测间隔
     //private static BlockState A_AIR_STATE = null;// = BlockRegister.A_AIR.get().defaultBlockState();
 
     /***
@@ -35,7 +36,7 @@ public class BiomeEffectApplier {
      * ***/
     @SubscribeEvent
     public static void onLivingUpdate(LivingTickEvent event) {
-    	if(!WILL_PRESSURE_HURT) return;
+    	if(!ExtraConfig.WILL_PRESSURE_HURT) return;
     	Level level = event.getEntity().level();
         if (level.isClientSide) {
             return;

@@ -231,20 +231,34 @@ public class JunctionHelper {
      * 直线段在斜线之前，要放2个延后
      * 直线段在斜线之后，要放2个在前面
      * ***/
-    public static void followChainCode(Level level, BlockPos startPos,BlockPos endPos,int start_direction,int end_direction, List<Integer> chainCode) {
+    public static void followChainCode(Level level, BlockPos startPos, BlockPos endPos, int start_direction, int end_direction, List<Integer> chainCode) {
         List<List<Integer>> chainSegments = split(chainCode);
         int num = chainSegments.size();
-        if(num <= 0){
-        	return;
+        if (num <= 0) {
+            return;
         }
+
+        int height = endPos.getY() - startPos.getY();
+        boolean goUp = height > 0;
+        int totalSteps = chainCode.size();
+        int[] down_id = null;
+
+        if (height != 0) {
+            down_id = new int[Math.abs(height)];
+            for (int i = 0; i < Math.abs(height); i++) {
+                down_id[i] = (i + 1) * totalSteps / (Math.abs(height) + 1);
+            }
+        }
+
         BlockPos[] poses = new BlockPos[num];
         poses[0] = startPos;
-        
+
         List<List<Integer>> oddSegments = new ArrayList<>();
         List<List<Integer>> evenSegments = new ArrayList<>();
         List<List<Integer>> combinedSegments = new ArrayList<>();
         List<Integer> odd_id = new ArrayList<>();
         List<Integer> even_id = new ArrayList<>();
+
         // Separate odd and even segments
         int id = 0;
         for (List<Integer> segment : chainSegments) {
@@ -259,7 +273,7 @@ public class JunctionHelper {
             }
             id++;
         }
-        
+
         // Calculate positions for each segment
         for (int i = 1; i < num; i++) {
             List<Integer> previousSegment = combinedSegments.get(i - 1);
@@ -282,25 +296,17 @@ public class JunctionHelper {
             boolean isLast = odd_id.get(i) == combinedSegments.size() - 1;
 
             List<Integer> extendedSegment = extendSegment(segment, true, isFirst, isLast);
-            
+
             int direction = extendedSegment.get(0);
             int length = extendedSegment.size();
             Vec3i directionVector = getDirectionVector(direction);
-            
-            setConnection(level,directionVector,currentPos,length,direction);
-                        /*
-            for (int direction : extendedSegment) {
-                Vec3i directionVector = getDirectionVector(direction);
-                currentPos = currentPos.offset(directionVector.getX(), directionVector.getY(), directionVector.getZ());
-                
-            }*/
 
-            //poses[i] = currentPos;
+            setConnection(level, directionVector, currentPos, length, direction, down_id, goUp);
         }
 
         // Place blocks for even segments
         for (int i = 0; i < evenSegments.size(); i++) {
-        	BlockPos currentPos = poses[even_id.get(i)];
+            BlockPos currentPos = poses[even_id.get(i)];
             List<Integer> segment = evenSegments.get(i);
             boolean isFirst = even_id.get(i) == 0;
             boolean isLast = even_id.get(i) == combinedSegments.size() - 1;
@@ -315,34 +321,25 @@ public class JunctionHelper {
             int direction = extendedSegment.get(0);
             int length = extendedSegment.size();
             Vec3i directionVector = getDirectionVector(direction);
-            setConnection(level,directionVector,currentPos,length,direction);
-            /*
-            for (int direction : extendedSegment) {
-                Vec3i directionVector = getDirectionVector(direction);
-                currentPos = currentPos.offset(directionVector.getX(), directionVector.getY(), directionVector.getZ());
-                level.setBlockAndUpdate(currentPos, Blocks.GLASS.defaultBlockState());
-            }*/
-
-            //poses[oddSegments.size() + i] = currentPos;
-            fromBaseGrowConnection(level,direction,startPos,endPos,start_direction,end_direction);
+            setConnection(level, directionVector, currentPos, length, direction, down_id, goUp);
         }
+
+        fromBaseGrowConnection(level, start_direction, startPos, endPos, start_direction, end_direction);
     }
 
     private static void fromBaseGrowConnection(Level level, int direction, BlockPos startPos, BlockPos endPos, int start_direction, int end_direction) {
-    	Vec3i directionVector = getDirectionVector(start_direction);
-    	setConnection(level, directionVector, startPos.offset(-directionVector.getX(),-directionVector.getY(),-directionVector.getZ()),
-    			3, start_direction);
-    	directionVector = getDirectionVector(end_direction);
-    	setConnection(level, directionVector, endPos.offset(-directionVector.getX(),-directionVector.getY(),-directionVector.getZ()),
-    			3, end_direction);
-	}
+        Vec3i directionVector = getDirectionVector(start_direction);
+        setConnection(level, directionVector, startPos.offset(-directionVector.getX(), -directionVector.getY(), -directionVector.getZ()), 3, start_direction, null, false);
+        directionVector = getDirectionVector(end_direction);
+        setConnection(level, directionVector, endPos.offset(-directionVector.getX(), -directionVector.getY(), -directionVector.getZ()), 3, end_direction, null, false);
+    }
 
-	private static void setConnection(Level level, Vec3i directionVector, BlockPos currentPos, int size, int direction) {
+    private static void setConnection(Level level, Vec3i directionVector, BlockPos currentPos, int size, int direction, int[] down_id, boolean goUp) {
         BlockPos pos = currentPos;
-    	BlockPos[] posDoor;
+        BlockPos[] posDoor;
         BlockPos[] posAir;
-    	int normalizedDirection = direction % 4;
-        
+        int normalizedDirection = direction % 4;
+
         switch (normalizedDirection) {
             case 0:
                 posDoor = new BlockPos[]{
@@ -389,7 +386,7 @@ public class JunctionHelper {
                     pos, pos.offset(-1, 0, 1), pos.offset(1, 0, -1), pos.offset(-2, 0, 2),
                     pos.offset(2, 0, -2), pos.offset(-2, 1, 2), pos.offset(2, 1, -2),
                     pos.offset(-2, 2, 2), pos.offset(2, 2, -2), pos.offset(-2, 3, 2),
-                    pos.offset(2, 3, -2), 
+                    pos.offset(2, 3, -2),
                     pos.offset(-1, 4, 1), pos.offset(1, 4, -1), pos.offset(0, 4, 0)
                 };
                 posAir = new BlockPos[]{
@@ -403,7 +400,7 @@ public class JunctionHelper {
                 posAir = new BlockPos[]{};
                 break;
         }
-        
+
         // Handle additional emitDirections
         if (direction == 1 || direction == 5 || direction == 3 || direction == 7) {
             if (direction == 1) {
@@ -459,26 +456,59 @@ public class JunctionHelper {
             }
         }
 
-    	for(int i = 1;i<=size;i++) {
+        boolean shouldMoveY = false;
+        boolean haveInit = false;
+        
+        int totalGo = 0;
+        int isTry = 0;
+
+        for (int i = 1; i <= size; i++) {
+            if (!haveInit) {
+                haveInit = true;
+                if (down_id != null) {
+                    if (isTry > 0) {
+                        for (int j = 0; j < posDoor.length; j++) {
+                            posDoor[j] = posDoor[j].offset(0, goUp ? isTry : -isTry, 0);
+                        }
+                        for (int j = 0; j < posAir.length; j++) {
+                            posAir[j] = posAir[j].offset(0, goUp ? isTry : -isTry, 0);
+                        }
+                    }
+                }
+            }
+
+            totalGo++;
+            if (down_id != null && isTry < down_id.length && totalGo == down_id[isTry]) {
+                isTry++;
+                shouldMoveY = true;
+            }
+
             for (int j = 0; j < posDoor.length; j++) {
+                if (down_id != null && shouldMoveY) {
+                    posDoor[j] = posDoor[j].offset(0, goUp ? 1 : -1, 0);
+                }
                 posDoor[j] = posDoor[j].offset(directionVector);
                 BlockState currentState = level.getBlockState(posDoor[j]);
-            	if(currentState!=JUNCTION_STATE
-            			&&!currentState.is(JUNCTION_CONTROL_STATE.getBlock())
-            			&&currentState!=AIR_STATE) {
-            		level.setBlockAndUpdate(posDoor[j], UNBROKEN_CEMENT_STATE);
-            	}
+                if (currentState != JUNCTION_STATE
+                        && !currentState.is(JUNCTION_CONTROL_STATE.getBlock())
+                        && currentState != AIR_STATE) {
+                    level.setBlockAndUpdate(posDoor[j], UNBROKEN_CEMENT_STATE);
+                }
             }
-            for(int j = 0; j < posAir.length; j++) {
-            	posAir[j] = posAir[j].offset(directionVector);
+            for (int j = 0; j < posAir.length; j++) {
+                if (down_id != null && shouldMoveY) {
+                    posAir[j] = posAir[j].offset(0, goUp ? 1 : -1, 0);
+                }
+                posAir[j] = posAir[j].offset(directionVector);
                 BlockState currentState = level.getBlockState(posAir[j]);
-            	if(currentState==UNBROKEN_FOG_STATE||currentState==Blocks.AIR.defaultBlockState()) {
-            		level.setBlockAndUpdate(posAir[j], AIR_STATE);
-            	}
+                if (currentState == UNBROKEN_FOG_STATE || currentState == Blocks.AIR.defaultBlockState()) {
+                    level.setBlockAndUpdate(posAir[j], AIR_STATE);
+                }
             }
-		}
-		
-	}
+            shouldMoveY = false;
+        }
+    }
+
 
 	private static List<Integer> extendSegment(List<Integer> segment, boolean isOdd, boolean isFirst, boolean isLast) {
         List<Integer> extendedSegment = new ArrayList<>(segment);
@@ -530,7 +560,6 @@ public class JunctionHelper {
         if (!checkChainCode(start, start_direction, end, end_direction,player)) {
             return Collections.emptyList(); // No valid connection
         }
-        player.sendSystemMessage(Component.translatable("dorm.connection.able"));
         return birthChainCode(start, start_direction, end, end_direction,player);
     }
 
@@ -544,7 +573,7 @@ public class JunctionHelper {
         int nodesProcessed = 0;
 
         while (!openSet.isEmpty()) {
-            if (nodesProcessed > 150) {
+            if (nodesProcessed > 720) {
             	player.sendSystemMessage(Component.translatable("dorm.connection.unable.toomuchnode"));
                 return Collections.emptyList(); // Stop if too many nodes are processed
             }
@@ -555,7 +584,7 @@ public class JunctionHelper {
             double currentDistance = currentNode.gCost;
             int currentDirection = currentNode.direction;
 
-            if (currentPos.equals(end)) {
+            if (currentPos.getX()==end.getX()&&currentPos.getZ()==end.getZ()) {
                 if (currentPath.size() > 100) {
                 	player.sendSystemMessage(Component.translatable("dorm.connection.unable.toolongpath"));
                     return Collections.emptyList(); // Path is too long
@@ -563,6 +592,7 @@ public class JunctionHelper {
                 if (!currentPath.isEmpty()) {
                     currentPath.remove(currentPath.size() - 1); // Remove the last element because the last is already exist
                 }
+                player.sendSystemMessage(Component.translatable("dorm.connection.able"));
                 return currentPath;
             }
 
@@ -728,4 +758,6 @@ public class JunctionHelper {
         return newArray;
     }
 
+    
+    
 }

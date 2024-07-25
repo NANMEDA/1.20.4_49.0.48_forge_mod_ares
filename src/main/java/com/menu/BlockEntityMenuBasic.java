@@ -55,9 +55,32 @@ public abstract class BlockEntityMenuBasic extends AbstractContainerMenu{
 		}
 		return index;
 	}
+	
+	public int addSlotLineNonHighlight(Container container,int index,int x,int y,int count,int dx) {
+		for(int i = 0;i<count;i++) { 
+		addSlot(new Slot(container, index, x, y) {
+			@Override
+		   public boolean isHighlightable() {
+		      return false;
+		   }
+		});
+			x += dx;
+			index ++;
+		}
+		return index;
+	}
+	
 	public int addSlotBox(Container container,int index,int x,int y,int x_count,int dx,int y_count,int dy) {
 		for(int j = 0;j<y_count;j++) { 
 			index = addSlotLine(container, index, x, y, x_count, dx);
+			y += dy;
+		}
+		return index;
+	}
+	
+	public int addSlotBoxNonHighlight(Container container,int index,int x,int y,int x_count,int dx,int y_count,int dy) {
+		for(int j = 0;j<y_count;j++) { 
+			index = addSlotLineNonHighlight(container, index, x, y, x_count, dx);
 			y += dy;
 		}
 		return index;
@@ -67,6 +90,12 @@ public abstract class BlockEntityMenuBasic extends AbstractContainerMenu{
 		addSlotBox(inventory, 9, x, y, 9, 18, 3, 18);
 		y += 58;
 		addSlotLine(inventory, 0, x, y, 9, 18);
+	}
+	
+	public void addPlayerInventoryNonHighlight(Container inventory, int x,int y) {
+		addSlotBoxNonHighlight(inventory, 9, x, y, 9, 18, 3, 18);
+		y += 58;
+		addSlotLineNonHighlight(inventory, 0, x, y, 9, 18);
 	}
 	
 	@Override

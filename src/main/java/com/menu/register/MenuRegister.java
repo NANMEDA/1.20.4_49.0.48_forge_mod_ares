@@ -2,6 +2,7 @@ package com.menu.register;
 
 import com.menu.advancedmetalmanufactor.AdvancedMetalManufactorMenu;
 import com.menu.basicmetalmanufactor.BasicMetalManufactorMenu;
+import com.menu.blueprintbuilder.BlueprintBuilderMenu;
 import com.menu.canfoodmaker.CanfoodMakerMenu;
 import com.menu.etchingmachine.EtchingMachineMenu;
 import com.menu.fuelrefiner.FuelRefinerMenu;
@@ -9,6 +10,7 @@ import com.menu.microwaveoven.MicrowaveOvenMenu;
 import com.menu.playerextend.PlayerExtendMenu;
 import com.menu.playerextend.PlayerExtendScreen;
 import com.menu.powerstationburn.PowerStationBurnMenu;
+import com.menu.reseachtable.ResearchTableMenu;
 import com.menu.stonewasher.StoneWasherMenu;
 
 import net.minecraft.world.inventory.MenuType;
@@ -47,7 +49,12 @@ public class MenuRegister {
     
     public static final RegistryObject<MenuType<FuelRefinerMenu>> FUELREFINER_MENU = MENU_TYPES.register("fuelrefiner_menu",
             () -> IForgeMenuType.create((windowId, inv, data) -> new FuelRefinerMenu(inv, windowId, data.readBlockPos())));
-
+    
+    public static final RegistryObject<MenuType<ResearchTableMenu>> RESEARCHTABLE_MENU = MENU_TYPES.register("researchtable_menu",
+    		() -> IForgeMenuType.create((windowId, inv, data) -> new ResearchTableMenu(inv, windowId, data.readBlockPos())));
+    
+    public static final RegistryObject<MenuType<BlueprintBuilderMenu>> BLUEPRINTBUILDER_MENU = MENU_TYPES.register("blueprintbuilder_menu",
+    		() -> IForgeMenuType.create((windowId, inv, data) -> new BlueprintBuilderMenu(inv, windowId, data.readBlockPos())));
 /*
     public static final RegistryObject<MenuType<PlayerExtendMenu>> ROCKET_MENU = MENU_TYPES.register("rocket_menu",
             () -> IForgeMenuType.create((windowId, inv, data) -> new RocketMenu(inv, windowId, Rocket::new)));*/

@@ -2,11 +2,14 @@ package block.norm.researchtable;
 
 import javax.annotation.Nullable;
 
+import com.menu.microwaveoven.MicrowaveOvenMenuProvider;
+import com.menu.reseachtable.ResearchTableMenuProvider;
 
 import block.entity.neutral.researchtable.ResearchTableEntity;
 import block.norm.BlockJSON;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -25,6 +28,7 @@ import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.common.extensions.IForgeServerPlayer;
 
 /**
  * 研究台
@@ -53,7 +57,7 @@ public class BlockResearchTable extends Block implements EntityBlock{
 	
 	@Override
     public VoxelShape getShape(BlockState p_60555_, BlockGetter p_60556_, BlockPos p_60557_, CollisionContext p_60558_) {
-		return Block.box(0,0,0,16,16,16);
+		return Block.box(0,0,0,16,14,16);
     }
 	
 	@Override
@@ -61,7 +65,9 @@ public class BlockResearchTable extends Block implements EntityBlock{
 		if(!level.isClientSide()) {
 			var BlockEntity = level.getBlockEntity(pos);
 			if (BlockEntity instanceof ResearchTableEntity entity) {
-				
+				player = (ServerPlayer) player;
+				IForgeServerPlayer ifpe = (IForgeServerPlayer)player;
+				ifpe.openMenu(new ResearchTableMenuProvider(pos), pos);
 			}else {
 				throw new IllegalStateException("missing block:"+global_name);
 			}

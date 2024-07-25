@@ -42,14 +42,12 @@ public class Maring
     private static final Logger LOGGER = LogUtils.getLogger();
     // Create a Deferred Register to hold Blocks which will all be registered under the "examplemod" namespace
     static{
-    	AddTag.init();
+    	//AddTag.init();
     	TagkeyRegister.init();
     }
     
     public Maring()
     {
-    	
-    	
     	
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
@@ -96,6 +94,8 @@ public class Maring
         Config.items.forEach((item) -> LOGGER.info("ITEM >> {}", item.toString()));
         
         NetworkHandler.register();
+        
+        
     }
     
     private void clientSetup(final FMLClientSetupEvent event) {
@@ -107,6 +107,8 @@ public class Maring
     {
         // Do something when the server starts
         LOGGER.info("HELLO from server starting");
+        
+        ExtraConfig.load(event.getServer());
     }
     
     

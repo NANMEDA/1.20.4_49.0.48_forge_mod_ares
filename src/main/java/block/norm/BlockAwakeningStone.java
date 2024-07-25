@@ -1,5 +1,7 @@
 package block.norm;
 
+import com.effect.register.EffectRegister;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.level.Level;
@@ -40,7 +42,8 @@ public class BlockAwakeningStone extends Block{
 
         pLevel.getEntitiesOfClass(Player.class, voxelShape.bounds())
                 .forEach(player -> {
-                    player.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 200)); 
+                    player.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 200));
+                    player.addEffect(new MobEffectInstance(EffectRegister.PARASITE.get(), 2000)); 
                 });
     }
 }

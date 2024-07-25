@@ -1,5 +1,6 @@
 package com.effect;
 
+import net.minecraft.client.gui.font.glyphs.BakedGlyph.Effect;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
@@ -12,6 +13,7 @@ public class EffectMain extends MobEffect {
     public EffectMain(MobEffectCategory type, int color, boolean isInstant) {
         super(type, color);
         this.instant = isInstant;
+        
     }
     
     @Override

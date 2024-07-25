@@ -67,6 +67,8 @@ public class CreativeTabsRegister {
                 output.accept(block.norm.watergather.Register.watergather_BLOCK_ITEM.get());
                 output.accept(block.norm.stonewasher.Register.stonewasher_BLOCK_ITEM.get());
                 output.accept(block.norm.fuelrefiner.Register.fuelrefiner_BLOCK_ITEM.get());
+                output.accept(block.norm.researchtable.Register.researchtable_BLOCK_ITEM.get());
+                output.accept(block.norm.blueprintbuilder.Register.blueprintbuilder_BLOCK_ITEM.get());
             }).build());
     
     public static final RegistryObject<CreativeModeTab> MAR_MATERIAL_TAB = CREATIVE_MODE_TABS.register("mar_material_tab", () -> CreativeModeTab.builder()
@@ -77,6 +79,7 @@ public class CreativeTabsRegister {
                 IntStream.range(0, itemMaterial.ITEM_MATERIAL_NUMBER).forEach(i -> {
                 	output.accept(ItemRegister.MATERIAL_ITEMS[i].get());
                 });
+                output.accept(ItemRegister.BUILDING_STRUCTURE.get());
             }).build());
     
     public static final RegistryObject<CreativeModeTab> MAR_TOOL_TAB = CREATIVE_MODE_TABS.register("mar_tool_tab", () -> CreativeModeTab.builder()
