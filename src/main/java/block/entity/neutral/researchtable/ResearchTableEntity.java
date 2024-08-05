@@ -41,7 +41,7 @@ public class ResearchTableEntity extends PowerConsumerEntity{
 	
 	public ResearchTableEntity(BlockPos pos, BlockState pBlockState) {
 		super(BlockEntityRegister.researchtable_BLOCKENTITY.get(), pos, pBlockState);
-		this.energy_consume = 15;
+		this.energy_consume = 0;
 	}
 	
     protected final ItemStackHandler item = new ItemStackHandler(itemstack_number) {//必须要在这里创建，ItemStackHandler不可被修改
@@ -189,7 +189,7 @@ public class ResearchTableEntity extends PowerConsumerEntity{
 		case 2: return "dorm.basic.flatsphere";
 		case 3: return "dorm.basic.eclipse";
 		case 4: return "dorm.basic.flateclipse";
-		case 5: return "dorm.basic.column";
+		case 5: return "dorm.basic.cylinder";
 		default:
 			return null;
 		}
@@ -223,7 +223,8 @@ public class ResearchTableEntity extends PowerConsumerEntity{
 				"dorm.basic.door",
 				"dorm.basic.flatsphere",
 				"dorm.basic.eclipse",
-				"dorm.basic.flateclipse"
+				"dorm.basic.flateclipse",
+				"dorm.basic.cylinder"
 			};
 		case 1:
 			return new String[]{

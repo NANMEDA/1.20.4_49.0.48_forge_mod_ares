@@ -2,6 +2,9 @@ package block.entity.neutral.blueprintbuilder;
 
 import net.minecraft.world.item.ItemStack;
 
+/**
+ * 存放着修建蓝图所需材料
+ * */
 public class BlueprintBuilderHelper {
 
 	/***
@@ -20,6 +23,7 @@ public class BlueprintBuilderHelper {
 					case 2: return new int[]{8,10,0,10,0,0};
 					case 3: return new int[]{12,10,0,10,0,0};
 					case 4: return new int[]{10,10,0,10,0,0};
+					case 5: return new int[]{10,10,0,10,0,0};
 				}
 			}	
 			case 1:{
@@ -37,6 +41,7 @@ public class BlueprintBuilderHelper {
 				case 2: return new ItemStack(block.norm.fastbuild.Register.basicflatspheredorm_BLOCK_ITEM.get());
 				case 3: return new ItemStack(block.norm.fastbuild.Register.basiceclipsedorm_BLOCK_ITEM.get());
 				case 4: return new ItemStack(block.norm.fastbuild.Register.basicflatspheredorm_BLOCK_ITEM.get());
+				case 5: return new ItemStack(block.norm.fastbuild.Register.basiccylinderdorm_BLOCK_ITEM.get());
 			}
 		}	
 		case 1:{

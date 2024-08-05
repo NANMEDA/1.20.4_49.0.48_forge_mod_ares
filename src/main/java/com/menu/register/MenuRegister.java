@@ -1,5 +1,6 @@
 package com.menu.register;
 
+import com.item.ItemRegister;
 import com.menu.advancedmetalmanufactor.AdvancedMetalManufactorMenu;
 import com.menu.basicmetalmanufactor.BasicMetalManufactorMenu;
 import com.menu.blueprintbuilder.BlueprintBuilderMenu;
@@ -11,9 +12,12 @@ import com.menu.playerextend.PlayerExtendMenu;
 import com.menu.playerextend.PlayerExtendScreen;
 import com.menu.powerstationburn.PowerStationBurnMenu;
 import com.menu.reseachtable.ResearchTableMenu;
+import com.menu.show.ShowBlockMenu;
+import com.menu.show.itemstack.ShowItemStackMenu;
 import com.menu.stonewasher.StoneWasherMenu;
 
 import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.extensions.IForgeMenuType;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -55,6 +59,12 @@ public class MenuRegister {
     
     public static final RegistryObject<MenuType<BlueprintBuilderMenu>> BLUEPRINTBUILDER_MENU = MENU_TYPES.register("blueprintbuilder_menu",
     		() -> IForgeMenuType.create((windowId, inv, data) -> new BlueprintBuilderMenu(inv, windowId, data.readBlockPos())));
+    
+    public static final RegistryObject<MenuType<ShowBlockMenu>> BLOCKSHOW_MENU = MENU_TYPES.register("showblock_menu",
+    		() -> IForgeMenuType.create((windowId, inv, data) -> new ShowBlockMenu(inv, windowId, data.readBlockPos())));
+    
+    public static final RegistryObject<MenuType<ShowItemStackMenu>> ITEMSTACKSHOW_MENU = MENU_TYPES.register("showitem_menu",
+    		() -> IForgeMenuType.create((windowId, inv, data) -> new ShowItemStackMenu(inv, windowId, new ItemStack(ItemRegister.BLUE_PRINT.get()), data.readBlockPos())));
 /*
     public static final RegistryObject<MenuType<PlayerExtendMenu>> ROCKET_MENU = MENU_TYPES.register("rocket_menu",
             () -> IForgeMenuType.create((windowId, inv, data) -> new RocketMenu(inv, windowId, Rocket::new)));*/

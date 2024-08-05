@@ -13,7 +13,7 @@ import java.util.Map;
  * @author NANMEDA
  * */
 public class BlockBasic {
-	public static int BLOCK_BASIC_NUMBER = 36;
+	public static int BLOCK_BASIC_NUMBER = 38;
 	private static int k = 0;
 	
     private static final String[] BLOCK_NAME = new String[BLOCK_BASIC_NUMBER];
@@ -93,6 +93,11 @@ public class BlockBasic {
     static {
     	addBlock("dense_volcanic_ash", MapColor.COLOR_GRAY, SoundType.STONE, dirt_strength, true, "pickaxe", 0);
     	addBlock("volcanic_stone", MapColor.COLOR_GRAY, SoundType.STONE, stone_strength, true, "pickaxe", 1);
+    }
+    
+    static {
+        addBlock("mar_foolgold_ore",MapColor.COLOR_YELLOW,SoundType.STONE,ore_strength,true,"pickaxe",2);
+        addBlock("mar_deep_foolgold_ore",MapColor.COLOR_YELLOW,SoundType.STONE,deep_ore_strength,true,"pickaxe",2);
     }
     
     /***

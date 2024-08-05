@@ -50,6 +50,7 @@ public class StoneWasherScreen extends AbstractContainerScreen<StoneWasherMenu> 
 	
 	@Override
     public void render(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
+		this.renderTooltip(pGuiGraphics, pMouseX, pMouseY);
         super.render(pGuiGraphics, pMouseX, pMouseY, pPartialTick);
     }
 

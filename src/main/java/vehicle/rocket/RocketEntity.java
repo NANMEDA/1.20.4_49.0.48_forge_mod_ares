@@ -70,6 +70,7 @@ public class RocketEntity extends IRocketEntity {
 				for (ServerPlayer p : ((ServerLevel) this.level()).getServer().getPlayerList().getPlayers()) {
 					//((ServerLevel) this.level()).sendParticles(p, (ParticleOptions) ParticleRegistry.LARGE_FLAME_PARTICLE.get(), true, this.getX() - vec.x, this.getY() - vec.y - 2.2, this.getZ() - vec.z, 20, 0.1, 0.1, 0.1, 0.001);
 					//((ServerLevel) this.level()).sendParticles(p, (ParticleOptions) ParticleRegistry.LARGE_SMOKE_PARTICLE.get(), true, this.getX() - vec.x, this.getY() - vec.y - 3.2, this.getZ() - vec.z, 10, 0.1, 0.1, 0.1, 0.04);
+					((ServerLevel) this.level()).sendParticles(p, ParticleTypes.DRIPPING_LAVA, true, this.getX() - vec.x, this.getY() - vec.y - 0.1, this.getZ() - vec.z, 6, 0.1, 0.1, 0.1, 0.023);
 				}
 			} else {
 				for (ServerPlayer p : ((ServerLevel) this.level()).getServer().getPlayerList().getPlayers()) {

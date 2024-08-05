@@ -5,6 +5,8 @@
     "maring:mar_deep_gold_ore",
     "maring:mar_deep_emerald_ore",
     "maring:mar_redstone_ore",
-    "maring:mar_deep_redstone_ore"
+    "maring:mar_deep_redstone_ore",
+    "maring:mar_foolgold_ore",
+    "maring:mar_deep_foolgold_ore"
   ]
 }

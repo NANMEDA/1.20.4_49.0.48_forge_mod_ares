@@ -21,4 +21,7 @@ public class FeatureRegistry {
 	
 	public static final RegistryObject<MucusDrip> ANCIENT_ROCKET = FEATURES.register
 			("ancient_rocket", () -> new MucusDrip(NoneFeatureConfiguration.CODEC));
+	
+	public static final RegistryObject<MeteoriteCrater> METEORITE_CARTER = FEATURES.register
+			("meteorite_crater", () -> new MeteoriteCrater(NoneFeatureConfiguration.CODEC));
 }

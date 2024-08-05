@@ -325,6 +325,7 @@ public abstract class IRocketEntity extends ModVehicle implements IGaugeValuesPr
             for (int y = -2; y <= 0; y++) {
                 for (int z = -8; z <= 8; z++) {
                     if (random.nextBoolean()) continue;
+                    if(x*x+z*z>64) continue;
                 	BlockPos position = entityPos.offset(x, y, z);
 		    		BlockState state = level.getBlockState(position);
 		    		if(state.is(Blocks.GRASS_BLOCK)||state.is(Blocks.DIRT)||state.is(Blocks.ROOTED_DIRT)||state.is(Blocks.MUD)) {
@@ -509,7 +510,7 @@ public abstract class IRocketEntity extends ModVehicle implements IGaugeValuesPr
     private static ResourceKey<Level> marKey = ResourceKey.create(Registries.DIMENSION, new ResourceLocation("maring", "maringmar"));
  
     public void GoingTo() {
-    	if (this.yo > 100) {
+    	if (this.yo > 1200) {
     	Player player = this.getFirstPlayerPassenger();
         if(player==null) return;
         Level level = this.level();

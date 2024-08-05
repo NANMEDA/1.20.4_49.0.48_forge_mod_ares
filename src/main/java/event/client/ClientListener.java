@@ -22,6 +22,8 @@ import com.menu.playerextend.PlayerExtendScreen;
 import com.menu.powerstationburn.PowerStationBurnScreen;
 import com.menu.register.MenuRegister;
 import com.menu.reseachtable.ResearchTableScreen;
+import com.menu.show.ShowBlockScreen;
+import com.menu.show.itemstack.ShowItemStackScreen;
 import com.menu.stonewasher.StoneWasherScreen;
 
 import animal.client.model.JumpSpiderModel;
@@ -66,6 +68,10 @@ public class ClientListener{
 		event.enqueueWork(()->MenuScreens.register(MenuRegister.RESEARCHTABLE_MENU.get(), ResearchTableScreen::new));
 		
 		event.enqueueWork(()->MenuScreens.register(MenuRegister.BLUEPRINTBUILDER_MENU.get(), BlueprintBuilderScreen::new));
+		
+		event.enqueueWork(()->MenuScreens.register(MenuRegister.BLOCKSHOW_MENU.get(), ShowBlockScreen::new));
+		
+		event.enqueueWork(()->MenuScreens.register(MenuRegister.ITEMSTACKSHOW_MENU.get(), ShowItemStackScreen::new));
 		
 		
 		

@@ -277,6 +277,10 @@ public class BlockRegister {
     public static final RegistryObject<Block> A_AIR = BLOCKS.register("a_air",
     		() -> new BlockAAIR(BlockBehaviour.Properties.of().replaceable().noCollission().noLootTable().air()));
     
+    static {
+    	block.norm.deposit.Register.init();
+    }
+    
     /***
      * 推荐这样子注册机器
      * ***/
@@ -290,9 +294,6 @@ public class BlockRegister {
     	block.norm.canfoodmaker.Register.init();
     	block.norm.stonewasher.Register.init();
     	block.norm.fuelrefiner.Register.init();
-    }
-    
-    static {
     	block.norm.fastbuild.Register.init();
     	block.norm.blueprintbuilder.Register.init();
     }

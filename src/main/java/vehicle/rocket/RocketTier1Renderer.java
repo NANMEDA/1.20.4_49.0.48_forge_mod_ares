@@ -15,7 +15,7 @@ import vehicle.VehicleRenderer;
 public class RocketTier1Renderer extends VehicleRenderer<RocketEntity, RocketModel<RocketEntity>> {
 
     private static final String MODID = "maring";
-	public static final ResourceLocation TEXTURE = new ResourceLocation(MODID, "textures/vehicle/rocket_t1.png");
+	public static final ResourceLocation TEXTURE = new ResourceLocation(MODID, "textures/vehicle/rocket_1.png");
 
     public RocketTier1Renderer(EntityRendererProvider.Context renderManagerIn) {
         super(renderManagerIn, new RocketModel<>(renderManagerIn.bakeLayer(RocketModel.LAYER_LOCATION)), 0.5f);

@@ -41,7 +41,9 @@
       "maring:mar_ore_lapis_buried",
       "maring:mar_ore_emerald",
       "maring:mar_ore_redstone_lower",
-      "maring:mar_ore_ominous"
+      "maring:mar_ore_ominous",
+      "maring:mar_ore_ice",
+      "maring:mar_ore_foolgold"
     ],
     [],
     [],
@@ -49,7 +51,8 @@
       "maring:mar_methane_vents"
     ],
     [
-      "maring:ancient_rocket"
+      "maring:ancient_rocket",
+      "maring:meteorite_crater"
     ]
   ]
 }

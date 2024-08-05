@@ -6,6 +6,10 @@
     "maring:mar_sand",
     "maring:mar_mud",
     "maring:dry_mucus",
-    "maring:moist_mucus"
+    "maring:moist_mucus",
+    "maring:deposit_empty",
+    "maring:deposit_ice",
+    "maring:deposit_iron",
+    "maring:deposit_gold"
   ]
 }

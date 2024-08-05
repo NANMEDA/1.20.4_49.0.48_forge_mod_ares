@@ -413,9 +413,7 @@
             "type": "minecraft:biome",
             "biome_is": [
               "maring:maring_hotground",
-              "maring:maring_hot_dryseabed",
               "maring:maring_normalground",
-              "maring:maring_normal_dryseabed",
               "maring:maring_bacterial_wasteland"
             ]
           },
@@ -432,6 +430,38 @@
               "type": "minecraft:block",
               "result_state": {
                 "Name": "maring:mar_surface"
+              }
+            }
+          }
+        }
+      },
+      {
+        "type": "minecraft:condition",
+        "if_true": {
+          "type": "minecraft:above_preliminary_surface"
+        },
+        "then_run": {
+          "type": "minecraft:condition",
+          "if_true": {
+            "type": "minecraft:biome",
+            "biome_is": [
+              "maring:maring_hot_dryseabed",
+              "maring:maring_normal_dryseabed"
+            ]
+          },
+          "then_run": {
+            "type": "minecraft:condition",
+            "if_true": {
+              "type": "minecraft:stone_depth",
+              "offset": 0,
+              "surface_type": "floor",
+              "add_surface_depth": true,
+              "secondary_depth_range": 0
+            },
+            "then_run": {
+              "type": "minecraft:block",
+              "result_state": {
+                "Name": "maring:deposit_empty"
               }
             }
           }

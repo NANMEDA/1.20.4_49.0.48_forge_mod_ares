@@ -18,13 +18,36 @@ import net.minecraft.resources.ResourceLocation;
 public class RocketModel<T extends RocketEntity> extends EntityModel<T> {
 	
     private static final String MODID = "maring";
-	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(MODID, "rocket_t1"), "main");
-    private final ModelPart rocket;
+    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(MODID, "rocket_1"), "main");
+	private final ModelPart rocket;
 
-    public RocketModel(ModelPart root) {
-        this.rocket = root.getChild("rocket");
-    }
+	public RocketModel(ModelPart root) {
+		this.rocket = root.getChild("rocket");
+	}
 
+	public static LayerDefinition createBodyLayer() {
+		MeshDefinition meshdefinition = new MeshDefinition();
+		PartDefinition partdefinition = meshdefinition.getRoot();
+
+		PartDefinition rocket = partdefinition.addOrReplaceChild("rocket", CubeListBuilder.create().texOffs(104, 30).addBox(16.0F, -6.0F, -20.0F, 4.0F, 6.0F, 4.0F, new CubeDeformation(0.0F))
+		.texOffs(104, 20).addBox(16.0F, -6.0F, 15.0F, 4.0F, 6.0F, 4.0F, new CubeDeformation(0.0F))
+		.texOffs(104, 10).addBox(-20.0F, -6.0F, 15.0F, 4.0F, 6.0F, 4.0F, new CubeDeformation(0.0F))
+		.texOffs(104, 0).addBox(-20.0F, -6.0F, -20.0F, 4.0F, 6.0F, 4.0F, new CubeDeformation(0.0F))
+		.texOffs(0, 200).addBox(-24.0F, -8.0F, -24.0F, 48.0F, 2.0F, 48.0F, new CubeDeformation(0.0F))
+		.texOffs(152, 0).addBox(-22.0F, -162.0F, -22.0F, 44.0F, 2.0F, 44.0F, new CubeDeformation(0.0F))
+		.texOffs(100, 0).addBox(-24.0F, -160.0F, -24.0F, 2.0F, 152.0F, 48.0F, new CubeDeformation(0.0F))
+		.texOffs(0, 0).addBox(22.0F, -160.0F, -24.0F, 2.0F, 152.0F, 48.0F, new CubeDeformation(0.0F))
+		.texOffs(198, 198).addBox(-22.0F, -160.0F, 22.0F, 44.0F, 152.0F, 2.0F, new CubeDeformation(0.0F))
+		.texOffs(200, 46).addBox(-22.0F, -160.0F, -24.0F, 44.0F, 110.0F, 2.0F, new CubeDeformation(0.0F))
+		.texOffs(24, 0).addBox(-22.0F, -50.0F, -24.0F, 10.0F, 42.0F, 2.0F, new CubeDeformation(0.0F))
+		.texOffs(0, 0).addBox(12.0F, -50.0F, -24.0F, 10.0F, 42.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 24.0F, 0.0F));
+
+		PartDefinition door = rocket.addOrReplaceChild("door", CubeListBuilder.create().texOffs(52, 0).addBox(-12.0F, -50.0F, -24.0F, 24.0F, 42.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
+
+		return LayerDefinition.create(meshdefinition, 512, 512);
+	}
+
+/*
     public static LayerDefinition createBodyLayer() {
         MeshDefinition meshdefinition = new MeshDefinition();
         PartDefinition partdefinition = meshdefinition.getRoot();
@@ -115,7 +138,7 @@ public class RocketModel<T extends RocketEntity> extends EntityModel<T> {
 
         return LayerDefinition.create(meshdefinition, 128, 128);
     }
-
+*/
 
     @Override
     public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {

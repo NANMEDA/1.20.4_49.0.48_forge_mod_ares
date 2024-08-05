@@ -1,6 +1,5 @@
 {
   "type": "maring:maringmar",
-  "effects": "mymod:planet_sky",
   "generator": {
     "type": "minecraft:noise",
     "settings": "maring:maringmar",
@@ -19,7 +18,7 @@
               1
             ],
             "continentalness": [
-              0.2,
+              -0.11,
               1
             ],
             "erosion": 0,
@@ -40,7 +39,7 @@
               1
             ],
             "continentalness": [
-              0.2,
+              -0.11,
               1
             ],
             "erosion": 0,
@@ -61,7 +60,7 @@
               1
             ],
             "continentalness": [
-              0.2,
+              -0.11,
               1
             ],
             "erosion": 0,
@@ -82,7 +81,7 @@
               1
             ],
             "continentalness": [
-              0.2,
+              -0.11,
               1
             ],
             "erosion": 0,
@@ -103,7 +102,7 @@
               1
             ],
             "continentalness": [
-              0.2,
+              -0.11,
               1
             ],
             "erosion": 0,
@@ -124,7 +123,7 @@
               1
             ],
             "continentalness": [
-              0.2,
+              -0.11,
               1
             ],
             "erosion": 0,
@@ -145,7 +144,7 @@
               1
             ],
             "continentalness": [
-              0.2,
+              -0.11,
               1
             ],
             "erosion": 0,
@@ -166,7 +165,7 @@
               1
             ],
             "continentalness": [
-              0.2,
+              -0.11,
               1
             ],
             "erosion": 0,
@@ -188,7 +187,7 @@
             ],
             "continentalness": [
               -1,
-              0
+              -0.19
             ],
             "erosion": 0,
             "weirdness": 0,
@@ -209,7 +208,7 @@
             ],
             "continentalness": [
               -1,
-              0
+              -0.19
             ],
             "erosion": 0,
             "weirdness": 0,
@@ -230,7 +229,7 @@
             ],
             "continentalness": [
               -1,
-              0
+              -0.19
             ],
             "erosion": 0,
             "weirdness": 0,
@@ -251,7 +250,7 @@
             ],
             "continentalness": [
               -1,
-              0
+              -0.19
             ],
             "erosion": 0,
             "weirdness": 0,
@@ -272,7 +271,7 @@
             ],
             "continentalness": [
               -1,
-              0
+              -0.19
             ],
             "erosion": 0,
             "weirdness": 0,
@@ -293,7 +292,7 @@
             ],
             "continentalness": [
               -1,
-              0
+              -0.19
             ],
             "erosion": 0,
             "weirdness": 0,
@@ -312,8 +311,11 @@
               0,
               0.6
             ],
-            "continentalness": 0,
-            "erosion": 0,
+            "continentalness": [
+              -0.11,
+              1
+            ],
+            "erosion": 1,
             "weirdness": [
               -0.1,
               0.1
@@ -333,8 +335,11 @@
               0,
               0.6
             ],
-            "continentalness": 0,
-            "erosion": 0,
+            "continentalness": [
+              -0.11,
+              1
+            ],
+            "erosion": 1,
             "weirdness": [
               -0.1,
               0.1
@@ -355,7 +360,7 @@
               1
             ],
             "continentalness": [
-              0.2,
+              -0.11,
               1
             ],
             "erosion": 1,
@@ -376,7 +381,7 @@
               1
             ],
             "continentalness": [
-              0.2,
+              -0.11,
               1
             ],
             "erosion": 1,
@@ -389,7 +394,7 @@
           "biome": "maring:maring_extinct_volcano",
           "parameters": {
             "temperature": [
-              -0.2,
+              -0.19,
               0.7
             ],
             "humidity": [
@@ -397,7 +402,7 @@
               0
             ],
             "continentalness": [
-              0.2,
+              0.3,
               1
             ],
             "erosion": 0,
@@ -410,7 +415,7 @@
           "biome": "maring:maring_extinct_volcano",
           "parameters": {
             "temperature": [
-              -0.2,
+              -0.19,
               0.7
             ],
             "humidity": [
@@ -418,7 +423,7 @@
               0
             ],
             "continentalness": [
-              0.2,
+              0.3,
               1
             ],
             "erosion": 0,
@@ -439,7 +444,7 @@
               0.8
             ],
             "continentalness": [
-              0.2,
+              0.3,
               1
             ],
             "erosion": 0.9,
@@ -460,7 +465,7 @@
               0.8
             ],
             "continentalness": [
-              0.2,
+              0.3,
               1
             ],
             "erosion": 0.9,

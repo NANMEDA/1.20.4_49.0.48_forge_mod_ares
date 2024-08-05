@@ -22,7 +22,7 @@ public class ResearchTableScreen extends AbstractContainerScreen<ResearchTableMe
     private static final ResourceLocation BACKGROUND_M = new ResourceLocation("maring", "textures/gui/container/researchtable_menu_m.png");
     private static final int SCROLLBAR_WIDTH = 6;
     private static final int SCROLLBAR_HEIGHT = 14;
-    private static final int SCROLLBAR_X_OFFSET = 160;
+    private static final int SCROLLBAR_X_OFFSET = 240;
     private static final int SCROLLBAR_Y_OFFSET = 18;
 
     private int scrollOffset = 0;
@@ -40,6 +40,7 @@ public class ResearchTableScreen extends AbstractContainerScreen<ResearchTableMe
     protected void renderBg(GuiGraphics guiGraphics, float partialTicks, int mouseX, int mouseY) {
         if (useAlternateBackground) {
         	this.imageWidth = 176;
+        	this.renderTooltip(guiGraphics, mouseX, mouseY);
             renderAlternateBackground(guiGraphics, partialTicks, mouseX, mouseY);
         } else {
         	this.imageWidth = 256;

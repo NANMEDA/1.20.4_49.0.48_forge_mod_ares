@@ -34,6 +34,10 @@ public class CreativeTabsRegister {
                 });
                 output.accept(BlockRegister.awakeningstone_BLOCK_ITEM.get());
                 output.accept(BlockRegister.unbrokenglass_BLOCK_ITEM.get());
+                output.accept(block.norm.deposit.Register.DEPOSIT_EMPTY_ITEM.get());
+                output.accept(block.norm.deposit.Register.DEPOSIT_ICE_ITEM.get());
+                output.accept(block.norm.deposit.Register.DEPOSIT_IRON_ITEM.get());
+                output.accept(block.norm.deposit.Register.DEPOSIT_GOLD_ITEM.get());
             }).build());
     
     public static final RegistryObject<CreativeModeTab> MAR_FOOD_TAB = CREATIVE_MODE_TABS.register("mar_food_tab", () -> CreativeModeTab.builder()
@@ -111,5 +115,6 @@ public class CreativeTabsRegister {
             	output.accept(block.norm.fastbuild.Register.basiceclipsedorm_BLOCK_ITEM.get());
             	output.accept(block.norm.fastbuild.Register.basicflateclipsedorm_BLOCK_ITEM.get());
             	output.accept(block.norm.fastbuild.Register.spheredoor_BLOCK_ITEM.get());
+            	output.accept(block.norm.fastbuild.Register.basiccylinderdorm_BLOCK_ITEM.get());
             }).build());
 }

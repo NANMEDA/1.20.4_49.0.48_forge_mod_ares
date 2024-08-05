@@ -5,6 +5,7 @@
     "maring:mar_baked_surface",
     "maring:mar_mud",
     "maring:mar_sand",
-    "maring:dense_volcanic_ash"
+    "maring:dense_volcanic_ash",
+    "maring:deposit_empty"
   ]
 }

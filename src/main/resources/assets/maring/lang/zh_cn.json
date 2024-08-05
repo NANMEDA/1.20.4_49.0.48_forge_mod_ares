@@ -39,7 +39,12 @@
   "block.maring.moist_mucus": "湿润粘液块",
   "block.maring.dense_volcanic_ash": "紧密火山灰",
   "block.maring.volcanic_stone": "火星火山岩",
-  "block.maring.exposed_iron": "裸露铁矿",
+  "block.maring.deposit_empty": "干枯沉积土",
+  "block.maring.deposit_ice": "含冰沉积土",
+  "block.maring.deposit_iron": "含铁沉积土",
+  "block.maring.deposit_gold": "含金沉积土",
+  "block.maring.mar_foolgold_ore": "愚人金",
+  "block.maring.mar_deep_foolgold_ore": "深层愚人金",
   
   "block.maring.powerstation_burn": "火力发电机",
   "block.maring.powerstation_sun": "太阳能发电机",
@@ -71,14 +76,16 @@
   "block.maring.basic_flat_sphere_dorm": "扁球形穹顶 I",
   "block.maring.basic_eclipse_dorm": "椭球形穹顶 I",
   "block.maring.basic_flat_eclipse_dorm": "扁椭球形穹顶 I",
+  "block.maring.basic_cylinder_dorm": "躺圆柱穹顶 I",
   "block.maring.sphere_door": "出口阀",
   
   "blueprint.last": "蓝图",
-  "dorm.basic.sphere": "基础球形穹顶",
+  "dorm.basic.sphere": "球形穹顶I",
   "dorm.basic.door": "出口阀",
-  "dorm.basic.flatsphere": "基础扁球穹顶",
-  "dorm.basic.eclipse": "基础椭球形穹顶",
-  "dorm.basic.flateclipse": "基础扁椭球形穹顶",
+  "dorm.basic.flatsphere": "扁球穹顶I",
+  "dorm.basic.eclipse": "椭球形穹顶I",
+  "dorm.basic.flateclipse": "扁椭球形穹顶I",
+  "dorm.basic.cylinder": "躺圆柱穹顶I",
   
   "item.maring.rubbish": "腐坏的食品",
   "item.maring.bread_can": "面包罐头",
@@ -253,5 +260,6 @@
   "dorm.connection.unable.anglenotgood": "不适合的角度 <我的算法里检测两个连接点向其方向发射的射线是否相交，以避免出现奇怪的情况>",
   
   "villager.poops": "普通的",
-  "villager.poops.valuable": "典藏的"
+  "villager.poops.valuable": "典藏的",
+  "spe.foolgold": "愚人金"
 }

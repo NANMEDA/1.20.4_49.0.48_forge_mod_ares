@@ -1,6 +1,7 @@
 package block.norm.fastbuild;
 
 import block.norm.BlockRegister;
+import block.norm.fastbuild.basicdorm.BasicCylinderDorm;
 import block.norm.fastbuild.basicdorm.BasicEclipseDorm;
 import block.norm.fastbuild.basicdorm.BasicFlatEclipseDorm;
 import block.norm.fastbuild.basicdorm.BasicFlatSphereDorm;
@@ -88,6 +89,16 @@ public class Register {
 	});
     public static final RegistryObject<Item> spheredoor_BLOCK_ITEM = BlockRegister.BLOCK_ITEMS.register(SphereDoor.global_name,
     		() -> new BlockItem(spheredoor_BLOCK.get(), new Item.Properties()));
+    
+    public static final RegistryObject<Block> basiccylinderdorm_BLOCK = BlockRegister.BLOCKS.register(BasicCylinderDorm.global_name, () -> {
+		return new BasicCylinderDorm(BlockBehaviour.Properties.of()
+	            .sound(SoundType.AMETHYST)
+	            .strength(5f,5f)
+	            .noOcclusion()
+	            .mapColor(MapColor.COLOR_ORANGE)); 
+	});
+    public static final RegistryObject<Item> basiccylinderdorm_BLOCK_ITEM = BlockRegister.BLOCK_ITEMS.register(BasicCylinderDorm.global_name,
+    		() -> new BlockItem(basiccylinderdorm_BLOCK.get(), new Item.Properties()));
     
 
 }

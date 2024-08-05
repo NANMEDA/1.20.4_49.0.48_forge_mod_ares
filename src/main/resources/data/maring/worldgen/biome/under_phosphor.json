@@ -43,7 +43,9 @@
       "maring:mar_ore_redstone_lower",
       "maring:mar_ore_abundant_phosphor",
       "maring:mar_ore_phosphor",
-      "maring:mar_ore_ominous"
+      "maring:mar_ore_ominous",
+      "maring:mar_ore_ice",
+      "maring:mar_ore_foolgold"
     ],
     [
       "minecraft:ore_magma"
