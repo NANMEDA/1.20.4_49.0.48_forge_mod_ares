@@ -6,7 +6,6 @@ import block.entity.consumer.bioplasticbuilder.BioplasticBuilderEntity;
 import block.entity.consumer.canfoodmaker.CanfoodMakerEntity;
 import block.entity.consumer.etchingmachine.EtchingMachineEntity;
 import block.entity.consumer.glassbuilder.GlassBuilderEntity;
-import block.entity.consumer.microwaveoven.MicrowaveOvenEntity;
 import block.entity.consumer.stonewasher.StoneWasherEntity;
 import block.entity.consumer.watergather.WaterGatherEntity;
 import block.entity.neutral.blueprintbuilder.BlueprintBuilderEntity;
@@ -30,10 +29,10 @@ public class BlockEntityRegister {
 
 	public static final RegistryObject<BlockEntityType<CanfoodMakerEntity>> canfoodmaker_BLOCKENTITY = 
 			BLOCKENTITIES.register("canfood_maker", () -> BlockEntityType.Builder.of(CanfoodMakerEntity::new,  block.norm.canfoodmaker.Register.canfoodmaker_BLOCK.get()).build(null));
-
+/*
 	public static final RegistryObject<BlockEntityType<MicrowaveOvenEntity>> microwaveoven_BLOCKENTITY = 
 			BLOCKENTITIES.register("microwave_oven", () -> BlockEntityType.Builder.of(MicrowaveOvenEntity::new, BlockRegister.microwaveoven_BLOCK.get()).build(null));
-
+*/
 	public static final RegistryObject<BlockEntityType<BasicMetalManufactorEntity>> basicmetalmanufactor_BLOCKENTITY = 
 			BLOCKENTITIES.register("basicmetal_manufactor", () -> BlockEntityType.Builder.of(BasicMetalManufactorEntity::new, BlockRegister.basicmetalmanufactor_BLOCK.get()).build(null));
 

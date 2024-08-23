@@ -7,7 +7,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class FeatureRegistry {
-	
 	private static final String MODID = "maring";
 
 	public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(
@@ -24,4 +23,7 @@ public class FeatureRegistry {
 	
 	public static final RegistryObject<MeteoriteCrater> METEORITE_CARTER = FEATURES.register
 			("meteorite_crater", () -> new MeteoriteCrater(NoneFeatureConfiguration.CODEC));
+
+	public static final RegistryObject<QuartzRoot> QUARTZ_ROOT = FEATURES.register
+			("quartz_root", () -> new QuartzRoot(NoneFeatureConfiguration.CODEC));
 }

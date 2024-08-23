@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=east": { "model": "maring:block/solar_basement", "y": -90 },
+    "facing=south": { "model": "maring:block/solar_basement" },
+    "facing=west": { "model": "maring:block/solar_basement", "y": 90 },
+    "facing=north": { "model": "maring:block/solar_basement", "y": 180 }
+  }
+}

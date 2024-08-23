@@ -9,10 +9,10 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.effect.MobEffectInstance;
 
-import com.effect.register.EffectRegister;
-import com.item.ItemRegister;
 import com.main.maring.ExtraConfig;
 
+import effect.registry.EffectRegister;
+import item.ItemRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingTickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

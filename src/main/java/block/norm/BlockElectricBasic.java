@@ -1,6 +1,7 @@
 package block.norm;
 
 import net.minecraft.world.level.material.MapColor;
+import util.json.BlockJSON;
 
 import java.util.HashMap;
 import java.util.Map;

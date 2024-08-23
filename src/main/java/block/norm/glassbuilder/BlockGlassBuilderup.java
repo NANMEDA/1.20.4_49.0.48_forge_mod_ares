@@ -1,6 +1,5 @@
 package block.norm.glassbuilder;
 
-import block.norm.BlockJSON;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -16,6 +15,7 @@ import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import util.json.BlockJSON;
 
 
 public class BlockGlassBuilderup extends Block{

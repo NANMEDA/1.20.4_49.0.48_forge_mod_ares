@@ -1,7 +1,6 @@
 package block.norm;
 
-import com.effect.register.EffectRegister;
-
+import effect.registry.EffectRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.level.Level;

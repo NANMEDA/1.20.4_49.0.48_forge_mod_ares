@@ -2,11 +2,9 @@ package block.norm.bioplasticbuilder;
 
 import javax.annotation.Nullable;
 
-import com.item.ItemRegister;
-
 import block.entity.consumer.bioplasticbuilder.BioplasticBuilderEntity;
-import block.norm.BlockJSON;
 import block.norm.BlockRegister;
+import item.ItemRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
@@ -34,6 +32,7 @@ import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import util.json.BlockJSON;
 
 /**
  * 生物塑料仪

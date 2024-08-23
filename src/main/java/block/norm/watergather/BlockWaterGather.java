@@ -4,7 +4,6 @@ import javax.annotation.Nullable;
 
 
 import block.entity.consumer.watergather.WaterGatherEntity;
-import block.norm.BlockJSON;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
@@ -28,6 +27,7 @@ import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import util.json.BlockJSON;
 
 /**
  * 水分收集台

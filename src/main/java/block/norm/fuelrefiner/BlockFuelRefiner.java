@@ -2,9 +2,8 @@ package block.norm.fuelrefiner;
 
 import javax.annotation.Nullable;
 
-import com.menu.fuelrefiner.FuelRefinerMenuProvider;
 import block.entity.neutral.fuelrefiner.FuelRefinerEntity;
-import block.norm.BlockJSON;
+import menu.fuelrefiner.FuelRefinerMenuProvider;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
@@ -32,6 +31,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.extensions.IForgeServerPlayer;
+import util.json.BlockJSON;
 
 /**
  * 燃料提取机

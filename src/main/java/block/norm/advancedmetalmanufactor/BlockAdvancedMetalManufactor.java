@@ -2,10 +2,8 @@ package block.norm.advancedmetalmanufactor;
 
 import javax.annotation.Nullable;
 
-import com.menu.advancedmetalmanufactor.AdvancedMetalManufactorMenuProvider;
-
 import block.entity.consumer.advancedmetalmanufactor.AdvancedMetalManufactorEntity;
-import block.norm.BlockJSON;
+import menu.advancedmetalmanufactor.AdvancedMetalManufactorMenuProvider;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
@@ -32,6 +30,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.extensions.IForgeServerPlayer;
+import util.json.BlockJSON;
 
 /**
  * 先进金属铸机

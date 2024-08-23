@@ -35,6 +35,10 @@ public abstract class PowerConsumerEntity extends BlockEntity {
     	
     }
     
+    protected void provideEnergyNeed() {
+    	
+    }
+    
     public void receiveItemStack(ItemStack stack) {
     	
     }

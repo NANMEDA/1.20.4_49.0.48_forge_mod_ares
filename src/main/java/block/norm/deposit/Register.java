@@ -1,6 +1,5 @@
 package block.norm.deposit;
 
-import block.norm.BlockJSON;
 import block.norm.BlockRegister;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -10,6 +9,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
+import util.json.BlockJSON;
 
 public class Register {
 	private static final String f = "deposit";

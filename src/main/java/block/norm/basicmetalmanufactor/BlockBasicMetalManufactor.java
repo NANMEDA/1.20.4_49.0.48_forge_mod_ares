@@ -2,11 +2,9 @@ package block.norm.basicmetalmanufactor;
 
 import javax.annotation.Nullable;
 
-import com.menu.basicmetalmanufactor.BasicMetalManufactorMenuProvider;
-
 import block.entity.consumer.basicmetalmanufactor.BasicMetalManufactorEntity;
-import block.norm.BlockJSON;
 import block.norm.BlockRegister;
+import menu.basicmetalmanufactor.BasicMetalManufactorMenuProvider;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
@@ -33,6 +31,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.extensions.IForgeServerPlayer;
+import util.json.BlockJSON;
 
 /**
  * 基础金属雕机

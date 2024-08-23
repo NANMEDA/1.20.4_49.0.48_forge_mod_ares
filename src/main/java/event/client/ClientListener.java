@@ -10,22 +10,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import vehicle.VehicleRegister;
 import vehicle.rocket.RocketModel;
 import vehicle.rocket.RocketTier1Renderer;
-
-import com.menu.advancedmetalmanufactor.AdvancedMetalManufactorScreen;
-import com.menu.basicmetalmanufactor.BasicMetalManufactorScreen;
-import com.menu.blueprintbuilder.BlueprintBuilderScreen;
-import com.menu.canfoodmaker.CanfoodMakerScreen;
-import com.menu.etchingmachine.EtchingMachineScreen;
-import com.menu.fuelrefiner.FuelRefinerScreen;
-import com.menu.microwaveoven.MicrowaveOvenScreen;
-import com.menu.playerextend.PlayerExtendScreen;
-import com.menu.powerstationburn.PowerStationBurnScreen;
-import com.menu.register.MenuRegister;
-import com.menu.reseachtable.ResearchTableScreen;
-import com.menu.show.ShowBlockScreen;
-import com.menu.show.itemstack.ShowItemStackScreen;
-import com.menu.stonewasher.StoneWasherScreen;
-
 import animal.client.model.JumpSpiderModel;
 import animal.client.render.JumpSpiderRenderer;
 import animal.entity.MonsterRegister;
@@ -36,11 +20,27 @@ import block.entity.consumer.bioplasticbuilder.BioplasticBuilderEntityRender;
 import block.entity.consumer.canfoodmaker.CanfoodMakerEntityRender;
 import block.entity.consumer.etchingmachine.EtchingMachineEntityRender;
 import block.entity.consumer.glassbuilder.GlassBuilderEntityRender;
-import block.entity.consumer.microwaveoven.MicrowaveOvenEntityRender;
 import block.entity.consumer.stonewasher.StoneWasherEntityRender;
 import block.entity.consumer.watergather.WaterGatherEntityRender;
 import block.entity.neutral.crystalbuilder.CrystalBuilderEntityRender;
 import block.entity.neutral.researchtable.ResearchTableEntityRender;
+import machine.energy.consumer.microwaveoven.MicrowaveOvenEntityRender;
+import machine.registry.MBlockEntityRegister;
+import machine.registry.MBlockRegister;
+import menu.advancedmetalmanufactor.AdvancedMetalManufactorScreen;
+import menu.basicmetalmanufactor.BasicMetalManufactorScreen;
+import menu.blueprintbuilder.BlueprintBuilderScreen;
+import menu.canfoodmaker.CanfoodMakerScreen;
+import menu.etchingmachine.EtchingMachineScreen;
+import menu.fuelrefiner.FuelRefinerScreen;
+import menu.microwaveoven.MicrowaveOvenScreen;
+import menu.playerextend.PlayerExtendScreen;
+import menu.powerstationburn.PowerStationBurnScreen;
+import menu.register.MenuRegister;
+import menu.reseachtable.ResearchTableScreen;
+import menu.show.ShowBlockScreen;
+import menu.show.itemstack.ShowItemStackScreen;
+import menu.stonewasher.StoneWasherScreen;
 
 @Mod.EventBusSubscriber(modid = "maring",bus = Mod.EventBusSubscriber.Bus.MOD,value = Dist.CLIENT)
 public class ClientListener{
@@ -82,7 +82,7 @@ public class ClientListener{
 	
 	@SubscribeEvent
 	public static void registerBlockEntityRender(EntityRenderersEvent.RegisterRenderers event) {
-		event.registerBlockEntityRenderer(BlockEntityRegister.microwaveoven_BLOCKENTITY.get(), MicrowaveOvenEntityRender::new);
+		event.registerBlockEntityRenderer(MBlockEntityRegister.microwaveoven_BLOCKENTITY.get(), MicrowaveOvenEntityRender::new);
 		
 		event.registerBlockEntityRenderer(BlockEntityRegister.basicmetalmanufactor_BLOCKENTITY.get(), BasicMetalManufactorEntityRender::new);
 	

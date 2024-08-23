@@ -1,17 +1,18 @@
 package com.main.maring;
 
 
-import com.creativetabs.CreativeTabsRegister;
-import com.effect.brew.BrewRigster;
-import com.effect.register.EffectRegister;
-import com.item.*;
-import com.item.can.CanHelper;
-import com.menu.register.MenuRegister;
 import com.mojang.logging.LogUtils;
 
 import animal.entity.MonsterRegister;
 import animal.entity.villager.ModVillager;
 import block.norm.*;
+import creativetab.CreativeTabsRegister;
+import effect.brew.BrewRigster;
+import effect.registry.EffectRegister;
+import item.*;
+import item.can.CanHelper;
+import machine.registry.MBlockEntityRegister;
+import menu.register.MenuRegister;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -27,6 +28,7 @@ import tags.register.AddTag;
 import tags.register.TagkeyRegister;
 import util.EntityGravity;
 import util.ItemGravity;
+import util.net.EnergyNetProcess;
 import vehicle.VehicleRegister;
 import worldgen.feature.FeatureRegistry;
 
@@ -58,10 +60,15 @@ public class Maring
 
         BlockRegister.BLOCKS.register(modEventBus);
         BlockRegister.BLOCK_ITEMS.register(modEventBus);
+        machine.registry.MBlockRegister.BLOCKS.register(modEventBus);
+        machine.registry.MBlockRegister.BLOCK_ITEMS.register(modEventBus);   
+        
         EffectRegister.EFFECTS.register(modEventBus);
         
         ItemRegister.ITEMS.register(modEventBus);
         block.entity.BlockEntityRegister.BLOCKENTITIES.register(modEventBus);
+        MBlockEntityRegister.BLOCKENTITIES.register(modEventBus);
+        
         MenuRegister.MENU_TYPES.register(modEventBus);
         CreativeTabsRegister.CREATIVE_MODE_TABS.register(modEventBus);
         MonsterRegister.ENTITY_TYPES.register(modEventBus);

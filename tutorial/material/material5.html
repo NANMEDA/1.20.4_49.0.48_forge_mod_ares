@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>准备前往火星</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header, footer {
+            background-color: #9acd32;
+            color: black;
+            text-align: center;
+            padding: 10px 0;
+        }
+        main {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            background-image: url('../pic/dorm.png'); /* Replace with your background image path */
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .overlay {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            width: 80%;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .content {
+            text-align: center;
+        }
+        .title {
+            font-size: 2em;
+            margin: 20px 0;
+        }
+        .subtitle {
+            font-size: 1.6em;
+            margin: 20px 0;
+        }
+.container {
+    display: flex; /* 使用 flexbox 布局 */
+    flex-wrap: nowrap; /* 不换行 */
+    justify-content: center; /* 水平居中对齐 */
+    align-items: center; /* 垂直居中对齐 */
+    max-width: 800px; /* 可选：限制容器最大宽度 */
+    margin: 0 auto; /* 设置左右外边距为 auto，自动居中 */
+}
+        .text {
+            font-size: 1.2em;
+            margin: 20px 0;
+            text-align: left;
+            text-indent: 4em;
+        }
+        .images {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin: 10px;
+        }
+        .images img {
+            max-width: 100%;
+            height: auto;
+            max-height: 256px; /* Condense image if height exceeds 256px */
+        }
+        .image-description {
+            font-size: 0.8em;
+            color: gray;
+            font-weight: bold;
+            margin-top: 5px;
+            text-align: center;
+        }
+        .button-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .jump-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 1em;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .jump-button:hover {
+            background-color: #4CAF50;
+            color: black;
+        }
+        .link {
+            text-decoration: none;
+            font-size: 1.2em;
+            display: block;
+            margin: 10px 0;
+        }
+        .link:hover {
+            color: #9acd32;
+        }
+        .thin-line {
+            border-top: 1px solid #9acd32;
+            margin: 20px auto;
+            width: 80%;
+        }
+        .thick-line {
+            border-top: 3px solid #9acd32;
+            margin: 30px auto;
+            width: 80%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1></h1>
+    </header>
+    <main>
+        <div class="overlay">
+            <div class="content">
+                <div class="title">
+                    电力系统
+
+                <div class="thin-line"></div>
+
+                </div>
+	<div class="text">
+   	 在模组中，大部分机器需要电力才能正常工作
+
+                <div class="thin-line"></div>
+
+	</div>
+	<div class="text">
+   	 我将以太阳能发电为例
+	</div>
+
+                <div class="images">
+                    <img src="material5/m1.png" alt="Main Image">
+                    <div class="image-description">首先，合成一个太阳能发电机</div>
+                </div>
+
+                <div class="images">
+                    <img src="material5/m2.png" alt="Main Image">
+                    <div class="image-description">合成一个太阳能支架</div>
+                </div>
+
+                <div class="container">
+                <div class="images">
+                    <img src="material5/m3.png" alt="Main Image">
+                    <div class="image-description">合成太阳能板</div>
+                </div>
+                <div class="images">
+                    <img src="material5/m4.png" alt="Main Image">
+                    <div class="image-description">更快合成</div>
+                </div>
+	</div>
+
+	</div>
+	<div class="text">
+   	 进行搭建
+	</div>
+
+	<div class="images">
+                    <img src="material5/m5.png" alt="Main Image">
+                    <div class="image-description">太阳能基座在下，上面一个支架，<br>再向上3*3之内可以放置太阳能板</div>
+                </div>
+
+	<div class="thin-line"></div>
+
+	<div class="text">
+   	 合成一个导线搭建器
+	</div>
+	<div class="images">
+                    <img src="material5/m6.png" alt="Main Image">
+                    <div class="image-description">合成</div>
+                </div>
+	<div class="text">
+   	 使用导线搭建器，右键连接两个电器，可以进行连接
+	</div>
+	<div class="text">
+   	 相互连接的电器组成电网，电网中供电水平由生产电量和消耗电量决定<br>不同供电水平会影响机器运转
+	</div>
+
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p></p>
+        <div class="button-container">
+            <button class="jump-button" onclick="location.href='../tutorial_main.html';">
+                <img src="https://via.placeholder.com/20" alt="Return Logo" style="vertical-align: middle;"> 返回
+            </button>
+        </div>
+    </footer>
+</body>
+</html>

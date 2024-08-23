@@ -4,7 +4,6 @@ import javax.annotation.Nullable;
 import java.util.Random;
 
 import block.entity.machineparts.MaterialOutputEntity;
-import block.norm.BlockJSON;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
@@ -16,6 +15,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import util.json.BlockJSON;
 
 public class MaterialOutput extends Block implements EntityBlock {
 	

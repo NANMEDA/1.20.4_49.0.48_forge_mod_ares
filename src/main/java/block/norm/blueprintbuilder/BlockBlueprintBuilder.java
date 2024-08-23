@@ -2,12 +2,10 @@ package block.norm.blueprintbuilder;
 
 import javax.annotation.Nullable;
 
-import com.menu.blueprintbuilder.BlueprintBuilderMenuProvider;
-import com.menu.microwaveoven.MicrowaveOvenMenuProvider;
-import com.menu.reseachtable.ResearchTableMenuProvider;
-
 import block.entity.neutral.blueprintbuilder.BlueprintBuilderEntity;
-import block.norm.BlockJSON;
+import menu.blueprintbuilder.BlueprintBuilderMenuProvider;
+import menu.microwaveoven.MicrowaveOvenMenuProvider;
+import menu.reseachtable.ResearchTableMenuProvider;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
@@ -30,6 +28,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.extensions.IForgeServerPlayer;
+import util.json.BlockJSON;
 
 /**
  * 蓝图制作台

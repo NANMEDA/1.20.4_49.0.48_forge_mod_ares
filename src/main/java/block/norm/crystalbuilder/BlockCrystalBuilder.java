@@ -2,10 +2,8 @@ package block.norm.crystalbuilder;
 
 import javax.annotation.Nullable;
 
-import com.item.ItemRegister;
-
 import block.entity.neutral.crystalbuilder.CrystalBuilderEntity;
-import block.norm.BlockJSON;
+import item.ItemRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
@@ -33,6 +31,7 @@ import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import util.json.BlockJSON;
 
 /**
  * 晶体重构机

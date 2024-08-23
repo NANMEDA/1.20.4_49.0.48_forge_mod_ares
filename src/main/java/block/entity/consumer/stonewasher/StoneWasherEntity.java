@@ -2,11 +2,11 @@ package block.entity.consumer.stonewasher;
 
 import java.util.Random;
 
-import com.item.ItemRegister;
 import block.entity.BlockEntityRegister;
 import block.entity.consumer.PowerConsumerEntity;
 import block.norm.BlockBasic;
 import block.norm.BlockRegister;
+import item.ItemRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;

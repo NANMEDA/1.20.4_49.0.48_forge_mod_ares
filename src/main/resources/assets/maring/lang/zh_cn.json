@@ -38,6 +38,8 @@
   "block.maring.dry_mucus": "干枯粘液块",
   "block.maring.moist_mucus": "湿润粘液块",
   "block.maring.dense_volcanic_ash": "紧密火山灰",
+  "block.maring.dense_volcanic_ash_obsidian": "杂黑曜石火山灰",
+  "block.maring.dense_volcanic_ash_gold": "杂金火山灰",
   "block.maring.volcanic_stone": "火星火山岩",
   "block.maring.deposit_empty": "干枯沉积土",
   "block.maring.deposit_ice": "含冰沉积土",
@@ -48,6 +50,9 @@
   
   "block.maring.powerstation_burn": "火力发电机",
   "block.maring.powerstation_sun": "太阳能发电机",
+  "block.maring.solar_basement": "太阳能基座",
+  "block.maring.solar_pillar": "太阳能支架",
+  "block.maring.solar_panel": "太阳能板",
   "block.maring.canfood_maker": "食品罐装机",
   "block.maring.microwave_oven": "微波炉",
   "block.maring.basicmetal_manufactor": "基础金属压铸机",
@@ -70,6 +75,7 @@
   "block.maring.broken_advanced_electronic_block": "远古损坏仪器",
   "block.maring.villager_burried_package": "村民埋藏的包裹 <据称>",
   
+  "block.maring.light_pane": "平面灯",
   "block.maring.dorm_junction": "穹顶连接框",
   "block.maring.dorm_junction_control": "穹顶连接控制器",
   "block.maring.basic_sphere_dorm": "球形穹顶 I",
@@ -136,6 +142,7 @@
   "item.maring.ominous_upgrade_smithing_template": "荧惑升级器",
   "item.maring.change_stick": "穹顶编辑器",
   "item.maring.junction_connector": "穹顶连接器",
+  "item.maring.wire_creator": "导线架设器",
   
   "item.can.show.vegetable": "  蔬菜值: %d",
   "item.can.show.meat": "  肉值: %d",
@@ -190,6 +197,8 @@
   "advancements.maringmaterial.maringmaterial_init.description": "这是个初始化的成就",
   "advancements.maringmaterial.first_metal_parts.title": "第一个基础材料",
   "advancements.maringmaterial.first_metal_parts.description": "使用8个铁锭包围一个金锭, 可以合成一个基础金属零件",
+  "advancements.maringmaterial.wire_creator.title": "电力",
+  "advancements.maringmaterial.wire_creator.description": "合成导线连接器",
   "advancements.maringmaterial.basicmetal_manufactor.title": "基础的金属铸机",
   "advancements.maringmaterial.basicmetal_manufactor.description": "更节省材料合成零件的方法",
   "advancements.maringmaterial.advancedmetal_manufactor.title": "高级的金属铸机",

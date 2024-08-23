@@ -33,6 +33,10 @@
     "maring:deep_abundant_phosphor",
     "maring:deep_slumber_phosphor",
     "maring:mar_foolgold_ore",
-    "maring:mar_deep_foolgold_ore"
+    "maring:mar_deep_foolgold_ore",
+    "maring:quartz_stone",
+    "maring:deep_quartz_stone",
+    "maring:dense_volcanic_ash_obsidian",
+    "maring:dense_volcanic_ash_gold"
   ]
 }

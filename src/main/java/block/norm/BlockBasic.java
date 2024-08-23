@@ -1,6 +1,7 @@
 package block.norm;
 
 import net.minecraft.world.level.material.MapColor;
+import util.json.BlockJSON;
 import net.minecraft.world.level.block.SoundType;
 import java.util.HashMap;
 import java.util.Map;
@@ -13,7 +14,7 @@ import java.util.Map;
  * @author NANMEDA
  * */
 public class BlockBasic {
-	public static int BLOCK_BASIC_NUMBER = 38;
+	public static int BLOCK_BASIC_NUMBER = 42;
 	private static int k = 0;
 	
     private static final String[] BLOCK_NAME = new String[BLOCK_BASIC_NUMBER];
@@ -80,18 +81,22 @@ public class BlockBasic {
     	addBlock("abundant_phosphor", MapColor.COLOR_GRAY, SoundType.STONE, stone_strength, true, "pickaxe", 0);	//富集磷光体
     	addBlock("deep_abundant_phosphor", MapColor.COLOR_GRAY, SoundType.STONE, ore_strength, true, "pickaxe", 0);
     	addBlock("slumber_phosphor", MapColor.COLOR_BLACK, SoundType.STONE, stone_strength, true, "pickaxe", 0);		//沉睡磷光体
-    	addBlock("deep_slumber_phosphor", MapColor.COLOR_BLACK, SoundType.STONE, stone_strength, true, "pickaxe", 0);	
+    	addBlock("deep_slumber_phosphor", MapColor.COLOR_BLACK, SoundType.STONE, stone_strength, true, "pickaxe", 0);
+    	addBlock("quartz_stone", MapColor.TERRACOTTA_WHITE, SoundType.AMETHYST, stone_strength, true, "pickaxe", 1);
+    	addBlock("deep_quartz_stone", MapColor.TERRACOTTA_WHITE, SoundType.AMETHYST, stone_strength, true, "pickaxe", 1);
     	addBlock("dead_stone", MapColor.COLOR_BLACK, SoundType.STONE, dirt_strength, true, "pickaxe", 0);
     	addBlock("slumber_stone", MapColor.COLOR_BLACK, SoundType.STONE, stone_strength, true, "pickaxe", 1);
     	addBlock("dry_mucus", MapColor.COLOR_YELLOW, SoundType.SLIME_BLOCK, dirt_strength, false, "shovel", 0);	//干枯粘液
     	addBlock("moist_mucus", MapColor.COLOR_YELLOW, SoundType.HONEY_BLOCK, dirt_strength, false, "shovel", 0);	//湿润粘液
-    }//10
+    }//12
     
     /***
      * 火山相关的
      * ***/
     static {
-    	addBlock("dense_volcanic_ash", MapColor.COLOR_GRAY, SoundType.STONE, dirt_strength, true, "pickaxe", 0);
+    	addBlock("dense_volcanic_ash", MapColor.COLOR_GRAY, SoundType.STONE, dirt_strength, false, "pickaxe", 0);
+    	addBlock("dense_volcanic_ash_obsidian", MapColor.COLOR_GRAY, SoundType.STONE, dirt_strength, false, "pickaxe", 0);
+    	addBlock("dense_volcanic_ash_gold", MapColor.COLOR_GRAY, SoundType.STONE, dirt_strength, false, "pickaxe", 0);
     	addBlock("volcanic_stone", MapColor.COLOR_GRAY, SoundType.STONE, stone_strength, true, "pickaxe", 1);
     }
     

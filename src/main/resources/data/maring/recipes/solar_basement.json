@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XAX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:iron_block"
+    },
+    "A": {
+      "item": "maring:advanced_metal_parts"
+    }
+  },
+  "result": {
+    "item": "maring:wire_creator",
+    "count": 2
+  }
+}

@@ -3,7 +3,6 @@ package block.norm.fastbuild;
 import javax.annotation.Nullable;
 
 import block.entity.neutral.fastbuild.DormJunctionControlEntity;
-import block.norm.BlockJSON;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
@@ -15,6 +14,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import util.json.BlockJSON;
 
 public class DormJunctionControl extends Block implements EntityBlock {
 

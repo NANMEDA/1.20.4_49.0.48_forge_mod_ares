@@ -3,11 +3,11 @@ package event.forge;
 import java.util.List;
 import java.util.Random;
 
-import com.item.ItemRegister;
 import animal.entity.villager.ModVillager;
 import block.norm.BlockElectricBasic;
 import block.norm.BlockRegister;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import item.ItemRegister;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;

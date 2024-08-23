@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAA",
+    "XGX",
+    "BBB"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:iron_block"
+    },
+    "A": {
+      "item": "minecraft:lapis_block"
+    },
+    "B": {
+      "item": "maring:basic_metal_parts"
+    },
+    "G": {
+      "item": "minecraft:gold_block"
+    }
+  },
+  "result": {
+    "item": "maring:solar_panel",
+    "count": 36
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "facing=down": { "model": "maring:block/light_pane" },
+    "facing=up": { "model": "maring:block/light_pane","x": 180 },
+    "facing=south": { "model": "maring:block/light_pane", "x": 90 },
+    "facing=north": { "model": "maring:block/light_pane", "x": 270 },
+    "facing=west": { "model": "maring:block/light_pane", "x": 90, "y": 90},
+    "facing=east": { "model": "maring:block/light_pane", "x": 90, "y": 270}
+  }
+}

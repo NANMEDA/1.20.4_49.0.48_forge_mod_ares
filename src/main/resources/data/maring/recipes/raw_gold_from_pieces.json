@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "maring:piece_rawgold"
+    },
+    {
+      "item": "maring:piece_rawgold"
+    },
+    {
+      "item": "maring:piece_rawgold"
+    }
+  ],
+  "result": {
+    "item": "minecraft:raw_gold",
+    "count": 1
+  }
+}

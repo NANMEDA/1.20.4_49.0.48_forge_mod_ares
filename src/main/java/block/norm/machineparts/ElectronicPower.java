@@ -4,7 +4,6 @@ import javax.annotation.Nullable;
 
 import block.entity.consumer.basicmetalmanufactor.BasicMetalManufactorEntity;
 import block.entity.machineparts.ElectronicPowerEntity;
-import block.norm.BlockJSON;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -17,6 +16,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import util.json.BlockJSON;
 
 public class ElectronicPower extends Block implements EntityBlock {
 

@@ -1,0 +1,32 @@
+{
+  "display": {
+    "icon": {
+      "item": "maring:wire_creator"
+    },
+    "title": {
+      "translate": "advancements.maringmaterial.wire_creator.title"
+    },
+    "description": {
+      "translate": "advancements.maringmaterial.wire_creator.description"
+    },
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "maring:maringmaterial/first_metal_parts",
+  "criteria": {
+    "advancedmetal_manufactor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "maring:wire_creator"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "sends_telemetry_event": true
+}

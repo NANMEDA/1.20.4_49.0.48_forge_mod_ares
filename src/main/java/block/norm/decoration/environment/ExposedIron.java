@@ -1,7 +1,6 @@
 package block.norm.decoration.environment;
 
-import com.menu.show.ShowBlockMenuProvider;
-
+import menu.show.ShowBlockMenuProvider;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;

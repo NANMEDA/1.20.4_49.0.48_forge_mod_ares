@@ -2,11 +2,10 @@ package block.norm.canfoodmaker;
 
 import javax.annotation.Nullable;
 
-import com.menu.canfoodmaker.CanfoodMakerMenuProvider;
 import com.mojang.serialization.MapCodec;
 
 import block.entity.consumer.canfoodmaker.CanfoodMakerEntity;
-import block.norm.BlockJSON;
+import menu.canfoodmaker.CanfoodMakerMenuProvider;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
@@ -34,6 +33,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.extensions.IForgeServerPlayer;
+import util.json.BlockJSON;
 
 /**
  * 食品罐装机

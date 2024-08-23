@@ -56,7 +56,8 @@
       "maring:mar_dead_stone_ceiling"
     ],
     [
-      "maring:ancient_rocket"
+      "maring:ancient_rocket",
+      "maring:quartz_root"
     ]
   ]
 }

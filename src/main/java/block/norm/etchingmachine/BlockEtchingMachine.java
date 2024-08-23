@@ -2,10 +2,8 @@ package block.norm.etchingmachine;
 
 import javax.annotation.Nullable;
 
-import com.menu.etchingmachine.EtchingMachineMenuProvider;
-
 import block.entity.consumer.etchingmachine.EtchingMachineEntity;
-import block.norm.BlockJSON;
+import menu.etchingmachine.EtchingMachineMenuProvider;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
@@ -31,6 +29,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.extensions.IForgeServerPlayer;
+import util.json.BlockJSON;
 
 /**
  * 蚀刻机

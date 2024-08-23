@@ -1,7 +1,6 @@
 package block.norm.etchingmachine;
 
 
-import block.norm.BlockJSON;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
@@ -20,6 +19,7 @@ import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import util.json.BlockJSON;
 
 
 public class BlockEtchingMachinecorner extends Block{

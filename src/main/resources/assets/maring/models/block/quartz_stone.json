@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_column",
+  "textures": {
+    "end": "maring:block/mar_stone",
+    "side": "maring:block/quartz_stone"
+  }
+}

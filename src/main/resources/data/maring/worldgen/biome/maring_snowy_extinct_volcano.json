@@ -46,7 +46,11 @@
     ],
     [],
     [],
-    [],
+    [
+      "maring:mar_patch_volcanic_stone",
+      "maring:exposed_iron",
+      "maring:exposed_obsidian"
+    ],
     [
       "maring:ancient_rocket"
     ]

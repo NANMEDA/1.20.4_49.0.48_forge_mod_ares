@@ -1,0 +1,92 @@
+package item.tool.electric;
+
+import machine.energy.EnergyEntity;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.Level;
+import util.json.ItemJSON;
+import util.net.EnergyNet;
+import util.net.EnergyNetProcess;
+
+
+/**
+ * 这个是用来链接电力网络的
+ * 要在两个用电器之间渲染导线未写
+ * @author NANMEDA
+ * */
+public class WireCreator extends Item {
+	private BlockPos startPos = null;
+	private long startNet = 0;
+
+	public WireCreator(Properties p_41383_) {
+		super(p_41383_);
+		// TODO 自动生成的构造函数存根
+	}
+	
+	public static final String global_name = "wire_creator";
+ 
+    @Override
+    public InteractionResult useOn(UseOnContext context) {
+        Level level = context.getLevel();
+        BlockPos pos = context.getClickedPos();
+        if(!level.isClientSide)
+        	if(level.getBlockEntity(pos) instanceof EnergyEntity blockentity) {
+        		if(startPos==null) {
+        			startPos = pos;
+        			startNet = blockentity.getNet();
+        			context.getPlayer().sendSystemMessage(Component.translatable("first.point.ok"));
+        		}else {
+        			context.getPlayer().sendSystemMessage(Component.translatable("second.point.ok"));
+        			long endNet = blockentity.getNet();
+        			if(startNet == endNet) {
+        				if(startNet != 0) {
+                			startPos = null;
+                			startNet = 0;
+        					return InteractionResult.PASS;
+        				}else {
+        					EnergyNet net = EnergyNetProcess.createEnergyNet();
+        					EnergyEntity startEntity = (EnergyEntity) level.getBlockEntity(startPos);
+        					net.addBlockPos(pos, blockentity);
+        					net.addBlockPos(startPos, startEntity);
+        					blockentity.setNet(net.getId());
+                			blockentity.setChanged();
+                			startEntity.setNet(net.getId());
+                			startEntity.setChanged();
+        				}
+        			}else {
+        				if(startNet == 0) {
+        					EnergyNet net = EnergyNetProcess.getEnergyNet(endNet);
+        					EnergyEntity startEntity = (EnergyEntity) level.getBlockEntity(startPos);
+        					net.addBlockPos(startPos, startEntity);
+                			startEntity.setNet(endNet);
+                			startEntity.setChanged();
+        				}else if(endNet == 0) {
+        					EnergyNet net = EnergyNetProcess.getEnergyNet(startNet);
+        					net.addBlockPos(pos, blockentity);
+        					blockentity.setNet(startNet);
+                			blockentity.setChanged();
+        				}else {
+        					EnergyNetProcess.mergeEnergyNets(startNet, endNet);
+        					blockentity.setNet(startNet);
+                			blockentity.setChanged();
+        					EnergyEntity startEntity = (EnergyEntity) level.getBlockEntity(startPos);
+                			startEntity.setNet(startNet);
+                			startEntity.setChanged();
+        				}
+        			}
+        			startPos = null;
+        			startNet = 0;
+        		}
+        	}
+
+        return InteractionResult.PASS;
+    }
+    
+	static {
+		ItemJSON.GenJSON(global_name);
+	}
+
+}

@@ -1,7 +1,6 @@
 package block.norm.fastbuild.basicdorm;
 
 import block.norm.BlockBasic;
-import block.norm.BlockJSON;
 import block.norm.BlockRegister;
 import block.norm.fastbuild.DormHelper;
 import net.minecraft.core.BlockPos;
@@ -11,6 +10,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
+import util.json.BlockJSON;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " S ",
+    "GGG"
+  ],
+  "key": {
+    "S": {
+      "item": "maring:semiconductor_parts"
+    },
+    "G": {
+      "item": "minecraft:glowstone"
+    }
+  },
+  "result": {
+    "item": "maring:light_pane",
+    "count": 16
+  }
+}

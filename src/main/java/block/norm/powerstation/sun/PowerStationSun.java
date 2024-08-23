@@ -11,12 +11,13 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import util.json.BlockJSON;
+
 import javax.annotation.Nullable;
 
 import com.mojang.serialization.MapCodec;
 
 import block.entity.station.PowerStationSunEntity;
-import block.norm.BlockJSON;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;

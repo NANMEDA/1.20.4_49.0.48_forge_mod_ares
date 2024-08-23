@@ -4,6 +4,7 @@ import net.minecraft.world.level.block.EntityBlock;
 
 
 import net.minecraftforge.common.extensions.IForgeServerPlayer;
+import util.json.BlockJSON;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
@@ -15,11 +16,10 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import javax.annotation.Nullable;
 
-import com.menu.powerstationburn.PowerStationMenuProvider;
 import com.mojang.serialization.MapCodec;
 
 import block.entity.station.PowerStationBurnEntity;
-import block.norm.BlockJSON;
+import menu.powerstationburn.PowerStationMenuProvider;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;

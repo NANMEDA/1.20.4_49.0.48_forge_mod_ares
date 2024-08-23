@@ -1,9 +1,9 @@
 package block.entity.neutral.fuelrefiner;
 
 
-import com.item.ItemRegister;
 import block.entity.BlockEntityRegister;
 import block.entity.consumer.PowerConsumerEntity;
+import item.ItemRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;

@@ -1,11 +1,10 @@
 package block.entity.consumer.canfoodmaker;
 
-import com.item.ItemRegister;
-import com.item.can.CanHelper;
-import com.item.can.ItemCanNBT;
-
 import block.entity.BlockEntityRegister;
 import block.entity.consumer.PowerConsumerEntity;
+import item.ItemRegister;
+import item.can.CanHelper;
+import item.can.ItemCanNBT;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;

@@ -2,10 +2,8 @@ package block.norm.glassbuilder;
 
 import javax.annotation.Nullable;
 
-import com.item.ItemRegister;
-
 import block.entity.consumer.glassbuilder.GlassBuilderEntity;
-import block.norm.BlockJSON;
+import item.ItemRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
@@ -31,6 +29,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import util.json.BlockJSON;
 
 /**
  * 玻璃合成机

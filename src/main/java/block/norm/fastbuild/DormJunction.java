@@ -1,7 +1,7 @@
 package block.norm.fastbuild;
 
-import block.norm.BlockJSON;
 import net.minecraft.world.level.block.Block;
+import util.json.BlockJSON;
 
 public class DormJunction extends Block {
 

@@ -22,7 +22,6 @@ import block.norm.bioplasticbuilder.BlockBioplasticBuilder;
 import block.norm.bioplasticbuilder.BlockBioplasticBuilderbehind;
 import block.norm.bioplasticbuilder.BlockBioplasticBuilderleft;
 import block.norm.bioplasticbuilder.BlockBioplasticBuilderup;
-import block.norm.microwaveoven.BlockMicrowaveOven;
 import block.norm.powerstation.burn.PowerStationBurn;
 import block.norm.powerstation.sun.PowerStationSun;
 import block.norm.unbroken.BlockUnbrokenCement;
@@ -132,7 +131,7 @@ public class BlockRegister {
     	block.norm.decoration.Register.init();
     }
     
-    
+    /*
     public static final RegistryObject<Block> microwaveoven_BLOCK = BLOCKS.register(BlockMicrowaveOven.global_name, () -> {
 		return new BlockMicrowaveOven(BlockBehaviour.Properties.of()
 	            .sound(SoundType.AMETHYST)
@@ -141,7 +140,7 @@ public class BlockRegister {
 	            .mapColor(MapColor.COLOR_GRAY)); 
 	});
     public static final RegistryObject<Item> microwaveoven_BLOCK_ITEM = BLOCK_ITEMS.register(BlockMicrowaveOven.global_name, () -> new BlockItem(microwaveoven_BLOCK.get(), new Item.Properties()));
-
+*/
     public static final RegistryObject<Block> basicmetalmanufactor_BLOCK = BLOCKS.register(BlockBasicMetalManufactor.global_name, () -> {
 		return new BlockBasicMetalManufactor(BlockBehaviour.Properties.of()
 	            .sound(SoundType.STONE)

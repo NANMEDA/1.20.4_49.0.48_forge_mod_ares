@@ -1,11 +1,10 @@
 package block.entity.neutral.blueprintbuilder;
 
 
-import com.item.ItemRegister;
-import com.item.blueprint.ItemBlueprintNBT;
-
 import block.entity.BlockEntityRegister;
 import block.entity.consumer.PowerConsumerEntity;
+import item.ItemRegister;
+import item.blueprint.ItemBlueprintNBT;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;

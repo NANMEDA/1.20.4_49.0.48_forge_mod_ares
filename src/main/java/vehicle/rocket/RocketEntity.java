@@ -1,8 +1,7 @@
 package vehicle.rocket;
 
-import com.item.ItemRegister;
-
 import event.forge.SetRocketItemStackEvent;
+import item.ItemRegister;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
