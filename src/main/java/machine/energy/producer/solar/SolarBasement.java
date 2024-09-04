@@ -12,12 +12,14 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.BooleanOp;
@@ -31,10 +33,15 @@ import util.net.EnergyNetProcess;
  * @author NANMEDA
  * */
 public class SolarBasement extends Block implements EntityBlock{
-	public static String global_name = "solar_basement"; 
+	public static final String global_name = "solar_basement"; 
 	
 	public SolarBasement(Properties properties) {
-		super(properties);
+		super(properties
+	            .sound(SoundType.AMETHYST)
+	            .strength(5f,5f)
+	            .noOcclusion()
+	            .mapColor(MapColor.COLOR_GRAY)
+	            );
 	}
 	
 	@Nullable
@@ -60,16 +67,16 @@ public class SolarBasement extends Block implements EntityBlock{
 		
         switch (p_60555_.getValue(BlockStateProperties.FACING)) {
         case WEST:
-            shape = rotateShape(shape, 270); // Rotate -90 degrees
+            shape = rotateShape(shape, 270); 
             break;
         case EAST:
-            shape = rotateShape(shape, 90);  // Rotate 90 degrees
+            shape = rotateShape(shape, 90); 
             break;
         case SOUTH:
             break;
         case NORTH:
         default:
-            shape = rotateShape(shape, 180); // Rotate 180 degrees
+            shape = rotateShape(shape, 180);
             break;
         }
         return shape;
@@ -127,14 +134,15 @@ public class SolarBasement extends Block implements EntityBlock{
         builder.add(BlockStateProperties.FACING);
     }
     
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public void onRemove(BlockState oldState, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
         if(!level.isClientSide)
     	if (!oldState.is(newState.getBlock())) {
             BlockEntity blockEntity = level.getBlockEntity(pos);
-            if (blockEntity instanceof SolarBasementEntity solarEntity) {
+            if (blockEntity instanceof SolarBasementEntity entity) {
                 // Call the remove method in the BlockEntity to clean up network references
-                solarEntity.remove();
+            	entity.remove();
             }
             super.onRemove(oldState, level, pos, newState, isMoving);
         }

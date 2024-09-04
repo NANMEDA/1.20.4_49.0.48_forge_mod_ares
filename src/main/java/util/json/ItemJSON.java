@@ -9,14 +9,15 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 
 public class ItemJSON {
-    
+	private static final String toResource = "/forge-1.20.4-49.0.48-mdk/src/main/resources"; 
+	
 	/***
 	 * 生成的是handheld的Item模型
 	 * 和Block那里的不同
 	 * 不可以混用
 	 * ***/
     public static void GenJSON(String name) {
-        File file = new File("/forge-1.20.4-49.0.48-mdk/src/main/resources/assets/maring/models/item/"+name+".json");
+        File file = new File(toResource + "/assets/maring/models/item/"+name+".json");
         if (file.exists()) {
             return;
         }

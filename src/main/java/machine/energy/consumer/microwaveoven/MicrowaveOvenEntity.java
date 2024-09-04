@@ -1,6 +1,5 @@
 package machine.energy.consumer.microwaveoven;
 
-import block.entity.consumer.PowerConsumerEntity;
 import item.ItemRegister;
 import machine.energy.consumer.ConsumerEntity;
 import machine.energy.consumer.IConsumer;
@@ -35,8 +34,8 @@ import util.net.EnergyNetProcess;
  * */
 public class MicrowaveOvenEntity extends ConsumerEntity implements IConsumer{
 
-	private static int energy_consume = 0;
-	private static int energy_supply = 100;
+	private int energy_consume = 0;
+	private int energy_supply = 100;
 	private int pg_max = 100;
 	private int render = 0;
 	private short process_progress = -1;//这是倒着来着，看下面就知道了
@@ -48,6 +47,11 @@ public class MicrowaveOvenEntity extends ConsumerEntity implements IConsumer{
 	public int getRenderDis() {
 		return render;
 	}
+	
+	@Override
+    public boolean lineVisible() {
+    	return false;
+    }
 	
 	public MicrowaveOvenEntity(BlockPos pos, BlockState pBlockState) {
 		super(MBlockEntityRegister.microwaveoven_BLOCKENTITY.get(), pos, pBlockState);
@@ -154,28 +158,28 @@ public class MicrowaveOvenEntity extends ConsumerEntity implements IConsumer{
 			item.deserializeNBT(tag.getCompound(TAG_NAME));
 		}
 		if(tag.contains(TAG_PROGRESS)) {
-			process_progress = tag.getShort(TAG_PROGRESS);
+			this.process_progress = tag.getShort(TAG_PROGRESS);
 		}
 		if(tag.contains(tAG_IS_BUTTON)) {
-			is_button = tag.getBoolean(tAG_IS_BUTTON);
+			this.is_button = tag.getBoolean(tAG_IS_BUTTON);
 		}
 		if(tag.contains(TAG_RENDER)) {
-			render = tag.getShort(TAG_RENDER);
+			this.render = tag.getShort(TAG_RENDER);
 		}
 	}
 	
 
 	@Override
 	public boolean servertick(boolean u) {
-		energy_consume = 0;
-		energy_supply = getEnergySupplyLevel();
+		this.energy_consume = 0;
+		this.energy_supply = getEnergySupplyLevel();
 		ItemStack[] stack = new ItemStack[2];
 		for (int i = 0; i < 2; i++) {
 		    stack[i] = item.getStackInSlot(i);
 		}
 		if(stack[0]==ItemStack.EMPTY){
-			is_button = false;			//按钮弹起
-			process_progress = -1;		//-1状态就是准备好了的状态
+			this.is_button = false;			//按钮弹起
+			this.process_progress = -1;		//-1状态就是准备好了的状态
 			
 	        int render = 0;
 			if(render != this.render) {
@@ -185,8 +189,8 @@ public class MicrowaveOvenEntity extends ConsumerEntity implements IConsumer{
 			return false;
 		}
 		if(stack[1]!=ItemStack.EMPTY) {
-			is_button = false;//按钮弹起
-			process_progress = -1;
+			this.is_button = false;//按钮弹起
+			this.process_progress = -1;
 	        int render = 0;
 			if(render != this.render) {
 				this.render = render;
@@ -195,13 +199,13 @@ public class MicrowaveOvenEntity extends ConsumerEntity implements IConsumer{
 			//System.out.println("1 is nor EMEPTY");
 			return false;
 		}
-		if(process_progress>0) {
+		if(this.process_progress>0) {
 			//System.out.println("IS processing");
-			process_progress -= (energy_supply > 75) ? 3 : ((energy_supply > 50) ? 2 : ((energy_supply > 25) ? 1 : 0));
+			this.process_progress -= (energy_supply > 75) ? 3 : ((energy_supply > 50) ? 2 : ((energy_supply > 25) ? 1 : 0));
 			
-			if(energy_supply==0) {
-				is_button = false;
-				process_progress = -1;
+			if(this.energy_supply==0) {
+				this.is_button = false;
+				this.process_progress = -1;
 		        int render = 0;
 				if(render != this.render) {
 					this.render = render;
@@ -210,8 +214,8 @@ public class MicrowaveOvenEntity extends ConsumerEntity implements IConsumer{
 				return false;
 			}
 			
-			if(process_progress<0) {process_progress = 0;}
-			energy_consume = FULL_ENERGY;
+			if(this.process_progress<0) {this.process_progress = 0;}
+			this.energy_consume = this.FULL_ENERGY;
 			
 			//int progress = process_progress/150;//除到10
 			int progress = 10 - 10*process_progress/pg_max;
@@ -250,8 +254,8 @@ public class MicrowaveOvenEntity extends ConsumerEntity implements IConsumer{
 				return true;
 			} 
 			//System.out.println("food not UNCOOK");
-			is_button = false;//按钮弹起
-			process_progress = -1;
+			this.is_button = false;//按钮弹起
+			this.process_progress = -1;
 			
 	        int render = 0;
 			if(render != this.render) {
@@ -263,7 +267,7 @@ public class MicrowaveOvenEntity extends ConsumerEntity implements IConsumer{
 		}
 		int uncookfood_number = stack[0].getCount();
 
-		if(process_progress==0) {
+		if(this.process_progress==0) {
 			item.setStackInSlot(0, ItemStack.EMPTY);
 			ItemStack cooked_food = ItemStack.EMPTY;
 			switch (cook_food) {
@@ -298,15 +302,15 @@ public class MicrowaveOvenEntity extends ConsumerEntity implements IConsumer{
 		        return false;
 		}
 			item.setStackInSlot(1, cooked_food);
-			process_progress=-1;
-			is_button = false;//按钮弹起
-			should_playsound = true;
-			render = 0;
-			level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_CLIENTS);
+			this.process_progress=-1;
+			this.is_button = false;//按钮弹起
+			this.should_playsound = true;
+			this.render = 0;
+			this.level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_CLIENTS);
 		}else if(process_progress==-1) {
-			process_progress = (short) ((uncookfood_number > 32) ? 30*60 : ((uncookfood_number > 16) ? 20*60 : ((uncookfood_number > 6) ? 10*60 : 5*60)));
+			this.process_progress = (short) ((uncookfood_number > 32) ? 30*60 : ((uncookfood_number > 16) ? 20*60 : ((uncookfood_number > 6) ? 10*60 : 5*60)));
 			//为什么要这么做呢，3*是因为当满电时，process_progress减的速度是3;  *20因为一秒20tick,3*20=60
-		    pg_max = process_progress;
+			this.pg_max = process_progress;
 		}
 		setChanged();
 		return false;
@@ -314,8 +318,8 @@ public class MicrowaveOvenEntity extends ConsumerEntity implements IConsumer{
 	
 	@Override
 	public void clienttick() {
-		if(should_playsound) {
-			should_playsound = false;
+		if(this.should_playsound) {
+			this.should_playsound = false;
 			SoundEvent soundEvent = SoundEvents.VILLAGER_YES;
 	        if (soundEvent != null) {
 	        	level.playLocalSound(worldPosition,soundEvent,null, 1.0f, 1.0f,true);
@@ -326,7 +330,7 @@ public class MicrowaveOvenEntity extends ConsumerEntity implements IConsumer{
 	
 	@Override
 	public int getEnergyConsume() {
-		return FULL_ENERGY;
+		return this.energy_consume;
 	}
 	
 	@Override
@@ -340,7 +344,6 @@ public class MicrowaveOvenEntity extends ConsumerEntity implements IConsumer{
 
 	@Override
 	protected void servertick() {
-		// TODO 自动生成的方法存根
 	}
 
 }

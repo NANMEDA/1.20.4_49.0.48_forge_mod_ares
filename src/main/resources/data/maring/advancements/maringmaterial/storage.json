@@ -1,0 +1,32 @@
+{
+  "display": {
+    "icon": {
+      "item": "maring:battery_basement"
+    },
+    "title": {
+      "translate": "advancements.maringmaterial.storage.title"
+    },
+    "description": {
+      "translate": "advancements.maringmaterial.storage.description"
+    },
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "maring:maringmaterial/wire_creator",
+  "criteria": {
+    "advancedmetal_manufactor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "maring:battery_basement"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "sends_telemetry_event": true
+}

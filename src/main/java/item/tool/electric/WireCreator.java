@@ -14,7 +14,8 @@ import util.net.EnergyNetProcess;
 
 /**
  * 这个是用来链接电力网络的
- * 要在两个用电器之间渲染导线未写
+ * <br>TODO:<br> 要在两个用电器之间渲染导线未写
+ * <br>TODO:<br> 创建第一个电网卡顿
  * @author NANMEDA
  * */
 public class WireCreator extends Item {
@@ -34,51 +35,53 @@ public class WireCreator extends Item {
         BlockPos pos = context.getClickedPos();
         if(!level.isClientSide)
         	if(level.getBlockEntity(pos) instanceof EnergyEntity blockentity) {
-        		if(startPos==null) {
-        			startPos = pos;
-        			startNet = blockentity.getNet();
-        			context.getPlayer().sendSystemMessage(Component.translatable("first.point.ok"));
-        		}else {
-        			context.getPlayer().sendSystemMessage(Component.translatable("second.point.ok"));
-        			long endNet = blockentity.getNet();
-        			if(startNet == endNet) {
-        				if(startNet != 0) {
-                			startPos = null;
-                			startNet = 0;
-        					return InteractionResult.PASS;
-        				}else {
-        					EnergyNet net = EnergyNetProcess.createEnergyNet();
-        					EnergyEntity startEntity = (EnergyEntity) level.getBlockEntity(startPos);
-        					net.addBlockPos(pos, blockentity);
-        					net.addBlockPos(startPos, startEntity);
-        					blockentity.setNet(net.getId());
-                			blockentity.setChanged();
-                			startEntity.setNet(net.getId());
-                			startEntity.setChanged();
-        				}
-        			}else {
-        				if(startNet == 0) {
-        					EnergyNet net = EnergyNetProcess.getEnergyNet(endNet);
-        					EnergyEntity startEntity = (EnergyEntity) level.getBlockEntity(startPos);
-        					net.addBlockPos(startPos, startEntity);
-                			startEntity.setNet(endNet);
-                			startEntity.setChanged();
-        				}else if(endNet == 0) {
-        					EnergyNet net = EnergyNetProcess.getEnergyNet(startNet);
-        					net.addBlockPos(pos, blockentity);
-        					blockentity.setNet(startNet);
-                			blockentity.setChanged();
-        				}else {
-        					EnergyNetProcess.mergeEnergyNets(startNet, endNet);
-        					blockentity.setNet(startNet);
-                			blockentity.setChanged();
-        					EnergyEntity startEntity = (EnergyEntity) level.getBlockEntity(startPos);
-                			startEntity.setNet(startNet);
-                			startEntity.setChanged();
-        				}
-        			}
-        			startPos = null;
-        			startNet = 0;
+        		if(blockentity.isConnectable()) {
+	        		if(this.startPos==null) {
+	        			this.startPos = pos;
+	        			this.startNet = blockentity.getNet();
+	        			context.getPlayer().sendSystemMessage(Component.translatable("first.point.ok"));
+	        		}else {
+	        			context.getPlayer().sendSystemMessage(Component.translatable("second.point.ok"));
+	        			long endNet = blockentity.getNet();
+	        			if(startNet == endNet) {
+	        				if(startNet != 0) {
+	                			startPos = null;
+	                			startNet = 0;
+	        					return InteractionResult.PASS;
+	        				}else {
+	        					EnergyNet net = EnergyNetProcess.createEnergyNet();
+	        					EnergyEntity startEntity = (EnergyEntity) level.getBlockEntity(startPos);
+	        					net.addBlockPos(pos, blockentity);
+	        					net.addBlockPos(startPos, startEntity);
+	        					blockentity.setNet(net.getId());
+	                			blockentity.setChanged();
+	                			startEntity.setNet(net.getId());
+	                			startEntity.setChanged();
+	        				}
+	        			}else {
+	        				if(this.startNet == 0) {
+	        					EnergyNet net = EnergyNetProcess.getEnergyNet(endNet);
+	        					EnergyEntity startEntity = (EnergyEntity) level.getBlockEntity(startPos);
+	        					net.addBlockPos(startPos, startEntity);
+	                			startEntity.setNet(endNet);
+	                			startEntity.setChanged();
+	        				}else if(endNet == 0) {
+	        					EnergyNet net = EnergyNetProcess.getEnergyNet(startNet);
+	        					net.addBlockPos(pos, blockentity);
+	        					blockentity.setNet(startNet);
+	                			blockentity.setChanged();
+	        				}else {
+	        					EnergyNetProcess.mergeEnergyNets(startNet, endNet);
+	        					blockentity.setNet(startNet);
+	                			blockentity.setChanged();
+	        					EnergyEntity startEntity = (EnergyEntity) level.getBlockEntity(startPos);
+	                			startEntity.setNet(startNet);
+	                			startEntity.setChanged();
+	        				}
+	        			}
+	        			this.startPos = null;
+	        			this.startNet = 0;
+	        		}
         		}
         	}
 

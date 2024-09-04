@@ -11,7 +11,6 @@ import net.minecraft.world.entity.LivingEntity;
  * */
 public class EffectLosePressure extends EffectMain {
     private int amplified;
-
     
 	public EffectLosePressure(MobEffectCategory type, int color, boolean isInstant, int amplified) {
         super(type, color, isInstant);

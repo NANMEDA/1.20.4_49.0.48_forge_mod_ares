@@ -52,11 +52,11 @@ public class Maring
     {
     	
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-
+        
+        NetworkHandler.register();
         // Register the commonSetup method for modloading
-        modEventBus.addListener(this::commonSetup);
+        //modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::clientSetup);
-       
 
         BlockRegister.BLOCKS.register(modEventBus);
         BlockRegister.BLOCK_ITEMS.register(modEventBus);
@@ -85,7 +85,6 @@ public class Maring
         
         BrewRigster.registerBrewingRecipes();
         CanHelper.init();
-
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
       
     }
@@ -100,7 +99,7 @@ public class Maring
 
         Config.items.forEach((item) -> LOGGER.info("ITEM >> {}", item.toString()));
         
-        NetworkHandler.register();
+        //NetworkHandler.register();
         
         
     }

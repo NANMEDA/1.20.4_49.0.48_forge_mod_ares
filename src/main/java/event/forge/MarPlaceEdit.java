@@ -3,6 +3,7 @@ package event.forge;
 import block.norm.BlockRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
+import net.minecraft.util.LazyLoadedValue;
 import net.minecraft.world.Containers;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -20,18 +21,22 @@ import net.minecraftforge.fml.common.Mod;
  * 火把，萤火，破坏
  * 草,花,树苗->枯树
  * 苔藓块,草块 -> 泥土
+ * <br>TODO:<br> 放置水
  * @author NANMEDA
  * */
 @Mod.EventBusSubscriber(modid = "maring", bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class MarPlaceEdit {
 	
-	private static BlockState A_AIR_BLOCK_STATE = null;
+	@SuppressWarnings("deprecation")
+	private static final LazyLoadedValue<BlockState> A_AIR_BLOCK_STATE = 
+		    new LazyLoadedValue<>(() -> BlockRegister.A_AIR.get().defaultBlockState());
+	//private static Supplier<BlockState> A_AIR_BLOCK_STATE = 
+	//		() -> {return BlockRegister.A_AIR.get().defaultBlockState();};
 	
 	@SubscribeEvent
     public static void onBlockPlaced(BlockEvent.EntityPlaceEvent event) {
 		if(event.getLevel().isClientSide()) return;
 		if(event.getLevel().getBiome(event.getPos()).get().getFoliageColor() != 9334293) return;
-		if(A_AIR_BLOCK_STATE == null) A_AIR_BLOCK_STATE = BlockRegister.A_AIR.get().defaultBlockState();
  		if(checkAnyAAIR(event.getLevel(),event.getPos())) return;
 		Block block = event.getPlacedBlock().getBlock();
         if (posIsSapling(block)) {
@@ -70,7 +75,7 @@ public class MarPlaceEdit {
 				pos.north()
 		};
 		for(BlockPos p : ps) {
-			if(levelAccessor.getBlockState(p)==A_AIR_BLOCK_STATE) {
+			if(levelAccessor.getBlockState(p)==A_AIR_BLOCK_STATE.get()) {
 				return true;
 			}
 		}

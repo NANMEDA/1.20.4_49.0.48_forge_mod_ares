@@ -4,6 +4,7 @@ import java.util.Random;
 
 import block.norm.BlockRegister;
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.LazyLoadedValue;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -16,12 +17,13 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.BlockHitResult;
 
+@SuppressWarnings("deprecation")
 public class BlockUnbrokenCement extends Block {
 	
 	public static final String global_name = "unbroken_cement";
 	
-	private BlockState Green = null;
-	private BlockState Lightblue = null;
+	private LazyLoadedValue<BlockState> Green = new LazyLoadedValue<>(()-> BlockRegister.unbrokengreen_BLOCK.get().defaultBlockState());
+	private LazyLoadedValue<BlockState> Lightblue = new LazyLoadedValue<>(()-> BlockRegister.unbrokenlightblue_BLOCK.get().defaultBlockState());
 	
 	public BlockUnbrokenCement(Properties p_49795_) {
 		super(p_49795_
@@ -32,7 +34,6 @@ public class BlockUnbrokenCement extends Block {
 	}
 	
 	
-    @SuppressWarnings("deprecation")
     @Override
     public InteractionResult use(BlockState blockstate, Level level, BlockPos pos, Player player, InteractionHand interactionhand, BlockHitResult blockHitResult) {
         super.use(blockstate, level, pos, player, interactionhand, blockHitResult);
@@ -42,13 +43,11 @@ public class BlockUnbrokenCement extends Block {
         Random rd = new Random();
         if(handItemStack.getItem()==Items.GREEN_DYE) {
         	deleteDye(rd, player, handItemStack);
-        	if(Green==null) Green = BlockRegister.unbrokengreen_BLOCK.get().defaultBlockState();
-        	level.setBlockAndUpdate(pos, Green);
+        	level.setBlockAndUpdate(pos, Green.get());
         	return InteractionResult.SUCCESS;
         }else if(handItemStack.getItem()==Items.LIGHT_BLUE_DYE) {
         	deleteDye(rd, player, handItemStack);
-        	if(Lightblue==null) Lightblue = BlockRegister.unbrokenlightblue_BLOCK.get().defaultBlockState();
-        	level.setBlockAndUpdate(pos, Lightblue);
+        	level.setBlockAndUpdate(pos, Lightblue.get());
         	return InteractionResult.SUCCESS;
         }
         else{

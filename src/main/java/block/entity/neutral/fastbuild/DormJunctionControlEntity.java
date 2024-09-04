@@ -9,6 +9,9 @@ import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.level.block.state.BlockState;
 
 /**
+ * 穹顶链接块
+ * 假如有链接，保存对方的blockpos
+ * 否则保存自己的
  * @author NANMEDA
  * */
 public class DormJunctionControlEntity extends PowerConsumerEntity{
@@ -84,9 +87,15 @@ public class DormJunctionControlEntity extends PowerConsumerEntity{
 		}
 	}
 	
+	/**
+	 * 获得对面的方块
+	 * 假如穹顶链接块之间链接，保存对方的BlockPos，否则保存自己的
+	 * @return
+	 */
 	public BlockPos getOppositePos() {
 		return new BlockPos(X,Y,Z);
 	}
+	
 	public void SavePosData(BlockPos pos) {
 		X = pos.getX();
 		Y = pos.getY();

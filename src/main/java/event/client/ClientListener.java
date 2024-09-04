@@ -31,6 +31,7 @@ import menu.advancedmetalmanufactor.AdvancedMetalManufactorScreen;
 import menu.basicmetalmanufactor.BasicMetalManufactorScreen;
 import menu.blueprintbuilder.BlueprintBuilderScreen;
 import menu.canfoodmaker.CanfoodMakerScreen;
+import menu.energyviewer.EnergyViewerScreen;
 import menu.etchingmachine.EtchingMachineScreen;
 import menu.fuelrefiner.FuelRefinerScreen;
 import menu.microwaveoven.MicrowaveOvenScreen;
@@ -72,6 +73,9 @@ public class ClientListener{
 		event.enqueueWork(()->MenuScreens.register(MenuRegister.BLOCKSHOW_MENU.get(), ShowBlockScreen::new));
 		
 		event.enqueueWork(()->MenuScreens.register(MenuRegister.ITEMSTACKSHOW_MENU.get(), ShowItemStackScreen::new));
+		
+		event.enqueueWork(()->MenuScreens.register(MenuRegister.ENERGYVIEWER_MENU.get(), EnergyViewerScreen::new));
+		
 		
 		
 		

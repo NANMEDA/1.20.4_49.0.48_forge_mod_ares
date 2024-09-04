@@ -1,7 +1,6 @@
 package block.norm;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -19,7 +18,8 @@ public class BlockAAIR extends Block {
         super(properties);
     }
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public void neighborChanged(BlockState state, Level world, BlockPos pos, Block block, BlockPos fromPos, boolean isMoving) {
         super.neighborChanged(state, world, pos, block, fromPos, isMoving);
         propagateAAir(world, fromPos);

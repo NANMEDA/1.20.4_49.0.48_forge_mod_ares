@@ -23,16 +23,15 @@ import net.minecraft.core.NonNullList;
  * 能量参考的核心单位
  * 一个木板 = 200到300 maring J
  * 输入燃料，获得 燃料值
- *  燃料值 提高 水温
- *  水温 产生 蒸汽
- *  蒸汽 产生 电力
+ * <p>燃料值 提高 水温
+ * <p>水温 产生 蒸汽
+ * <p>蒸汽 产生 电力
  * @author NANMEDA
  * */
 public class PowerStationBurnEntity extends PowerStationEntity {
 	private float temperature=20.0f;
 	private short heat=0;
 	
-	//public int energy_output=0;
 	private int FULL_ENERGY_OUTPUT = 40;
 	
 	public PowerStationBurnEntity(BlockPos pos, BlockState pBlockState) {
@@ -190,10 +189,7 @@ public class PowerStationBurnEntity extends PowerStationEntity {
 		//理论上，比如一个木板燃烧300tik，=300heat,假如维持Heat==4000；可以持续150tik==7.5s;假如维持Heat==8000；可以持续100tik==5s;
 		//7.5s*40=300 maring J，5s*40=200 maring J
 		//一个木板 = 200到300 maring J。
-		
-		//System.out.println("heat = " + heat);
-		//System.out.println("temperature = " + temperature);
-		//System.out.println("energy_output = " + energy_output);
+
 		setChanged();
 	    }
 	@Override

@@ -4,6 +4,7 @@ import block.entity.BlockEntityRegister;
 import block.entity.consumer.PowerConsumerEntity;
 import item.ItemRegister;
 import item.can.CanHelper;
+import item.can.ItemCan;
 import item.can.ItemCanNBT;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -32,7 +33,7 @@ public class CanfoodMakerEntity extends PowerConsumerEntity{
 	
 	public short process_progress;
 	private int renderHeight;
-	private static boolean materialChangeLabel = true;
+	private boolean materialChangeLabel = true;
 	
 	public int getRenderHeight() {
 		return renderHeight;
@@ -249,6 +250,7 @@ public class CanfoodMakerEntity extends PowerConsumerEntity{
 					ItemCanNBT.setFish(can, fish);
 					ItemCanNBT.setCorn(can, corn);
 					ItemCanNBT.setFruit(can, fruit);
+					ItemCanNBT.setName(can, ItemCan.computeName(can));
 					CanHelper.setModel(can, vegetable, meat, fish, corn, fruit);
 					// 设置槽位4中的物品为itemStack
 					

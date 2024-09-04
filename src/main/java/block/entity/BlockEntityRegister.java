@@ -29,10 +29,7 @@ public class BlockEntityRegister {
 
 	public static final RegistryObject<BlockEntityType<CanfoodMakerEntity>> canfoodmaker_BLOCKENTITY = 
 			BLOCKENTITIES.register("canfood_maker", () -> BlockEntityType.Builder.of(CanfoodMakerEntity::new,  block.norm.canfoodmaker.Register.canfoodmaker_BLOCK.get()).build(null));
-/*
-	public static final RegistryObject<BlockEntityType<MicrowaveOvenEntity>> microwaveoven_BLOCKENTITY = 
-			BLOCKENTITIES.register("microwave_oven", () -> BlockEntityType.Builder.of(MicrowaveOvenEntity::new, BlockRegister.microwaveoven_BLOCK.get()).build(null));
-*/
+
 	public static final RegistryObject<BlockEntityType<BasicMetalManufactorEntity>> basicmetalmanufactor_BLOCKENTITY = 
 			BLOCKENTITIES.register("basicmetal_manufactor", () -> BlockEntityType.Builder.of(BasicMetalManufactorEntity::new, BlockRegister.basicmetalmanufactor_BLOCK.get()).build(null));
 
@@ -64,7 +61,7 @@ public class BlockEntityRegister {
 			BLOCKENTITIES.register("fuel_refiner", () -> BlockEntityType.Builder.of(FuelRefinerEntity::new, block.norm.fuelrefiner.Register.fuelrefiner_BLOCK.get()).build(null));
 
 	public static final RegistryObject<BlockEntityType<DormJunctionControlEntity>> dormjunctioncontrol_BLOCKENTITY = 
-			BLOCKENTITIES.register("dorm_junction_control", () -> BlockEntityType.Builder.of(DormJunctionControlEntity::new, block.norm.fastbuild.Register.dormjunctioncontrol_BLOCK.get()).build(null));
+			BLOCKENTITIES.register("dorm_junction_control", () -> BlockEntityType.Builder.of(DormJunctionControlEntity::new, block.norm.fastbuild.FastBuildRegister.dormjunctioncontrol_BLOCK.get()).build(null));
 
 	public static final RegistryObject<BlockEntityType<BlueprintBuilderEntity>>blueprintbuilder_BLOCKENTITY = 
 			BLOCKENTITIES.register("blueprint_builder", () -> BlockEntityType.Builder.of(BlueprintBuilderEntity::new, block.norm.blueprintbuilder.Register.blueprintbuilder_BLOCK.get()).build(null));

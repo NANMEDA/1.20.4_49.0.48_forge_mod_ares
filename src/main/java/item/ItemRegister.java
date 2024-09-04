@@ -37,7 +37,12 @@ public class ItemRegister {
 	public static final RegistryObject<Item>[] MATERIAL_ITEMS = new RegistryObject[itemMaterial.ITEM_MATERIAL_NUMBER];
 	
 	static {
-        IntStream.range(0, itemFood.ITEM_FOOD_NUMBER).forEach(i -> {
+		System.out.println("here come G");
+	}
+	
+	static {
+		/*
+        IntStream.range(0, itemFood.ITEM_FOOD_NUMBER).parallel().forEach(i -> {
         	FoodProperties.Builder foodBuilder = new FoodProperties.Builder()
         	        .nutrition(itemFood.getFoodNutrition(i))
         	        .saturationMod(itemFood.getFoodFull(i));
@@ -46,37 +51,56 @@ public class ItemRegister {
         	FOOD_ITEMS[i] = ITEMS.register(itemFood.getFoodName(i), () -> new Item(new Item.Properties()
         			.food(foodBuilder.build())
         			));
-        });
-        
-        IntStream.range(0, itemMaterial.ITEM_MATERIAL_NUMBER).forEach(i -> {
-        	if(i==0) {
-        		MATERIAL_ITEMS[i] = ITEMS.register(itemMaterial.getMaterialName(i), () -> new Item(new Item.Properties().stacksTo(8)));
-        	}else if(i<6) {
-        		MATERIAL_ITEMS[i] = ITEMS.register(itemMaterial.getMaterialName(i), () -> new Item(new Item.Properties().stacksTo(16)));
-        	}else {
-        		MATERIAL_ITEMS[i] = ITEMS.register(itemMaterial.getMaterialName(i), () -> new Item(new Item.Properties()));
-        	}
-        });
+        });*/
+		for (int i = 0; i < itemFood.ITEM_FOOD_NUMBER; i++) {
+		    FoodProperties.Builder foodBuilder = new FoodProperties.Builder()
+		        .nutrition(itemFood.getFoodNutrition(i))
+		        .saturationMod(itemFood.getFoodFull(i));
+		    
+		    if (itemFood.getFoodEffect(i) != null) {
+		        foodBuilder.effect(itemFood.getFoodEffect(i), itemFood.getFoodEffectProbal(i));
+		    }
+		    
+		    if (itemFood.getFoodEat(i)) {
+		        foodBuilder.alwaysEat();
+		    }
+		    
+		    FOOD_ITEMS[i] = ITEMS.register(itemFood.getFoodName(i), () -> new Item(new Item.Properties()
+		        .food(foodBuilder.build())
+		    ));
+		}
+		System.out.println("here come MM");
+
+		for (int i = 0; i < itemMaterial.ITEM_MATERIAL_NUMBER; i++) {
+		    if (i == 0) {
+		        MATERIAL_ITEMS[i] = ITEMS.register(itemMaterial.getMaterialName(i), () -> new Item(new Item.Properties().stacksTo(8)));
+		    } else if (i < 6) {
+		        MATERIAL_ITEMS[i] = ITEMS.register(itemMaterial.getMaterialName(i), () -> new Item(new Item.Properties().stacksTo(16)));
+		    } else {
+		        MATERIAL_ITEMS[i] = ITEMS.register(itemMaterial.getMaterialName(i), () -> new Item(new Item.Properties()));
+		    }
+		}
 	}
-	
+	static {
+		System.out.println("here come G");
+	}
 	public static final RegistryObject<Item> FRENCH_BREAD = ITEMS.register(ItemFrenchBread.global_name, () -> new ItemFrenchBread(SwordTier.frenchBread, 4, 1f, new Item.Properties()));
 
+	//头
 	public static final RegistryObject<Item> SPACESUIT_HELMET = ITEMS.register("spacesuit_helmet",
-	//装备材质，装备类型，物品属性
-			()->new ModArmor(ModArmorMaterials.SPACESUIT, ArmorItem.Type.HELMET,new Item.Properties().stacksTo(1)));
-	//胸甲
+			()->new ArmorItem(ModArmorMaterials.SPACESUIT, ArmorItem.Type.HELMET,new Item.Properties().stacksTo(1)));
+	//胸
 	public static final RegistryObject<Item> SPACESUIT_CHESTPLATE = ITEMS.register("spacesuit_chestplate",
-			()->new ModArmor(ModArmorMaterials.SPACESUIT, ArmorItem.Type.CHESTPLATE,new Item.Properties().stacksTo(1)));
-	//裤子
+			()->new ArmorItem(ModArmorMaterials.SPACESUIT, ArmorItem.Type.CHESTPLATE,new Item.Properties().stacksTo(1)));
+	//裤
 	public static final RegistryObject<Item> SPACESUIT_LEGGINGS = ITEMS.register("spacesuit_leggings",
-			()->new ModArmor(ModArmorMaterials.SPACESUIT, ArmorItem.Type.LEGGINGS,new Item.Properties().stacksTo(1)));
+			()->new ArmorItem(ModArmorMaterials.SPACESUIT, ArmorItem.Type.LEGGINGS,new Item.Properties().stacksTo(1)));
 	
-	//鞋子
+	//鞋
 	public static final RegistryObject<Item> SPACESUIT_BOOTS = ITEMS.register("spacesuit_boots",
-			()->new ModArmor(ModArmorMaterials.SPACESUIT, ArmorItem.Type.BOOTS,new Item.Properties().stacksTo(1)));
+			()->new ArmorItem(ModArmorMaterials.SPACESUIT, ArmorItem.Type.BOOTS,new Item.Properties().stacksTo(1)));
 	
 	public static final RegistryObject<Item> CAN = ITEMS.register("cans", ItemCan::new);
-	
     public static final RegistryObject<RocketItem> ROCKET_ITEM = ITEMS.register("rocket", 
     		() -> new RocketItem(new Item.Properties()));
 	
@@ -91,10 +115,10 @@ public class ItemRegister {
     
     
     public static final RegistryObject<Item> CHANGE_STICK = ITEMS.register(ItemChangeStick.global_name,
-            () -> new ItemChangeStick(new Item.Properties().stacksTo(1)));
+            () -> new ItemChangeStick(new Item.Properties()));
     
     public static final RegistryObject<Item> JUNCTION_CONNECTOR = ITEMS.register(ItemJunctionConnector.global_name,
-            () -> new ItemJunctionConnector(new Item.Properties().stacksTo(1)));
+            () -> new ItemJunctionConnector(new Item.Properties()));
     
     public static final RegistryObject<Item> BLUE_PRINT = ITEMS.register(ItemBlueprint.global_name,
             () -> new ItemBlueprint(new Item.Properties().stacksTo(1)));

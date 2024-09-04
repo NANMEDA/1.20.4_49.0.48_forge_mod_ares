@@ -1,6 +1,9 @@
 package item.can;
 
+import javax.annotation.Nonnull;
+
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 
 /**
@@ -15,6 +18,7 @@ public class ItemCanNBT {
     public static final String TAG_FISH = "Fish";
     public static final String TAG_CORN = "Corn";
     public static final String TAG_FRUIT = "Fruit";
+    public static final String TAG_NAME = "Name";
 
     public static CompoundTag getTagSafe(ItemStack stack) {
         return stack.getOrCreateTag();
@@ -81,5 +85,20 @@ public class ItemCanNBT {
 
     public static void setFruit(ItemStack stack, int fruit) {
         getTagSafe(stack).putInt(TAG_FRUIT, fruit);
+    }
+    
+    
+    public static Component getName(ItemStack stack) {
+        CompoundTag compound = getTagSafe(stack);
+        
+        return Component.translatable(compound.getString(TAG_NAME));
+    }
+
+    public static void setName(ItemStack stack, Component c) {
+    	setName(stack,c.getString());
+    }
+    
+    public static void setName(ItemStack stack, String s) {
+        getTagSafe(stack).putString(TAG_NAME, s);
     }
 }

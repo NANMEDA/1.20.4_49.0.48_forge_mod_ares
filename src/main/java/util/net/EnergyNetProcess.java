@@ -43,7 +43,7 @@ public class EnergyNetProcess {
         EnergyNet energyNet = new EnergyNet(id);
         existingIds.add(id);
         energyNetMap.put(id, energyNet);
-        saveData();  // Force save
+        saveData();
         return energyNet;
     }
 
@@ -57,7 +57,7 @@ public class EnergyNetProcess {
         EnergyNet energyNet = new EnergyNet(newId);
         existingIds.add(newId);
         energyNetMap.put(newId, energyNet);
-        saveData();  // Force save
+        saveData();
         return energyNet;
     }
 
@@ -74,7 +74,7 @@ public class EnergyNetProcess {
         if (existingIds.contains(id)) {
             existingIds.remove(id);
             energyNetMap.remove(id);
-            saveData();  // Force save
+            saveData();
         }
     }
 
@@ -85,10 +85,20 @@ public class EnergyNetProcess {
             return createEnergyNet();
         }
     }
+    
+    public static boolean EnergyNetExist(long id) {
+        return existingIds.contains(id);
+    }
 
+    /**
+     * 混合两个电网，混合后序号变成第一个传入的序号
+     * @param id1
+     * @param id2
+     * @throws IllegalArgumentException 某个id不存在
+     */
     public static void mergeEnergyNets(long id1, long id2) {
         if (!existingIds.contains(id1) || !existingIds.contains(id2)) {
-            throw new IllegalArgumentException("Both IDs must exist");
+            throw new IllegalArgumentException("IDs is not exist");
         }
 
         EnergyNet net1 = energyNetMap.get(id1);
@@ -105,15 +115,18 @@ public class EnergyNetProcess {
         }
     }
 
+    /**
+     * 只有当EnergyNetMap存在且不为空时，才有非null返回
+     */
     public static Collection<EnergyNet> getAllEnergyNets() {
-        if (energyNetMap != null)
+        if (energyNetMap != null && !energyNetMap.isEmpty())
             return energyNetMap.values();
         return null;
     }
 
     private static void saveData() {
         if (savedData != null) {
-            savedData.setDirty();  // Mark the data as dirty, so it will be saved automatically
+            savedData.setDirty();  // Mark the data as dirty, so it will be saved automatically??
         }
     }
 }

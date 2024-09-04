@@ -5,11 +5,11 @@ import menu.advancedmetalmanufactor.AdvancedMetalManufactorMenu;
 import menu.basicmetalmanufactor.BasicMetalManufactorMenu;
 import menu.blueprintbuilder.BlueprintBuilderMenu;
 import menu.canfoodmaker.CanfoodMakerMenu;
+import menu.energyviewer.EnergyViewerMenu;
 import menu.etchingmachine.EtchingMachineMenu;
 import menu.fuelrefiner.FuelRefinerMenu;
 import menu.microwaveoven.MicrowaveOvenMenu;
 import menu.playerextend.PlayerExtendMenu;
-import menu.playerextend.PlayerExtendScreen;
 import menu.powerstationburn.PowerStationBurnMenu;
 import menu.reseachtable.ResearchTableMenu;
 import menu.show.ShowBlockMenu;
@@ -64,7 +64,12 @@ public class MenuRegister {
     
     public static final RegistryObject<MenuType<ShowItemStackMenu>> ITEMSTACKSHOW_MENU = MENU_TYPES.register("showitem_menu",
     		() -> IForgeMenuType.create((windowId, inv, data) -> new ShowItemStackMenu(inv, windowId, new ItemStack(ItemRegister.BLUE_PRINT.get()), data.readBlockPos())));
-/*
+
+    public static final RegistryObject<MenuType<EnergyViewerMenu>> ENERGYVIEWER_MENU = MENU_TYPES.register("energyviewer_menu",
+    		() -> IForgeMenuType.create((windowId, inv, data) -> new EnergyViewerMenu(inv, windowId, data.readBlockPos())));
+    
+    
+    /*
     public static final RegistryObject<MenuType<PlayerExtendMenu>> ROCKET_MENU = MENU_TYPES.register("rocket_menu",
             () -> IForgeMenuType.create((windowId, inv, data) -> new RocketMenu(inv, windowId, Rocket::new)));*/
 

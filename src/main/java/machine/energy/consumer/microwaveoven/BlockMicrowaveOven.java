@@ -23,12 +23,14 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -44,7 +46,12 @@ public class BlockMicrowaveOven extends Block implements EntityBlock{
 	public static String global_name = "microwave_oven"; 
 	
 	public BlockMicrowaveOven(Properties properties) {
-		super(properties);
+		super(properties
+				.sound(SoundType.AMETHYST)
+	            .strength(5f,5f)
+	            .noOcclusion()
+	            .mapColor(MapColor.COLOR_GRAY)
+	            );
 	}
 
 	@Nullable
@@ -59,14 +66,14 @@ public class BlockMicrowaveOven extends Block implements EntityBlock{
 	}
 	
 	@Override
-    public VoxelShape getShape(BlockState p_60555_, BlockGetter p_60556_, BlockPos p_60557_, CollisionContext p_60558_) {
-		if(p_60555_.getValue(BlockStateProperties.FACING)==Direction.NORTH) {
+    public VoxelShape getShape(BlockState pBlockState, BlockGetter p_60556_, BlockPos p_60557_, CollisionContext p_60558_) {
+		if(pBlockState.getValue(BlockStateProperties.FACING)==Direction.NORTH) {
 			return Block.box(2, 0, 5, 14, 6, 13);
-		}else if(p_60555_.getValue(BlockStateProperties.FACING)==Direction.EAST) {
+		}else if(pBlockState.getValue(BlockStateProperties.FACING)==Direction.EAST) {
 			return Block.box(3, 0, 2, 11, 6, 14);
-		}else if(p_60555_.getValue(BlockStateProperties.FACING)==Direction.SOUTH) {
+		}else if(pBlockState.getValue(BlockStateProperties.FACING)==Direction.SOUTH) {
 			return Block.box(2, 0, 3, 14, 6, 11);
-		}else if(p_60555_.getValue(BlockStateProperties.FACING)==Direction.WEST) {
+		}else if(pBlockState.getValue(BlockStateProperties.FACING)==Direction.WEST) {
 			return Block.box(5, 0, 2, 13, 6, 14);
 		}else{
 			return Block.box(5, 0, 2, 13, 6, 14);
@@ -135,7 +142,7 @@ public class BlockMicrowaveOven extends Block implements EntityBlock{
 	    				 if (!level.isClientSide()) {
 	    					    Explosion explosion = new Explosion(level, null, null, null, pos.getX(), pos.getY(), pos.getZ(), 3.0f, false, Explosion.BlockInteraction.DESTROY_WITH_DECAY, ParticleTypes.FLAME, null, SoundEvents.GENERIC_EXPLODE);
 	    					    explosion.explode();
-	    					    explosion.finalizeExplosion(true);  // This is necessary to apply the explosion effects
+	    					    explosion.finalizeExplosion(true);
 	    					}
 	    			 }
 	    		 }

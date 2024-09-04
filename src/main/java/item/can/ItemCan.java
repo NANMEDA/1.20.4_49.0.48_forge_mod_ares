@@ -23,45 +23,34 @@ import net.minecraft.world.level.Level;
 
 public class ItemCan extends Item {
 
-	public int Nutrition;
-	public Float Full;
-	
-	public int Vegetable;
-	public int Meat;
-	public int Fish;
-	public int Corn;
-	public int Fruit;
-	
-	public ItemCan() {
-	    super(new Item.Properties());
-	    this.Nutrition = 0;
-	    this.Full = 0.0f;
-	    this.Vegetable = 0;
-	    this.Meat = 0;
-	    this.Fish = 0;
-	    this.Corn = 0;
-	    this.Fruit = 0;
-	}
-	
+    public ItemCan() {
+        super(new Item.Properties());
+    }
+
+    public ItemCan(int nutrition, Float full, int vegetable, int meat, int fish, int corn, int fruit) {
+        super(new Item.Properties());
+    }
+
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag flag) {
-    	int Vegetable = ItemCanNBT.getVegetable(stack);
-    	int Meat= ItemCanNBT.getMeat(stack);
-    	int Fish= ItemCanNBT.getFish(stack);
-    	int Corn= ItemCanNBT.getCorn(stack);
-    	int Fruit= ItemCanNBT.getFruit(stack);
-        tooltip.add(Component.translatable("item.can.show.vegetable", Vegetable)
-        		.setStyle(Style.EMPTY.withColor(ChatFormatting.DARK_BLUE).withItalic(true)));
-        tooltip.add(Component.translatable("item.can.show.meat", Meat)        		
-        		.setStyle(Style.EMPTY.withColor(ChatFormatting.DARK_BLUE).withItalic(true)));
-        tooltip.add(Component.translatable("item.can.show.fish", Fish)
-        		.setStyle(Style.EMPTY.withColor(ChatFormatting.DARK_BLUE).withItalic(true)));
-        tooltip.add(Component.translatable("item.can.show.corn", Corn)
-        		.setStyle(Style.EMPTY.withColor(ChatFormatting.DARK_BLUE).withItalic(true)));
-        tooltip.add(Component.translatable("item.can.show.fruit", Fruit)
-        		.setStyle(Style.EMPTY.withColor(ChatFormatting.DARK_BLUE).withItalic(true)));
+        int vegetable = ItemCanNBT.getVegetable(stack);
+        int meat = ItemCanNBT.getMeat(stack);
+        int fish = ItemCanNBT.getFish(stack);
+        int corn = ItemCanNBT.getCorn(stack);
+        int fruit = ItemCanNBT.getFruit(stack);
+
+        tooltip.add(Component.translatable("item.can.show.vegetable", vegetable)
+                .setStyle(Style.EMPTY.withColor(ChatFormatting.DARK_BLUE).withItalic(true)));
+        tooltip.add(Component.translatable("item.can.show.meat", meat)
+                .setStyle(Style.EMPTY.withColor(ChatFormatting.DARK_BLUE).withItalic(true)));
+        tooltip.add(Component.translatable("item.can.show.fish", fish)
+                .setStyle(Style.EMPTY.withColor(ChatFormatting.DARK_BLUE).withItalic(true)));
+        tooltip.add(Component.translatable("item.can.show.corn", corn)
+                .setStyle(Style.EMPTY.withColor(ChatFormatting.DARK_BLUE).withItalic(true)));
+        tooltip.add(Component.translatable("item.can.show.fruit", fruit)
+                .setStyle(Style.EMPTY.withColor(ChatFormatting.DARK_BLUE).withItalic(true)));
     }
-	
+
     @Override
     public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
         ItemStack itemstack = player.getItemInHand(hand);
@@ -73,22 +62,24 @@ public class ItemCan extends Item {
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
         if (entity instanceof Player player) {
             player.getFoodData().eat(ItemCanNBT.getNutrition(stack), ItemCanNBT.getSaturation(stack));
-        	int Vegetable = ItemCanNBT.getVegetable(stack);
-        	int Meat= ItemCanNBT.getMeat(stack);
-        	int Fish= ItemCanNBT.getFish(stack);
-        	int Corn= ItemCanNBT.getCorn(stack);
-        	int Fruit= ItemCanNBT.getFruit(stack);
-        	if(Fish>=4) {
-        		player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 600, 1));
-        	}
-        	if(Corn>=5) {
-        		player.addEffect(new MobEffectInstance(EffectRegister.FULLING.get(), 800));
-        	}
-        	if(Meat>=4) {
-        		player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 800, 1));
-        	}
-            if(Vegetable>=2&&Fruit>=2) {
-            	player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 800, 1));
+
+            int vegetable = ItemCanNBT.getVegetable(stack);
+            int meat = ItemCanNBT.getMeat(stack);
+            int fish = ItemCanNBT.getFish(stack);
+            int corn = ItemCanNBT.getCorn(stack);
+            int fruit = ItemCanNBT.getFruit(stack);
+
+            if (fish >= 4) {
+                player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 600, 1));
+            }
+            if (corn >= 5) {
+                player.addEffect(new MobEffectInstance(EffectRegister.FULLING.get(), 800));
+            }
+            if (meat >= 4) {
+                player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 800, 1));
+            }
+            if (vegetable >= 2 && fruit >= 2) {
+                player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 800, 1));
             }
         }
 
@@ -108,66 +99,71 @@ public class ItemCan extends Item {
     public UseAnim getUseAnimation(ItemStack stack) {
         return UseAnim.EAT;
     }
-	
+
     @Override
     public Component getName(ItemStack stack) {
-    	boolean first = false,second = false;
-    	int Vegetable = ItemCanNBT.getVegetable(stack);
-    	int Meat= ItemCanNBT.getMeat(stack);
-    	int Fish= ItemCanNBT.getFish(stack);
-    	int corn= ItemCanNBT.getCorn(stack);
-    	int Fruit= ItemCanNBT.getFruit(stack);
-    	MutableComponent name = Component.empty();
-    	if(Fish>=4) {
-    		return Component.translatable("cans.axolotl");
-    	}
-    	
-    	if(corn>1) {
-    		name.append(Component.translatable("cans.first.iscorn"));
-    		first = true;
-    	}else {
-    		if(Meat+Fish>0) {
-    		name.append(Component.translatable("cans.first.nocorn")
-    				.setStyle(Style.EMPTY.withItalic(true)));
-    		}
-    	}
-    	if(Fish>0) {
-    		if(first) {
-    			name.append(Component.translatable("cans.first.is"));
-    		}
-    		name.append(Component.translatable("cans.second.havefish"));
-    		second = true;
-    	}else {
-    		if(Meat>0) {
-        		if(first) {
-        			name.append(Component.translatable("cans.first.is")
-        					.setStyle(Style.EMPTY.withItalic(true)));
-        		}
-        		name.append(Component.translatable("cans.second.havemeat"));
-        		second = true;
-        	}
-    	}
-    	if(Vegetable>0) {
-    		if(second||first) {
-    			name.append(Component.translatable("cans.second.is")
-    					.setStyle(Style.EMPTY.withItalic(true)));
-    		}
-    		if(Fruit>0) {
-        		name.append(Component.translatable("cans.third.havefruitandvegetable"));
-        	}else {
-        		name.append(Component.translatable("cans.third.havevegetable"));
-        	}
-    	}else {
-	    	if(Fruit>0) {
-	    		if(second||first) {
-	    			name.append(Component.translatable("cans.second.is"));
-	    		}
-	    		name.append(Component.translatable("cans.third.havefruit"));
-	    	}
-    	}
-    	
+        return ItemCanNBT.getName(stack);
+    }
+
+    public static Component computeName(ItemStack stack) {
+        boolean first = false, second = false;
+        int vegetable = ItemCanNBT.getVegetable(stack);
+        int meat = ItemCanNBT.getMeat(stack);
+        int fish = ItemCanNBT.getFish(stack);
+        int corn = ItemCanNBT.getCorn(stack);
+        int fruit = ItemCanNBT.getFruit(stack);
+
+        MutableComponent name = Component.empty();
+        if (fish >= 4) {
+            return Component.translatable("cans.axolotl");
+        }
+
+        if (corn > 1) {
+            name.append(Component.translatable("cans.first.iscorn"));
+            first = true;
+        } else {
+            if (meat + fish > 0) {
+                name.append(Component.translatable("cans.first.nocorn")
+                        .setStyle(Style.EMPTY.withItalic(true)));
+            }
+        }
+
+        if (fish > 0) {
+            if (first) {
+                name.append(Component.translatable("cans.first.is"));
+            }
+            name.append(Component.translatable("cans.second.havefish"));
+            second = true;
+        } else {
+            if (meat > 0) {
+                if (first) {
+                    name.append(Component.translatable("cans.first.is")
+                            .setStyle(Style.EMPTY.withItalic(true)));
+                }
+                name.append(Component.translatable("cans.second.havemeat"));
+                second = true;
+            }
+        }
+
+        if (vegetable > 0) {
+            if (second || first) {
+                name.append(Component.translatable("cans.second.is")
+                        .setStyle(Style.EMPTY.withItalic(true)));
+            }
+            if (fruit > 0) {
+                name.append(Component.translatable("cans.third.havefruitandvegetable"));
+            } else {
+                name.append(Component.translatable("cans.third.havevegetable"));
+            }
+        } else {
+            if (fruit > 0) {
+                if (second || first) {
+                    name.append(Component.translatable("cans.second.is"));
+                }
+                name.append(Component.translatable("cans.third.havefruit"));
+            }
+        }
+
         return name.append(Component.translatable("cans.last"));
-     }
-
-
+    }
 }

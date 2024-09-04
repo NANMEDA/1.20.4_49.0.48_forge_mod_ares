@@ -53,26 +53,32 @@ public enum ToolTier implements Tier {
       this.repairIngredient = new LazyLoadedValue<>(p_43337_);
    }
 
+   @Override
    public int getUses() {
       return this.uses;
    }
 
+   @Override
    public float getSpeed() {
       return this.speed;
    }
 
+   @Override
    public float getAttackDamageBonus() {
       return this.damage;
    }
 
+   @Override
    public int getLevel() {
       return this.level;
    }
 
+   @Override
    public int getEnchantmentValue() {
       return this.enchantmentValue;
    }
 
+   @Override
    public Ingredient getRepairIngredient() {
       return this.repairIngredient.get();
    }

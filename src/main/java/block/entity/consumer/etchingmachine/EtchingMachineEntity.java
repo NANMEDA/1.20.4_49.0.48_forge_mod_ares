@@ -28,7 +28,7 @@ public class EtchingMachineEntity extends PowerConsumerEntity{
 
 	public int water = 0;
 	private short process_progress = 0;
-	static protected int itemstack_number=6;	//[4]  2塑料[3]+钻+16红石+2金+4铜
+	protected static int itemstack_number=6;	//[4]  2塑料[3]+钻+16红石+2金+4铜
 	private int render = 0;
 	
 	public int getRenderDis() {

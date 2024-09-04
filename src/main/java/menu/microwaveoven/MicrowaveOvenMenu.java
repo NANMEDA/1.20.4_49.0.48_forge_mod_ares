@@ -20,7 +20,7 @@ public class MicrowaveOvenMenu extends BlockEntityMenuBasic{
 	private final MicrowaveOvenEntity blockentity;
 
 	public MicrowaveOvenMenu( Inventory pInventory, int pID,BlockPos pos) {
-		super(MenuRegister.MICROWAVEOVEN_MENU.get(), pID, pos, MBlockRegister.microwaveoven_BLOCK.get(), 2, 0, 1);
+		super(MenuRegister.MICROWAVEOVEN_MENU.get(), pID, pos, MBlockRegister.MINCROWAVEOVEN_B.get(), 2, 0, 1);
 		this.blockentity = (MicrowaveOvenEntity) pInventory.player.level().getBlockEntity(pos);
 		if(pInventory.player.level().getBlockEntity(pos) instanceof MicrowaveOvenEntity microwaveovenEntity) {
 			addSlot(new SlotItemHandler(microwaveovenEntity.getItems(), 0, 56, 35) {

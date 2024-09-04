@@ -9,16 +9,15 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import java.util.HashSet;
 import java.util.Set;
 
-import machine.energy.consumer.ConsumerEntity;
-import machine.energy.producer.ProducerEntity;
-import machine.energy.storage.StorageEntity;
+import machine.energy.IEnergy;
 
 /**
  * 能量网络
  * 这是能量网络的基本结构
  * 一个能量网络里面分成5种组成成分
- * supplyLevel是当前的供电能力，以100为满供电
- * 没有结构，导致无法正确的将电网分成两部分
+ * supplyLevel是当前的供电能力，以100为满供电,过高过低都不行
+ * 没有结构，导致无法正确的将电网分成两部分<br>
+ *  TODO 非正常退出会导致数据丢失,需要修改
  * @author NANMEDA
  * */
 public class EnergyNet {
@@ -41,7 +40,7 @@ public class EnergyNet {
     }
 
     public long getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(long id) {
@@ -49,7 +48,8 @@ public class EnergyNet {
     }
     
     public int getSupplyLevel() {
-        return supplyLevel;
+        return this.supplyLevel;
+        
     }
 
     public void setSupplyLevel(int supply) {
@@ -58,15 +58,20 @@ public class EnergyNet {
 
     public Set<BlockPos> getSet(EnergyEnum enumValue) {
         switch (enumValue) {
-			case CONSUMER: return consumerSet;
-			case PRODUCER: return producerSet;
-			case STORAGE: return storageSet;
-			case TRANS: return transSet;
+			case CONSUMER: return this.consumerSet;
+			case PRODUCER: return this.producerSet;
+			case STORAGE: return this.storageSet;
+			case TRANS: return this.transSet;
 			case NULL:
 			default:
-			return nullSet;
+			return this.nullSet;
 		}
     }
+    
+	public void addBlockPos(BlockPos pos, BlockEntity blockEntity) {
+		addBlockPos(pos,getEnergyKind(blockEntity));
+	}
+	
 
     public void addBlockPos(BlockPos pos, EnergyEnum enumValue) {
         switch (enumValue) {
@@ -89,12 +94,9 @@ public class EnergyNet {
 		}
     }
     
-	public void addBlockPos(BlockPos pos, BlockEntity blockEntity) {
-		addBlockPos(pos,getEnum(blockEntity));
-	}
-	
 	public void removeBlockPos(BlockPos pos, BlockEntity blockEntity) {
-		removeBlockPos(pos, getEnum(blockEntity));
+		if(blockEntity!=null&&!blockEntity.getLevel().isClientSide)
+		removeBlockPos(pos, getEnergyKind(blockEntity));
 	}
 
     public void removeBlockPos(BlockPos pos, EnergyEnum enumValue) {
@@ -118,31 +120,32 @@ public class EnergyNet {
 		}
     }
 
+    /**
+     * 
+     * @return true-Empty
+     */
+    public boolean checkEmpty() {
+    	return producerSet.isEmpty()&&consumerSet.isEmpty()&&storageSet.isEmpty()&&transSet.isEmpty()&&nullSet.isEmpty();
+    }
+    
     public enum EnergyEnum {
         CONSUMER, PRODUCER, STORAGE, TRANS, NULL
     }
     
-    private EnergyEnum getEnum(BlockEntity blockEntity) {
-    	if(blockEntity instanceof ConsumerEntity) {
-    		return EnergyEnum.CONSUMER;
-    	}else if(blockEntity instanceof ProducerEntity) {
-    		return EnergyEnum.PRODUCER;
-    	}else if(blockEntity instanceof StorageEntity) {
-    		return EnergyEnum.STORAGE;
-    	}else if(blockEntity instanceof ConsumerEntity) {
-    		return EnergyEnum.TRANS;
+    private EnergyEnum getEnergyKind(BlockEntity blockEntity) {
+    	if(blockEntity instanceof IEnergy eEntity) {
+    		return eEntity.getEnergyKind();
     	}else {
+    		System.err.println("Maring Waring: BlockEntity does not implement IEnergy. Returning EnergyEnum.NULL. At pos " + blockEntity.getBlockPos());
     		return EnergyEnum.NULL;
     	}
     }
     
-    // Serialize the EnergyNet to NBT
     public CompoundTag writeToNBT() {
         CompoundTag tag = new CompoundTag();
         tag.putLong("Id", this.id);
         tag.putInt("SupplyLevel", this.supplyLevel);
 
-        // Serialize block position sets
         tag.put("ConsumerSet", serializeBlockPosSet(consumerSet));
         tag.put("ProducerSet", serializeBlockPosSet(producerSet));
         tag.put("StorageSet", serializeBlockPosSet(storageSet));
@@ -152,12 +155,10 @@ public class EnergyNet {
         return tag;
     }
 
-    // Deserialize the EnergyNet from NBT
     public void readFromNBT(CompoundTag tag) {
         this.id = tag.getLong("Id");
         this.supplyLevel = tag.getInt("SupplyLevel");
 
-        // Deserialize block position sets
         this.consumerSet = deserializeBlockPosSet(tag.getList("ConsumerSet", 10));
         this.producerSet = deserializeBlockPosSet(tag.getList("ProducerSet", 10));
         this.storageSet = deserializeBlockPosSet(tag.getList("StorageSet", 10));

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X X",
+    " A "
+  ],
+  "key": {
+    "X": {
+      "item": "maring:sructure_layer"
+    },
+    "A": {
+      "item": "maring:advanced_metal_parts"
+    }
+  },
+  "result": {
+    "item": "maring:sucker",
+    "count": 1
+  }
+}

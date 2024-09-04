@@ -15,7 +15,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraftforge.registries.RegistryObject;
 
-public class Register {
+public class FastBuildRegister {
 
 	public static void init() {}
 	
@@ -24,7 +24,7 @@ public class Register {
 	            .sound(SoundType.AMETHYST)
 	            .strength(-1.0f,360000.0f)
 	            .noOcclusion()
-	            .mapColor(MapColor.COLOR_ORANGE)); 
+	            .mapColor(MapColor.COLOR_BLUE)); 
 	});
     public static final RegistryObject<Item> dormjunction_BLOCK_ITEM = BlockRegister.BLOCK_ITEMS.register(DormJunction.global_name,
     		() -> new BlockItem(dormjunction_BLOCK.get(), new Item.Properties()));
@@ -34,7 +34,7 @@ public class Register {
 	            .sound(SoundType.AMETHYST)
 	            .strength(-1.0f,360000.0f)
 	            .noOcclusion()
-	            .mapColor(MapColor.COLOR_ORANGE)); 
+	            .mapColor(MapColor.COLOR_BLUE)); 
 	});
     public static final RegistryObject<Item> dormjunctioncontrol_BLOCK_ITEM = BlockRegister.BLOCK_ITEMS.register(DormJunctionControl.global_name,
     		() -> new BlockItem(dormjunctioncontrol_BLOCK.get(), new Item.Properties()));
@@ -45,7 +45,7 @@ public class Register {
 	            .sound(SoundType.AMETHYST)
 	            .strength(5f,5f)
 	            .noOcclusion()
-	            .mapColor(MapColor.COLOR_ORANGE)); 
+	            .mapColor(MapColor.COLOR_BLUE)); 
 	});
     public static final RegistryObject<Item> basicspheredorm_BLOCK_ITEM = BlockRegister.BLOCK_ITEMS.register(BasicSphereDorm.global_name,
     		() -> new BlockItem(basicspheredorm_BLOCK.get(), new Item.Properties()));
@@ -55,7 +55,7 @@ public class Register {
 	            .sound(SoundType.AMETHYST)
 	            .strength(5f,5f)
 	            .noOcclusion()
-	            .mapColor(MapColor.COLOR_ORANGE)); 
+	            .mapColor(MapColor.COLOR_BLUE)); 
 	});
     public static final RegistryObject<Item> basicflatspheredorm_BLOCK_ITEM = BlockRegister.BLOCK_ITEMS.register(BasicFlatSphereDorm.global_name,
     		() -> new BlockItem(basicflatspheredorm_BLOCK.get(), new Item.Properties()));
@@ -65,7 +65,7 @@ public class Register {
 	            .sound(SoundType.AMETHYST)
 	            .strength(5f,5f)
 	            .noOcclusion()
-	            .mapColor(MapColor.COLOR_ORANGE)); 
+	            .mapColor(MapColor.COLOR_BLUE)); 
 	});
     public static final RegistryObject<Item> basiceclipsedorm_BLOCK_ITEM = BlockRegister.BLOCK_ITEMS.register(BasicEclipseDorm.global_name,
     		() -> new BlockItem(basiceclipsedorm_BLOCK.get(), new Item.Properties()));
@@ -75,7 +75,7 @@ public class Register {
 	            .sound(SoundType.AMETHYST)
 	            .strength(5f,5f)
 	            .noOcclusion()
-	            .mapColor(MapColor.COLOR_ORANGE)); 
+	            .mapColor(MapColor.COLOR_BLUE)); 
 	});
     public static final RegistryObject<Item> basicflateclipsedorm_BLOCK_ITEM = BlockRegister.BLOCK_ITEMS.register(BasicFlatEclipseDorm.global_name,
     		() -> new BlockItem(basicflateclipsedorm_BLOCK.get(), new Item.Properties()));
@@ -85,7 +85,7 @@ public class Register {
 	            .sound(SoundType.AMETHYST)
 	            .strength(5f,5f)
 	            .noOcclusion()
-	            .mapColor(MapColor.COLOR_ORANGE)); 
+	            .mapColor(MapColor.COLOR_BLUE)); 
 	});
     public static final RegistryObject<Item> spheredoor_BLOCK_ITEM = BlockRegister.BLOCK_ITEMS.register(SphereDoor.global_name,
     		() -> new BlockItem(spheredoor_BLOCK.get(), new Item.Properties()));
@@ -95,7 +95,7 @@ public class Register {
 	            .sound(SoundType.AMETHYST)
 	            .strength(5f,5f)
 	            .noOcclusion()
-	            .mapColor(MapColor.COLOR_ORANGE)); 
+	            .mapColor(MapColor.COLOR_BLUE)); 
 	});
     public static final RegistryObject<Item> basiccylinderdorm_BLOCK_ITEM = BlockRegister.BLOCK_ITEMS.register(BasicCylinderDorm.global_name,
     		() -> new BlockItem(basiccylinderdorm_BLOCK.get(), new Item.Properties()));

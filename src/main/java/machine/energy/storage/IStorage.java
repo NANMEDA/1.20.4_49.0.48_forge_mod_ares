@@ -1,14 +1,24 @@
 package machine.energy.storage;
 
-public interface IStorage{
+import machine.energy.IEnergy;
+import util.net.EnergyNet.EnergyEnum;
 
-    abstract long getStorage();
-    
+public interface IStorage extends IEnergy{
+
     abstract void addStorage(int e);
     
-    public abstract EnergyStorageMode getEnum();
+    public abstract EnergyStorageMode getStorageMode();
     
-    abstract long getCapalicity();
+	/**
+	 * @return 容量，存量，差值
+	 */
+    abstract long[] getCSE();
     
     abstract int transSpeed();
+    
+    @Override
+    default EnergyEnum getEnergyKind(){
+    	return EnergyEnum.STORAGE;
+    }
+    
 }

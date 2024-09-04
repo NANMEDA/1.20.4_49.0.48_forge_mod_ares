@@ -13,13 +13,27 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 
 public class BlockJSON {
+	private static final String toResource = "/forge-1.20.4-49.0.48-mdk/src/main/resources"; 
 	
+	public static void fastGen(String global_name) {
+        GenModelsJSONBasic(global_name);
+        GenBlockStateJSONBasic(global_name);
+        GenItemJSONBasic(global_name);
+        GenLootTableJSONBasic(global_name);
+	}
+	
+	public static void fastGen(String global_name ,String father_name) {
+        GenModelsJSONBasic(global_name,"empty");
+        GenBlockStateJSONBasic(global_name);
+        GenItemJSONBasic(global_name);
+        GenLootTableJSONBasic(global_name,father_name);
+	}
 	
 	/***
 	 * 生成的是model里面的，默认
 	 * ***/
 	public static void GenModelsJSONBasic(String name) {
-	    File file = new File("/forge-1.20.4-49.0.48-mdk/src/main/resources/assets/maring/models/block/" + name + ".json");
+	    File file = new File(toResource+"/assets/maring/models/block/" + name + ".json");
 	    if (file.exists()) {
 	        return;
 	    }
@@ -43,7 +57,7 @@ public class BlockJSON {
 	 * 比如说, 部分方块要用透明材质
 	 * ***/
 	public static void GenModelsJSONBasic(String name,String use) {
-	    File file = new File("/forge-1.20.4-49.0.48-mdk/src/main/resources/assets/maring/models/block/" + name + ".json");
+	    File file = new File(toResource + "/assets/maring/models/block/" + name + ".json");
 	    if (file.exists()) {
 	        return;
 	    }
@@ -69,7 +83,7 @@ public class BlockJSON {
 	 * blockstate
 	 * ***/
 	public static void GenBlockStateJSONBasic(String name) {
-	    File file = new File("/forge-1.20.4-49.0.48-mdk/src/main/resources/assets/maring/blockstates/" + name + ".json");
+	    File file = new File(toResource + "/assets/maring/blockstates/" + name + ".json");
 	    if (file.exists()) {
 	        return;
 	    }
@@ -96,7 +110,7 @@ public class BlockJSON {
 	 * 默认是handheld
 	 * ***/
 	public static void GenItemJSONBasic(String name) {
-	    File file = new File("/forge-1.20.4-49.0.48-mdk/src/main/resources/assets/maring/models/item/" + name + ".json");
+	    File file = new File(toResource + "/assets/maring/models/item/" + name + ".json");
 	    if (file.exists()) {
 	        return;
 	    }
@@ -118,7 +132,7 @@ public class BlockJSON {
 	 * 掉落物，默认自身
 	 * ***/
     public static void GenLootTableJSONBasic(String name) {
-        File file = new File("/forge-1.20.4-49.0.48-mdk/src/main/resources/data/maring/loot_tables/blocks/" + name + ".json");
+        File file = new File(toResource + "/data/maring/loot_tables/blocks/" + name + ".json");
         if (file.exists()) {
             return;
         }
@@ -157,7 +171,7 @@ public class BlockJSON {
      * 像是机器，拆除旁边的，掉落本体 
      * ***/
     public static void GenLootTableJSONBasic(String name,String loot) {
-        File file = new File("/forge-1.20.4-49.0.48-mdk/src/main/resources/data/maring/loot_tables/blocks/" + name + ".json");
+        File file = new File(toResource + "/data/maring/loot_tables/blocks/" + name + ".json");
         if (file.exists()) {
             return;
         }
@@ -198,7 +212,7 @@ public class BlockJSON {
             return;
         }
 
-        File file = new File("/forge-1.20.4-49.0.48-mdk/src/main/resources/data/minecraft/tags/blocks/mineable/" + tool + ".json");
+        File file = new File(toResource + "/data/minecraft/tags/blocks/mineable/" + tool + ".json");
 
         if (!file.exists()) {
             //return;
@@ -253,7 +267,7 @@ public class BlockJSON {
     	    default -> throw new IllegalArgumentException("Unexpected tool_level needs: level = " + level);
     	}
         if(tool == null) return;
-        File file = new File("/forge-1.20.4-49.0.48-mdk/src/main/resources/data/minecraft/tags/blocks/" + tool + ".json");
+        File file = new File(toResource + "/data/minecraft/tags/blocks/" + tool + ".json");
 
         if (!file.exists()) {
             //return;

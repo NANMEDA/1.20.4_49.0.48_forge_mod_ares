@@ -11,10 +11,26 @@ import net.minecraft.world.level.block.Blocks;
 
 public class DormHelper {
 	
+	/**
+	 * 随机取点，检查是否占用
+	 * @param level
+	 * @param centerPos
+	 * @param r 半径，默认是一个基座2格深度，上面一个半球体
+	 * @param player
+	 * @return
+	 */
 	public static boolean checkPlaceDormOccupied(Level level,BlockPos centerPos,int r, Player player) {
 		return checkPlaceDormOccupied(level,centerPos, new Vec3i(-r, -2, -r), new Vec3i(r, r, r), player, 25);		
 	}
 	
+	/**
+	 * 随机取点，检查是否占用
+	 * @param level
+	 * @param centerPos
+	 * @param offset0 默认对称
+	 * @param player
+	 * @return
+	 */
 	public static boolean checkPlaceDormOccupied(Level level,BlockPos centerPos,Vec3i offset0, Player player) {
 		return checkPlaceDormOccupied(level,centerPos, offset0, new Vec3i(-offset0.getX(),-offset0.getY(),-offset0.getZ()), player, 50);		
 	}
@@ -23,11 +39,18 @@ public class DormHelper {
 		return checkPlaceDormOccupied(level,centerPos, offset0, offset1, player, 25);		
 	}
 	
-	/***
+	/**
 	 * 随机取点，检查是否占用
-	 * ***/
+	 * @param level
+	 * @param centerPos 中心点
+	 * @param offset0 
+	 * @param offset1 这两个需要一正一负（一般）
+	 * @param player 
+	 * @param time 检测次数
+	 * @return 被占用 - true
+	 */
 	public static boolean checkPlaceDormOccupied(Level level,BlockPos centerPos, Vec3i offset0, Vec3i offset1, Player player, int time) {
-		if(centerPos.getY()+Math.max(offset0.getY(), offset1.getY())>=384) {
+		if(centerPos.getY()+Math.max(offset0.getY(), offset1.getY())>=380) {
         	player.sendSystemMessage(Component.translatable("dorm.place.unable.toohigh"));
             return true;
 		}

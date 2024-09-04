@@ -5,21 +5,13 @@ import machine.energy.producer.ProducerEntity;
 import machine.registry.MBlockEntityRegister;
 import machine.registry.MBlockRegister;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.core.NonNullList;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
-import net.minecraft.world.Containers;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.common.util.LazyOptional;
-import util.net.EnergyNetProcess;
 
 public class SolarBasementEntity extends ProducerEntity implements IProducer {
 
@@ -69,7 +61,7 @@ public class SolarBasementEntity extends ProducerEntity implements IProducer {
         }
     }
 	
-	private final String TAG_NET = "net";
+	private static final String TAG_NET = "net";
 	
 	protected void savedata(CompoundTag tag) {
 		tag.putLong(TAG_NET, this.getNet());
@@ -86,7 +78,7 @@ public class SolarBasementEntity extends ProducerEntity implements IProducer {
 	public int provideEnergySupply() {
 	    int lightLevel = this.level.getBrightness(LightLayer.SKY, this.worldPosition);
 	    if (!this.level.isDay()) {
-	        lightLevel = 0;
+	        return 0;
 	    } else if (this.level.isThundering() || this.level.isRaining()) {
 	        lightLevel *= 0.5;
 	    }

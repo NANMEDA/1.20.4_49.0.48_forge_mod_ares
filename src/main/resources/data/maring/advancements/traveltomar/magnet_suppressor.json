@@ -1,0 +1,34 @@
+{
+  "display": {
+    "icon": {
+      "item": "maring:magnet_suppressor"
+    },
+    "title": {
+      "translate": "advancements.traveltomar.magnet_suppressor.title",
+      "bold": true
+    },
+    "description": {
+      "translate": "advancements.traveltomar.magnet_suppressor.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "maring:traveltomar/reach_mar",
+  "criteria": {
+    "ominous_gemstone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "maring:magnet_suppressor"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "sends_telemetry_event": true
+}

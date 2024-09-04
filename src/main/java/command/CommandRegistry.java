@@ -3,10 +3,9 @@ package command;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.BoolArgumentType;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
-import com.mojang.brigadier.tree.LiteralCommandNode;
-
 import command.disaster.DisasterDo;
 import command.disaster.DoomsSetDays;
+import command.energy.EnergyNet;
 import command.player.PressureHurt;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
@@ -23,7 +22,6 @@ public class CommandRegistry {
 	 * whenDisasterCome - 最终灾难来临时间
 	 * willDisasterCome - 是否有最终灾难(只影响最终那个)
 	 * willPressureHurt - 火星生物伤害（不穿宇航服是否受伤）
-	 * @author NANMEDA
 	 * ***/
 	 @SubscribeEvent
 	    public static void onServerStarting(RegisterCommandsEvent event) {
@@ -42,6 +40,10 @@ public class CommandRegistry {
 	                    .then(Commands.literal("willPressureHurt")
 		                        .then(Commands.argument("value", BoolArgumentType.bool())
 		                            .executes(PressureHurt.INSTANCE)))
+	                    .then(Commands.literal("energyNet")
+	                    		.then(Commands.literal("calcSpeed")
+	                    				.then(Commands.argument("value", IntegerArgumentType.integer())
+	                    						.executes(EnergyNet.INSTANCE))))
 	                )
 	        );
 	    }

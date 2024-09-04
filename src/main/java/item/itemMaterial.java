@@ -40,7 +40,9 @@ public class itemMaterial {
         "ominous_upgrade_smithing_template",
         
         "piece_rawgold",
-        "piece_obsidian"
+        "piece_obsidian",
+        "magnet_suppressor",	//25
+        "sucker"
     };
 
     public static final int ITEM_MATERIAL_NUMBER = MATERIAL_NAMES.length;

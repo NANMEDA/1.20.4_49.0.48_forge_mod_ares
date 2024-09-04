@@ -4,8 +4,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.LongTag;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.util.datafix.DataFixTypes;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.saveddata.SavedData;
 import net.minecraft.world.level.storage.DimensionDataStorage;
 
@@ -14,6 +12,9 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * TODO 非正常退出会导致数据丢失,需要修改
+ */
 public class EnergyNetSavedData extends SavedData {
     private static final String DATA_NAME = "energy_nets";
 

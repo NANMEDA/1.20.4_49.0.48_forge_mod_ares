@@ -6,7 +6,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.effect.MobEffectInstance;
 
 import com.main.maring.ExtraConfig;
@@ -27,7 +26,7 @@ public class BiomeEffectApplier {
 
     private static final int TICK_INTERVAL = 10; // 检测间隔
     //public static boolean WILL_PRESSURE_HURT = ; // 检测间隔
-    //private static BlockState A_AIR_STATE = null;// = BlockRegister.A_AIR.get().defaultBlockState();
+    //private static Supplier<BlockState>  A_AIR_STATE = () -> {return BlockRegister.A_AIR.get().defaultBlockState();};
 
     /***
      * 赋予药水效果
@@ -46,12 +45,17 @@ public class BiomeEffectApplier {
             return;
         }
         BlockPos entityPos = entity.blockPosition().above();
+        
+        /**
+         * 这里需要修改
+         * 根据getFoliageColor来判断是否在火星上虽然快，但是不合适
+         */
         int theColor = level.getBiome(entityPos).get().getFoliageColor();
         if (theColor != 9334293) {
         	return;
         }
-        //if(A_AIR_STATE == null)  A_AIR_STATE = BlockRegister.A_AIR.get().defaultBlockState();
-        if (level.getBlockState(entityPos)!=Blocks.AIR.defaultBlockState()) {
+        
+        if (level.getBlockState(entityPos.above())!=Blocks.AIR.defaultBlockState()) {
         	return;
         }
         if( entity instanceof Player) {

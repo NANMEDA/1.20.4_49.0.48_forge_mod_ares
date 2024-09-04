@@ -23,17 +23,18 @@ import block.norm.bioplasticbuilder.BlockBioplasticBuilderbehind;
 import block.norm.bioplasticbuilder.BlockBioplasticBuilderleft;
 import block.norm.bioplasticbuilder.BlockBioplasticBuilderup;
 import block.norm.powerstation.burn.PowerStationBurn;
-import block.norm.powerstation.sun.PowerStationSun;
 import block.norm.unbroken.BlockUnbrokenCement;
 import block.norm.unbroken.BlockUnbrokenFog;
 import block.norm.unbroken.BlockUnbrokenGlass;
 import block.norm.unbroken.BlockUnbrokenGreen;
 import block.norm.unbroken.BlockUnbrokenLightblue;
+import block.norm.unbroken.BlockUnbrokenMagma;
 
 /**
  * 所有方块和方块类物品的注册
  * 一般建议越复杂的放到越后面
  * 复杂的可能会用到简单的
+ * 减少supplier的使用
  * @author NANMEDA
  * */
 public class BlockRegister {
@@ -52,8 +53,6 @@ public class BlockRegister {
     
     public static final RegistryObject<Block> PowerStationBurn_BLOCK;
     public static final RegistryObject<Item> PowerStationBurn_BLOCK_ITEM;
-    public static final RegistryObject<Block> PowerStationSun_BLOCK;
-    public static final RegistryObject<Item> PowerStationSun_BLOCK_ITEM;
     public static final RegistryObject<Block> awakeningstone_BLOCK;
     public static final RegistryObject<Item> awakeningstone_BLOCK_ITEM;
     //public static final RegistryObject<Block> basicmetalmanufactor_BLOCK;
@@ -111,15 +110,6 @@ public class BlockRegister {
     	});
     	PowerStationBurn_BLOCK_ITEM = BLOCK_ITEMS.register(PowerStationBurn.global_name, () -> new BlockItem(PowerStationBurn_BLOCK.get(), new Item.Properties()));
     	
-    	PowerStationSun_BLOCK = BLOCKS.register(PowerStationSun.global_name, () -> {
-    		return new PowerStationSun(BlockBehaviour.Properties.of()
-    	            .sound(SoundType.AMETHYST)
-    	            .strength(5f,5f)
-    	            .mapColor(MapColor.COLOR_BLUE)); 
-    	});
-    	PowerStationSun_BLOCK_ITEM = BLOCK_ITEMS.register(PowerStationSun.global_name, () -> new BlockItem(PowerStationSun_BLOCK.get(), new Item.Properties()));
-
-    	
     	awakeningstone_BLOCK = BLOCKS.register(BlockAwakeningStone.global_name, () -> {
     		return new BlockAwakeningStone(BlockBehaviour.Properties.of()
     	            .sound(SoundType.STONE)
@@ -130,17 +120,7 @@ public class BlockRegister {
     
     	block.norm.decoration.Register.init();
     }
-    
-    /*
-    public static final RegistryObject<Block> microwaveoven_BLOCK = BLOCKS.register(BlockMicrowaveOven.global_name, () -> {
-		return new BlockMicrowaveOven(BlockBehaviour.Properties.of()
-	            .sound(SoundType.AMETHYST)
-	            .strength(5f,5f)
-	            .noOcclusion()
-	            .mapColor(MapColor.COLOR_GRAY)); 
-	});
-    public static final RegistryObject<Item> microwaveoven_BLOCK_ITEM = BLOCK_ITEMS.register(BlockMicrowaveOven.global_name, () -> new BlockItem(microwaveoven_BLOCK.get(), new Item.Properties()));
-*/
+
     public static final RegistryObject<Block> basicmetalmanufactor_BLOCK = BLOCKS.register(BlockBasicMetalManufactor.global_name, () -> {
 		return new BlockBasicMetalManufactor(BlockBehaviour.Properties.of()
 	            .sound(SoundType.STONE)
@@ -273,6 +253,12 @@ public class BlockRegister {
     public static final RegistryObject<Item> unbrokenlightblue_BLOCK_ITEM = BLOCK_ITEMS.register(BlockUnbrokenLightblue.global_name,
     		() -> new BlockItem(unbrokenlightblue_BLOCK.get(), new Item.Properties()));
     
+    public static final RegistryObject<Block> unbrokenmagma_BLOCK = BLOCKS.register(BlockUnbrokenMagma.global_name, () -> {
+		return new BlockUnbrokenMagma(BlockBehaviour.Properties.of());
+	});
+    public static final RegistryObject<Item> unbrokenmagma_BLOCK_ITEM = BLOCK_ITEMS.register(BlockUnbrokenMagma.global_name,
+    		() -> new BlockItem(unbrokenmagma_BLOCK.get(), new Item.Properties()));
+    
     public static final RegistryObject<Block> A_AIR = BLOCKS.register("a_air",
     		() -> new BlockAAIR(BlockBehaviour.Properties.of().replaceable().noCollission().noLootTable().air()));
     
@@ -293,7 +279,7 @@ public class BlockRegister {
     	block.norm.canfoodmaker.Register.init();
     	block.norm.stonewasher.Register.init();
     	block.norm.fuelrefiner.Register.init();
-    	block.norm.fastbuild.Register.init();
+    	block.norm.fastbuild.FastBuildRegister.init();
     	block.norm.blueprintbuilder.Register.init();
     }
 }

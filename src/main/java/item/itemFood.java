@@ -16,7 +16,6 @@ public class itemFood {
     private static final Map<Integer, Integer> NUTRITION = new HashMap<>();
     private static final Map<Integer, Float> FULL = new HashMap<>();
     private static final Map<Integer, Supplier<MobEffectInstance>> EFFECTS = new HashMap<>();
-    //下面要用lambda表达式
     private static final Map<Integer, Float> EFFECTS_PROBA = new HashMap<>();
 
     private static int ticks = 20;

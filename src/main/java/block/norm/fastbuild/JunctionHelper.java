@@ -21,12 +21,18 @@ public class JunctionHelper {
     private static final BlockState UNBROKEN_CEMENT_STATE = BlockRegister.unbrokencement_BLOCK.get().defaultBlockState();
     private static final BlockState UNBROKEN_FOG_STATE = BlockRegister.unbrokenfog_BLOCK.get().defaultBlockState();
     private static final BlockState AIR_STATE = BlockRegister.A_AIR.get().defaultBlockState();
-    private static final BlockState JUNCTION_STATE = Register.dormjunction_BLOCK.get().defaultBlockState();
-    private static final BlockState JUNCTION_CONTROL_STATE = Register.dormjunctioncontrol_BLOCK.get().defaultBlockState();
+    private static final BlockState JUNCTION_STATE = FastBuildRegister.dormjunction_BLOCK.get().defaultBlockState();
+    private static final BlockState JUNCTION_CONTROL_STATE = FastBuildRegister.dormjunctioncontrol_BLOCK.get().defaultBlockState();
     
-    /***
-     * 发射方向朝外
-     * ***/
+    /**
+     * 从某个 pos 出发生成某个方向的连接基座
+     * 0是 X-正
+     * 6是 Z-正
+     * <p>0,1,2,3,4,5,6,7代表方向
+     * @param level
+     * @param pos 
+     * @param emitDirection 八方向
+     */
     public static void BirthJuntionBase(Level level, BlockPos pos, int emitDirection) {
         BlockPos[] posDoor;
         BlockPos[] posAir;
@@ -226,11 +232,11 @@ public class JunctionHelper {
 
     }
     
-    /***
-     * 先放斜线再放直线, 斜线不用延长
-     * 直线段在斜线之前，要放2个延后
-     * 直线段在斜线之后，要放2个在前面
-     * ***/
+    /**
+     * 先放斜线再放直线, 斜线不用延长; 
+     * 直线段在斜线之前，要放2个延后; 
+     * 直线段在斜线之后，要放2个在前面;
+     */
     public static void followChainCode(Level level, BlockPos startPos, BlockPos endPos, int start_direction, int end_direction, List<Integer> chainCode) {
         List<List<Integer>> chainSegments = split(chainCode);
         int num = chainSegments.size();
@@ -334,6 +340,16 @@ public class JunctionHelper {
         setConnection(level, directionVector, endPos.offset(-directionVector.getX(), -directionVector.getY(), -directionVector.getZ()), 3, end_direction, null, false);
     }
 
+    /**
+     * 这里就是最基础的，根据链码放置 Block
+     * @param level
+     * @param directionVector
+     * @param currentPos
+     * @param size
+     * @param direction
+     * @param down_id
+     * @param goUp
+     */
     private static void setConnection(Level level, Vec3i directionVector, BlockPos currentPos, int size, int direction, int[] down_id, boolean goUp) {
         BlockPos pos = currentPos;
         BlockPos[] posDoor;
@@ -563,6 +579,20 @@ public class JunctionHelper {
         return birthChainCode(start, start_direction, end, end_direction,player);
     }
 
+    /**
+     * 根据起始点和终止点，生成链码，指示连接的移动方式
+     * <p>链码要求：
+     * <p>1.首末方向根据 穹顶连接基座的方向
+     * <p>2.中途方向变化的幅度不能大于1
+     * <p>3.尽量少的变化
+     * <p>目前使用A*寻路
+     * @param start
+     * @param start_direction
+     * @param end
+     * @param end_direction
+     * @param player
+     * @return 链码 List<Integer>
+     */
     private static List<Integer> birthChainCode(Vec3i start, int start_direction, Vec3i end, int end_direction, Player player) {
         PriorityQueue<Node> openSet = new PriorityQueue<>(Comparator.comparingDouble(Node::getEstimatedTotalCost));
         Map<Vec3i, Node> allNodes = new HashMap<>();
@@ -635,6 +665,12 @@ public class JunctionHelper {
         return Collections.emptyList(); // No path found
     }
 
+    /**
+     * 启发
+     * @param a
+     * @param b
+     * @return
+     */
     private static double heuristic(Vec3i a, Vec3i b) {
         // Improved heuristic: Manhattan distance with slight bias for straight moves
         int dx = Math.abs(a.getX() - b.getX());
@@ -664,9 +700,16 @@ public class JunctionHelper {
         }
     }
 
-    // Method to check if the rays intersect
+    /**
+     * 是对一些基本情况，无法生成链码或者生成的链码容易出现bug进行排除
+     * @param start
+     * @param start_direction
+     * @param end
+     * @param end_direction
+     * @param player
+     * @return 无法生成 - false
+     */
     private static boolean checkChainCode(Vec3i start, int start_direction, Vec3i end, int end_direction, Player player) {
-        // Check if the difference between directions is bigger than 1, considering circularity
     	end_direction = (end_direction+4)%8;
         int directionDifference = Math.abs(start_direction - end_direction);
         if (directionDifference > 1 && directionDifference != 7) {
@@ -726,12 +769,12 @@ public class JunctionHelper {
         }
         
         player.sendSystemMessage(Component.translatable("dorm.connection.unable.anglenotgood"));
-        return false; // No intersection
+        return false;
     }
 
-    // Method to get the direction vector based on direction code
+    
     private static Vec3i getDirectionVector(int direction) {
-        switch (direction) {
+        switch (direction%8) {
             case 0: return new Vec3i(1, 0, 0);  // East
             case 1: return new Vec3i(1, 0, -1); // East-North
             case 2: return new Vec3i(0, 0, -1); // North

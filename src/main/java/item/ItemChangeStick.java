@@ -15,7 +15,7 @@ public class ItemChangeStick extends Item {
 	public static final String global_name = "change_stick";
             
     public ItemChangeStick(Properties p_41383_) {
-        super(p_41383_);
+        super(p_41383_.stacksTo(1));
     }
 
     @Override

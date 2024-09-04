@@ -67,8 +67,6 @@ public class DormJunctionControl extends Block implements EntityBlock {
     }
 	
 	private void CleanAll() {
-		// TODO 自动生成的方法存根
-		
 	}
 
 	@Nullable
