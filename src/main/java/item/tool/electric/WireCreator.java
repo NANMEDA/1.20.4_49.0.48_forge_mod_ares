@@ -49,7 +49,7 @@ public class WireCreator extends Item {
 	                			startNet = 0;
 	        					return InteractionResult.PASS;
 	        				}else {
-	        					EnergyNet net = EnergyNetProcess.createEnergyNet();
+	        					EnergyNet net = EnergyNetProcess.createEnergyNet(context.getLevel().dimension().location());
 	        					EnergyEntity startEntity = (EnergyEntity) level.getBlockEntity(startPos);
 	        					net.addBlockPos(pos, blockentity);
 	        					net.addBlockPos(startPos, startEntity);

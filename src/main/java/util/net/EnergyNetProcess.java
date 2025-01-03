@@ -1,5 +1,7 @@
 package util.net;
 
+import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
 import java.util.Collection;
@@ -36,25 +38,25 @@ public class EnergyNetProcess {
         }
     }
 
-    public static EnergyNet createEnergyNet(long id) {
+    public static EnergyNet createEnergyNet(long id, ResourceLocation dimension) {
         if (existingIds.contains(id)) {
             id = generateUniqueId();
         }
-        EnergyNet energyNet = new EnergyNet(id);
+        EnergyNet energyNet = new EnergyNet(id, dimension);
         existingIds.add(id);
         energyNetMap.put(id, energyNet);
         saveData();
         return energyNet;
     }
 
-    public static EnergyNet createEnergyNet() {
+    public static EnergyNet createEnergyNet(ResourceLocation dimension) {
         long newId = id + 1;
         if (existingIds.contains(newId)) {
             newId = generateUniqueId();
         } else {
             id = newId;
         }
-        EnergyNet energyNet = new EnergyNet(newId);
+        EnergyNet energyNet = new EnergyNet(newId, dimension);
         existingIds.add(newId);
         energyNetMap.put(newId, energyNet);
         saveData();
@@ -82,7 +84,7 @@ public class EnergyNetProcess {
         if (existingIds.contains(id)) {
             return energyNetMap.get(id);
         } else {
-            return createEnergyNet();
+            return createEnergyNet(null);
         }
     }
     
@@ -112,6 +114,7 @@ public class EnergyNetProcess {
             net1.nullSet.addAll(net2.nullSet);
 
             deleteEnergyNet(id2);
+            saveData();
         }
     }
 
@@ -126,7 +129,42 @@ public class EnergyNetProcess {
 
     private static void saveData() {
         if (savedData != null) {
-            savedData.setDirty();  // Mark the data as dirty, so it will be saved automatically??
+            savedData.setDirty();  // Mark the data as dirty, so it will be saved automatically?
         }
     }
+    
+    public static String netDisplay() {
+        StringBuilder sb = new StringBuilder();
+
+        // 遍历所有的 EnergyNet
+        for (Map.Entry<Long, EnergyNet> entry : energyNetMap.entrySet()) {
+            long energyNetId = entry.getKey();
+            EnergyNet energyNet = entry.getValue();
+            
+            // 添加 EnergyNet 的 id
+            sb.append("EnergyNet ID: ").append(energyNetId).append("\n");
+            
+            // 添加 EnergyNet 的 supplyLevel
+            sb.append("Supply Level: ").append(energyNet.getSupplyLevel()).append("\n");
+            
+            // 添加每个 Set 的内容
+            sb.append("Consumer Set: ").append(energyNet.consumerSet).append("\n");
+            sb.append("Producer Set: ").append(energyNet.producerSet).append("\n");
+            sb.append("Storage Set: ").append(energyNet.storageSet).append("\n");
+            sb.append("Trans Set: ").append(energyNet.transSet).append("\n");
+            sb.append("Null Set: ").append(energyNet.nullSet).append("\n");
+            
+            // 添加 edgeMap 的内容 (每个键值对)
+            sb.append("Edge Map: \n");
+            for (Map.Entry<BlockPos, BlockPos> edgeEntry : energyNet.edgeMap.entrySet()) {
+                sb.append("  From: ").append(edgeEntry.getKey()).append(" To: ").append(edgeEntry.getValue()).append("\n");
+            }
+
+            // 输出分隔符，方便查看
+            sb.append("---------------------------------------------------\n");
+        }
+        
+        return sb.toString();
+    }
+
 }

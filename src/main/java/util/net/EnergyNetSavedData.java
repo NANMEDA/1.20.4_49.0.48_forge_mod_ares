@@ -14,6 +14,8 @@ import java.util.Set;
 
 /**
  * TODO 非正常退出会导致数据丢失,需要修改
+ * 把EnergyNet序列化的代码在这里
+ * 然后被用于Save和Load
  */
 public class EnergyNetSavedData extends SavedData {
     private static final String DATA_NAME = "energy_nets";
@@ -46,10 +48,10 @@ public class EnergyNetSavedData extends SavedData {
             netMapTag.put(entry.getKey().toString(), entry.getValue().writeToNBT());
         }
         tag.put("EnergyNetMap", netMapTag);
-
+        
         return tag;
     }
-
+    
     public static EnergyNetSavedData load(CompoundTag tag) {
         EnergyNetSavedData data = new EnergyNetSavedData();
 
@@ -63,7 +65,7 @@ public class EnergyNetSavedData extends SavedData {
         CompoundTag netMapTag = tag.getCompound("EnergyNetMap");
         for (String key : netMapTag.getAllKeys()) {
             long id = Long.parseLong(key);
-            EnergyNet energyNet = new EnergyNet(id);
+            EnergyNet energyNet = new EnergyNet(id,null);
             energyNet.readFromNBT(netMapTag.getCompound(key));
             data.energyNetMap.put(id, energyNet);
         }

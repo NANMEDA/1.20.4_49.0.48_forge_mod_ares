@@ -4,9 +4,12 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.NbtUtils;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import machine.energy.IEnergy;
@@ -23,20 +26,24 @@ import machine.energy.IEnergy;
 public class EnergyNet {
     private long id;
     private int supplyLevel; //100 is full
+    private ResourceLocation dimension;
     protected Set<BlockPos> consumerSet;
     protected Set<BlockPos> producerSet;
     protected Set<BlockPos> storageSet;
     protected Set<BlockPos> transSet;
     protected Set<BlockPos> nullSet;
+    protected Map<BlockPos, BlockPos> edgeMap;
 
-    public EnergyNet(long id) {
+    public EnergyNet(long id, ResourceLocation dimension) {
         this.id = id;
+        this.dimension = dimension;
         this.supplyLevel = 100;
         this.consumerSet = new HashSet<>();
         this.producerSet = new HashSet<>();
         this.storageSet = new HashSet<>();
         this.transSet = new HashSet<>();
         this.nullSet = new HashSet<>();
+        this.edgeMap = new HashMap<>();
     }
 
     public long getId() {
@@ -47,9 +54,20 @@ public class EnergyNet {
         this.id = id;
     }
     
+    public ResourceLocation getDimension() {
+        return this.dimension;
+    }
+    
+    public void setDimension(ResourceLocation pDimension) {
+        this.dimension = pDimension;
+    }
+    
+    public boolean haveDimension() {
+        return this.dimension!=null;
+    }
+    
     public int getSupplyLevel() {
-        return this.supplyLevel;
-        
+        return this.supplyLevel;   
     }
 
     public void setSupplyLevel(int supply) {
@@ -121,7 +139,6 @@ public class EnergyNet {
     }
 
     /**
-     * 
      * @return true-Empty
      */
     public boolean checkEmpty() {
@@ -145,12 +162,14 @@ public class EnergyNet {
         CompoundTag tag = new CompoundTag();
         tag.putLong("Id", this.id);
         tag.putInt("SupplyLevel", this.supplyLevel);
+        tag.putString("Dimension", this.dimension.toString());
 
         tag.put("ConsumerSet", serializeBlockPosSet(consumerSet));
         tag.put("ProducerSet", serializeBlockPosSet(producerSet));
         tag.put("StorageSet", serializeBlockPosSet(storageSet));
         tag.put("TransSet", serializeBlockPosSet(transSet));
         tag.put("NullSet", serializeBlockPosSet(nullSet));
+        tag.put("EdgeMap", serializeBlockPosMap(edgeMap));
 
         return tag;
     }
@@ -158,12 +177,14 @@ public class EnergyNet {
     public void readFromNBT(CompoundTag tag) {
         this.id = tag.getLong("Id");
         this.supplyLevel = tag.getInt("SupplyLevel");
+        this.dimension = new ResourceLocation(tag.getString("Dimension"));
 
         this.consumerSet = deserializeBlockPosSet(tag.getList("ConsumerSet", 10));
         this.producerSet = deserializeBlockPosSet(tag.getList("ProducerSet", 10));
         this.storageSet = deserializeBlockPosSet(tag.getList("StorageSet", 10));
         this.transSet = deserializeBlockPosSet(tag.getList("TransSet", 10));
         this.nullSet = deserializeBlockPosSet(tag.getList("NullSet", 10));
+        this.edgeMap = deserializeBlockPosMap(tag.getList("EdgeMap",10));
     }
 
     private ListTag serializeBlockPosSet(Set<BlockPos> set) {
@@ -173,6 +194,18 @@ public class EnergyNet {
         }
         return listTag;
     }
+    
+
+	private ListTag serializeBlockPosMap(Map<BlockPos, BlockPos> map) {
+	    ListTag listTag = new ListTag();
+	    for (Map.Entry<BlockPos, BlockPos> entry : map.entrySet()) {
+	        CompoundTag pairTag = new CompoundTag();
+	        pairTag.put("Key", NbtUtils.writeBlockPos(entry.getKey()));
+	        pairTag.put("Value", NbtUtils.writeBlockPos(entry.getValue()));
+	        listTag.add(pairTag);
+	    }
+	    return listTag;
+	}
 
     private Set<BlockPos> deserializeBlockPosSet(ListTag listTag) {
         Set<BlockPos> set = new HashSet<>();
@@ -181,5 +214,26 @@ public class EnergyNet {
         }
         return set;
     }
+    
+    private Map<BlockPos, BlockPos> deserializeBlockPosMap(ListTag listTag) {
+        Map<BlockPos, BlockPos> map = new HashMap<>();
+        for (int i = 0; i < listTag.size(); i++) {
+            CompoundTag pairTag = listTag.getCompound(i);
+            BlockPos key = NbtUtils.readBlockPos(pairTag.getCompound("Key"));
+            BlockPos value = NbtUtils.readBlockPos(pairTag.getCompound("Value"));
+            map.put(key, value);
+        }
+        return map;
+    }
+    
+    public void addEdge(BlockPos from, BlockPos to) {
+        edgeMap.put(from, to);
+    }
+    
+    public void removeEdge(BlockPos from) {
+        edgeMap.remove(from);
+    }
+
+
 
 }

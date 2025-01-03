@@ -121,7 +121,7 @@ public class EnergyViewerEntity extends EnergyEntity implements IEnergy {
 				this.storage,this.capacity,this.capacity-this.storage
 				};
 		else {
-			return new long[] {this.NET,99999,this.energyConsume,this.energySupply-this.energyConsume,
+			return new long[] {this.NET,this.energySupply,this.energyConsume,this.energySupply-this.energyConsume,
 					this.storage,this.capacity,this.capacity-this.storage
 					};
 		}

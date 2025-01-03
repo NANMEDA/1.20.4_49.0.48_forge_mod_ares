@@ -9,6 +9,7 @@ import block.norm.*;
 import creativetab.CreativeTabsRegister;
 import effect.brew.BrewRigster;
 import effect.registry.EffectRegister;
+import event.forge.EnergyNetCalculation;
 import item.*;
 import item.can.CanHelper;
 import machine.registry.MBlockEntityRegister;
@@ -79,6 +80,7 @@ public class Maring
         ModVillager.VillagerRegister(modEventBus);
         //MinecraftForge.EVENT_BUS.register(new BiomeEffectApplier());
         MinecraftForge.EVENT_BUS.register(new EntityGravity());
+        MinecraftForge.EVENT_BUS.register(new ItemGravity());
         MinecraftForge.EVENT_BUS.register(new ItemGravity());
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);

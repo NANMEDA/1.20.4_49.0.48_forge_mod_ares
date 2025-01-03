@@ -3,6 +3,8 @@ package event.forge;
 import java.util.Collection;
 import java.util.Random;
 import java.util.Set;
+import java.util.List;
+import java.util.ArrayList;
 
 import machine.energy.consumer.IConsumer;
 import machine.energy.producer.IProducer;
@@ -10,6 +12,7 @@ import machine.energy.storage.EnergyStorageMode;
 import machine.energy.storage.IStorage;
 import machine.energy.viewer.EnergyViewerEntity;
 import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.event.TickEvent.LevelTickEvent;
@@ -22,6 +25,7 @@ import util.net.EnergyNetProcess;
 @Mod.EventBusSubscriber(modid = "maring", bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class EnergyNetCalculation {
 	
+	
 	private static boolean init = false;
 	public static int speed = 1;
 	public static Random rd = new Random();
@@ -32,7 +36,6 @@ public class EnergyNetCalculation {
 	 * 然后查看消耗量计算差值
 	 * 假如有储存器，则根据储存器状态来确定是否充放电
 	 * 根具最终情况，确定供电水平
-	 * <br>FIXME 未知错误,导致电网未被正确删除与奔溃
 	 * @author NANMEDA
 	 * ***/
 	@SubscribeEvent
@@ -52,15 +55,26 @@ public class EnergyNetCalculation {
 	        	}
 	        }
 	        
-	        System.out.println("EnergyNet count: " + energySet.size());
-
+	        List<Long> deletedIds = new ArrayList<>();
+	        ResourceLocation dl = level.dimension().location();
 	        for (EnergyNet energyNet : energySet) {
+	        	//假如有Dimension同时不是对应的
+	        	if(energyNet.haveDimension()&&!energyNet.getDimension().equals(dl)) continue;
 	            Set<BlockPos> producer = energyNet.getSet(EnergyEnum.PRODUCER);
 	            Set<BlockPos> consumer = energyNet.getSet(EnergyEnum.CONSUMER);
 	            Set<BlockPos> storage = energyNet.getSet(EnergyEnum.STORAGE);
 	            Set<BlockPos> trans = energyNet.getSet(EnergyEnum.TRANS); 
 	            Set<BlockPos> nul = energyNet.getSet(EnergyEnum.NULL); 
-	            if(energyNet.checkEmpty()) EnergyNetProcess.deleteEnergyNet(energyNet.getId());
+	            
+	            if(energyNet.checkEmpty()||!energyNet.haveDimension()) {
+	            	System.out.println("delete a NET ID: energyNet.getId()" );
+	                long id = energyNet.getId(); 
+	                deletedIds.add(id);          // 记录到列表中
+	            	continue;
+	            }
+	            
+		        System.out.println("EnergyNet count: " + energySet.size());
+		        System.out.println("AT LEVEL: " + level.dimension().location());
 	            
 	            long supply = 0;
 	            long consume = 0;
@@ -93,7 +107,9 @@ public class EnergyNetCalculation {
 	                    }
 	                }
 	            }
-
+	            
+	            System.out.println("AT LAST GET P: " + supply + "; GET C: " + consume);
+          
 	            if (!storage.isEmpty()) {
 	            	long deficit=0,sup=0;
 	            	long[] cse_t = {0,0,0};
@@ -121,7 +137,7 @@ public class EnergyNetCalculation {
 		                    	//energyNet.removeBlockPos(pos, EnergyEnum.STORAGE);
 		                    }
 	                    }
-	                    int supplyLevel = (int) ( 100 * (double)(supply) / (double) (supply-sup+1));
+	                    int supplyLevel = (int) ( 100.0 * (double)(supply) / (double) (supply-sup+1));
 	                    energyNet.setSupplyLevel((supplyLevel > 250) ? 50 : (supplyLevel > 150) ? 80 : (supplyLevel > 100) ? 100 :supplyLevel);
 	                    findViewerAndSet(level, nul, supply, supply-sup,cse_t[0], cse_t[1]);
 	                } else {
@@ -158,6 +174,12 @@ public class EnergyNetCalculation {
 	                findViewerAndSet(level, nul, supply, consume,0, 0);
 	            }
 	        }
+	        if(!deletedIds.isEmpty()) {
+		        for (Long id : deletedIds) {
+		            EnergyNetProcess.deleteEnergyNet(id);
+		        }
+	        }
+	        
 	    }
 	}
 
