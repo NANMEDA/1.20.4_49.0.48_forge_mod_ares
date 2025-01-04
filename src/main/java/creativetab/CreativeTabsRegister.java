@@ -111,6 +111,7 @@ public class CreativeTabsRegister {
                 output.accept(ItemRegister.CHANGE_STICK.get());
                 output.accept(ItemRegister.JUNCTION_CONNECTOR.get());
                 output.accept(ItemRegister.WIRE_CREATOR.get());
+                output.accept(ItemRegister.WIRE_CUTOR.get());
             }).build());
     
 

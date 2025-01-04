@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import util.net.EnergyNet;
 import util.net.EnergyNetProcess;
 
 public abstract class EnergyEntity extends BlockEntity{
@@ -12,6 +13,7 @@ public abstract class EnergyEntity extends BlockEntity{
 	
 	public EnergyEntity(BlockEntityType<?> p_155228_, BlockPos p_155229_, BlockState p_155230_) {
 		super(p_155228_, p_155229_, p_155230_);
+		this.NET = 0;
 	}
 	
 	/**
@@ -43,7 +45,9 @@ public abstract class EnergyEntity extends BlockEntity{
 	
     public void remove() {
         if (haveNet()) {
-            EnergyNetProcess.getEnergyNet(this.NET).removeBlockPos(this.worldPosition, this);
+        	EnergyNet net = EnergyNetProcess.getEnergyNet(this.NET);
+        	net.removeBlockPos(this.worldPosition, this);
+        	net.removeAllEdgesFromPoint(this.worldPosition);
             cleanNet();
         }
     }

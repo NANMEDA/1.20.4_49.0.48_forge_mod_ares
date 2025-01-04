@@ -7,10 +7,13 @@ import net.minecraft.nbt.NbtUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.Queue;
+import java.util.LinkedList;
 
 import machine.energy.IEnergy;
 
@@ -32,7 +35,8 @@ public class EnergyNet {
     protected Set<BlockPos> storageSet;
     protected Set<BlockPos> transSet;
     protected Set<BlockPos> nullSet;
-    protected Map<BlockPos, BlockPos> edgeMap;
+    
+    protected Map<BlockPos, Set<BlockPos>> edgeMap;
 
     public EnergyNet(long id, ResourceLocation dimension) {
         this.id = id;
@@ -64,6 +68,112 @@ public class EnergyNet {
     
     public boolean haveDimension() {
         return this.dimension!=null;
+    }
+    
+    public void addEdge(BlockPos from, BlockPos to) {
+        // 添加 from -> to
+        edgeMap.putIfAbsent(from, new HashSet<>());
+        edgeMap.get(from).add(to);
+        // 添加 to -> from
+        edgeMap.putIfAbsent(to, new HashSet<>());
+        edgeMap.get(to).add(from);
+    }
+    
+    public void removeEdge(BlockPos from, BlockPos to) {
+        // 移除 from -> to
+        if (edgeMap.containsKey(from)) {
+            edgeMap.get(from).remove(to);
+            if (edgeMap.get(from).isEmpty()) {
+                edgeMap.remove(from); // 如果集合为空，删除该键
+            }
+        }
+        // 移除 to -> from
+        if (edgeMap.containsKey(to)) {
+            edgeMap.get(to).remove(from);
+            if (edgeMap.get(to).isEmpty()) {
+                edgeMap.remove(to); // 如果集合为空，删除该键
+            }
+        }
+    }
+    
+    public void removeAllEdgesFromPoint(BlockPos point) {
+        // 检查是否存在与该点相关的边
+        if (!edgeMap.containsKey(point)) {
+            return;
+        }
+        // 获取所有与该点相连的目标点集合
+        Set<BlockPos> connectedPoints = edgeMap.get(point);
+        // 遍历所有目标点，移除它们与当前点的反向边
+        for (BlockPos to : connectedPoints) {
+            if (edgeMap.containsKey(to)) {
+                edgeMap.get(to).remove(point);
+                // 如果目标点的集合为空，移除该目标点键
+                if (edgeMap.get(to).isEmpty()) {
+                    edgeMap.remove(to);
+                }
+            }
+        }
+        // 移除当前点的所有边
+        edgeMap.remove(point);
+    }
+    
+    
+    /**
+     * 删除两个点之后，是否还是相互连接（在同一张图上）
+     * */
+    public boolean canStillConnect(BlockPos from, BlockPos to) {
+        // 如果 from 或 to 不存在于 edgeMap 中，直接返回 false
+        if (!edgeMap.containsKey(from) || !edgeMap.containsKey(to)) {
+            return false;
+        }
+
+        // 暂时移除边 from -> to 和 to -> from
+        edgeMap.get(from).remove(to);
+        edgeMap.get(to).remove(from);
+
+        // 判断 from 和 to 是否仍然连通
+        boolean connected = bfs(from, to);
+
+        // 恢复边 from -> to 和 to -> from
+        edgeMap.get(from).add(to);
+        edgeMap.get(to).add(from);
+
+        return connected;
+    }
+
+    private boolean bfs(BlockPos start, BlockPos target) {
+        // 使用队列进行广度优先搜索
+        Queue<BlockPos> queue = new LinkedList<>();
+        Set<BlockPos> visited = new HashSet<>();
+
+        queue.add(start);
+        visited.add(start);
+
+        while (!queue.isEmpty()) {
+            BlockPos current = queue.poll();
+
+            if (current.equals(target)) {
+                return true; // 如果找到目标节点，说明连通
+            }
+
+            // 遍历当前节点的所有邻接节点
+            for (BlockPos neighbor : edgeMap.getOrDefault(current, Collections.emptySet())) {
+                if (!visited.contains(neighbor)) {
+                    visited.add(neighbor);
+                    queue.add(neighbor);
+                }
+            }
+        }
+
+        return false; // 如果遍历完成没有找到目标节点，说明不连通
+    }
+    
+    public Set<BlockPos> getEdges(BlockPos from) {
+        return edgeMap.getOrDefault(from, Collections.emptySet());
+    }
+   
+    public Map<BlockPos, Set<BlockPos>> getEdgeMap(){
+    	return this.edgeMap;
     }
     
     public int getSupplyLevel() {
@@ -149,7 +259,7 @@ public class EnergyNet {
         CONSUMER, PRODUCER, STORAGE, TRANS, NULL
     }
     
-    private EnergyEnum getEnergyKind(BlockEntity blockEntity) {
+    public EnergyEnum getEnergyKind(BlockEntity blockEntity) {
     	if(blockEntity instanceof IEnergy eEntity) {
     		return eEntity.getEnergyKind();
     	}else {
@@ -196,16 +306,22 @@ public class EnergyNet {
     }
     
 
-	private ListTag serializeBlockPosMap(Map<BlockPos, BlockPos> map) {
-	    ListTag listTag = new ListTag();
-	    for (Map.Entry<BlockPos, BlockPos> entry : map.entrySet()) {
-	        CompoundTag pairTag = new CompoundTag();
-	        pairTag.put("Key", NbtUtils.writeBlockPos(entry.getKey()));
-	        pairTag.put("Value", NbtUtils.writeBlockPos(entry.getValue()));
-	        listTag.add(pairTag);
-	    }
-	    return listTag;
-	}
+    private ListTag serializeBlockPosMap(Map<BlockPos, Set<BlockPos>> map) {
+        ListTag listTag = new ListTag();
+        for (Map.Entry<BlockPos, Set<BlockPos>> entry : map.entrySet()) {
+            CompoundTag pairTag = new CompoundTag();
+            pairTag.put("Key", NbtUtils.writeBlockPos(entry.getKey()));
+
+            ListTag valuesTag = new ListTag();
+            for (BlockPos value : entry.getValue()) {
+                valuesTag.add(NbtUtils.writeBlockPos(value));
+            }
+            pairTag.put("Values", valuesTag);
+
+            listTag.add(pairTag);
+        }
+        return listTag;
+    }
 
     private Set<BlockPos> deserializeBlockPosSet(ListTag listTag) {
         Set<BlockPos> set = new HashSet<>();
@@ -215,25 +331,22 @@ public class EnergyNet {
         return set;
     }
     
-    private Map<BlockPos, BlockPos> deserializeBlockPosMap(ListTag listTag) {
-        Map<BlockPos, BlockPos> map = new HashMap<>();
+    private Map<BlockPos, Set<BlockPos>> deserializeBlockPosMap(ListTag listTag) {
+        Map<BlockPos, Set<BlockPos>> map = new HashMap<>();
         for (int i = 0; i < listTag.size(); i++) {
             CompoundTag pairTag = listTag.getCompound(i);
             BlockPos key = NbtUtils.readBlockPos(pairTag.getCompound("Key"));
-            BlockPos value = NbtUtils.readBlockPos(pairTag.getCompound("Value"));
-            map.put(key, value);
+
+            ListTag valuesTag = pairTag.getList("Values", 10);
+            Set<BlockPos> values = new HashSet<>();
+            for (int j = 0; j < valuesTag.size(); j++) {
+                values.add(NbtUtils.readBlockPos(valuesTag.getCompound(j)));
+            }
+
+            map.put(key, values);
         }
         return map;
     }
-    
-    public void addEdge(BlockPos from, BlockPos to) {
-        edgeMap.put(from, to);
-    }
-    
-    public void removeEdge(BlockPos from) {
-        edgeMap.remove(from);
-    }
-
 
 
 }

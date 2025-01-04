@@ -12,6 +12,7 @@ import item.tool.OminousHoe;
 import item.tool.OminousPickaxe;
 import item.tool.OminousShovel;
 import item.tool.electric.WireCreator;
+import item.tool.electric.WireCutor;
 import item.weapon.ItemFrenchBread;
 import item.weapon.SwordTier;
 import net.minecraft.world.food.FoodProperties;
@@ -128,4 +129,7 @@ public class ItemRegister {
     
     public static final RegistryObject<Item> WIRE_CREATOR = ITEMS.register(WireCreator.global_name,
             () -> new WireCreator(new Item.Properties().stacksTo(1)));
+    
+    public static final RegistryObject<Item> WIRE_CUTOR = ITEMS.register(WireCutor.global_name,
+            () -> new WireCutor(new Item.Properties().stacksTo(1)));
 }
