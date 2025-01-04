@@ -29,6 +29,7 @@ public class EnergyNetCalculation {
 	private static boolean init = false;
 	public static int speed = 1;
 	public static Random rd = new Random();
+	private static boolean debug = false;
 	
 	/***
 	 * 计算电网耗电和分配电力
@@ -54,7 +55,8 @@ public class EnergyNetCalculation {
 	        		return;
 	        	}
 	        }
-	        
+	        if(debug)
+	        System.out.println("EnergyNet count: " + energySet.size());
 	        List<Long> deletedIds = new ArrayList<>();
 	        ResourceLocation dl = level.dimension().location();
 	        for (EnergyNet energyNet : energySet) {
@@ -67,21 +69,22 @@ public class EnergyNetCalculation {
 	            Set<BlockPos> nul = energyNet.getSet(EnergyEnum.NULL); 
 	            
 	            if(energyNet.checkEmpty()||!energyNet.haveDimension()) {
+	            	if(debug)
 	            	System.out.println("delete a NET ID: energyNet.getId()" );
 	                long id = energyNet.getId(); 
 	                deletedIds.add(id);          // 记录到列表中
 	            	continue;
 	            }
-	            
-		        System.out.println("EnergyNet count: " + energySet.size());
+	            if(debug)
 		        System.out.println("AT LEVEL: " + level.dimension().location());
 	            
 	            long supply = 0;
 	            long consume = 0;
-
+	            if(debug)
 	            System.out.println("Processing EnergyNet ID: " + energyNet.getId());
 
 	            if (!producer.isEmpty()) {
+	            	if(debug)
 	                System.out.println("Producers:");
 	                for (BlockPos pos : producer) {
 	                    System.out.println("at: " + pos);
@@ -96,6 +99,7 @@ public class EnergyNetCalculation {
 	            }
 
 	            if (!consumer.isEmpty()) {
+	            	if(debug)
 	                System.out.println("Consumers:");
 	                for (BlockPos pos : consumer) {
 	                    System.out.println("at: " + pos);
@@ -107,12 +111,13 @@ public class EnergyNetCalculation {
 	                    }
 	                }
 	            }
-	            
+	            if(debug)
 	            System.out.println("AT LAST GET P: " + supply + "; GET C: " + consume);
           
 	            if (!storage.isEmpty()) {
 	            	long deficit=0,sup=0;
 	            	long[] cse_t = {0,0,0};
+	            	if(debug)
 	                System.out.println("Storage Blocks:");
 	                if (supply >= consume) {
 	                    sup = supply - consume;

@@ -16,6 +16,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import javax.annotation.Nullable;
+
 import machine.energy.EnergyEntity;
 
 /**
@@ -83,6 +85,9 @@ public class EnergyNetProcess {
         return newId;
     }
 
+    /**
+     * 包含存在检测了
+     * */
     public static void deleteEnergyNet(long id) {
         if (existingIds.contains(id)) {
             existingIds.remove(id);
@@ -95,7 +100,18 @@ public class EnergyNetProcess {
         if (existingIds.contains(id)) {
             return energyNetMap.get(id);
         } else {
+        	System.out.println("ATTENTION< CREATE A NET HEN TRY TO GET IT");
             return createEnergyNet(null);
+        }
+    }
+    
+    @Nullable
+    public static EnergyNet getEnergyNetNotCreate(long id) {
+        if (existingIds.contains(id)) {
+            return energyNetMap.get(id);
+        } else {
+        	System.out.println("ATTENTION< CREATE A NET HEN TRY TO GET IT");
+            return null;
         }
     }
     
@@ -149,7 +165,10 @@ public class EnergyNetProcess {
         }
     }
     
-    public static EnergyNet splitEnergyNet(BlockPos pos1, Level level, EnergyNet energyNet) {
+    /**
+     * 传入的pos相当于把 pos和pos相链接 的独立出 到返回的
+     * */
+    public static EnergyNet splitEnergyNet(BlockPos pos1,BlockPos pos2, Level level, EnergyNet energyNet) {
         // 创建新的 EnergyNet
         EnergyNet net2 = createEnergyNet(energyNet.getDimension());
 
@@ -157,12 +176,16 @@ public class EnergyNetProcess {
         BlockEntity energyEntity = level.getBlockEntity(pos1);
         if(energyEntity instanceof EnergyEntity e) {
         	e.setNet(net2.getId());
+        }else {
+        	System.out.println("ERROR, UNEXPECT ENTITY AT ENERGYNETPROCESS");
         }
         EnergyEnum energyKind = energyNet.getEnergyKind(energyEntity);
         
         // 1. 将 pos1 从 energyNet 中移除，并将其对应的所有相关节点和集合转移到 net2
         transferBlockPos(energyNet, net2, pos1, energyKind);
-
+        energyNet.removeEdge(pos1, pos2);
+        net2.removeEdge(pos1, pos2);
+        
         // 2. 递归地处理 pos1 的所有相邻节点，直到遍历完所有相关节点
         Set<BlockPos> visited = new HashSet<>();
         bfsAndTransfer(level , energyNet, net2, pos1, visited);

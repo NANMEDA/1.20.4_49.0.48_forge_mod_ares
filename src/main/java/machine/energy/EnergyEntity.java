@@ -1,6 +1,11 @@
 package machine.energy;
 
+import java.util.Map;
+import java.util.Set;
+import java.util.HashSet;
+
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -43,11 +48,33 @@ public abstract class EnergyEntity extends BlockEntity{
 		this.NET = id;
 	}
 	
-    public void remove() {
+    public void remove(Level level) {
         if (haveNet()) {
-        	EnergyNet net = EnergyNetProcess.getEnergyNet(this.NET);
+        	EnergyNet net = EnergyNetProcess.getEnergyNetNotCreate(this.NET);
+        	if(net == null) {
+        		System.out.println("ERROR,this block remove,it should have a NET but NET not exist!");
+        		cleanNet();
+        	}
+        	Map<BlockPos, Set<BlockPos>> allEdge = net.getEdgeMap();
+        	
+        	//Set<BlockPos> affectPos = net.getEdges(this.worldPosition);
+        	Set<BlockPos> affectPos = new HashSet<>(net.getEdges(this.worldPosition));
+        	//不要用上面那个，下面修改了net，会导致affectPos变化，然后循环崩溃!!
+        	
+        	if(affectPos.isEmpty()) {
+        		EnergyNetProcess.deleteEnergyNet(this.NET);
+        		cleanNet();
+        	}
+        	
+        	//net.removeAllEdgesFromPoint(this.worldPosition);
+        	for(BlockPos pos : affectPos) {
+        		if(EnergyNet.canStillConnect(allEdge,this.worldPosition,pos)) {
+        			net.removeEdge(pos, this.worldPosition);
+        		}else {
+        			EnergyNetProcess.splitEnergyNet(pos,this.worldPosition ,level, net);
+        		}
+        	}
         	net.removeBlockPos(this.worldPosition, this);
-        	net.removeAllEdgesFromPoint(this.worldPosition);
             cleanNet();
         }
     }

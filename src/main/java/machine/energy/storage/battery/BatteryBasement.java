@@ -115,10 +115,10 @@ public class BatteryBasement extends Block implements EntityBlock{
             BlockEntity blockEntity = level.getBlockEntity(pos);
             if (blockEntity instanceof BatteryBasementEntity entity) {
                 // Call the remove method in the BlockEntity to clean up network references
-            	entity.remove();
+            	entity.remove(level);
             }
-            super.onRemove(oldState, level, pos, newState, isMoving);
         }
+        super.onRemove(oldState, level, pos, newState, isMoving);
     }
 
 	

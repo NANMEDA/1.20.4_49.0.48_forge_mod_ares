@@ -121,27 +121,31 @@ public class EnergyNet {
     /**
      * 删除两个点之后，是否还是相互连接（在同一张图上）
      * */
-    public boolean canStillConnect(BlockPos from, BlockPos to) {
+    public static boolean canStillConnect(Map<BlockPos, Set<BlockPos>> edge,BlockPos from, BlockPos to) {
         // 如果 from 或 to 不存在于 edgeMap 中，直接返回 false
-        if (!edgeMap.containsKey(from) || !edgeMap.containsKey(to)) {
+        if (!edge.containsKey(from) || !edge.containsKey(to)) {
             return false;
         }
 
         // 暂时移除边 from -> to 和 to -> from
-        edgeMap.get(from).remove(to);
-        edgeMap.get(to).remove(from);
+        edge.get(from).remove(to);
+        edge.get(to).remove(from);
 
         // 判断 from 和 to 是否仍然连通
-        boolean connected = bfs(from, to);
+        boolean connected = bfs(edge,from, to);
 
         // 恢复边 from -> to 和 to -> from
-        edgeMap.get(from).add(to);
-        edgeMap.get(to).add(from);
+        edge.get(from).add(to);
+        edge.get(to).add(from);
 
         return connected;
     }
+    
+    public boolean canStillConnect(BlockPos from, BlockPos to) {
+    	return canStillConnect(this.edgeMap, from, to);
+    }
 
-    private boolean bfs(BlockPos start, BlockPos target) {
+    private static boolean bfs(Map<BlockPos, Set<BlockPos>> edge,BlockPos start, BlockPos target) {
         // 使用队列进行广度优先搜索
         Queue<BlockPos> queue = new LinkedList<>();
         Set<BlockPos> visited = new HashSet<>();
@@ -157,7 +161,7 @@ public class EnergyNet {
             }
 
             // 遍历当前节点的所有邻接节点
-            for (BlockPos neighbor : edgeMap.getOrDefault(current, Collections.emptySet())) {
+            for (BlockPos neighbor : edge.getOrDefault(current, Collections.emptySet())) {
                 if (!visited.contains(neighbor)) {
                     visited.add(neighbor);
                     queue.add(neighbor);

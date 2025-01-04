@@ -51,7 +51,7 @@ public class WireCutor extends Item {
 	        						context.getPlayer().sendSystemMessage(Component.translatable("energynet.remove.edge"));
 	        					}else {
 	        						context.getPlayer().sendSystemMessage(Component.translatable("energynet.split"));
-	        						EnergyNet net2 = EnergyNetProcess.splitEnergyNet(pos, level, energyNet);
+	        						EnergyNet net2 = EnergyNetProcess.splitEnergyNet(pos,startPos, level, energyNet);
 	        					}
 	                			startPos = null;
 	                			startNet = 0;
