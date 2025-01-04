@@ -1,4 +1,4 @@
-package item;
+package item.tool;
 
 import block.norm.BlockRegister;
 import net.minecraft.core.BlockPos;

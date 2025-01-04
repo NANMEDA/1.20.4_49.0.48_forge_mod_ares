@@ -6,7 +6,10 @@ import item.armor.ModArmor;
 import item.armor.ModArmorMaterials;
 import item.blueprint.ItemBlueprint;
 import item.can.ItemCan;
+import item.electric.BatteryHeart;
 import item.rocket.RocketItem;
+import item.tool.ItemChangeStick;
+import item.tool.ItemJunctionConnector;
 import item.tool.OminousAxe;
 import item.tool.OminousHoe;
 import item.tool.OminousPickaxe;
@@ -132,4 +135,7 @@ public class ItemRegister {
     
     public static final RegistryObject<Item> WIRE_CUTOR = ITEMS.register(WireCutor.global_name,
             () -> new WireCutor(new Item.Properties().stacksTo(1)));
+    
+    public static final RegistryObject<Item> BATTERY_HEART = ITEMS.register(BatteryHeart.global_name,
+            () -> new BatteryHeart(new Item.Properties()));
 }

@@ -92,6 +92,7 @@ public class CreativeTabsRegister {
             		output.accept(ItemRegister.MATERIAL_ITEMS[i].get());
             	}
                 output.accept(ItemRegister.BUILDING_STRUCTURE.get());
+                output.accept(ItemRegister.BATTERY_HEART.get());
             }).build());
     
     public static final RegistryObject<CreativeModeTab> MAR_TOOL_TAB = CREATIVE_MODE_TABS.register("mar_tool_tab", () -> CreativeModeTab.builder()

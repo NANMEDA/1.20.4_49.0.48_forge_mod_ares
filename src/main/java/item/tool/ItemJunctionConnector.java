@@ -1,4 +1,4 @@
-package item;
+package item.tool;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;

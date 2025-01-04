@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XBX",
+    "HHH",
+    "XCX"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:iron_block"
+    },
+    "C": {
+      "item": "minecraft:chest"
+    },
+    "B": {
+      "item": "maring:basic_metal_parts"
+    },
+    "H": {
+      "item": "maring:battery_heart"
+    }
+  },
+  "result": {
+    "item": "maring:battery_capacity",
+    "count": 2
+  }
+}
