@@ -5,6 +5,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import util.json.ItemJSON;
@@ -29,6 +30,16 @@ public class WireCreator extends Item {
 	
 	public static final String global_name = "wire_creator";
  
+	@Override
+    public int getMaxDamage(ItemStack stack) {
+        return 1024;
+    }
+
+    @Override
+    public boolean isDamageable(ItemStack stack) {
+        return true;
+    }
+	
     @Override
     public InteractionResult useOn(UseOnContext context) {
         Level level = context.getLevel();
@@ -45,8 +56,28 @@ public class WireCreator extends Item {
 	        			context.getPlayer().sendSystemMessage(Component.translatable("second.point.ok"));
 	        			long endNet = blockentity.getNet();
 	        			
+	        			if(pos.equals(startPos)) {
+	        				context.getPlayer().sendSystemMessage(Component.translatable("energynet.cantsame"));
+                			startPos = null;
+                			startNet = 0;
+        					return InteractionResult.PASS;
+	        			}
+	        			
+	        			int dx = Math.abs(startPos.getX()-pos.getX());
+	        			int dy = Math.abs(startPos.getY()-pos.getY());
+	        			int dz = Math.abs(startPos.getZ()-pos.getZ());
+	        			int dis = dx + dy + dz;
+	        			if(dis>128) {
+	        				context.getPlayer().sendSystemMessage(Component.translatable("energynet.linetoolong"));
+	        				return InteractionResult.PASS;
+	        			}
+	        			ItemStack stack = context.getItemInHand();
+	        			stack.hurtAndBreak(dis, context.getPlayer(), (e) -> e.broadcastBreakEvent(context.getHand()));
+    					
 	        			if(startNet == endNet) {
 	        				if(startNet != 0) {	//	已经有链接了
+	        					EnergyNet net = EnergyNetProcess.getEnergyNet(startNet);
+	        					net.addEdge(startPos, pos);
 	                			startPos = null;
 	                			startNet = 0;
 	        					return InteractionResult.PASS;

@@ -5,6 +5,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import util.json.ItemJSON;
@@ -27,6 +28,19 @@ public class WireCutor extends Item {
 	
 	public static final String global_name = "wire_cutor";
  
+	@Override
+    public int getMaxDamage(ItemStack stack) {
+        // 返回耐久度的最大值
+        return 64;
+    }
+
+    @Override
+    public boolean isDamageable(ItemStack stack) {
+        // 确保该物品可以损坏
+        return true;
+    }
+
+	
     @Override
     public InteractionResult useOn(UseOnContext context) {
         Level level = context.getLevel();
@@ -42,9 +56,18 @@ public class WireCutor extends Item {
 	        		}else {
 	        			context.getPlayer().sendSystemMessage(Component.translatable("second.point.ok"));
 	        			long endNet = blockentity.getNet();
-	        			
+	        			if(pos.equals(startPos)) {
+	        				context.getPlayer().sendSystemMessage(Component.translatable("energynet.cantsame"));
+                			startPos = null;
+                			startNet = 0;
+        					return InteractionResult.PASS;
+	        			}
 	        			if(startNet == endNet) {
 	        				if(startNet != 0) {	//	已经有链接了, 也就是可以cut
+	        					
+	        					ItemStack stack = context.getItemInHand();
+	        					stack.hurtAndBreak(1, context.getPlayer(), (e) -> e.broadcastBreakEvent(context.getHand()));
+	        					
 	        					EnergyNet energyNet = EnergyNetProcess.getEnergyNet(startNet);
 	        					if(energyNet.canStillConnect(startPos, pos)) {
 	        						energyNet.removeEdge(startPos, pos);

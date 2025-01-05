@@ -12,7 +12,6 @@ import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
-import net.minecraft.world.level.Level;
 import util.net.EnergyNet.EnergyEnum;
 import util.net.EnergyNetProcess;
 public class CheckAndClear implements Command<CommandSourceStack> {
@@ -41,7 +40,6 @@ public class CheckAndClear implements Command<CommandSourceStack> {
         	    // 向玩家发送消息
         	    context.getSource().getPlayer().sendSystemMessage(
         	        Component.translatable("maring.command.energyNet.clear")
-        	            .setStyle(Style.EMPTY.withColor(ChatFormatting.RED))
         	    );
         	}
         } else {
@@ -54,33 +52,4 @@ public class CheckAndClear implements Command<CommandSourceStack> {
         return 1;
     }
 
-    private void displaySet(EnergyEnum energyEnum, util.net.EnergyNet energyNet, CommandContext<CommandSourceStack> context,Level level) {
-        Set<BlockPos> set = energyNet.getSet(energyEnum);
-        if (set != null && !set.isEmpty()) {
-            // Display the set name
-            String setName = energyEnum.name();
-            context.getSource().getPlayer().sendSystemMessage(
-                Component.translatable("maring.command.energyNet.display." + setName)
-                    .setStyle(Style.EMPTY.withColor(ChatFormatting.GREEN))
-            );
-
-            int count = 0;
-            StringBuilder sb = new StringBuilder();
-
-            for (BlockPos pos : set) {
-                if (count > 0 && count % 3 == 0) {
-                    sb.append("\n"); // Add a newline after every 5th element
-                }
-
-                // Get the block at the position and its name
-                String blockName = level.getBlockState(pos).getBlock().getName().getString();
-
-                // Append position and block name
-                sb.append("At ").append(pos.getX()).append(", ").append(pos.getY()).append(", ").append(pos.getZ())
-                  .append(" - ").append(blockName).append("  ");
-                count++;
-            }
-            context.getSource().getPlayer().sendSystemMessage(Component.literal(sb.toString()));
-        }
-    }
 }
