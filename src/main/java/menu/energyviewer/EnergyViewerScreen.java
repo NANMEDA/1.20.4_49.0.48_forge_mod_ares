@@ -1,7 +1,5 @@
 package menu.energyviewer;
 
-import java.util.function.Supplier;
-
 import machine.energy.viewer.EnergyViewerEntity;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -10,7 +8,6 @@ import net.minecraft.world.entity.player.Inventory;
 import util.net.EnergyNet;
 import util.net.EnergyNetProcess;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.LazyLoadedValue;
 
 public class EnergyViewerScreen extends AbstractContainerScreen<EnergyViewerMenu> {
 	public static final String MODID = "maring";
@@ -54,5 +51,10 @@ public class EnergyViewerScreen extends AbstractContainerScreen<EnergyViewerMenu
 	protected void renderBg(GuiGraphics pGraphics, float pPartialTick, int pMousex, int pMousey) {
 		pGraphics.blit(GUI,this.leftPos,this.topPos,0,0,this.imageWidth,this.imageHeight);
 	}
+	
+    @Override
+    protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
+        guiGraphics.drawString(this.font, this.title.getString(), this.titleLabelX, this.titleLabelY, 0xFFFFFF);
+    }
 	
 }

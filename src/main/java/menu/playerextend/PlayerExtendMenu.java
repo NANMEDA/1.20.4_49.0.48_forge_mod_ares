@@ -6,7 +6,7 @@ import block.entity.consumer.advancedmetalmanufactor.AdvancedMetalManufactorEnti
 import block.entity.consumer.basicmetalmanufactor.BasicMetalManufactorEntity;
 import item.ItemRegister;
 import menu.BlockEntityMenuBasic;
-import menu.register.MenuRegister;
+import menu.registry.MenuRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.MenuType;

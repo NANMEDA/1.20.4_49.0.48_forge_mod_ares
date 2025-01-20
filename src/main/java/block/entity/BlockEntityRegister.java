@@ -10,6 +10,7 @@ import block.entity.consumer.stonewasher.StoneWasherEntity;
 import block.entity.consumer.watergather.WaterGatherEntity;
 import block.entity.neutral.blueprintbuilder.BlueprintBuilderEntity;
 import block.entity.neutral.crystalbuilder.CrystalBuilderEntity;
+import block.entity.neutral.dormcontrol.DomeControlEntity;
 import block.entity.neutral.fastbuild.DormJunctionControlEntity;
 import block.entity.neutral.fuelrefiner.FuelRefinerEntity;
 import block.entity.neutral.researchtable.ResearchTableEntity;
@@ -63,6 +64,10 @@ public class BlockEntityRegister {
 	public static final RegistryObject<BlockEntityType<DormJunctionControlEntity>> dormjunctioncontrol_BLOCKENTITY = 
 			BLOCKENTITIES.register("dorm_junction_control", () -> BlockEntityType.Builder.of(DormJunctionControlEntity::new, block.norm.fastbuild.FastBuildRegister.dormjunctioncontrol_BLOCK.get()).build(null));
 
+	public static final RegistryObject<BlockEntityType<DomeControlEntity>> dormcontrol_BLOCKENTITY = 
+			BLOCKENTITIES.register("dorm_control", () -> BlockEntityType.Builder.of(DomeControlEntity::new,  BlockRegister.dormcontrol_BLOCK.get()).build(null));
+
+	
 	public static final RegistryObject<BlockEntityType<BlueprintBuilderEntity>>blueprintbuilder_BLOCKENTITY = 
 			BLOCKENTITIES.register("blueprint_builder", () -> BlockEntityType.Builder.of(BlueprintBuilderEntity::new, block.norm.blueprintbuilder.Register.blueprintbuilder_BLOCK.get()).build(null));
 

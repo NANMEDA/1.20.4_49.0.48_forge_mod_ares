@@ -58,6 +58,10 @@ public class BasicFlatEclipseDorm extends Block {
     		}
             createGlassSphere(level, pos,rotate);
             createCementBase(level, pos,rotate);
+            
+            BlockPos control = DormHelper.fromCenterGetControlBlockPos(level, pos);
+            level.setBlockAndUpdate(control, BlockRegister.dormcontrol_BLOCK.get().defaultBlockState());
+            
             createJunctionBase(level,pos.below(),rotate);
         }
         return InteractionResult.SUCCESS;
@@ -65,15 +69,15 @@ public class BasicFlatEclipseDorm extends Block {
     
     private void createJunctionBase(Level level, BlockPos pos,boolean rotate) {
     	if(rotate) {
-	    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(0,0,12),6);
-	    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(0,0,-12),2);
-	    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(17,0,0),0);
-	    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(-17,0,0),4);
+	    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(0,0,12),6,pos);
+	    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(0,0,-12),2,pos);
+	    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(17,0,0),0,pos);
+	    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(-17,0,0),4,pos);
     	}else {
-        	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(0,0,17),6);
-        	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(0,0,-17),2);
-        	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(12,0,0),0);
-        	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(-12,0,0),4);
+        	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(0,0,17),6,pos);
+        	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(0,0,-17),2,pos);
+        	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(12,0,0),0,pos);
+        	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(-12,0,0),4,pos);
     	}
     	
 	}

@@ -22,8 +22,10 @@ import block.norm.bioplasticbuilder.BlockBioplasticBuilder;
 import block.norm.bioplasticbuilder.BlockBioplasticBuilderbehind;
 import block.norm.bioplasticbuilder.BlockBioplasticBuilderleft;
 import block.norm.bioplasticbuilder.BlockBioplasticBuilderup;
+import block.norm.fastbuild.dormcontrol.DomeControl;
 import block.norm.powerstation.burn.PowerStationBurn;
 import block.norm.unbroken.BlockUnbrokenCement;
+import block.norm.unbroken.BlockUnbrokenConductor;
 import block.norm.unbroken.BlockUnbrokenFog;
 import block.norm.unbroken.BlockUnbrokenGlass;
 import block.norm.unbroken.BlockUnbrokenGreen;
@@ -63,6 +65,7 @@ public class BlockRegister {
     	int id_phosphor = BlockBasic.getIdFromName("phosphor");
     	int id_abundant_phosphor = BlockBasic.getIdFromName("abundant_phosphor");
     	int id_moist_mucus = BlockBasic.getIdFromName("moist_mucus");
+    	int id_light = BlockBasic.getIdFromName("mar_hard_cheese")+1;
         IntStream.range(0, BlockBasic.BLOCK_BASIC_NUMBER).forEach(i -> {
         	COMMON_BLOCKS[i] = BLOCKS.register(BlockBasic.getBlockName(i), () -> {
         	    BlockBehaviour.Properties properties = BlockBehaviour.Properties.of()
@@ -78,6 +81,8 @@ public class BlockRegister {
         	    	properties.lightLevel((blockstate)->10);
         	    }else if (i==id_moist_mucus) {
         	    	properties.noOcclusion();
+        	    }else if (i>=id_light&&i<=id_light+6) {
+        	    	properties.lightLevel((blockstate)->10);
         	    }
         	    return new Block(properties);
         	});
@@ -256,11 +261,28 @@ public class BlockRegister {
     public static final RegistryObject<Block> unbrokenmagma_BLOCK = BLOCKS.register(BlockUnbrokenMagma.global_name, () -> {
 		return new BlockUnbrokenMagma(BlockBehaviour.Properties.of());
 	});
+    
     public static final RegistryObject<Item> unbrokenmagma_BLOCK_ITEM = BLOCK_ITEMS.register(BlockUnbrokenMagma.global_name,
     		() -> new BlockItem(unbrokenmagma_BLOCK.get(), new Item.Properties()));
     
     public static final RegistryObject<Block> A_AIR = BLOCKS.register("a_air",
     		() -> new BlockAAIR(BlockBehaviour.Properties.of().replaceable().noCollission().noLootTable().air()));
+    
+    public static final RegistryObject<Block> dormcontrol_BLOCK = BLOCKS.register(DomeControl.global_name, () -> {
+		return new DomeControl(BlockBehaviour.Properties.of()
+				.strength(-1.0f,360000.0f));
+	});
+    
+    public static final RegistryObject<Item> dormcontrol_BLOCK_ITEM = BLOCK_ITEMS.register(DomeControl.global_name,
+    		() -> new BlockItem(dormcontrol_BLOCK.get(), new Item.Properties()));
+    
+    public static final RegistryObject<Block> unbrokenconductor_BLOCK = BLOCKS.register(BlockUnbrokenConductor.global_name, () -> {
+		return new BlockUnbrokenConductor(BlockBehaviour.Properties.of()
+				.strength(-1.0f,360000.0f));
+	});
+    
+    public static final RegistryObject<Item> unbrokenconductor_BLOCK_ITEM = BLOCK_ITEMS.register(BlockUnbrokenConductor.global_name,
+    		() -> new BlockItem(unbrokenconductor_BLOCK.get(), new Item.Properties()));
     
     static {
     	block.norm.deposit.Register.init();

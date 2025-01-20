@@ -2,9 +2,11 @@ package machine.energy;
 
 import java.util.Map;
 import java.util.Set;
+import java.util.HashMap;
 import java.util.HashSet;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.item.LeadItem;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -15,10 +17,14 @@ import util.net.EnergyNetProcess;
 public abstract class EnergyEntity extends BlockEntity{
     protected int FULL_ENERGY;
     protected long NET;
+    protected Map<BlockPos, Boolean> connectMap;
+    protected boolean isDirty = false;
 	
 	public EnergyEntity(BlockEntityType<?> p_155228_, BlockPos p_155229_, BlockState p_155230_) {
 		super(p_155228_, p_155229_, p_155230_);
 		this.NET = 0;
+		this.connectMap = new HashMap<>();
+
 	}
 	
 	/**
@@ -30,6 +36,49 @@ public abstract class EnergyEntity extends BlockEntity{
     
     public boolean isConnectable() {
     	return true;
+    }
+    
+    public Map<BlockPos, Boolean> getConnections() {
+    	return this.connectMap;
+    }
+    
+    public void addConnection(BlockPos pos,boolean t) {
+    	this.connectMap.put(pos,t);
+    	this.isDirty = true;
+    	this.setChanged();
+    }
+    
+    public static void addMutualConnection(EnergyEntity e1,BlockPos p1,EnergyEntity e2,BlockPos p2,boolean t) {
+    	e1.addConnection(p2,t);
+    	e2.addConnection(p1,t);
+    }
+    public static void addMutualConnection(EnergyEntity e1,EnergyEntity e2) {
+    	addMutualConnection(e1,e1.getBlockPos(),e2,e2.getBlockPos(),(e1.isConnectable()&&e2.isConnectable()));
+    }
+    
+    public void removeConnection(BlockPos pos) {
+    	this.connectMap.remove(pos);
+    	this.isDirty = true;
+    	this.setChanged();
+    }
+    
+    public static void removeMutualConnection(EnergyEntity e1,BlockPos p1,EnergyEntity e2,BlockPos p2) {
+    	e1.removeConnection(p2);
+    	e2.removeConnection(p1);
+    }
+    public static void removeMutualConnection(EnergyEntity e1,EnergyEntity e2) {
+    	removeMutualConnection(e1,e1.getBlockPos(),e2,e2.getBlockPos());
+    }
+    
+    public void removeAllrelativeConnection() {
+    	Level level = this.getLevel();
+    	if(level.isClientSide()) return;
+    	for(BlockPos pos : this.connectMap.keySet()) {
+    		if(level.getBlockEntity(pos) instanceof EnergyEntity e) {
+    			e.removeConnection(this.worldPosition);
+    		}
+    	}
+    	this.connectMap.clear();
     }
     
 	public long getNet() {
@@ -46,7 +95,9 @@ public abstract class EnergyEntity extends BlockEntity{
 
 	public void setNet(long id) {
 		this.NET = id;
+		this.setChanged();
 	}
+
 	
     public void remove(Level level) {
         if (haveNet()) {
@@ -55,6 +106,7 @@ public abstract class EnergyEntity extends BlockEntity{
         		System.out.println("ERROR,this block remove,it should have a NET but NET not exist!");
         		cleanNet();
         	}
+        	this.removeAllrelativeConnection();//这里只删掉了自己储存的，没删除EnergyNet里的
         	Map<BlockPos, Set<BlockPos>> allEdge = net.getEdgeMap();
         	
         	//Set<BlockPos> affectPos = net.getEdges(this.worldPosition);

@@ -6,7 +6,7 @@ import net.minecraftforge.items.SlotItemHandler;
 import block.entity.station.PowerStationBurnEntity;
 import block.norm.BlockRegister;
 import menu.BlockEntityMenuBasic;
-import menu.register.MenuRegister;
+import menu.registry.MenuRegister;
 
 
 public class PowerStationBurnMenu extends BlockEntityMenuBasic {

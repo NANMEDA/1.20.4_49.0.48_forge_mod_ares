@@ -26,4 +26,10 @@ public class FeatureRegistry {
 
 	public static final RegistryObject<QuartzRoot> QUARTZ_ROOT = FEATURES.register
 			("quartz_root", () -> new QuartzRoot(NoneFeatureConfiguration.CODEC));
+	
+	public static final RegistryObject<CheesePool> CHEESE_POOL = FEATURES.register
+			("cheese_pool", () -> new CheesePool(NoneFeatureConfiguration.CODEC));
+	
+	public static final RegistryObject<CheeseGlitter> CHEESE_GLITTER = FEATURES.register
+			("cheese_glitter", () -> new CheeseGlitter(NoneFeatureConfiguration.CODEC));
 }

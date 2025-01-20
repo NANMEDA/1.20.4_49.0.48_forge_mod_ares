@@ -51,6 +51,14 @@
   "block.maring.mar_deep_foolgold_ore": "深层愚人金",
   "block.maring.quartz_stone": "火星石英矿",
   "block.maring.deep_quartz_stone": "火星深层石英矿",
+  "block.maring.mar_soft_cheese": "火星软奶酪",
+  "block.maring.mar_hard_cheese": "火星硬奶酪",
+  "block.maring.mar_glitter_cheese_yellow": "火星黄色闪光奶酪",
+  "block.maring.mar_glitter_cheese_green": "火星绿色闪光奶酪",
+  "block.maring.mar_glitter_cheese_blue": "火星蓝色闪光奶酪",
+  "block.maring.mar_glitter_cheese_red": "火星红色闪光奶酪",
+  "block.maring.mar_glitter_cheese_orange": "火星橘色闪光奶酪",
+  "block.maring.mar_glitter_cheese_purple": "火星紫色闪光奶酪",
   
   "block.maring.powerstation_burn": "火力发电机",
   "block.maring.powerstation_sun": "太阳能发电机",
@@ -95,6 +103,8 @@
   "block.maring.basic_flat_eclipse_dorm": "扁椭球形穹顶模块 I",
   "block.maring.basic_cylinder_dorm": "躺圆柱穹顶模块 I",
   "block.maring.sphere_door": "出口阀模块",
+  "block.maring.dome_control": "穹顶控制器",
+  "block.maring.unbroken_conductor": "穹顶导电块",
   
   "blueprint.last": "蓝图",
   "dorm.basic.sphere": "球形穹顶I",
@@ -116,6 +126,7 @@
   "item.maring.chicken_can": "鸡肉罐头",
   "item.maring.ominous_cake": "荧惑糕",
   "item.maring.french_bread": "🥖",
+  "item.maring.cheese_piece": "火星奶酪片",
   
   "item.maring.ominous_gemstone": "荧惑石",
   "item.maring.basic_metal_parts": "基础金属零件套件",
@@ -204,6 +215,7 @@
   "menu.fuel_refiner": "精炼",
   "menu.research_table": "研究台",
   "menu.blueprint_builder": "蓝图制作",
+  "menu.dome_control": "穹顶控制",
   
   "menu.energyviewer.supply": "供应: %d",
   "menu.energyviewer.consume": "消耗: %d",
@@ -213,6 +225,10 @@
   "menu.energyviewer.cap": "容量: %d",
   "menu.energyviewer.storage": "存储: %d",
   "menu.energyviewer.empty": "空闲容量: %d",
+  "menu.domecontrol.o2": "氧气含量",
+  "menu.domecontrol.h2o": "水含量",
+  "menu.domecontrol.remove": "移除",
+  
   
   "maring.gui.microwave.button": "启动",  
   
@@ -294,6 +310,9 @@
   "maring.command.energyNet.display.STORAGE": "储存",
   "maring.command.energyNet.display.TRANS": "传输,变送",
   "maring.command.energyNet.display.NULL": "其他",
+  "maring.command.energyNet.unableid": "错误ID",
+  "maring.command.energyNet.delete": "删除成功",
+  "maring.command.energyNet.unabledimension": "错误维度",
   "maring.command.energyNet.clear": "整理 NETS",
   
   "maring.disaster.spider_day.init": "天上好像有什么东西掉下来了",

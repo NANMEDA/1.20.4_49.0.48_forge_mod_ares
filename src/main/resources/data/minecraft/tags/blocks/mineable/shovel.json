@@ -10,6 +10,14 @@
     "maring:deposit_empty",
     "maring:deposit_ice",
     "maring:deposit_iron",
-    "maring:deposit_gold"
+    "maring:deposit_gold",
+    "maring:mar_soft_cheese",
+    "maring:mar_hard_cheese",
+    "maring:mar_glitter_cheese_yellow",
+    "maring:mar_glitter_cheese_green",
+    "maring:mar_glitter_cheese_blue",
+    "maring:mar_glitter_cheese_red",
+    "maring:mar_glitter_cheese_orange",
+    "maring:mar_glitter_cheese_purple"
   ]
 }

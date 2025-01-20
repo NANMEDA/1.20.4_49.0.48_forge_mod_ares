@@ -35,7 +35,7 @@ import util.json.BlockJSON;
  * @author NANMEDA
  * */
 public class BlockBlueprintBuilder extends Block implements EntityBlock{
-	public static String global_name = "blueprint_builder"; 
+	public static final String global_name = "blueprint_builder"; 
 	
 	public BlockBlueprintBuilder(Properties properties) {
 		super(properties);

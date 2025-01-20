@@ -8,7 +8,7 @@ import block.entity.neutral.blueprintbuilder.BlueprintBuilderEntity;
 import block.norm.BlockRegister;
 import item.ItemRegister;
 import menu.BlockEntityMenuBasic;
-import menu.register.MenuRegister;
+import menu.registry.MenuRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;

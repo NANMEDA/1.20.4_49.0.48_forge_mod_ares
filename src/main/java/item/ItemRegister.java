@@ -7,6 +7,7 @@ import item.armor.ModArmorMaterials;
 import item.blueprint.ItemBlueprint;
 import item.can.ItemCan;
 import item.electric.BatteryHeart;
+import item.food.CheesePiece;
 import item.rocket.RocketItem;
 import item.tool.ItemChangeStick;
 import item.tool.ItemJunctionConnector;
@@ -138,4 +139,7 @@ public class ItemRegister {
     
     public static final RegistryObject<Item> BATTERY_HEART = ITEMS.register(BatteryHeart.global_name,
             () -> new BatteryHeart(new Item.Properties()));
+    
+    public static final RegistryObject<Item> CHEESE_PIECE = ITEMS.register(CheesePiece.global_name,
+            () -> new CheesePiece(new Item.Properties()));
 }

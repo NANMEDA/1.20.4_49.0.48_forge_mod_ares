@@ -1,6 +1,5 @@
 package command.energy;
 
-import java.awt.Color;
 import java.util.Set;
 
 import com.mojang.brigadier.Command;

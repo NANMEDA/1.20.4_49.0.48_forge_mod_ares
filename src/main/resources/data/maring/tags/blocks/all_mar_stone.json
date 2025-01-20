@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "maring:mar_deep_stone",
+    "maring:mar_deep_sulfur_stone",
+    "maring:mar_stone",
+    "maring:mar_sedimentary_stone",
+    "maring:mar_sulfur_stone",
+    "maring:mar_saltstone"
+  ]
+}

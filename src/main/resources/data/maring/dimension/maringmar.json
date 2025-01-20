@@ -479,11 +479,11 @@
           "parameters": {
             "temperature": [
               -0.8,
-              0
+              -0.3
             ],
             "humidity": [
               -1,
-              0
+              -0.3
             ],
             "continentalness": 0,
             "erosion": 0,
@@ -503,7 +503,7 @@
               0.8
             ],
             "humidity": [
-              0.2,
+              0.3,
               0.8
             ],
             "continentalness": 0,
@@ -526,6 +526,27 @@
             "humidity": [
               0,
               0.3
+            ],
+            "continentalness": 0,
+            "erosion": 0,
+            "weirdness": 0,
+            "depth": [
+              0.2,
+              0.9
+            ],
+            "offset": 0
+          }
+        },
+        {
+          "biome": "maring:under_cheese",
+          "parameters": {
+            "temperature": [
+              -0.3,
+              0
+            ],
+            "humidity": [
+              0.3,
+              0.8
             ],
             "continentalness": 0,
             "erosion": 0,

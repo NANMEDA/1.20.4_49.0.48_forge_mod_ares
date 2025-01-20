@@ -15,13 +15,13 @@ import net.minecraft.world.level.block.state.BlockState;
  * @author NANMEDA
  * */
 public class DormJunctionControlEntity extends PowerConsumerEntity{
-	private static int X ,Y,Z;
+	private static int X,Y,Z;
 
 	static protected int itemstack_number = 0;
 	
 	
 	public DormJunctionControlEntity(BlockPos pos, BlockState pBlockState) {
-		super(BlockEntityRegister.stonewasher_BLOCKENTITY.get(), pos, pBlockState);
+		super(BlockEntityRegister.dormjunctioncontrol_BLOCKENTITY.get(), pos, pBlockState);
 		SavePosData(pos);
 	}
 

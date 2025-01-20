@@ -1,7 +1,5 @@
 package creativetab;
 
-import java.util.stream.IntStream;
-
 import block.norm.BlockBasic;
 import block.norm.BlockElectricBasic;
 import block.norm.BlockRegister;
@@ -47,6 +45,7 @@ public class CreativeTabsRegister {
             	for(int i=0;i<itemFood.ITEM_FOOD_NUMBER;i++) {
             		output.accept(ItemRegister.FOOD_ITEMS[i].get());
             	}
+        		output.accept(ItemRegister.CHEESE_PIECE.get());
             }).build());
     
     public static final RegistryObject<CreativeModeTab> MAR_MACHINE_TAB = CREATIVE_MODE_TABS.register("mar_machine_tab", () -> CreativeModeTab.builder()

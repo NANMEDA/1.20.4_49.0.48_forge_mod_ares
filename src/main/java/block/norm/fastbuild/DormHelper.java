@@ -2,15 +2,20 @@ package block.norm.fastbuild;
 
 import java.util.Random;
 
+import block.norm.BlockRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Vec3i;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 
 public class DormHelper {
 	
+    private static final BlockState AIR_STATE = BlockRegister.A_AIR.get().defaultBlockState();
+    private static final BlockState UNBROKEN_FOG_STATE = BlockRegister.unbrokenfog_BLOCK.get().defaultBlockState();
+    
 	/**
 	 * 随机取点，检查是否占用
 	 * @param level
@@ -83,5 +88,20 @@ public class DormHelper {
 	    }
 	    player.sendSystemMessage(Component.translatable("dorm.place.able"));
 	    return false;
+	}
+	
+	public static BlockPos fromCenterGetControlBlockPos(Level level,BlockPos center) {
+		int max = 64;
+		BlockPos pos = center.mutable();
+		BlockState state;
+		while (max>0) {
+			state = level.getBlockState(pos);
+			if(!state.isAir()&&!state.is(AIR_STATE.getBlock())&&!state.is(UNBROKEN_FOG_STATE.getBlock())) {
+				return pos;
+			}
+			pos = pos.below();
+			max--;
+		}
+		return BlockPos.ZERO;
 	}
 }

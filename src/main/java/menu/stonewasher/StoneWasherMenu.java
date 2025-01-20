@@ -6,7 +6,7 @@ import block.entity.consumer.stonewasher.StoneWasherEntity;
 import block.norm.BlockBasic;
 import block.norm.BlockRegister;
 import menu.BlockEntityMenuBasic;
-import menu.register.MenuRegister;
+import menu.registry.MenuRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.Item;

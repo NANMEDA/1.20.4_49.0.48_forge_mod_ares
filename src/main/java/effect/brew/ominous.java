@@ -1,6 +1,5 @@
 package effect.brew;
 
-import net.minecraft.world.item.Items;
 import item.ItemRegister;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -11,7 +10,7 @@ public class ominous implements IBrewingRecipe {
     @Override
     public boolean isInput(ItemStack stack) {
         Item item = stack.getItem();
-        return item == Items.BREAD;
+        return item == ItemRegister.CHEESE_PIECE.get();
     }
 
     @Override

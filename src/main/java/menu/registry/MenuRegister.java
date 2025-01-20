@@ -1,10 +1,11 @@
-package menu.register;
+package menu.registry;
 
 import item.ItemRegister;
 import menu.advancedmetalmanufactor.AdvancedMetalManufactorMenu;
 import menu.basicmetalmanufactor.BasicMetalManufactorMenu;
 import menu.blueprintbuilder.BlueprintBuilderMenu;
 import menu.canfoodmaker.CanfoodMakerMenu;
+import menu.dormcontrol.DomeControlMenu;
 import menu.energyviewer.EnergyViewerMenu;
 import menu.etchingmachine.EtchingMachineMenu;
 import menu.fuelrefiner.FuelRefinerMenu;
@@ -67,6 +68,9 @@ public class MenuRegister {
 
     public static final RegistryObject<MenuType<EnergyViewerMenu>> ENERGYVIEWER_MENU = MENU_TYPES.register("energyviewer_menu",
     		() -> IForgeMenuType.create((windowId, inv, data) -> new EnergyViewerMenu(inv, windowId, data.readBlockPos())));
+    
+    public static final RegistryObject<MenuType<DomeControlMenu>> DORMCONTROL_MENU = MENU_TYPES.register("domecontrol_menu",
+    		() -> IForgeMenuType.create((windowId, inv, data) -> new DomeControlMenu(inv, windowId, data.readBlockPos())));
     
     
     /*

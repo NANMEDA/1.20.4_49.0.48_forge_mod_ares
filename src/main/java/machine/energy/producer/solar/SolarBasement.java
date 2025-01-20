@@ -2,6 +2,7 @@ package machine.energy.producer.solar;
 
 import javax.annotation.Nullable;
 
+import machine.energy.EnergyEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
@@ -140,7 +141,7 @@ public class SolarBasement extends Block implements EntityBlock{
         if(!level.isClientSide)
     	if (!oldState.is(newState.getBlock())) {
             BlockEntity blockEntity = level.getBlockEntity(pos);
-            if (blockEntity instanceof SolarBasementEntity entity) {
+            if (blockEntity instanceof EnergyEntity entity) {
                 // Call the remove method in the BlockEntity to clean up network references
             	entity.remove(level);
             }

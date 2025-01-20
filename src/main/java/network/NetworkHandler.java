@@ -8,6 +8,7 @@ import net.minecraftforge.event.network.CustomPayloadEvent;
 import net.minecraftforge.network.Channel;
 import net.minecraftforge.network.ChannelBuilder;
 import net.minecraftforge.network.SimpleChannel;
+import network.client.CDomeControl;
 import network.client.CResearchTableUpdate;
 import network.client.CRocketStart;
 import network.server.SRocketStart;
@@ -38,6 +39,8 @@ public class NetworkHandler {
 	    		CRocketStart::handle);
 	    register(CResearchTableUpdate.class, CResearchTableUpdate::encode, CResearchTableUpdate::decode,
 	    		CResearchTableUpdate::handle);
+	    register(CDomeControl.class, CDomeControl::encode, CDomeControl::decode,
+	    		CDomeControl::handle);
 
 	    // Server 2 Client
 	    register(SRocketStart.class, SRocketStart::encode, SRocketStart::decode,

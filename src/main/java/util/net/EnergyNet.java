@@ -77,6 +77,8 @@ public class EnergyNet {
         // 添加 to -> from
         edgeMap.putIfAbsent(to, new HashSet<>());
         edgeMap.get(to).add(from);
+        
+        
     }
     
     public void removeEdge(BlockPos from, BlockPos to) {
@@ -229,6 +231,9 @@ public class EnergyNet {
 	public void removeBlockPos(BlockPos pos, BlockEntity blockEntity) {
 		if(blockEntity!=null&&!blockEntity.getLevel().isClientSide)
 		removeBlockPos(pos, getEnergyKind(blockEntity));
+		if(consumerSet.isEmpty()&&producerSet.isEmpty()&&storageSet.isEmpty()&&nullSet.isEmpty()) {
+			EnergyNetProcess.deleteEnergyNet(this.id);
+		}
 	}
 
     public void removeBlockPos(BlockPos pos, EnergyEnum enumValue) {

@@ -24,6 +24,7 @@ public class BlockUnbrokenCement extends Block {
 	
 	private LazyLoadedValue<BlockState> Green = new LazyLoadedValue<>(()-> BlockRegister.unbrokengreen_BLOCK.get().defaultBlockState());
 	private LazyLoadedValue<BlockState> Lightblue = new LazyLoadedValue<>(()-> BlockRegister.unbrokenlightblue_BLOCK.get().defaultBlockState());
+	private LazyLoadedValue<BlockState> Conductor = new LazyLoadedValue<>(()-> BlockRegister.unbrokenconductor_BLOCK.get().defaultBlockState());
 	
 	public BlockUnbrokenCement(Properties p_49795_) {
 		super(p_49795_
@@ -48,6 +49,11 @@ public class BlockUnbrokenCement extends Block {
         }else if(handItemStack.getItem()==Items.LIGHT_BLUE_DYE) {
         	deleteDye(rd, player, handItemStack);
         	level.setBlockAndUpdate(pos, Lightblue.get());
+        	return InteractionResult.SUCCESS;
+        }else if(handItemStack.getItem()==Items.COPPER_INGOT) {
+        	level.setBlockAndUpdate(pos, Conductor.get());
+        	handItemStack.shrink(1);
+    		player.setItemInHand(InteractionHand.MAIN_HAND, handItemStack);
         	return InteractionResult.SUCCESS;
         }
         else{

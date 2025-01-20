@@ -3,7 +3,7 @@ package menu.energyviewer;
 import machine.energy.viewer.EnergyViewerEntity;
 import machine.registry.MBlockRegister;
 import menu.BlockEntityMenuBasic;
-import menu.register.MenuRegister;
+import menu.registry.MenuRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Inventory;
 

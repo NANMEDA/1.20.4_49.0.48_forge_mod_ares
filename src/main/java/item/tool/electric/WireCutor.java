@@ -76,6 +76,8 @@ public class WireCutor extends Item {
 	        						context.getPlayer().sendSystemMessage(Component.translatable("energynet.split"));
 	        						EnergyNet net2 = EnergyNetProcess.splitEnergyNet(pos,startPos, level, energyNet);
 	        					}
+	        					EnergyEntity startEntity = (EnergyEntity) level.getBlockEntity(startPos);
+	        					EnergyEntity.removeMutualConnection(startEntity, blockentity);
 	                			startPos = null;
 	                			startNet = 0;
 	        					return InteractionResult.SUCCESS;

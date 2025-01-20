@@ -3,9 +3,12 @@ package command;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.BoolArgumentType;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
+import com.mojang.brigadier.arguments.LongArgumentType;
+
 import command.disaster.DisasterDo;
 import command.disaster.DoomsSetDays;
 import command.energy.CheckAndClear;
+import command.energy.DeleteNet;
 import command.energy.Display;
 import command.energy.EnergyNet;
 import command.player.PressureHurt;
@@ -28,6 +31,7 @@ public class CommandRegistry {
      * <br> `rule energyNet calcSpeed`: Set the calculation speed of the energy network.
      * <br> `rule energyNet display`: Display the energy network status.
      * <br> `rule energyNet clear`: Clear invalid energy network blocks and connections.
+     * <br> `rule energyNet delete 'id'`: 删除特定id.
      */
     @SubscribeEvent
     public static void onServerStarting(RegisterCommandsEvent event) {
@@ -61,6 +65,10 @@ public class CommandRegistry {
                         // Sub-command: clear
                         .then(Commands.literal("clear")
                             .executes(CheckAndClear.INSTANCE)) // Clear invalid blocks in energy net
+                        // Sub-command: delete
+                        .then(Commands.literal("delete")
+                        	.then(Commands.argument("value", LongArgumentType.longArg())
+                        		.executes(DeleteNet.INSTANCE))) // Clear invalid blocks in energy net
                     )
                 )
         );

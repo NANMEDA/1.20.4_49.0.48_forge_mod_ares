@@ -1,5 +1,9 @@
 package machine.registry;
 
+import block.entity.neutral.dormcontrol.DomeControlEntity;
+import block.norm.BlockRegister;
+import block.norm.fastbuild.dormcontrol.DomeControl;
+import block.norm.unbroken.BlockUnbrokenConductor;
 import machine.energy.consumer.coredigger.CoreDigger;
 import machine.energy.consumer.microwaveoven.MicrowaveOvenEntity;
 import machine.energy.producer.solar.SolarBasement;
@@ -8,6 +12,7 @@ import machine.energy.storage.battery.BatteryBasement;
 import machine.energy.storage.battery.BatteryBasementEntity;
 import machine.energy.storage.battery.BatteryCapacity;
 import machine.energy.storage.battery.BatteryCapacityEntity;
+import machine.energy.trans.UnbrokenConductorEntity;
 import machine.energy.viewer.EnergyViewer;
 import machine.energy.viewer.EnergyViewerEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -42,4 +47,13 @@ public class MBlockEntityRegister {
 	public static final RegistryObject<BlockEntityType<EnergyViewerEntity>> COREDIGGER_BE = 
 			BLOCKENTITIES.register(CoreDigger.global_name, 
 					() -> BlockEntityType.Builder.of(EnergyViewerEntity::new, MBlockRegister.COREDIDDER_B.get()).build(null));
+
+	public static final RegistryObject<BlockEntityType<DomeControlEntity>> DOMECONTROL_BE = 
+			BLOCKENTITIES.register(DomeControl.global_name, 
+					() -> BlockEntityType.Builder.of(DomeControlEntity::new, BlockRegister.dormcontrol_BLOCK.get()).build(null));
+
+	public static final RegistryObject<BlockEntityType<UnbrokenConductorEntity>> UNBROKENCONDUCTOR_BE = 
+			BLOCKENTITIES.register(BlockUnbrokenConductor.global_name, 
+					() -> BlockEntityType.Builder.of(UnbrokenConductorEntity::new, BlockRegister.unbrokenconductor_BLOCK.get()).build(null));
+
 }

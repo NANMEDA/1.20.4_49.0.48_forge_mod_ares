@@ -1,4 +1,4 @@
-package event.disaster.bad;
+package event.disaster.harm;
 
 import com.main.maring.ExtraConfig;
 

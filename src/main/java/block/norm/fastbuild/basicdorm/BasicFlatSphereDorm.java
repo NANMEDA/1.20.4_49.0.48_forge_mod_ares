@@ -39,16 +39,20 @@ public class BasicFlatSphereDorm extends Block {
         	if(DormHelper.checkPlaceDormOccupied(level, pos, new Vec3i(-13, -2, -13),new Vec3i(13, 6, 13), player)) return InteractionResult.FAIL;
             createGlassSphere(level, pos);
             createCementBase(level, pos);
+            
+            BlockPos control = DormHelper.fromCenterGetControlBlockPos(level, pos);
+            level.setBlockAndUpdate(control, BlockRegister.dormcontrol_BLOCK.get().defaultBlockState());
+            
             createJunctionBase(level,pos.below());
         }
         return InteractionResult.SUCCESS;
     }
     
     private void createJunctionBase(Level level, BlockPos pos) {
-    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(0,0,14),6);
-    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(0,0,-14),2);
-    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(14,0,0),0);
-    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(-14,0,0),4);
+    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(0,0,14),6,pos);
+    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(0,0,-14),2,pos);
+    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(14,0,0),0,pos);
+    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(-14,0,0),4,pos);
     	
 	}
 

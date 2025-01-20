@@ -198,7 +198,7 @@ public class ResearchTableEntity extends PowerConsumerEntity{
 	public void servertick() {
 		//System.out.println("ser is: at tech" + atTech + " at level" + atLevel + "tech1" + tech1);
 		if(atTech>=0&&atLevel>=0) {
-			System.out.println("attech " + atTech + "atLevel" + atLevel);
+			//System.out.println("attech " + atTech + "atLevel" + atLevel);
 			getBlueprint(atTech,atLevel);
 		}
 	}

@@ -4,6 +4,7 @@ import javax.annotation.Nullable;
 
 import com.mojang.serialization.MapCodec;
 
+import machine.energy.EnergyEntity;
 import menu.microwaveoven.MicrowaveOvenMenuProvider;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -129,7 +130,7 @@ public class BlockMicrowaveOven extends Block implements EntityBlock{
 	@Nullable
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pBlockState, BlockEntityType<T> pBlockEntityType) {
-	     if(pLevel.isClientSide()) {
+		if(pLevel.isClientSide()) {
 	    	 return (level,pos,state,blockentity) -> {
 	    		 if(blockentity instanceof MicrowaveOvenEntity entity) {
 	    			 entity.clienttick();
@@ -160,8 +161,10 @@ public class BlockMicrowaveOven extends Block implements EntityBlock{
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
         if (pState.getBlock() != pNewState.getBlock()) {
             BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-            if (blockEntity instanceof MicrowaveOvenEntity) {
-                ((MicrowaveOvenEntity) blockEntity).drop();
+            if (blockEntity instanceof MicrowaveOvenEntity e) {
+                e.drop();
+                e.remove(pLevel);
+                
             }
         }
 

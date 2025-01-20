@@ -6,7 +6,7 @@ import org.jetbrains.annotations.NotNull;
 import block.entity.neutral.researchtable.ResearchTableEntity;
 import block.norm.researchtable.Register;
 import menu.BlockEntityMenuBasic;
-import menu.register.MenuRegister;
+import menu.registry.MenuRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;

@@ -13,7 +13,7 @@ import event.forge.EnergyNetCalculation;
 import item.*;
 import item.can.CanHelper;
 import machine.registry.MBlockEntityRegister;
-import menu.register.MenuRegister;
+import menu.registry.MenuRegister;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;

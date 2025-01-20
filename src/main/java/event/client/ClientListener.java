@@ -25,19 +25,20 @@ import block.entity.consumer.watergather.WaterGatherEntityRender;
 import block.entity.neutral.crystalbuilder.CrystalBuilderEntityRender;
 import block.entity.neutral.researchtable.ResearchTableEntityRender;
 import machine.energy.consumer.microwaveoven.MicrowaveOvenEntityRender;
+import machine.energy.producer.solar.render.SolarBasementEntityRender;
 import machine.registry.MBlockEntityRegister;
-import machine.registry.MBlockRegister;
 import menu.advancedmetalmanufactor.AdvancedMetalManufactorScreen;
 import menu.basicmetalmanufactor.BasicMetalManufactorScreen;
 import menu.blueprintbuilder.BlueprintBuilderScreen;
 import menu.canfoodmaker.CanfoodMakerScreen;
+import menu.dormcontrol.DomeControlScreen;
 import menu.energyviewer.EnergyViewerScreen;
 import menu.etchingmachine.EtchingMachineScreen;
 import menu.fuelrefiner.FuelRefinerScreen;
 import menu.microwaveoven.MicrowaveOvenScreen;
 import menu.playerextend.PlayerExtendScreen;
 import menu.powerstationburn.PowerStationBurnScreen;
-import menu.register.MenuRegister;
+import menu.registry.MenuRegister;
 import menu.reseachtable.ResearchTableScreen;
 import menu.show.ShowBlockScreen;
 import menu.show.itemstack.ShowItemStackScreen;
@@ -76,6 +77,7 @@ public class ClientListener{
 		
 		event.enqueueWork(()->MenuScreens.register(MenuRegister.ENERGYVIEWER_MENU.get(), EnergyViewerScreen::new));
 		
+		event.enqueueWork(()->MenuScreens.register(MenuRegister.DORMCONTROL_MENU.get(), DomeControlScreen::new));
 		
 		
 		
@@ -108,6 +110,7 @@ public class ClientListener{
 		
 		event.registerBlockEntityRenderer(BlockEntityRegister.canfoodmaker_BLOCKENTITY.get(), CanfoodMakerEntityRender::new);
 
+		event.registerBlockEntityRenderer(MBlockEntityRegister.SOLARBASEMENT_BE.get(), SolarBasementEntityRender::new);
 	}
 	
 	@SubscribeEvent

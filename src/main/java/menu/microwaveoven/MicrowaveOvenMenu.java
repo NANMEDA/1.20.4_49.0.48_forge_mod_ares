@@ -6,7 +6,7 @@ import item.ItemRegister;
 import machine.energy.consumer.microwaveoven.MicrowaveOvenEntity;
 import machine.registry.MBlockRegister;
 import menu.BlockEntityMenuBasic;
-import menu.register.MenuRegister;
+import menu.registry.MenuRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.Item;

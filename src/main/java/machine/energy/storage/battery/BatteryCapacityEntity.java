@@ -12,11 +12,14 @@ import net.minecraft.world.level.block.state.BlockState;
 public class BatteryCapacityEntity extends StorageEntity {
 
 	private int storage;
+	private int storageLevel;
+	private static int maxLevel = 2;
 
 	public BatteryCapacityEntity(BlockPos pos, BlockState pBlockState) {
 		super(MBlockEntityRegister.BATTERYCAPACITY_BE.get(), pos, pBlockState);
 		this.storage = 0;
 		this.NET = 0;
+		this.storageLevel = 0;
 	}
 
     @Override
@@ -59,14 +62,19 @@ public class BatteryCapacityEntity extends StorageEntity {
     }
 	
 	private static final String TAG_S = "storage";
+	private static final String TAG_L = "level";
 	
 	protected void savedata(CompoundTag tag) {
 		tag.putInt(TAG_S, this.storage);
+		tag.putInt(TAG_L, this.storageLevel);
 	}
 	
 	protected void loaddata(CompoundTag tag) {
 		if(tag.contains(TAG_S)) {
 			this.storage = tag.getInt(TAG_S);
+		}
+		if(tag.contains(TAG_L)) {
+			this.storageLevel = tag.getInt(TAG_L);
 		}
 	}
 	
@@ -96,13 +104,35 @@ public class BatteryCapacityEntity extends StorageEntity {
 	public void cleanStorage() {
 		setStorage(0);
 	}
+	
+	public boolean addLevel() {
+		if(this.storageLevel < BatteryCapacityEntity.maxLevel) { 
+			this.storageLevel++;
+			setChanged();
+			return true;
+		}
+		return false;
+	}
+	public boolean removeLevel() {
+		if(this.storageLevel> 0 ) { 
+			this.storageLevel--;
+			setChanged();
+			return true;
+		}
+		return false;
+
+	}
+	public int getStorageLevel() {
+		return this.storageLevel;
+	}
 
 	public int getCapacity() {
-		return this.getCapacitySize().getCapacity();
+		return (this.storageLevel+1)*this.getCapacitySize().getCapacity();
 	}
 
 	public CapacitySize getCapacitySize() {
 		return CapacitySize.SMALL;
+		
 	} 
 	
     @Override

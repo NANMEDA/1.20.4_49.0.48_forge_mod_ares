@@ -78,7 +78,10 @@ public class WireCreator extends Item {
 	        				if(startNet != 0) {	//	已经有链接了
 	        					EnergyNet net = EnergyNetProcess.getEnergyNet(startNet);
 	        					net.addEdge(startPos, pos);
-	                			startPos = null;
+	        					
+	        					EnergyEntity startEntity = (EnergyEntity) level.getBlockEntity(startPos);
+	                			EnergyEntity.addMutualConnection(startEntity, blockentity);
+	        					startPos = null;
 	                			startNet = 0;
 	        					return InteractionResult.PASS;
 	        				}else {				//就是两个都是0,都没有链接
@@ -87,34 +90,33 @@ public class WireCreator extends Item {
 	        					net.addBlockPos(pos, blockentity);
 	        					net.addBlockPos(startPos, startEntity);
 	        					net.addEdge(startPos, pos);
+	        					EnergyEntity.addMutualConnection(startEntity, blockentity);
 	        					blockentity.setNet(net.getId());
-	                			blockentity.setChanged();
 	                			startEntity.setNet(net.getId());
-	                			startEntity.setChanged();
 	        				}
 	        			}else {
 	        				if(this.startNet == 0) {
 	        					EnergyNet net = EnergyNetProcess.getEnergyNet(endNet);
 	        					EnergyEntity startEntity = (EnergyEntity) level.getBlockEntity(startPos);
+	        					EnergyEntity.addMutualConnection(startEntity, blockentity);
 	        					net.addBlockPos(startPos, startEntity);
 	        					net.addEdge(startPos, pos);
 	                			startEntity.setNet(endNet);
-	                			startEntity.setChanged();
 	        				}else if(endNet == 0) {
 	        					EnergyNet net = EnergyNetProcess.getEnergyNet(startNet);
 	        					net.addBlockPos(pos, blockentity);
 	        					net.addEdge(startPos, pos);
+	        					EnergyEntity startEntity = (EnergyEntity) level.getBlockEntity(startPos);
+	        					EnergyEntity.addMutualConnection(startEntity, blockentity);
 	        					blockentity.setNet(startNet);
-	                			blockentity.setChanged();
 	        				}else {	//需要整合NET
 	        					EnergyNetProcess.mergeEnergyNets(startNet, endNet);
 	        					EnergyNet net = EnergyNetProcess.getEnergyNet(startNet);
 	        					net.addEdge(startPos, pos);
 	        					blockentity.setNet(startNet);
-	                			blockentity.setChanged();
 	        					EnergyEntity startEntity = (EnergyEntity) level.getBlockEntity(startPos);
 	                			startEntity.setNet(startNet);
-	                			startEntity.setChanged();
+	                			EnergyEntity.addMutualConnection(startEntity, blockentity);
 	        				}
 	        			}
 	        			this.startPos = null;

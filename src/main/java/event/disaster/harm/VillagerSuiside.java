@@ -1,4 +1,4 @@
-package event.disaster.bad;
+package event.disaster.harm;
 
 public class VillagerSuiside {
 

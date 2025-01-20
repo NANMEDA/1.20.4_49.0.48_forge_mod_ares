@@ -57,6 +57,10 @@ public class BasicCylinderDorm extends Block {
     		}
             createGlassSphere(level, pos,rotate);
             createCementBase(level, pos,rotate);
+            
+            BlockPos control = DormHelper.fromCenterGetControlBlockPos(level, pos);
+            level.setBlockAndUpdate(control, BlockRegister.dormcontrol_BLOCK.get().defaultBlockState());
+            
             createJunctionBase(level,pos.below(),rotate);
         }
         return InteractionResult.SUCCESS;
@@ -64,11 +68,11 @@ public class BasicCylinderDorm extends Block {
     
     private void createJunctionBase(Level level, BlockPos pos,boolean rotate) {
     	if(rotate) {
-	    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(14,0,0),0);
-	    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(-14,0,0),4);
+	    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(14,0,0),0,pos);
+	    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(-14,0,0),4,pos);
     	}else {	    	
-    		block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(0,0,14),6);
-    		block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(0,0,-14),2);
+    		block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(0,0,14),6,pos);
+    		block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(0,0,-14),2,pos);
     	}
     	
 	}

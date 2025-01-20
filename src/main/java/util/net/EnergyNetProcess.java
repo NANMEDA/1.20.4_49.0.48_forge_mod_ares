@@ -105,6 +105,14 @@ public class EnergyNetProcess {
         }
     }
     
+    public static boolean checkEnergyNet(long id) {
+        if (existingIds.contains(id)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
     @Nullable
     public static EnergyNet getEnergyNetNotCreate(long id) {
         if (existingIds.contains(id)) {

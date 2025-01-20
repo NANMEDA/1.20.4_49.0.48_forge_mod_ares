@@ -33,7 +33,7 @@ public class JunctionHelper {
      * @param pos 
      * @param emitDirection 八方向
      */
-    public static void BirthJuntionBase(Level level, BlockPos pos, int emitDirection) {
+    public static void BirthJuntionBase(Level level, BlockPos pos, int emitDirection,BlockPos center) {
         BlockPos[] posDoor;
         BlockPos[] posAir;
         
@@ -103,8 +103,10 @@ public class JunctionHelper {
         for(BlockPos pos_d : posDoor) {
         	level.setBlockAndUpdate(pos_d, JUNCTION_STATE);
         }
-        level.setBlockAndUpdate(pos, JUNCTION_CONTROL_STATE.setValue(BlockStateProperties.LEVEL, emitDirection));
-   
+        level.setBlockAndUpdate(pos, JUNCTION_CONTROL_STATE
+        		.setValue(BlockStateProperties.LEVEL, emitDirection));
+
+        
         for(BlockPos pos_a : posAir) {
         	level.setBlockAndUpdate(pos_a, UNBROKEN_FOG_STATE);
         }

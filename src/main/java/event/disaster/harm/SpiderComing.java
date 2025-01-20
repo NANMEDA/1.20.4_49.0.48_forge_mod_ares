@@ -1,4 +1,4 @@
-package event.disaster.bad;
+package event.disaster.harm;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;

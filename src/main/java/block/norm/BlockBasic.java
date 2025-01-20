@@ -14,7 +14,7 @@ import java.util.Map;
  * @author NANMEDA
  * */
 public class BlockBasic {
-	public static int BLOCK_BASIC_NUMBER = 42;
+	public static int BLOCK_BASIC_NUMBER = 50;
 	private static int k = 0;
 	
     private static final String[] BLOCK_NAME = new String[BLOCK_BASIC_NUMBER];
@@ -103,6 +103,21 @@ public class BlockBasic {
     static {
         addBlock("mar_foolgold_ore",MapColor.COLOR_YELLOW,SoundType.STONE,ore_strength,true,"pickaxe",2);
         addBlock("mar_deep_foolgold_ore",MapColor.COLOR_YELLOW,SoundType.STONE,deep_ore_strength,true,"pickaxe",2);
+    }
+    
+    /***
+     * 奶酪相关的
+     * 
+     * ***/
+    static {
+        addBlock("mar_soft_cheese",MapColor.COLOR_YELLOW,SoundType.BAMBOO,dirt_strength,false,"shovel",0);
+        addBlock("mar_hard_cheese",MapColor.COLOR_ORANGE,SoundType.BAMBOO,stone_strength,false,"shovel",0);
+        addBlock("mar_glitter_cheese_yellow",MapColor.COLOR_YELLOW,SoundType.BAMBOO,stone_strength,false,"shovel",1);
+        addBlock("mar_glitter_cheese_green",MapColor.COLOR_GREEN,SoundType.BAMBOO,stone_strength,false,"shovel",1);
+        addBlock("mar_glitter_cheese_blue",MapColor.COLOR_LIGHT_BLUE,SoundType.BAMBOO,stone_strength,false,"shovel",1);
+        addBlock("mar_glitter_cheese_red",MapColor.COLOR_RED,SoundType.BAMBOO,stone_strength,false,"shovel",1);
+        addBlock("mar_glitter_cheese_orange",MapColor.COLOR_ORANGE,SoundType.BAMBOO,stone_strength,false,"shovel",1);
+        addBlock("mar_glitter_cheese_purple",MapColor.COLOR_PURPLE,SoundType.BAMBOO,stone_strength,false,"shovel",1);
     }
     
     /***
