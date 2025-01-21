@@ -54,7 +54,7 @@ public class EnvironmentSet implements Command<CommandSourceStack> {
                 environmentData.setHumid(value);
                 return true;
             case "oxygen":
-                environmentData.setOxygen(value*2);
+                environmentData.setOxygen(value);
                 return true;
             case "pressure":
                 environmentData.setPressure(value);

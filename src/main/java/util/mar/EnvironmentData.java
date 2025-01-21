@@ -13,17 +13,30 @@ public class EnvironmentData extends SavedData {
     private static final String DATA_NAME = "environment_data";
 
     // 环境参数
-    private int humid = 0;          // 湿度 (0 - 200)
-    private int oxygen = 0;         // 氧气含量*2方便计算 (0 - 200)
-    private int pressure = 6;       // 压力 (0 - 1000，单位：百帕)
-    private int temperature = -46;  // 温度 (-273 - 500，单位：摄氏度)
-    private int mag = 0;            // 磁场 (0 - 200)
+    private double humid = 0d;          // 湿度 (0 - 200)					100最佳
+    private double oxygen = 0d;         // 氧气含量方便计算 (0 - 200)		20最佳
+    private double pressure = 6d;       // 压力 (0 - 6400，单位：百帕)		1000最佳
+    private double temperature = -46d;  // 温度 (-273 - 500，单位：摄氏度)	20最佳
+    private double mag = 0d;            // 磁场 (0 - 200)					100最佳
 
     public boolean suitableMOSS() {
     	return getEnvironmentEnum("humid").isOrBetter(EnvironmentEnum.STRUGGLE)
     			&&getEnvironmentEnum("oxygen").isOrBetter(EnvironmentEnum.STRUGGLE)
     			&&getEnvironmentEnum("pressure").isOrBetter(EnvironmentEnum.STRUGGLE)
     			&&getEnvironmentEnum("temperature").isOrBetter(EnvironmentEnum.STRUGGLE);
+    }
+    
+    public double[] getX() {
+    	return new double[] {this.humid,this.oxygen,this.pressure,this.temperature,this.mag};
+    }
+    
+    public void setX(double[] x) {
+    	this.humid = x[0];
+    	this.oxygen = x[1];
+    	this.pressure = x[2];
+    	this.temperature = x[3];
+    	this.mag = x[4];
+    	setDirty();
     }
     
     /**
@@ -65,7 +78,7 @@ public class EnvironmentData extends SavedData {
     			return EnvironmentEnum.PERFECT;
     		}
     	}else if(s=="oxygen") {
-    		int o = this.oxygen/2;
+    		double o = this.oxygen;
     		if(o<3||o>50) { 
     			return EnvironmentEnum.DEAD;
     			}
@@ -117,25 +130,25 @@ public class EnvironmentData extends SavedData {
     }
     
     // Getter 和 Setter 方法
-    public int getHumid() {
+    public double getHumid() {
         return humid;
     }
 
     public void setHumid(int humid) {
-        this.humid = Math.max(0, Math.min(humid, 400));
+        this.humid = Math.max(0, Math.min(humid, 200));
         setDirty(); // 标记数据已修改
     }
 
-    public int getOxygen() {
+    public double getOxygen() {
         return oxygen;
     }
 
     public void setOxygen(int oxygen) {
-        this.oxygen = Math.max(0, Math.min(oxygen, 200));
+        this.oxygen = Math.max(0, Math.min(oxygen, 100));
         setDirty();
     }
 
-    public int getPressure() {
+    public double getPressure() {
         return pressure;
     }
 
@@ -144,7 +157,7 @@ public class EnvironmentData extends SavedData {
         setDirty();
     }
 
-    public int getTemperature() {
+    public double getTemperature() {
         return temperature;
     }
 
@@ -153,7 +166,7 @@ public class EnvironmentData extends SavedData {
         setDirty();
     }
 
-    public int getMag() {
+    public double getMag() {
         return mag;
     }
 
@@ -165,22 +178,22 @@ public class EnvironmentData extends SavedData {
     // 保存数据到 NBT
     @Override
     public CompoundTag save(CompoundTag compound) {
-        compound.putInt("humid", humid);
-        compound.putInt("oxygen", oxygen);
-        compound.putInt("pressure", pressure);
-        compound.putInt("temperature", temperature);
-        compound.putInt("mag", mag);
+        compound.putDouble("humid", humid);
+        compound.putDouble("oxygen", oxygen);
+        compound.putDouble("pressure", pressure);
+        compound.putDouble("temperature", temperature);
+        compound.putDouble("mag", mag);
         return compound;
     }
 
     // 从 NBT 加载数据
     public static EnvironmentData load(CompoundTag compound) {
         EnvironmentData data = new EnvironmentData();
-        data.humid = compound.getInt("humid");
-        data.oxygen = compound.getInt("oxygen");
-        data.pressure = compound.getInt("pressure");
-        data.temperature = compound.getInt("temperature");
-        data.mag = compound.getInt("mag");
+        data.humid = compound.getDouble("humid");
+        data.oxygen = compound.getDouble("oxygen");
+        data.pressure = compound.getDouble("pressure");
+        data.temperature = compound.getDouble("temperature");
+        data.mag = compound.getDouble("mag");
         return data;
     }
 

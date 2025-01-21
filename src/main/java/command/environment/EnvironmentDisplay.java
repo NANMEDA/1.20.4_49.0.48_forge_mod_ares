@@ -26,7 +26,7 @@ public class EnvironmentDisplay implements Command<CommandSourceStack> {
 
             // Display each parameter
             displayParameter(context, "humid", environmentData.getHumid());
-            displayParameter(context, "oxygen", environmentData.getOxygen()/2);
+            displayParameter(context, "oxygen", environmentData.getOxygen());
             displayParameter(context, "pressure", environmentData.getPressure());
             displayParameter(context, "temperature", environmentData.getTemperature());
             displayParameter(context, "mag", environmentData.getMag());
@@ -40,9 +40,9 @@ public class EnvironmentDisplay implements Command<CommandSourceStack> {
         return 1;
     }
 
-    private void displayParameter(CommandContext<CommandSourceStack> context, String parameter, int value) {
+    private void displayParameter(CommandContext<CommandSourceStack> context, String parameter, double value) {
         context.getSource().getPlayer().sendSystemMessage(
-            Component.translatable("maring.command.environment.display." + parameter, value)
+            Component.translatable("maring.command.environment.display." + parameter, String.format("%.6f", value))
                 .setStyle(Style.EMPTY.withColor(ChatFormatting.GREEN))
         );
     }
