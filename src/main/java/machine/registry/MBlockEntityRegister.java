@@ -5,7 +5,10 @@ import block.norm.BlockRegister;
 import block.norm.fastbuild.dormcontrol.DomeControl;
 import block.norm.unbroken.BlockUnbrokenConductor;
 import machine.energy.consumer.coredigger.CoreDigger;
+import machine.energy.consumer.coredigger.CoreDiggerEntity;
 import machine.energy.consumer.microwaveoven.MicrowaveOvenEntity;
+import machine.energy.producer.reactor.mar.MarReactor;
+import machine.energy.producer.reactor.mar.MarReactorEntity;
 import machine.energy.producer.solar.SolarBasement;
 import machine.energy.producer.solar.SolarBasementEntity;
 import machine.energy.storage.battery.BatteryBasement;
@@ -44,9 +47,9 @@ public class MBlockEntityRegister {
 			BLOCKENTITIES.register(EnergyViewer.global_name, 
 					() -> BlockEntityType.Builder.of(EnergyViewerEntity::new, MBlockRegister.ENERGYVIEWER_B.get()).build(null));
 
-	public static final RegistryObject<BlockEntityType<EnergyViewerEntity>> COREDIGGER_BE = 
+	public static final RegistryObject<BlockEntityType<CoreDiggerEntity>> COREDIGGER_BE = 
 			BLOCKENTITIES.register(CoreDigger.global_name, 
-					() -> BlockEntityType.Builder.of(EnergyViewerEntity::new, MBlockRegister.COREDIDDER_B.get()).build(null));
+					() -> BlockEntityType.Builder.of(CoreDiggerEntity::new, MBlockRegister.COREDIDDER_B.get()).build(null));
 
 	public static final RegistryObject<BlockEntityType<DomeControlEntity>> DOMECONTROL_BE = 
 			BLOCKENTITIES.register(DomeControl.global_name, 
@@ -56,4 +59,9 @@ public class MBlockEntityRegister {
 			BLOCKENTITIES.register(BlockUnbrokenConductor.global_name, 
 					() -> BlockEntityType.Builder.of(UnbrokenConductorEntity::new, BlockRegister.unbrokenconductor_BLOCK.get()).build(null));
 
+	public static final RegistryObject<BlockEntityType<MarReactorEntity>> MARREACTOR_BE = 
+			BLOCKENTITIES.register(MarReactor.global_name, 
+					() -> BlockEntityType.Builder.of(MarReactorEntity::new, MBlockRegister.MARREACTOR_B.get()).build(null));
+
+	
 }

@@ -1,15 +1,20 @@
 package machine.energy.storage.battery;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import machine.energy.storage.EnergyStorageMode;
 import machine.energy.storage.IStorage;
 import machine.energy.storage.StorageEntity;
 import machine.registry.MBlockEntityRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class BatteryBasementEntity extends StorageEntity implements IStorage {
@@ -58,21 +63,47 @@ public class BatteryBasementEntity extends StorageEntity implements IStorage {
             loaddata(tag);
         }
     }
-	
-	private static final String TAG_NET = "net";
+
+	private final String TAG_ID = "id";
+	private final String TAG_NET = "connection";
 	
 	protected void savedata(CompoundTag tag) {
-		tag.putLong(TAG_NET, this.getNet());
+		tag.putLong(TAG_ID, this.NET);
+	    ListTag connectList = new ListTag();
+	    for (Map.Entry<BlockPos, Boolean> entry : connectMap.entrySet()) {
+	        CompoundTag entryTag = new CompoundTag();
+	        entryTag.putLong("pos", entry.getKey().asLong());
+	        // 存储 Boolean 值
+	        entryTag.putBoolean("connected", entry.getValue());
+	        connectList.add(entryTag);
+	    }
+	    tag.put(TAG_NET, connectList);
+	 
 	}
 	
 	protected void loaddata(CompoundTag tag) {
-		if(tag.contains(TAG_NET)) {
-			this.setNet(tag.getLong(TAG_NET));
+		if(tag.contains(TAG_ID)) {
+			this.NET = tag.getLong(TAG_ID);
 		}
+	    if (tag.contains(TAG_NET)) {
+	        ListTag connectList = tag.getList(TAG_NET, 10);
+	        Map<BlockPos, Boolean> loadedMap = new HashMap<>();
+	        for (int i = 0; i < connectList.size(); i++) {
+	            CompoundTag entryTag = connectList.getCompound(i);
+	            
+	            BlockPos pos = BlockPos.of(entryTag.getLong("pos"));
+	            boolean connected = entryTag.getBoolean("connected");
+	            
+	            loadedMap.put(pos, connected);
+	        }
+	        connectMap = loadedMap;
+	    }
 	}
 	
 	@Override
 	protected void servertick() {
+		if(isDirty)  level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_CLIENTS);
+
 	}
 
 	@Override

@@ -67,6 +67,7 @@ public class CreativeTabsRegister {
             	output.accept(MBlockRegister.COREPIPE_I.get());
             	output.accept(MBlockRegister.CORECOLDPIPE_I.get());
             	output.accept(MBlockRegister.ENERGYVIEWER_I.get());
+            	output.accept(MBlockRegister.MARREACTOR_I.get());
                 output.accept(block.norm.canfoodmaker.Register.canfoodmaker_BLOCK_ITEM.get());
                 output.accept(MBlockRegister.MINCROWAVEOVEN_I.get());
                 output.accept(BlockRegister.basicmetalmanufactor_BLOCK_ITEM.get());
@@ -80,6 +81,7 @@ public class CreativeTabsRegister {
                 output.accept(block.norm.fuelrefiner.Register.fuelrefiner_BLOCK_ITEM.get());
                 output.accept(block.norm.researchtable.Register.researchtable_BLOCK_ITEM.get());
                 output.accept(block.norm.blueprintbuilder.Register.blueprintbuilder_BLOCK_ITEM.get());
+
             }).build());
     
     public static final RegistryObject<CreativeModeTab> MAR_MATERIAL_TAB = CREATIVE_MODE_TABS.register("mar_material_tab", () -> CreativeModeTab.builder()

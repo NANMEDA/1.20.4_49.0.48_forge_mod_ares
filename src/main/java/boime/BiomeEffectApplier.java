@@ -13,9 +13,11 @@ import com.main.maring.ExtraConfig;
 import effect.registry.EffectRegister;
 import item.ItemRegister;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingTickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import util.mar.EnvironmentData;
 
 /**
  * 火星大气伤害
@@ -27,6 +29,7 @@ public class BiomeEffectApplier {
     private static final int TICK_INTERVAL = 10; // 检测间隔
     //public static boolean WILL_PRESSURE_HURT = ; // 检测间隔
     //private static Supplier<BlockState>  A_AIR_STATE = () -> {return BlockRegister.A_AIR.get().defaultBlockState();};
+    private static EnvironmentData environmentData = null;
 
     /***
      * 赋予药水效果
@@ -36,10 +39,15 @@ public class BiomeEffectApplier {
     @SubscribeEvent
     public static void onLivingUpdate(LivingTickEvent event) {
     	if(!ExtraConfig.WILL_PRESSURE_HURT) return;
+
     	Level level = event.getEntity().level();
         if (level.isClientSide) {
             return;
         }
+    	if (environmentData==null) {
+    	    environmentData = EnvironmentData.get((ServerLevel) level);
+    	}
+    	if(environmentData.suitableANIMAL()) return;
         LivingEntity entity = event.getEntity();
         if (level.getGameTime() % TICK_INTERVAL != 0) {
             return;

@@ -1,8 +1,9 @@
-package machine.energy.consumer.microwaveoven;
+package machine.energy.consumer.render;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 
+import machine.energy.consumer.microwaveoven.MicrowaveOvenEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;

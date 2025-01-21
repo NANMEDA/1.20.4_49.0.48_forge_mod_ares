@@ -1,24 +1,21 @@
-package machine.energy.consumer.coredigger;
+package machine.energy.producer.reactor.mar;
 
 import javax.annotation.Nullable;
 
-import com.mojang.serialization.MapCodec;
-
-import block.entity.consumer.basicmetalmanufactor.BasicMetalManufactorEntity;
-import menu.basicmetalmanufactor.BasicMetalManufactorMenuProvider;
+import machine.energy.EnergyEntity;
+import machine.energy.consumer.coredigger.CoreDiggerEntity;
 import menu.coredigger.CoreDiggerMenuProvider;
+import menu.marreactor.MarReactorMenuProvider;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
-import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
@@ -38,22 +35,22 @@ import util.json.BlockJSON;
 /**
  * @author NANMEDA
  * */
-public class CoreDigger extends Block implements EntityBlock{
-	public static final String global_name = "core_digger"; 
+public class MarReactor extends Block implements EntityBlock{
+	public static final String global_name = "mar_reactor"; 
 	
-	public CoreDigger(Properties properties) {
+	public MarReactor(Properties properties) {
 		super(properties
-				.sound(SoundType.AMETHYST)
+	            .sound(SoundType.AMETHYST)
 	            .strength(5f,5f)
 	            .noOcclusion()
 	            .mapColor(MapColor.COLOR_GRAY)
 	            );
 	}
-
+	
 	@Nullable
 	@Override
 	public BlockEntity newBlockEntity(BlockPos pos, BlockState pBlockState) {
-		return new CoreDiggerEntity(pos, pBlockState);
+		return new MarReactorEntity(pos, pBlockState);
 	}
 	
 	@Override
@@ -62,8 +59,17 @@ public class CoreDigger extends Block implements EntityBlock{
 	}
 	
 	@Override
-    public VoxelShape getShape(BlockState pBlockState, BlockGetter p_60556_, BlockPos p_60557_, CollisionContext p_60558_) {
+    public VoxelShape getShape(BlockState p_60555_, BlockGetter p_60556_, BlockPos p_60557_, CollisionContext p_60558_) {
 		return Shapes.block();
+    }
+	
+    
+	@Nullable
+    @Override
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+		Direction direction = context.getNearestLookingDirection();
+		if(direction==Direction.DOWN||direction == Direction.UP) direction = Direction.NORTH;
+    	return this.defaultBlockState().setValue(BlockStateProperties.FACING, direction);
     }
 	
 	@SuppressWarnings("deprecation")
@@ -72,81 +78,59 @@ public class CoreDigger extends Block implements EntityBlock{
 		super.use(blockstate,level,pos,player,interactionhand,blockHitResult);
 		if(!level.isClientSide()) {
 			var BlockEntity = level.getBlockEntity(pos);
-			if(BlockEntity instanceof CoreDiggerEntity entity) {
+			if(BlockEntity instanceof MarReactorEntity entity) {
 				IForgeServerPlayer ifpe = (IForgeServerPlayer)player;
-				ifpe.openMenu(new CoreDiggerMenuProvider(pos), pos);
+				ifpe.openMenu(new MarReactorMenuProvider(pos), pos);
 			}else {
-				throw new IllegalStateException("missing block-coredigger");
+				throw new IllegalStateException("missing block-mar_reactor");
 			}
 		}
 		return InteractionResult.SUCCESS;
 	}
-	
 	
 	@Nullable
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pBlockState, BlockEntityType<T> pBlockEntityType) {
 	     if(pLevel.isClientSide()) {
 	    	 return (level,pos,state,blockentity) -> {
-	    		 if(blockentity instanceof CoreDiggerEntity entity) {
+	    		 if(blockentity instanceof MarReactorEntity entity) {
 	    			 entity.clienttick();
 	    		 }
 	    	 };
 	     }else {
     		 return (level,pos,state,blockentity) -> {
-	    		 if(blockentity instanceof CoreDiggerEntity entity) {
+	    		 if(blockentity instanceof MarReactorEntity entity) {
 	    			 entity.servertick();
 	    		 }
 	    	 };
 	     }
 	 }
 
-	@Override
-	protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
-		return null;
-	}
-	
-	@SuppressWarnings("deprecation")
-	@Override
-    public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
-        if (pState.getBlock() != pNewState.getBlock()) {
-            BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-            if (blockEntity instanceof CoreDiggerEntity d) {
-                d.drop();
-                d.remove(pLevel);
-            }
-        }
-        super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
-    }
-	
-	
-	
-	@Override
-	public BlockState playerWillDestroy(Level pLevel, BlockPos pBlockPos, BlockState pBlockState, Player player) {
-		return super.playerWillDestroy(pLevel, pBlockPos, pBlockState, player);
-	}
-	
-	@Nullable
-    @Override
-    public BlockState getStateForPlacement(BlockPlaceContext context) {
-        if (context.getClickedFace() == Direction.DOWN||context.getClickedFace() == Direction.UP) {
-        	Direction playerDirection = context.getNearestLookingDirection().getOpposite();
-        	if(playerDirection==Direction.DOWN||playerDirection==Direction.UP) {
-        		return super.defaultBlockState();
-        	} 
-            return this.defaultBlockState().setValue(BlockStateProperties.FACING, playerDirection);
-        } else {
-            return super.defaultBlockState();
-        }
-    }
-	
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(BlockStateProperties.FACING);
     }
+    
+    @SuppressWarnings("deprecation")
+	@Override
+    public void onRemove(BlockState oldState, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
+        if(!level.isClientSide)
+    	if (!oldState.is(newState.getBlock())) {
+            BlockEntity blockEntity = level.getBlockEntity(pos);
+            if (blockEntity instanceof EnergyEntity entity) {
+                // Call the remove method in the BlockEntity to clean up network references
+            	entity.remove(level);
+            }
+        }
+        super.onRemove(oldState, level, pos, newState, isMoving);
+    }
+
 	
 	 static {
-	        BlockJSON.fastGen(global_name);
+	        BlockJSON.GenModelsJSONBasic(global_name);
+	        BlockJSON.GenBlockStateJSONBasic(global_name);
+	        BlockJSON.GenItemJSONBasic(global_name);
+	        BlockJSON.GenLootTableJSONBasic(global_name);
 	 }
 }
 

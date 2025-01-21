@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XAX",
+    "XSX"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:iron_block"
+    },
+    "S": {
+      "item": "maring:semiconductor_parts"
+    },
+    "A": {
+      "item": "maring:advanced_metal_parts"
+    }
+  },
+  "result": {
+    "item": "maring:energy_viewer",
+    "count": 1
+  }
+}

@@ -5,10 +5,12 @@ import menu.advancedmetalmanufactor.AdvancedMetalManufactorMenu;
 import menu.basicmetalmanufactor.BasicMetalManufactorMenu;
 import menu.blueprintbuilder.BlueprintBuilderMenu;
 import menu.canfoodmaker.CanfoodMakerMenu;
+import menu.coredigger.CoreDiggerMenu;
 import menu.dormcontrol.DomeControlMenu;
 import menu.energyviewer.EnergyViewerMenu;
 import menu.etchingmachine.EtchingMachineMenu;
 import menu.fuelrefiner.FuelRefinerMenu;
+import menu.marreactor.MarReactorMenu;
 import menu.microwaveoven.MicrowaveOvenMenu;
 import menu.playerextend.PlayerExtendMenu;
 import menu.powerstationburn.PowerStationBurnMenu;
@@ -72,6 +74,11 @@ public class MenuRegister {
     public static final RegistryObject<MenuType<DomeControlMenu>> DORMCONTROL_MENU = MENU_TYPES.register("domecontrol_menu",
     		() -> IForgeMenuType.create((windowId, inv, data) -> new DomeControlMenu(inv, windowId, data.readBlockPos())));
     
+    public static final RegistryObject<MenuType<CoreDiggerMenu>> COREDIGGER_MENU = MENU_TYPES.register("coredigger_menu",
+    		() -> IForgeMenuType.create((windowId, inv, data) -> new CoreDiggerMenu(inv, windowId, data.readBlockPos())));
+    
+    public static final RegistryObject<MenuType<MarReactorMenu>> MARREACTOR_MENU = MENU_TYPES.register("marreactor_menu",
+    		() -> IForgeMenuType.create((windowId, inv, data) -> new MarReactorMenu(inv, windowId, data.readBlockPos())));
     
     /*
     public static final RegistryObject<MenuType<PlayerExtendMenu>> ROCKET_MENU = MENU_TYPES.register("rocket_menu",

@@ -12,6 +12,7 @@ import machine.energy.consumer.coredigger.CoreDigger;
 import machine.energy.consumer.coredigger.CorePipe;
 import machine.energy.consumer.coredigger.CoreSucker;
 import machine.energy.consumer.microwaveoven.BlockMicrowaveOven;
+import machine.energy.producer.reactor.mar.MarReactor;
 import machine.energy.producer.solar.SolarBasement;
 import machine.energy.producer.solar.SolarPanel;
 import machine.energy.producer.solar.SolarPillar;
@@ -92,4 +93,10 @@ public class MBlockRegister {
 	});
     public static final RegistryObject<Item> CORECOLDPIPE_I = BLOCK_ITEMS.register(CoreColdPipe.global_name,
     		() -> new BlockItem(CORECOLDPIPE_B.get(), new Item.Properties()));
+    
+    public static final RegistryObject<Block> MARREACTOR_B = BLOCKS.register(MarReactor.global_name, () -> {
+		return new MarReactor(BlockBehaviour.Properties.of()); 
+	});
+    public static final RegistryObject<Item> MARREACTOR_I = BLOCK_ITEMS.register(MarReactor.global_name,
+    		() -> new BlockItem(MARREACTOR_B.get(), new Item.Properties()));
 }

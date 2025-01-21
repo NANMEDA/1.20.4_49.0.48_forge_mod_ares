@@ -85,6 +85,7 @@
   "block.maring.fuel_refiner": "燃料精炼机",
   "block.maring.research_table": "研究台",
   "block.maring.blueprint_builder": "蓝图制作桌",
+  "block.maring.mar_reactor": "荧惑反应堆",
   
   "block.maring.villager_handmake_table": "村民手搓台",
   "block.maring.broken_structure_block": "远古破损结构块",
@@ -157,6 +158,7 @@
   "item.maring.piece_rawgold": "生金片",
   "item.maring.piece_obsidian": "黑曜石片",
   "item.maring.battery_heart": "电池芯",
+  "item.maring.ominous_gemstone_reactor": "荧惑反应件",
   
   "item.maring.spacesuit_helmet": "宇航头盔",
   "item.maring.spacesuit_chestplate": "宇航服",
@@ -216,6 +218,8 @@
   "menu.research_table": "研究台",
   "menu.blueprint_builder": "蓝图制作",
   "menu.dome_control": "穹顶控制",
+  "menu.core_digger": "地幔吸口",
+  "menu.mar_reactor": "荧惑反应堆内部",
   
   "menu.energyviewer.supply": "供应: %d",
   "menu.energyviewer.consume": "消耗: %d",
@@ -314,6 +318,18 @@
   "maring.command.energyNet.delete": "删除成功",
   "maring.command.energyNet.unabledimension": "错误维度",
   "maring.command.energyNet.clear": "整理 NETS",
+  
+  "maring.command.environment.display.separator": "------ 火星环境数据 ------",
+  "maring.command.environment.display.humid": "湿度: %s %%",
+  "maring.command.environment.display.oxygen": "氧含量: %s %%",
+  "maring.command.environment.display.pressure": "压力: %s 百帕",
+  "maring.command.environment.display.temperature": "温度: %s °C",
+  "maring.command.environment.display.mag": "磁场: %s %%",
+  "maring.command.environment.display.noData": "数据损坏",
+  "maring.command.environment.set.success": "成功设置 %s 成 %s!",
+  "maring.command.environment.set.invalid": "非法参数: %s",
+  "maring.command.environment.set.noData": "数据损坏",
+  
   
   "maring.disaster.spider_day.init": "天上好像有什么东西掉下来了",
   "maring.disaster.dooms_day.warning": "假如再不离开的话, 可能再也离开不了了",

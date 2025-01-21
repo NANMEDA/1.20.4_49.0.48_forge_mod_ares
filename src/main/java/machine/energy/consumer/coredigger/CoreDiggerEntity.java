@@ -1,5 +1,7 @@
 package machine.energy.consumer.coredigger;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 import item.ItemRegister;
@@ -11,6 +13,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.util.LazyLoadedValue;
@@ -34,20 +37,17 @@ import util.net.EnergyNetProcess;
 public class CoreDiggerEntity extends ConsumerEntity implements IConsumer{
 
 	private int energy_consume = 0;
-	private int render = 0;
 	public boolean is_button = false;
 	
-	private static LazyLoadedValue<Block> SUCKER = new LazyLoadedValue<>(()->MBlockRegister.BATTERTBASEMENT_B.get());
-	private static Random rd;
+	private static LazyLoadedValue<Block> SUCKER = new LazyLoadedValue<>(()->MBlockRegister.CORESUCKER_B.get());
+	private static Random rd = new Random();
 	static protected int itemstack_number = 6;
-	
-	public int getRenderDis() {
-		return render;
-	}
+	public boolean cantFindSucker = true;
+	public boolean cantTouchCore = true;
 	
 	@Override
     public boolean lineVisible() {
-    	return false;
+    	return true;
     }
 	
 	public CoreDiggerEntity(BlockPos pos, BlockState pBlockState) {
@@ -133,22 +133,55 @@ public class CoreDiggerEntity extends ConsumerEntity implements IConsumer{
 	}
 
 	private final String TAG_NAME = "Item";
+	private final String TAG_ID = "id";
+	private final String TAG_NET = "connection";
+
 	
 	protected void savedata(CompoundTag tag) {
-		tag.put(TAG_NAME, item.serializeNBT());
+		tag.put(TAG_NAME, item.serializeNBT());;
+		
+		tag.putLong(TAG_ID, this.NET);
+	    ListTag connectList = new ListTag();
+	    for (Map.Entry<BlockPos, Boolean> entry : connectMap.entrySet()) {
+	        CompoundTag entryTag = new CompoundTag();
+	        entryTag.putLong("pos", entry.getKey().asLong());
+	        // 存储 Boolean 值
+	        entryTag.putBoolean("connected", entry.getValue());
+	        connectList.add(entryTag);
+	    }
+	    tag.put(TAG_NET, connectList);
+	 
 	}
 	
 	protected void loaddata(CompoundTag tag) {
 		if(tag.contains(TAG_NAME)) {
 			item.deserializeNBT(tag.getCompound(TAG_NAME));
 		}
+		if(tag.contains(TAG_ID)) {
+			this.NET = tag.getLong(TAG_ID);
+		}
+	    if (tag.contains(TAG_NET)) {
+	        ListTag connectList = tag.getList(TAG_NET, 10);
+	        Map<BlockPos, Boolean> loadedMap = new HashMap<>();
+	        for (int i = 0; i < connectList.size(); i++) {
+	            CompoundTag entryTag = connectList.getCompound(i);
+	            
+	            BlockPos pos = BlockPos.of(entryTag.getLong("pos"));
+	            boolean connected = entryTag.getBoolean("connected");
+	            
+	            loadedMap.put(pos, connected);
+	        }
+	        connectMap = loadedMap;
+	    }
 	}
+	
 	
 	@Override
 	public void servertick() {
+		this.energy_consume = 0;
 		if(this.level.getBlockState(this.worldPosition.below()).is(SUCKER.get())){
 			this.energy_consume = FULL_ENERGY;
-			if(rd.nextInt(12*20)!=0) return;
+			if(rd.nextInt(0,12*20)!=0) return;
 			int supplylevel = getEnergySupplyLevel();
 			int r = supplylevel>=100 ? 1 : supplylevel>=75 ? 2  : supplylevel>=50 ? 3 : supplylevel>=25 ? 4 : 16;
 			if(rd.nextInt(r)==0) {
@@ -215,6 +248,18 @@ public class CoreDiggerEntity extends ConsumerEntity implements IConsumer{
 
 	@Override
 	public void clienttick() {
+		if(this.level.getBlockState(this.worldPosition.below()).is(SUCKER.get())){
+			this.cantFindSucker = false;
+			int d = CoreSucker.getCoreDis(this.level,this.worldPosition.below());
+			if(d==-1) {
+				this.cantTouchCore = true;
+			}else {
+				this.cantTouchCore = false;
+			}
+		}
+		else {
+			this.cantFindSucker = true;
+		}
 	}
 	
 	@Override

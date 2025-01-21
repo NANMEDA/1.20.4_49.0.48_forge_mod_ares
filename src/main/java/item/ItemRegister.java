@@ -1,8 +1,5 @@
 package item;
 
-import java.util.stream.IntStream;
-
-import item.armor.ModArmor;
 import item.armor.ModArmorMaterials;
 import item.blueprint.ItemBlueprint;
 import item.can.ItemCan;
@@ -42,7 +39,7 @@ public class ItemRegister {
 	public static final RegistryObject<Item>[] MATERIAL_ITEMS = new RegistryObject[itemMaterial.ITEM_MATERIAL_NUMBER];
 	
 	static {
-		System.out.println("here come G");
+		System.out.println("here come Register the Item");
 	}
 	
 	static {

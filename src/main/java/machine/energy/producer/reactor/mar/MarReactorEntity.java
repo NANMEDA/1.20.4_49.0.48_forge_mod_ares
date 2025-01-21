@@ -1,30 +1,31 @@
-package machine.energy.producer.solar;
+package machine.energy.producer.reactor.mar;
 
 import java.util.Map;
+
+import item.ItemRegister;
+import item.itemMaterial;
+
 import java.util.HashMap;
 
 import machine.energy.producer.IProducer;
 import net.minecraft.nbt.ListTag;
 import machine.energy.producer.ProducerEntity;
 import machine.registry.MBlockEntityRegister;
-import machine.registry.MBlockRegister;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LightLayer;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.ItemStackHandler;
 
-public class SolarBasementEntity extends ProducerEntity implements IProducer {
+public class MarReactorEntity extends ProducerEntity implements IProducer {
 
-	
-
-	public SolarBasementEntity(BlockPos pos, BlockState pBlockState) {
-		super(MBlockEntityRegister.SOLARBASEMENT_BE.get(), pos, pBlockState);
+	public MarReactorEntity(BlockPos pos, BlockState pBlockState) {
+		super(MBlockEntityRegister.MARREACTOR_BE.get(), pos, pBlockState);
 		this.FULL_ENERGY = 0;
 		this.NET = 0;
 	}
@@ -68,9 +69,29 @@ public class SolarBasementEntity extends ProducerEntity implements IProducer {
             loaddata(tag);
         }
     }
+    
+
+    protected final ItemStackHandler item = new ItemStackHandler(1) {//必须要在这里创建，ItemStackHandler不可被修改
+        @Override
+        public void onLoad() {
+            super.onLoad();
+            //System.out.println("entity is load");
+        }
+
+        @Override
+        protected void onContentsChanged(int slot) {
+        }
+    };
+
+    protected final LazyOptional<IItemHandler> itemHandler = LazyOptional.of(() -> item);
+
+    public ItemStackHandler getItems() {
+        return item;
+    }
 
 	private final String TAG_ID = "id";
 	private final String TAG_NET = "connection";
+	private final String TAG_ITEM = "item";
 	
 	protected void savedata(CompoundTag tag) {
 
@@ -90,6 +111,7 @@ public class SolarBasementEntity extends ProducerEntity implements IProducer {
 	    }
 	    // 将 ListTag 存入 CompoundTag
 	    tag.put(TAG_NET, connectList);
+	    tag.put(TAG_ITEM, item.serializeNBT());
 	}
 	
 	protected void loaddata(CompoundTag tag) {
@@ -118,40 +140,24 @@ public class SolarBasementEntity extends ProducerEntity implements IProducer {
 	        // 更新 connectMap 为加载后的数据
 	        connectMap = loadedMap;
 	    }
+		if(tag.contains(TAG_ITEM)) {
+			item.deserializeNBT(tag.getCompound(TAG_ITEM));
+		}
 	}
+	
+	
 	
 	
 	@Override
 	public int provideEnergySupply() {
-	    int lightLevel = this.level.getBrightness(LightLayer.SKY, this.worldPosition);
-	    if (!this.level.isDay()) {
-	        return 0;
-	    } else if (this.level.isThundering() || this.level.isRaining()) {
-	        lightLevel *= 0.5;
-	    }
-	    MutableBlockPos pos = this.worldPosition.above().mutable();
-	    int count = 0;
-	    if (this.level.getBlockState(pos).is(MBlockRegister.SOLARPILLAR_B.get())) {
-	        count = getPanelCount(pos.above(), this.level);
-	    }
-	    return (count*lightLevel)/13;
-	}
-	
-	private int getPanelCount(BlockPos pos, Level level) {
-		double count = 0;
-		for(int i=-1;i<2;i++) {
-			for(int j=-1;j<2;j++) {
-				if(level.getBlockState(pos.offset(i, 0, j)).is(MBlockRegister.SOLARPANEL_B.get())){
-					count+=1.0;
-				}else if(level.getBlockState(pos.offset(i, 0, j)).is(Blocks.DAYLIGHT_DETECTOR)){
-					count+=0.5;
-				}
-			}
+		int gen = 100;
+		ItemStack in = this.getItems().getStackInSlot(0);
+		if(in.is(ItemRegister.MATERIAL_ITEMS[itemMaterial.getMaterialId("ominous_gemstone_reactor")].get())) {
+			gen+= in.getCount() * 100;
 		}
-		return (int)count;
+		return gen;
 	}
 	
-
 	
 	@Override
 	protected void servertick() {

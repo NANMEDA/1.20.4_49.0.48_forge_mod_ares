@@ -1,5 +1,8 @@
 package machine.energy.consumer.microwaveoven;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import item.ItemRegister;
 import machine.energy.consumer.ConsumerEntity;
 import machine.energy.consumer.IConsumer;
@@ -8,6 +11,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.sounds.SoundEvent;
@@ -139,18 +143,31 @@ public class MicrowaveOvenEntity extends ConsumerEntity implements IConsumer{
 			return super.getCapability(cap, side);
 		}
 	}
-
 	
-	private final String TAG_NAME = "Item";
-	private final String TAG_PROGRESS = "progress";
-	private final String tAG_IS_BUTTON = "button";
-	private final String TAG_RENDER = "render";	//不放在tag里面的不会被同步到client ！！！!!!即使设置同步
+	private static final String TAG_ID = "id";
+	private static final String TAG_NET = "connection";
+	private static final String TAG_NAME = "Item";
+	private static final String TAG_PROGRESS = "progress";
+	private static final String tAG_IS_BUTTON = "button";
+	private static final String TAG_RENDER = "render";	//不放在tag里面的不会被同步到client ！！！!!!即使设置同步
 	
 	protected void savedata(CompoundTag tag) {
 		tag.put(TAG_NAME, item.serializeNBT());
 		tag.putShort(TAG_PROGRESS, process_progress);
 		tag.putBoolean(tAG_IS_BUTTON, is_button);
 		tag.putInt(TAG_RENDER, render);
+		
+		tag.putLong(TAG_ID, this.NET);
+	    ListTag connectList = new ListTag();
+	    for (Map.Entry<BlockPos, Boolean> entry : connectMap.entrySet()) {
+	        CompoundTag entryTag = new CompoundTag();
+	        entryTag.putLong("pos", entry.getKey().asLong());
+	        // 存储 Boolean 值
+	        entryTag.putBoolean("connected", entry.getValue());
+	        connectList.add(entryTag);
+	    }
+	    tag.put(TAG_NET, connectList);
+	 
 	}
 	
 	protected void loaddata(CompoundTag tag) {
@@ -166,9 +183,25 @@ public class MicrowaveOvenEntity extends ConsumerEntity implements IConsumer{
 		if(tag.contains(TAG_RENDER)) {
 			this.render = tag.getShort(TAG_RENDER);
 		}
+		
+		if(tag.contains(TAG_ID)) {
+			this.NET = tag.getLong(TAG_ID);
+		}
+	    if (tag.contains(TAG_NET)) {
+	        ListTag connectList = tag.getList(TAG_NET, 10);
+	        Map<BlockPos, Boolean> loadedMap = new HashMap<>();
+	        for (int i = 0; i < connectList.size(); i++) {
+	            CompoundTag entryTag = connectList.getCompound(i);
+	            
+	            BlockPos pos = BlockPos.of(entryTag.getLong("pos"));
+	            boolean connected = entryTag.getBoolean("connected");
+	            
+	            loadedMap.put(pos, connected);
+	        }
+	        connectMap = loadedMap;
+	    }
 	}
 	
-
 	@Override
 	public boolean servertick(boolean u) {
 		this.energy_consume = 0;

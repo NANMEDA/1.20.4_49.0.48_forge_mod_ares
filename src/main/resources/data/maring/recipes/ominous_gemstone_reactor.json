@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SRS",
+    "ROR",
+    "SRS"
+  ],
+  "key": {
+    "R": {
+      "item": "maring:radiation_layer"
+    },
+    "S": {
+      "item": "maring:sructure_layer"
+    },
+    "O": {
+      "item": "maring:ominous_gemstone_reactor"
+    }
+  },
+  "result": {
+    "item": "maring:ominous_gemstone_reactor",
+    "count": 1
+  }
+}

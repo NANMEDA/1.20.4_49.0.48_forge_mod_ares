@@ -1,9 +1,11 @@
-package machine.energy.producer.solar.render;
+package machine.energy.viewer;
 
 import java.util.Map;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import machine.energy.producer.solar.SolarBasementEntity;
+
+import machine.energy.producer.reactor.mar.MarReactorEntity;
+import machine.energy.storage.battery.BatteryBasementEntity;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
@@ -12,14 +14,14 @@ import render.WireRenderer;
 import net.minecraft.world.phys.Vec3;
 
 
-public class SolarBasementEntityRender implements BlockEntityRenderer<SolarBasementEntity> {
+public class EnergyViewerEntityRender implements BlockEntityRenderer<EnergyViewerEntity> {
 	
-	public SolarBasementEntityRender(BlockEntityRendererProvider.Context context) {
+	public EnergyViewerEntityRender(BlockEntityRendererProvider.Context context) {
 	}
 	
 	@SuppressWarnings("resource")
 	@Override
-	public void render(SolarBasementEntity entity, float partialTick, PoseStack pPoseStack, MultiBufferSource pBuffer,
+	public void render(EnergyViewerEntity entity, float partialTick, PoseStack pPoseStack, MultiBufferSource pBuffer,
 			int packedLight, int packedOverlay) {
 		Map<BlockPos, Boolean> connection =  entity.getConnections();
 		if(connection.isEmpty()){

@@ -29,6 +29,7 @@ import tags.register.AddTag;
 import tags.register.TagkeyRegister;
 import util.EntityGravity;
 import util.ItemGravity;
+import util.mar.EnvironmentDataManager;
 import util.net.EnergyNetProcess;
 import vehicle.VehicleRegister;
 import worldgen.feature.FeatureRegistry;
@@ -88,6 +89,8 @@ public class Maring
         BrewRigster.registerBrewingRecipes();
         CanHelper.init();
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+        
+        MinecraftForge.EVENT_BUS.register(EnvironmentDataManager.class);
       
     }
     

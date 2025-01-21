@@ -3,6 +3,7 @@ package event.forge;
 import block.norm.BlockRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.LazyLoadedValue;
 import net.minecraft.world.Containers;
 import net.minecraft.world.item.ItemStack;
@@ -14,6 +15,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import util.mar.EnvironmentData;
 
 /**
  * 检测，
@@ -39,26 +41,37 @@ public class MarPlaceEdit {
 		if(event.getLevel().getBiome(event.getPos()).get().getFoliageColor() != 9334293) return;
  		if(checkAnyAAIR(event.getLevel(),event.getPos())) return;
 		Block block = event.getPlacedBlock().getBlock();
+		EnvironmentData environmentData=null;
+    	if (event.getLevel() instanceof ServerLevel serverLevel) {
+    	    // 现在可以安全地使用 serverLevel，调用 EnvironmentData.get(serverLevel)
+    	    environmentData = EnvironmentData.get(serverLevel);
+    	}
         if (posIsSapling(block)) {
+        	if(environmentData!=null&&environmentData.suitablePLANTH()) return;
             event.getLevel().setBlock(event.getPos(), Blocks.DEAD_BUSH.defaultBlockState(), 2);
             return;
         }else if(block == Blocks.WALL_TORCH||block == Blocks.TORCH||block == Blocks.CAMPFIRE) {
+    	    if(environmentData!=null&&environmentData.canBurn()) return;
         	event.getLevel().setBlock(event.getPos(), Blocks.AIR.defaultBlockState(), 2);
             ItemStack stickStack = new ItemStack(Items.STICK);
             Containers.dropContents(event.getEntity().level(),event.getPos(), NonNullList.of(ItemStack.EMPTY, stickStack));
             return;
         }else if(posIsFlower(block)) {
+        	if(environmentData!=null&&environmentData.suitablePLANTL()) return;
         	event.getLevel().setBlock(event.getPos(), Blocks.DEAD_BUSH.defaultBlockState(), 2);
         	return;
-        }else if(block == Blocks.GRASS_BLOCK||block == Blocks.MOSS_BLOCK) {
+        }else if(block == Blocks.GRASS_BLOCK||block == Blocks.MOSS_BLOCK||block == Blocks.MOSS_CARPET) {
+        	if(environmentData!=null&&environmentData.suitableMOSS()) return;
         	event.getLevel().setBlock(event.getPos(), Blocks.DIRT.defaultBlockState(), 2);
         	return;
         }else if(block == Blocks.TURTLE_EGG||block == Blocks.SNIFFER_EGG) {
+        	if(environmentData!=null&&environmentData.suitableANIMAL()) return;
         	event.getLevel().setBlock(event.getPos(), Blocks.AIR.defaultBlockState(), 2);
             ItemStack egg = new ItemStack(Items.EGG);
             Containers.dropContents(event.getEntity().level(),event.getPos(), NonNullList.of(ItemStack.EMPTY, egg));
         	return;
         }else if(block == Blocks.WATER||block == Blocks.ICE) {
+        	if(environmentData!=null&&environmentData.iceMelt()) return;
         	event.getLevel().setBlock(event.getPos(), Blocks.PACKED_ICE.defaultBlockState(), 2);
         	return;
         }

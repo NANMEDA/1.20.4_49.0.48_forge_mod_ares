@@ -24,17 +24,23 @@ import block.entity.consumer.stonewasher.StoneWasherEntityRender;
 import block.entity.consumer.watergather.WaterGatherEntityRender;
 import block.entity.neutral.crystalbuilder.CrystalBuilderEntityRender;
 import block.entity.neutral.researchtable.ResearchTableEntityRender;
-import machine.energy.consumer.microwaveoven.MicrowaveOvenEntityRender;
+import machine.energy.consumer.render.CoreDiggerEntityRender;
+import machine.energy.consumer.render.MicrowaveOvenEntityRender;
+import machine.energy.producer.solar.render.MarReactorEntityRender;
 import machine.energy.producer.solar.render.SolarBasementEntityRender;
+import machine.energy.storage.render.BatteryBasementEntityRender;
+import machine.energy.viewer.EnergyViewerEntityRender;
 import machine.registry.MBlockEntityRegister;
 import menu.advancedmetalmanufactor.AdvancedMetalManufactorScreen;
 import menu.basicmetalmanufactor.BasicMetalManufactorScreen;
 import menu.blueprintbuilder.BlueprintBuilderScreen;
 import menu.canfoodmaker.CanfoodMakerScreen;
+import menu.coredigger.CoreDiggerScreen;
 import menu.dormcontrol.DomeControlScreen;
 import menu.energyviewer.EnergyViewerScreen;
 import menu.etchingmachine.EtchingMachineScreen;
 import menu.fuelrefiner.FuelRefinerScreen;
+import menu.marreactor.MarReactorScreen;
 import menu.microwaveoven.MicrowaveOvenScreen;
 import menu.playerextend.PlayerExtendScreen;
 import menu.powerstationburn.PowerStationBurnScreen;
@@ -79,6 +85,10 @@ public class ClientListener{
 		
 		event.enqueueWork(()->MenuScreens.register(MenuRegister.DORMCONTROL_MENU.get(), DomeControlScreen::new));
 		
+		event.enqueueWork(()->MenuScreens.register(MenuRegister.COREDIGGER_MENU.get(), CoreDiggerScreen::new));
+		
+		event.enqueueWork(()->MenuScreens.register(MenuRegister.MARREACTOR_MENU.get(), MarReactorScreen::new));
+		
 		
 		
         event.enqueueWork(()-> EntityRenderers.register(MonsterRegister.JUMP_SPIDER.get(), JumpSpiderRenderer::new)); 
@@ -111,6 +121,15 @@ public class ClientListener{
 		event.registerBlockEntityRenderer(BlockEntityRegister.canfoodmaker_BLOCKENTITY.get(), CanfoodMakerEntityRender::new);
 
 		event.registerBlockEntityRenderer(MBlockEntityRegister.SOLARBASEMENT_BE.get(), SolarBasementEntityRender::new);
+		
+		event.registerBlockEntityRenderer(MBlockEntityRegister.COREDIGGER_BE.get(), CoreDiggerEntityRender::new);
+		
+		event.registerBlockEntityRenderer(MBlockEntityRegister.MARREACTOR_BE.get(), MarReactorEntityRender::new);
+		
+		event.registerBlockEntityRenderer(MBlockEntityRegister.BATTERTBASEMENT_BE.get(), BatteryBasementEntityRender::new);
+		
+		event.registerBlockEntityRenderer(MBlockEntityRegister.ENERGYVIEWER_BE.get(), EnergyViewerEntityRender::new);
+		
 	}
 	
 	@SubscribeEvent
