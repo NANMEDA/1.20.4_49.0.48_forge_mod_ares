@@ -1,0 +1,24 @@
+{
+  "name": "maring:the_black_tower/layer5",
+  "elements": [
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "maring:the_black_tower/layer5_empty",
+        "processors": "minecraft:empty",
+        "projection": "rigid"
+      },
+      "weight": 50
+    },
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "maring:the_black_tower/layer5_storage",
+        "processors": "minecraft:empty",
+        "projection": "rigid"
+      },
+      "weight": 50
+    }
+  ],
+  "fallback": "minecraft:empty"
+}

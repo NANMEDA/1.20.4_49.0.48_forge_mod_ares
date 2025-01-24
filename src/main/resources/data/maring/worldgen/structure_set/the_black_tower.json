@@ -1,0 +1,14 @@
+{
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 121214889,
+    "separation": 32,
+    "spacing": 64
+  },
+  "structures": [
+    {
+      "structure": "maring:the_black_tower",
+      "weight": 1
+    }
+  ]
+}

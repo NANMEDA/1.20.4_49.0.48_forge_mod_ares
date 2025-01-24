@@ -2,7 +2,12 @@ package event.forge;
 
 import javax.swing.text.Segment;
 
+import event.client.MarSky;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.event.TickEvent.LevelTickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -18,7 +23,7 @@ public class EnvironmentCalculation {
 	static final int TOTAL_TICKS = 1200;  // 每次计算的周期
 	static final int SEGMENTS = 30;  // 将变化分为 30 段
 	static final int TICKS_PER_SEGMENT = TOTAL_TICKS / SEGMENTS;  // 每段更新的 tick 数
-
+	private static ResourceKey<Level> marKey = ResourceKey.create(Registries.DIMENSION, new ResourceLocation("maring", "maringmar"));
 	/***
 	 * @author NANMEDA
 	 ***/
@@ -28,6 +33,7 @@ public class EnvironmentCalculation {
 	    if (event.level.getDayTime() % TICKS_PER_SEGMENT == 1) {
 	        if (event.level instanceof ServerLevel l) {
 	            // 初始化数据对象
+	        	if(!l.dimension().equals(marKey)) return;	//这句不知道是不是执行
 	            if (data == null) {
 	                data = EnvironmentData.get(l);
 	                return;
@@ -46,6 +52,11 @@ public class EnvironmentCalculation {
 	                
 	                // 记录计算结果，准备分段更新
 	                data.setX(current);  // 重新设置当前状态
+	                if(data.genClouds()) {
+	                	MarSky.shouldnotRenderClouds = false;
+	                }else {
+	                	MarSky.shouldnotRenderClouds = true;
+	                }
 	            } else {
 	                // 逐段更新状态
 	                double[] current = data.getX();
@@ -53,6 +64,11 @@ public class EnvironmentCalculation {
 	                    current[i] += delta[i];  // 累计增量
 	                }
 	                data.setX(current);  // 更新状态
+	                if(data.genClouds()) {
+	                	MarSky.shouldnotRenderClouds = false;
+	                }else {
+	                	MarSky.shouldnotRenderClouds = true;
+	                }
 	            }
 	            
 	            // 更新段计数

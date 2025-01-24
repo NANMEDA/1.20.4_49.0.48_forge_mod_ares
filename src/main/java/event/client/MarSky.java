@@ -9,23 +9,31 @@ import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.*;
+import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.level.BlockAndTintGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LightLayer;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.material.FogType;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
 import org.jetbrains.annotations.Nullable;
 import org.joml.Matrix4f;
 
 @OnlyIn(Dist.CLIENT)
 public class MarSky extends DimensionSpecialEffects {
 
+	public static boolean shouldnotRenderClouds = true;
+	
 	@Nullable
 	private VertexBuffer darkBuffer;
 	@Nullable
@@ -35,16 +43,34 @@ public class MarSky extends DimensionSpecialEffects {
 	
 	private final Minecraft minecraft;
 	
+    private final float[] rainSizeX = new float[1024];
+    private final float[] rainSizeZ = new float[1024];
+    
+    private static final ResourceLocation RAIN_LOCATION = new ResourceLocation("textures/environment/rain.png");
+    private static final ResourceLocation SNOW_LOCATION = new ResourceLocation("textures/environment/snow.png");
+	
 	//private static final ResourceLocation MOON_LOCATION = new ResourceLocation("textures/environment/moon_phases.png");
 	private static final ResourceLocation SUN_LOCATION = new ResourceLocation("textures/environment/sun.png");
 	
 	
     public MarSky(float cloudLevel, boolean hasGround, SkyType p_108868_, boolean forceBrightLightmap, boolean constantAmbientLight) {
 		super(cloudLevel, hasGround, p_108868_, forceBrightLightmap, constantAmbientLight);
+	      for(int i = 0; i < 32; ++i) {
+	          for(int j = 0; j < 32; ++j) {
+	             float f = (float)(j - 16);
+	             float f1 = (float)(i - 16);
+	             float f2 = Mth.sqrt(f * f + f1 * f1);
+	             this.rainSizeX[i << 5 | j] = -f1 / f2;
+	             this.rainSizeZ[i << 5 | j] = f / f2;
+	          }
+	       }
+		
 		this.createStars();
 		this.createLightSky();
 		this.createDarkSky();
 		this.minecraft = Minecraft.getInstance();
+		
+		
 		
 		// TODO 自动生成的构造函数存根
 	}
@@ -74,7 +100,10 @@ public class MarSky extends DimensionSpecialEffects {
     @Override
     public boolean renderClouds(ClientLevel level, int ticks, float partialTick, PoseStack poseStack, double camX,
                                 double camY, double camZ, Matrix4f projectionMatrix) {
-        return true;	// ! true才是不渲染云 :(
+    	if(shouldnotRenderClouds) {
+    		return true;// ! true才是不渲染云 :(
+    	};
+    	return false;	
     }
 
 	@Override
@@ -98,6 +127,7 @@ public class MarSky extends DimensionSpecialEffects {
 	@Override
     public boolean renderSky(ClientLevel level, int ticks, float partialTick, PoseStack poseStack, Camera camera,
                              Matrix4f projectionMatrix, boolean isFoggy, Runnable setupFog) {
+		
 		  setupFog.run();
 		  if (!isFoggy) {
 		      FogType fogtype = camera.getFluidInCamera();
@@ -145,18 +175,21 @@ public class MarSky extends DimensionSpecialEffects {
 		
 		        RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
 		        poseStack.pushPose();
-	
+		        
 			     // 计算雨量对颜色的影响
-			     float f11 = 1.0F - level.getRainLevel(partialTick);
-			     RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, f11);
-	
+	    		 float f11 = 1.0F ;
+		    	 if(!shouldnotRenderClouds) {
+		    		 f11 -= level.getRainLevel(partialTick);
+		    	 }
+		    	 RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, f11);
+		         
 			     // 设置旋转矩阵
 			     poseStack.mulPose(Axis.YP.rotationDegrees(-90.0F));
 			     poseStack.mulPose(Axis.XP.rotationDegrees(level.getTimeOfDay(partialTick) * 360.0F));
 	
 			     // 获取当前的矩阵变换
 			     Matrix4f matrix4f1 = poseStack.last().pose();
-			     
+			    
 			     float f12 = 15.0F;//比原版小一半
 			     // 设置并绘制太阳纹理
 			     RenderSystem.setShader(GameRenderer::getPositionTexShader);
@@ -205,6 +238,8 @@ public class MarSky extends DimensionSpecialEffects {
 			     poseStack.popPose();
 
 		        RenderSystem.setShaderColor(0.0F, 0.0F, 0.0F, 1.0F);
+		        
+		        
 		        double d0 = this.minecraft.player.getEyePosition(partialTick).y - level.getLevelData().getHorizonHeight(level);
 		        if (d0 < 0.0D) {
 		           poseStack.pushPose();
@@ -215,6 +250,8 @@ public class MarSky extends DimensionSpecialEffects {
 		           poseStack.popPose();
 		        }
 		
+		        
+		        
 		        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 		        RenderSystem.depthMask(true);
 		      }
@@ -230,6 +267,18 @@ public class MarSky extends DimensionSpecialEffects {
 		         return livingentity.hasEffect(MobEffects.BLINDNESS) || livingentity.hasEffect(MobEffects.DARKNESS);
 		      }
 		   }
+	   
+	   /**
+	    * 这个和雨有关，还有在方块上的雨水粒子
+	    * */
+	   @Override
+	    public boolean tickRain(ClientLevel level, int ticks, Camera camera)
+	    {
+	    	if(shouldnotRenderClouds) {
+	    		return true;// ! true才是不渲染云 :(
+	    	};
+	    	return false;	
+	    }
 	   
 	   private void createStars() {
 		      Tesselator tesselator = Tesselator.getInstance();
@@ -275,10 +324,156 @@ public class MarSky extends DimensionSpecialEffects {
 		   }
 	   
 	    @Override
-	    public boolean renderSnowAndRain(ClientLevel level, int ticks, float partialTick, LightTexture lightTexture, double camX, double camY, double camZ)
+	    public boolean renderSnowAndRain(ClientLevel cLevel, int ticks, float partialTick, LightTexture lightTexture, double camX, double camY, double camZ)
 	    {
-	        return false;
+	    	if(shouldnotRenderClouds) {
+	    		return true;
+	    	};
+	    	return false;	
+	    	/*
+	    	 if(shouldnotRenderClouds) return true;
+	         float f = this.minecraft.level.getRainLevel(partialTick);
+	         if (!(f <= 0.0F)) {
+	            lightTexture.turnOnLightLayer();
+	            Level level = this.minecraft.level;
+	            int i = Mth.floor(camX);
+	            int j = Mth.floor(camY);
+	            int k = Mth.floor(camZ);
+	            Tesselator tesselator = Tesselator.getInstance();
+	            BufferBuilder bufferbuilder = tesselator.getBuilder();
+	            RenderSystem.disableCull();
+	            RenderSystem.enableBlend();
+	            RenderSystem.enableDepthTest();
+	            int l = 5;
+	            if (Minecraft.useFancyGraphics()) {
+	               l = 10;
+	            }
+
+	            RenderSystem.depthMask(Minecraft.useShaderTransparency());
+	            int i1 = -1;
+	            float f1 = (float)ticks + partialTick;
+	            RenderSystem.setShader(GameRenderer::getParticleShader);
+	            BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+
+	            for(int j1 = k - l; j1 <= k + l; ++j1) {
+	               for(int k1 = i - l; k1 <= i + l; ++k1) {
+	                  int l1 = (j1 - k + 16) * 32 + k1 - i + 16;
+	                  double d0 = (double)this.rainSizeX[l1] * 0.5D;
+	                  double d1 = (double)this.rainSizeZ[l1] * 0.5D;
+	                  blockpos$mutableblockpos.set((double)k1, camY, (double)j1);
+	                  Biome biome = level.getBiome(blockpos$mutableblockpos).value();
+	                  if (biome.hasPrecipitation()) {
+	                     int i2 = level.getHeight(Heightmap.Types.MOTION_BLOCKING, k1, j1);
+	                     int j2 = j - l;
+	                     int k2 = j + l;
+	                     if (j2 < i2) {
+	                        j2 = i2;
+	                     }
+
+	                     if (k2 < i2) {
+	                        k2 = i2;
+	                     }
+
+	                     int l2 = i2;
+	                     if (i2 < j) {
+	                        l2 = j;
+	                     }
+
+	                     if (j2 != k2) {
+	                        RandomSource randomsource = RandomSource.create((long)(k1 * k1 * 3121 + k1 * 45238971 ^ j1 * j1 * 418711 + j1 * 13761));
+	                        blockpos$mutableblockpos.set(k1, j2, j1);
+	                        Biome.Precipitation biome$precipitation = biome.getPrecipitationAt(blockpos$mutableblockpos);
+	                        if (biome$precipitation == Biome.Precipitation.RAIN) {
+	                           if (i1 != 0) {
+	                              if (i1 >= 0) {
+	                                 tesselator.end();
+	                              }
+
+	                              i1 = 0;
+	                              RenderSystem.setShaderTexture(0, RAIN_LOCATION);
+	                              bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.PARTICLE);
+	                           }
+
+	                           int i3 = ticks & 131071;
+	                           int j3 = k1 * k1 * 3121 + k1 * 45238971 + j1 * j1 * 418711 + j1 * 13761 & 255;
+	                           float f2 = 3.0F + randomsource.nextFloat();
+	                           float f3 = -((float)(i3 + j3) + partialTick) / 32.0F * f2;
+	                           float f4 = f3 % 32.0F;
+	                           double d2 = (double)k1 + 0.5D - camX;
+	                           double d3 = (double)j1 + 0.5D - camZ;
+	                           float f6 = (float)Math.sqrt(d2 * d2 + d3 * d3) / (float)l;
+	                           float f7 = ((1.0F - f6 * f6) * 0.5F + 0.5F) * f;
+	                           blockpos$mutableblockpos.set(k1, l2, j1);
+	                           int k3 = getLightColor(level, blockpos$mutableblockpos);
+	                           bufferbuilder.vertex((double)k1 - camX - d0 + 0.5D, (double)k2 - camY, (double)j1 - camZ - d1 + 0.5D).uv(0.0F, (float)j2 * 0.25F + f4).color(1.0F, 1.0F, 1.0F, f7).uv2(k3).endVertex();
+	                           bufferbuilder.vertex((double)k1 - camX + d0 + 0.5D, (double)k2 - camY, (double)j1 - camZ + d1 + 0.5D).uv(1.0F, (float)j2 * 0.25F + f4).color(1.0F, 1.0F, 1.0F, f7).uv2(k3).endVertex();
+	                           bufferbuilder.vertex((double)k1 - camX + d0 + 0.5D, (double)j2 - camY, (double)j1 - camZ + d1 + 0.5D).uv(1.0F, (float)k2 * 0.25F + f4).color(1.0F, 1.0F, 1.0F, f7).uv2(k3).endVertex();
+	                           bufferbuilder.vertex((double)k1 - camX - d0 + 0.5D, (double)j2 - camY, (double)j1 - camZ - d1 + 0.5D).uv(0.0F, (float)k2 * 0.25F + f4).color(1.0F, 1.0F, 1.0F, f7).uv2(k3).endVertex();
+	                        } else if (biome$precipitation == Biome.Precipitation.SNOW) {
+	                           if (i1 != 1) {
+	                              if (i1 >= 0) {
+	                                 tesselator.end();
+	                              }
+
+	                              i1 = 1;
+	                              RenderSystem.setShaderTexture(0, SNOW_LOCATION);
+	                              bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.PARTICLE);
+	                           }
+
+	                           float f8 = -((float)(ticks & 511) + partialTick) / 512.0F;
+	                           float f9 = (float)(randomsource.nextDouble() + (double)f1 * 0.01D * (double)((float)randomsource.nextGaussian()));
+	                           float f10 = (float)(randomsource.nextDouble() + (double)(f1 * (float)randomsource.nextGaussian()) * 0.001D);
+	                           double d4 = (double)k1 + 0.5D - camX;
+	                           double d5 = (double)j1 + 0.5D - camZ;
+	                           float f11 = (float)Math.sqrt(d4 * d4 + d5 * d5) / (float)l;
+	                           float f5 = ((1.0F - f11 * f11) * 0.3F + 0.5F) * f;
+	                           blockpos$mutableblockpos.set(k1, l2, j1);
+	                           int j4 = getLightColor(level, blockpos$mutableblockpos);
+	                           int k4 = j4 >> 16 & '\uffff';
+	                           int l4 = j4 & '\uffff';
+	                           int l3 = (k4 * 3 + 240) / 4;
+	                           int i4 = (l4 * 3 + 240) / 4;
+	                           bufferbuilder.vertex((double)k1 - camX - d0 + 0.5D, (double)k2 - camY, (double)j1 - camZ - d1 + 0.5D).uv(0.0F + f9, (float)j2 * 0.25F + f8 + f10).color(1.0F, 1.0F, 1.0F, f5).uv2(i4, l3).endVertex();
+	                           bufferbuilder.vertex((double)k1 - camX + d0 + 0.5D, (double)k2 - camY, (double)j1 - camZ + d1 + 0.5D).uv(1.0F + f9, (float)j2 * 0.25F + f8 + f10).color(1.0F, 1.0F, 1.0F, f5).uv2(i4, l3).endVertex();
+	                           bufferbuilder.vertex((double)k1 - camX + d0 + 0.5D, (double)j2 - camY, (double)j1 - camZ + d1 + 0.5D).uv(1.0F + f9, (float)k2 * 0.25F + f8 + f10).color(1.0F, 1.0F, 1.0F, f5).uv2(i4, l3).endVertex();
+	                           bufferbuilder.vertex((double)k1 - camX - d0 + 0.5D, (double)j2 - camY, (double)j1 - camZ - d1 + 0.5D).uv(0.0F + f9, (float)k2 * 0.25F + f8 + f10).color(1.0F, 1.0F, 1.0F, f5).uv2(i4, l3).endVertex();
+	                        }
+	                     }
+	                  }
+	               }
+	            }
+
+	            if (i1 >= 0) {
+	               tesselator.end();
+	            }
+
+	            RenderSystem.enableCull();
+	            RenderSystem.disableBlend();
+	            lightTexture.turnOffLightLayer();
+	         }
+	         return true;
+	        */
 	    }
+	    
+	    public static int getLightColor(BlockAndTintGetter p_109542_, BlockPos p_109543_) {
+	       return getLightColor(p_109542_, p_109542_.getBlockState(p_109543_), p_109543_);
+	    }
+
+	    public static int getLightColor(BlockAndTintGetter p_109538_, BlockState p_109539_, BlockPos p_109540_) {
+	       if (p_109539_.emissiveRendering(p_109538_, p_109540_)) {
+	          return 15728880;
+	       } else {
+	          int i = p_109538_.getBrightness(LightLayer.SKY, p_109540_);
+	          int j = p_109538_.getBrightness(LightLayer.BLOCK, p_109540_);
+	          int k = p_109539_.getLightEmission(p_109538_, p_109540_);
+	          if (j < k) {
+	             j = k;
+	          }
+
+	          return i << 20 | j << 4;
+	       }
+	    }
+	    
 
 	   @SuppressWarnings("unused")
 	   private static BufferBuilder.RenderedBuffer buildSkyDisc(BufferBuilder p_234268_, float p_234269_) {

@@ -1,8 +1,12 @@
 package util.mar;
 
+import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.datafix.DataFixTypes;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.saveddata.SavedData;
 import util.enums.EnvironmentEnum;
 
@@ -11,7 +15,7 @@ import util.enums.EnvironmentEnum;
  */
 public class EnvironmentData extends SavedData {
     private static final String DATA_NAME = "environment_data";
-
+    private static ResourceKey<Level> marKey = ResourceKey.create(Registries.DIMENSION, new ResourceLocation("maring", "maringmar"));
     // 环境参数
     private double humid = 0d;          // 湿度 (0 - 200)					100最佳
     private double oxygen = 0d;         // 氧气含量方便计算 (0 - 200)		20最佳
@@ -19,12 +23,7 @@ public class EnvironmentData extends SavedData {
     private double temperature = -46d;  // 温度 (-273 - 500，单位：摄氏度)	20最佳
     private double mag = 0d;            // 磁场 (0 - 200)					100最佳
 
-    public boolean suitableMOSS() {
-    	return getEnvironmentEnum("humid").isOrBetter(EnvironmentEnum.STRUGGLE)
-    			&&getEnvironmentEnum("oxygen").isOrBetter(EnvironmentEnum.STRUGGLE)
-    			&&getEnvironmentEnum("pressure").isOrBetter(EnvironmentEnum.STRUGGLE)
-    			&&getEnvironmentEnum("temperature").isOrBetter(EnvironmentEnum.STRUGGLE);
-    }
+
     
     public double[] getX() {
     	return new double[] {this.humid,this.oxygen,this.pressure,this.temperature,this.mag};
@@ -37,6 +36,13 @@ public class EnvironmentData extends SavedData {
     	this.temperature = x[3];
     	this.mag = x[4];
     	setDirty();
+    }
+    
+    public boolean suitableMOSS() {
+    	return getEnvironmentEnum("humid").isOrBetter(EnvironmentEnum.STRUGGLE)
+    			&&getEnvironmentEnum("oxygen").isOrBetter(EnvironmentEnum.STRUGGLE)
+    			&&getEnvironmentEnum("pressure").isOrBetter(EnvironmentEnum.STRUGGLE)
+    			&&getEnvironmentEnum("temperature").isOrBetter(EnvironmentEnum.STRUGGLE);
     }
     
     /**
@@ -124,6 +130,10 @@ public class EnvironmentData extends SavedData {
 	public boolean iceMelt() {
 		return this.temperature>-10&&this.pressure>500;
 	}
+	
+	public boolean genClouds(){
+		return this.humid>20&&this.pressure>200;
+	}
     
     public boolean canBurn() {
     	return this.oxygen>16;
@@ -207,7 +217,7 @@ public class EnvironmentData extends SavedData {
      }
     
     public static EnvironmentData get(ServerLevel level) {
-        return getOrCreate(level);
+        return getOrCreate(level.getServer().getLevel(marKey));
     }
 
 

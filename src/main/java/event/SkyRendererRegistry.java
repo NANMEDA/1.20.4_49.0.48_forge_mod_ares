@@ -17,6 +17,6 @@ public class SkyRendererRegistry {
     @SubscribeEvent
     public static void register(RegisterDimensionSpecialEffectsEvent event) {
     	ResourceKey<DimensionType> locKey = ResourceKey.create(Registries.DIMENSION_TYPE, new ResourceLocation("maring", "maringmar"));
-        event.register(locKey.location(), new MarSky(64.0F, false, DimensionSpecialEffects.SkyType.NORMAL, false, false));
+        event.register(locKey.location(), new MarSky(192.0F, false, DimensionSpecialEffects.SkyType.NORMAL, false, false));
     }
 }

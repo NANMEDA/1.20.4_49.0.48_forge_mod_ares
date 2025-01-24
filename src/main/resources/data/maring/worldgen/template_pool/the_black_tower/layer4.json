@@ -1,0 +1,42 @@
+{
+  "name": "maring:the_black_tower/layer4",
+  "elements": [
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "maring:the_black_tower/layer4_empty",
+        "processors": "minecraft:empty",
+        "projection": "rigid"
+      },
+      "weight": 15
+    },
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "maring:the_black_tower/layer4_dorm1",
+        "processors": "minecraft:empty",
+        "projection": "rigid"
+      },
+      "weight": 25
+    },
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "maring:the_black_tower/layer4_dorm2",
+        "processors": "minecraft:empty",
+        "projection": "rigid"
+      },
+      "weight": 35
+    },
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "maring:the_black_tower/layer4_dorm3",
+        "processors": "minecraft:empty",
+        "projection": "rigid"
+      },
+      "weight": 25
+    }
+  ],
+  "fallback": "minecraft:empty"
+}

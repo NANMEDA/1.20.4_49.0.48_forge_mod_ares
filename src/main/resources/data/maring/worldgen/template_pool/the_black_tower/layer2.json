@@ -1,0 +1,42 @@
+{
+  "name": "maring:the_black_tower/layer2",
+  "elements": [
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "maring:the_black_tower/layer2_empty",
+        "processors": "minecraft:empty",
+        "projection": "rigid"
+      },
+      "weight": 20
+    },
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "maring:the_black_tower/layer2_plant",
+        "processors": "minecraft:empty",
+        "projection": "rigid"
+      },
+      "weight": 35
+    },
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "maring:the_black_tower/layer2_science",
+        "processors": "minecraft:empty",
+        "projection": "rigid"
+      },
+      "weight": 15
+    },
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "maring:the_black_tower/layer2_storage",
+        "processors": "minecraft:empty",
+        "projection": "rigid"
+      },
+      "weight": 30
+    }
+  ],
+  "fallback": "minecraft:empty"
+}

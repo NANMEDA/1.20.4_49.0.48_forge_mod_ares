@@ -1,0 +1,33 @@
+{
+  "name": "maring:the_black_tower/hall",
+  "elements": [
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "maring:the_black_tower/hall_empty",
+        "processors": "minecraft:empty",
+        "projection": "rigid"
+      },
+      "weight": 20
+    },
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "maring:the_black_tower/hall_storage_food",
+        "processors": "minecraft:empty",
+        "projection": "rigid"
+      },
+      "weight": 40
+    },
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "maring:the_black_tower/hall_storage_material",
+        "processors": "minecraft:empty",
+        "projection": "rigid"
+      },
+      "weight": 40
+    }
+  ],
+  "fallback": "minecraft:empty"
+}

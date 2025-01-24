@@ -1,0 +1,24 @@
+{
+  "name": "maring:the_black_tower/ceiling",
+  "elements": [
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "maring:the_black_tower/ceiling_short",
+        "processors": "minecraft:empty",
+        "projection": "rigid"
+      },
+      "weight": 98
+    },
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "maring:the_black_tower/ceiling_tall",
+        "processors": "minecraft:empty",
+        "projection": "rigid"
+      },
+      "weight": 2
+    }
+  ],
+  "fallback": "minecraft:empty"
+}
