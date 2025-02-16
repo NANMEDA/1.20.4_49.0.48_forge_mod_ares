@@ -3,11 +3,15 @@ package event.forge;
 import block.norm.BlockRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.LazyLoadedValue;
 import net.minecraft.world.Containers;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -29,6 +33,8 @@ import util.mar.EnvironmentData;
 @Mod.EventBusSubscriber(modid = "maring", bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class MarPlaceEdit {
 	
+	private static ResourceKey<Level> marKey = ResourceKey.create(Registries.DIMENSION, new ResourceLocation("maring", "maringmar"));
+	
 	@SuppressWarnings("deprecation")
 	private static final LazyLoadedValue<BlockState> A_AIR_BLOCK_STATE = 
 		    new LazyLoadedValue<>(() -> BlockRegister.A_AIR.get().defaultBlockState());
@@ -38,7 +44,7 @@ public class MarPlaceEdit {
 	@SubscribeEvent
     public static void onBlockPlaced(BlockEvent.EntityPlaceEvent event) {
 		if(event.getLevel().isClientSide()) return;
-		if(event.getLevel().getBiome(event.getPos()).get().getFoliageColor() != 9334293) return;
+		if(!event.getEntity().level().dimension().equals(marKey)) return;
  		if(checkAnyAAIR(event.getLevel(),event.getPos())) return;
 		Block block = event.getPlacedBlock().getBlock();
 		EnvironmentData environmentData=null;

@@ -53,6 +53,32 @@ public class BlockJSON {
 	}
 	
 	/***
+	 * 农model
+	 * ***/
+	public static void GenModelsJSONFarm(String name) {
+	    File file = new File(toResource + "/assets/maring/models/block/" + name + ".json");
+	    if (file.exists()) {
+	        return;
+	    }
+	    
+	    JsonObject jsonObject = new JsonObject();
+	    jsonObject.addProperty("parent", "minecraft:block/crop");
+
+	    JsonObject textures = new JsonObject();
+	    textures.addProperty("crop", "maring:block/" + name);  // 初始值为stage0
+
+	    jsonObject.add("textures", textures);
+
+	    Gson gson = new GsonBuilder().setPrettyPrinting().create();
+	    try (FileWriter fileWriter = new FileWriter(file)) {
+	        gson.toJson(jsonObject, fileWriter);
+	        System.out.println("JSON生成！Block-model:" + name);
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+	}
+	
+	/***
 	 * 生成的use
 	 * 比如说, 部分方块要用透明材质
 	 * ***/
@@ -94,6 +120,38 @@ public class BlockJSON {
 	    JsonObject emptyVariant = new JsonObject();
 	    emptyVariant.addProperty("model", "maring:block/"+name);
 	    variants.add("", emptyVariant);
+	    jsonObject.add("variants", variants);
+	    
+	    Gson gson = new GsonBuilder().setPrettyPrinting().create();
+	    try (FileWriter fileWriter = new FileWriter(file)) {
+	        gson.toJson(jsonObject, fileWriter);
+	        System.out.println("JSON生成！Blockstate：" + name);
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+	}
+	
+	/***
+	 * blockstate-farm
+	 * ***/
+	public static void GenBlockStateJSONFarm(String name, int stages) {
+	    File file = new File(toResource + "/assets/maring/blockstates/" + name + ".json");
+	    if (file.exists()) {
+	        return;
+	    }
+	    
+	    JsonObject jsonObject = new JsonObject();
+	    JsonObject variants = new JsonObject();
+	    
+	    // 循环生成每个stage对应的age值和模型路径
+	    for (int i = 0; i <= stages; i++) {
+	        JsonObject modelObject = new JsonObject();
+	        modelObject.addProperty("model", "maring:block/" + name + "_stage" + i);
+	        
+	        // age值为i
+	        variants.add("age=" + i, modelObject);
+	    }
+	    
 	    jsonObject.add("variants", variants);
 	    
 	    Gson gson = new GsonBuilder().setPrettyPrinting().create();

@@ -1,6 +1,7 @@
 package menu.dormcontrol;
 
 import block.entity.neutral.dormcontrol.DomeControlEntity;
+import menu.ScreenHelper;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
@@ -16,22 +17,22 @@ public class DomeControlScreen extends AbstractContainerScreen<DomeControlMenu> 
 	public static final ResourceLocation O2_UI = new ResourceLocation(MODID,"textures/gui/addon/oxygen.png");
 	public static final ResourceLocation H2O_UI = new ResourceLocation(MODID,"textures/gui/addon/water.png");
 	
-	public static int removeButtonStartPosX = 180;
-	public static int removeButtonStartPosY = 127;
-	public static int removeButtonWidth = 59;
-	public static int removeButtonHeight = 18;
+	private static int removeButtonStartPosX = 180;
+	private static int removeButtonStartPosY = 127;
+	private static int removeButtonWidth = 59;
+	private static int removeButtonHeight = 18;
 	
-	public static int O2StartPosX = 137;
-	public static int O2StartPosY = 144;//Buttom
-	public static int O2Width = 25;
-	public static int O2Height = 120;
-	public static int O2unit = 16;
+	private static int O2StartPosX = 137;
+	private static int O2StartPosY = 144;//Buttom
+	private static int O2Width = 25;
+	private static int O2Height = 120;
+	private static int O2unit = 16;
 	
-	public static int H2OStartPosX = 91;
-	public static int H2OStartPosY = 144;//Buttom
-	public static int H2OWidth = 25;
-	public static int H2OHeight = 120;
-	public static int H2Ounit = 16;
+	private static int H2OStartPosX = 91;
+	private static int H2OStartPosY = 144;//Buttom
+	private static int H2OWidth = 25;
+	private static int H2OHeight = 120;
+	private static int H2Ounit = 16;
 	
 	public DomeControlScreen(DomeControlMenu pMenu, Inventory pInventory, Component pComponent) {
 		super(pMenu, pInventory, pComponent);
@@ -49,39 +50,8 @@ public class DomeControlScreen extends AbstractContainerScreen<DomeControlMenu> 
         int O2Recent = O2[2];
         int H2ORecent = H2O[2];
         
-        // 计算柱状图的实际高度
-        int H2OactualHeight = (int) (H2OHeight * (H2ORecent / 100.0));
-        // 渲染起始位置
-        int H2OrenderStartX = H2OStartPosX + leftPos;
-        int H2OrenderStartY = H2OStartPosY + topPos - H2OactualHeight; // 从底部向上绘制
-
-        // 渲染柱状图，材质平铺
-        for (int x = 0; x < H2OWidth; x += H2Ounit) { // 水平方向平铺
-            for (int y = 0; y < H2OactualHeight; y += H2Ounit) { // 垂直方向平铺
-                int drawWidth = Math.min(H2Ounit, H2OWidth - x); // 当前绘制的宽度
-                int drawHeight = Math.min(H2Ounit, H2OactualHeight - y); // 当前绘制的高度
-                graphics.blit(H2O_UI, H2OrenderStartX + x, H2OrenderStartY + y,
-                        0, 0, drawWidth, drawHeight,O2unit,O2unit); // 纹理起点坐标和绘制区域大小
-            }
-        }
-
-        // 计算柱状图的实际高度
-        int O2actualHeight = (int) (O2Height * (O2Recent / 100.0));
-        // 渲染起始位置
-        int O2renderStartX = O2StartPosX + leftPos;
-        int O2renderStartY = O2StartPosY + topPos - O2actualHeight; // 从底部向上绘制
-
-        // 渲染柱状图，材质平铺
-        for (int x = 0; x < O2Width; x += O2unit) { // 水平方向平铺
-            for (int y = 0; y < O2actualHeight; y += O2unit) { // 垂直方向平铺
-                int drawWidth = Math.min(O2unit, O2Width - x); // 当前绘制的宽度
-                int drawHeight = Math.min(O2unit, O2actualHeight - y); // 当前绘制的高度
-                graphics.blit(O2_UI, O2renderStartX + x, O2renderStartY + y,
-                        0, 0, drawWidth, drawHeight,H2Ounit,H2Ounit); // 纹理起点坐标和绘制区域大小
-            }
-        }
-        
-        
+        ScreenHelper.column(graphics, H2O_UI, H2OStartPosX + leftPos, H2OStartPosY + topPos, H2OWidth, H2OHeight, H2Ounit, H2ORecent);
+        ScreenHelper.column(graphics, O2_UI, O2StartPosX + leftPos, O2StartPosY + topPos, O2Width, O2Height, O2unit, O2Recent);
     }
 	
 	@Override
@@ -103,6 +73,7 @@ public class DomeControlScreen extends AbstractContainerScreen<DomeControlMenu> 
         	    O2StartPosY  + 5, // 5 像素的间距
         	    0xFFFFFF
         	);
+        
         guiGraphics.drawString(
         	    this.font, 
         	    Component.translatable("menu.domecontrol.h2o"), 
@@ -122,9 +93,10 @@ public class DomeControlScreen extends AbstractContainerScreen<DomeControlMenu> 
     
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
-    	System.out.println("Mouse clicked at: X = " + mouseX + ", Y = " + mouseY + ", Button = " + button);
-
-        if (isMouseOverRemove(mouseX,mouseY)) {
+    	
+        if (ScreenHelper.isButton(mouseX, mouseY, 
+        		this.leftPos+removeButtonStartPosX, this.leftPos+removeButtonStartPosX+removeButtonWidth, 
+        		this.topPos+removeButtonStartPosY, this.topPos+removeButtonStartPosY+40)) {
             DomeControlEntity blockEntity = (DomeControlEntity) this.getMenu().getBlockEntity();
             NetworkHandler.INSTANCE.send(new CDomeControl(blockEntity.getBlockPos()),
                     PacketDistributor.SERVER.noArg());
@@ -132,12 +104,5 @@ public class DomeControlScreen extends AbstractContainerScreen<DomeControlMenu> 
         }
         return super.mouseClicked(mouseX, mouseY, button);
     }
-    
-    
-
-	private boolean isMouseOverRemove(double mouseX, double mouseY) {
-		return mouseX>this.leftPos+removeButtonStartPosX&&mouseY>this.topPos+removeButtonStartPosY
-				&&mouseX<this.leftPos+removeButtonStartPosX+removeButtonWidth&&mouseY<this.topPos+removeButtonStartPosY+40;
-	}
 
 }

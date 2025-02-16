@@ -5,6 +5,7 @@ import item.blueprint.ItemBlueprint;
 import item.can.ItemCan;
 import item.electric.BatteryHeart;
 import item.food.CheesePiece;
+import item.food.farm.Tomato;
 import item.rocket.RocketItem;
 import item.tool.ItemChangeStick;
 import item.tool.ItemJunctionConnector;
@@ -83,9 +84,7 @@ public class ItemRegister {
 		    }
 		}
 	}
-	static {
-		System.out.println("here come G");
-	}
+
 	public static final RegistryObject<Item> FRENCH_BREAD = ITEMS.register(ItemFrenchBread.global_name, () -> new ItemFrenchBread(SwordTier.frenchBread, 4, 1f, new Item.Properties()));
 
 	//头
@@ -139,4 +138,8 @@ public class ItemRegister {
     
     public static final RegistryObject<Item> CHEESE_PIECE = ITEMS.register(CheesePiece.global_name,
             () -> new CheesePiece(new Item.Properties()));
+    
+    public static final RegistryObject<Item> TOMATO = ITEMS.register(Tomato.global_name,
+            () -> new Tomato(block.norm.farm.Register.TOMATO_B.get(),new Item.Properties()));
+    
 }

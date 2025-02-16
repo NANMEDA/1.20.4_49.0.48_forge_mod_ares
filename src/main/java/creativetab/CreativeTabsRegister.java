@@ -35,6 +35,7 @@ public class CreativeTabsRegister {
                 output.accept(block.norm.deposit.Register.DEPOSIT_ICE_ITEM.get());
                 output.accept(block.norm.deposit.Register.DEPOSIT_IRON_ITEM.get());
                 output.accept(block.norm.deposit.Register.DEPOSIT_GOLD_ITEM.get());
+                
             }).build());
     
     public static final RegistryObject<CreativeModeTab> MAR_FOOD_TAB = CREATIVE_MODE_TABS.register("mar_food_tab", () -> CreativeModeTab.builder()
@@ -46,6 +47,7 @@ public class CreativeTabsRegister {
             		output.accept(ItemRegister.FOOD_ITEMS[i].get());
             	}
         		output.accept(ItemRegister.CHEESE_PIECE.get());
+        		output.accept(ItemRegister.TOMATO.get());
             }).build());
     
     public static final RegistryObject<CreativeModeTab> MAR_MACHINE_TAB = CREATIVE_MODE_TABS.register("mar_machine_tab", () -> CreativeModeTab.builder()
