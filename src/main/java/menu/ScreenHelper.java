@@ -65,6 +65,29 @@ public interface ScreenHelper {
         }
 	}
 	
+	
+	/**
+	 * 垂直
+	 * @param startPosX -左下角
+	 * @param startPosY -左下角
+	 */
+	static void column(GuiGraphics graphics,ResourceLocation IN,int startPosX,int startPosY,int Width,int Height,int sizeX,int sizeY,double value) {
+		if(IN==null) return;
+		// 计算柱状图的实际高度
+        int actualHeight = (int) (Height * (value / 100.0));
+        int renderStartY = startPosY - actualHeight; // 从左上向下绘制
+
+        // 渲染柱状图，材质平铺
+        for (int x = 0; x < Width; x += sizeX) { // 水平方向平铺
+            for (int y = 0; y < actualHeight; y += sizeY) { // 垂直方向平铺
+                int drawWidth = Math.min(sizeX, Width - x); // 当前绘制的宽度
+                int drawHeight = Math.min(sizeY, actualHeight - y); // 当前绘制的高度
+                graphics.blit(IN, startPosX + x, renderStartY + y,
+                        0, 0, drawWidth, drawHeight,sizeX,sizeY); // 纹理起点坐标和绘制区域大小
+            }
+        }
+	}
+	
 	/**
 	 * 水平
 	 * @param startPosX -左下角
@@ -174,5 +197,7 @@ public interface ScreenHelper {
 	    }
 
 	}
+	
+	
 	
 }

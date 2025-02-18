@@ -14,6 +14,7 @@ import item.*;
 import item.can.CanHelper;
 import machine.registry.MBlockEntityRegister;
 import menu.registry.MenuRegister;
+import menu.reseachtable.TechTreeLayout;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -31,6 +32,7 @@ import util.EntityGravity;
 import util.ItemGravity;
 import util.mar.EnvironmentDataManager;
 import util.net.EnergyNetProcess;
+import util.tech.TechManager;
 import vehicle.VehicleRegister;
 import worldgen.feature.FeatureRegistry;
 
@@ -88,10 +90,15 @@ public class Maring
         
         BrewRigster.registerBrewingRecipes();
         CanHelper.init();
+        TechManager.initiateTech();
+        TechTreeLayout.genLayout(TechManager.getOriginalTechNodes());
+        
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
         
         MinecraftForge.EVENT_BUS.register(EnvironmentDataManager.class);
       
+        
+        
     }
     
 

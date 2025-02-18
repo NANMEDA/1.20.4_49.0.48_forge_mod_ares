@@ -5,6 +5,7 @@ import block.entity.BlockEntityRegister;
 import block.entity.consumer.PowerConsumerEntity;
 import item.ItemRegister;
 import item.blueprint.ItemBlueprintNBT;
+import menu.reseachtable.TechTree;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
@@ -37,11 +38,12 @@ public class ResearchTableEntity extends PowerConsumerEntity{
 	public int atTech = -1;
 	public int atLevel = -1;
 	static protected int itemstack_number=2;
+	private TechTree techTree = new TechTree(new int[]{0,0});;
 	
 	public ResearchTableEntity(BlockPos pos, BlockState pBlockState) {
 		super(BlockEntityRegister.researchtable_BLOCKENTITY.get(), pos, pBlockState);
 		this.energy_consume = 0;
-	}
+		}
 	
     protected final ItemStackHandler item = new ItemStackHandler(itemstack_number) {//必须要在这里创建，ItemStackHandler不可被修改
         @Override
@@ -136,6 +138,9 @@ public class ResearchTableEntity extends PowerConsumerEntity{
 		tag.putInt(TAG_3, tech3);
 		tag.putInt(TAG_T, atTech);
 		tag.putInt(TAG_L, atLevel);
+        if (techTree != null) {
+            tag.put("techTree", techTree.saveToNBT());
+        }
 	}
 	
 	protected void loaddata(CompoundTag tag) {
@@ -157,6 +162,9 @@ public class ResearchTableEntity extends PowerConsumerEntity{
 		if(tag.contains(TAG_L)) {
 			atLevel = tag.getInt(TAG_L);
 		}
+        if (tag.contains("techTree")) {
+            this.techTree = TechTree.loadFromNBT(tag.getCompound("techTree"));
+        }
 	}
 	
 	public void getBlueprint(int line, int level) {
@@ -283,6 +291,8 @@ public class ResearchTableEntity extends PowerConsumerEntity{
 		}
 	}
 
-	
+	public TechTree getTechTree() {
+		return this.techTree;
+	}
 
 }
