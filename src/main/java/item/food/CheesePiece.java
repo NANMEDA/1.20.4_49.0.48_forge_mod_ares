@@ -1,5 +1,7 @@
 package item.food;
 
+import java.util.Optional;
+
 import item.itemFood;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
@@ -16,6 +18,7 @@ public class CheesePiece extends Item {
 			    .build()));
 	}
 
+	
 	static {
 		ItemJSON.GenJSON(global_name);
 	}

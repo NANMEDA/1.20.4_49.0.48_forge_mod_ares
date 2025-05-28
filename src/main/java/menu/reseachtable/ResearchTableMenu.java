@@ -10,7 +10,7 @@ import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
 
 public class ResearchTableMenu extends BlockEntityMenuBasic {
-    private final Container container;
+    private final Inventory container;
 	private ResearchTableEntity blockentity;
 
     public ResearchTableMenu(Inventory pInventory, int pID,BlockPos pos) {
@@ -22,6 +22,10 @@ public class ResearchTableMenu extends BlockEntityMenuBasic {
 	public ResearchTableEntity getBlockEntity() {
 		// TODO 自动生成的方法存根
 		return blockentity;
+	}
+	
+	public Inventory getInventory() {
+		return this.container;
 	}
 
 }

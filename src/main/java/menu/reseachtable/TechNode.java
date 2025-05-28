@@ -6,8 +6,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Supplier;
+
+import javax.annotation.Nullable;
 
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.ItemStack;
 import util.tech.TechManager;
 
 public class TechNode {
@@ -23,10 +28,38 @@ public class TechNode {
     private ResourceLocation UI;
     private int x; // 渲染时的 X 坐标
     private int y; // 渲染时的 Y 坐标
-
+    private ResourceLocation DETAIL;
+    private List<ItemStack> needResources = null;
+    private int needTime = 1200;
+    
+    private static ResourceLocation gen1(String name) {
+    	return new ResourceLocation(MODID,"textures/gui/addon/tech_ui_"+name+".png");
+    }
+    private static ResourceLocation gen2(String name) {
+    	return new ResourceLocation(MODID,"textures/gui/addon/tech_detail_"+name+".png");
+    }
+    
+    public TechNode(Builder builder) {
+        this.name = builder.name;
+        this.description = builder.description;
+        this.prerequisites = builder.prerequisites;
+        this.point = builder.point;
+        this.conflict = builder.conflict;
+        this.isBegin = builder.isBegin;
+        this.isEnd = builder.isEnd;
+        this.referenceLevel = builder.referenceLevel;
+        this.UI = builder.UI;
+        this.DETAIL = builder.DETAIL;
+        this.x = builder.x;
+        this.y = builder.y;
+        this.needResources = builder.needResources;
+        this.needTime = builder.needTime;
+    }
+    
     /**
      * add Begin Node
      * */
+    @Deprecated
     public TechNode(String name, String description, ResourceLocation ui) {
         this.name = name;
         this.description = description;
@@ -36,11 +69,12 @@ public class TechNode {
         this.isBegin = true;
         this.isEnd = false;
         this.referenceLevel = 0;
-        if(ui==null) { 
-        	this.UI = new ResourceLocation(MODID, "textures/gui/addon/tech_ui_default.png");
-        }else {
+        if(ui==null){
+        	this.UI = gen1("default");
+        } else{
         	this.UI = ui;
         }
+        this.DETAIL = gen2("default");
         this.x = -1;
         this.y = -1;
     }
@@ -48,6 +82,7 @@ public class TechNode {
     /**
      * 
      * */
+    @Deprecated
     public TechNode(String name, String description, boolean isEnd, int referenceLevel,ResourceLocation ui) {
         this.name = name;
         this.description = description;
@@ -57,11 +92,12 @@ public class TechNode {
         this.isBegin = false;
         this.isEnd = isEnd;
         this.referenceLevel = referenceLevel;
-        if(ui==null) { 
-        	this.UI = new ResourceLocation(MODID, "textures/gui/addon/tech_ui_default.png");
-        }else {
+        if(ui==null){
+        	this.UI = gen1("default");
+        } else{
         	this.UI = ui;
         }
+        this.DETAIL = gen2("default");
         this.x = -1;
         this.y = -1;
     }
@@ -79,12 +115,36 @@ public class TechNode {
         return y;
     }
     
+    public int getTime() {
+    	return this.needTime;
+    }
+    
+    @Nullable
+    public List<ItemStack> getItem(){
+    	return this.needResources;
+    }
+    
+    public TechNode time(int t) {
+    	this.needTime = t;
+    	return this;
+    }
+    public TechNode resources(Supplier<List<ItemStack>> supplier) {
+    	this.needResources = supplier.get();
+    	return this;
+    }
+
     public int[] getPosition() {
     	return new int[] {x,y};
     }
     
     public int[] getPosition(int[] offset) {
     	return new int[] {offset[0]+x,offset[1]+y};
+    }
+    
+    public TechNode genUI() {
+    	this.UI = gen1(this.name);
+    	this.DETAIL = gen2(this.name);
+    	return this;
     }
 
     public String getName() {
@@ -123,7 +183,7 @@ public class TechNode {
 
     public boolean canUnlock(Set<TechNode> unlockedTechs) {
         // 判断当前科技是否可以解锁，确保满足前置条件并且没有冲突
-        return prerequisites.isEmpty()||( unlockedTechs.containsAll(prerequisites) && !unlockedTechs.stream().anyMatch(conflict::contains));
+        return !unlockedTechs.contains(this)&&(prerequisites.isEmpty()||( unlockedTechs.containsAll(prerequisites) && !unlockedTechs.stream().anyMatch(conflict::contains)));
     }
 
     @Override
@@ -198,4 +258,102 @@ public class TechNode {
         }
         Collections.sort(existLevel);
     }
+    
+	public ResourceLocation bg() {
+		return DETAIL;
+	}
+	
+	public static class Builder{
+		static final String MODID = "maring";
+	    private String name; // 科技名称
+	    private String description; // 科技描述
+	    private Set<TechNode> prerequisites; // 需要解锁的前置科技
+	    private Set<TechNode> point; // 指向
+	    private Set<TechNode> conflict; // 冲突科技
+	    private boolean isBegin; // 是否是起始科技
+	    private boolean isEnd; // 是否是结束科技
+	    private int referenceLevel; // 参考级别，用于排序等用途,!!必须是线性的，尽量避免出现某个level需要后面的level做前置
+	    private ResourceLocation UI;
+	    private int x; // 渲染时的 X 坐标
+	    private int y; // 渲染时的 Y 坐标
+	    private ResourceLocation DETAIL;
+	    private List<ItemStack> needResources = null;
+	    private int needTime = 1200;
+		
+	    public TechNode.Builder name(String name){
+	    	this.name = name.isEmpty() ? "default" : name;
+	    	return this;
+	    }
+	    
+	    public TechNode.Builder description(String description){
+	    	this.description = description.isEmpty() ? "default" : description;
+	    	return this;
+	    }
+	    
+	    public TechNode.Builder begin(){
+	    	this.isBegin = true;
+	    	this.referenceLevel = 0;
+	    	return this;
+	    }
+	    
+	    public TechNode.Builder end(){
+	    	this.isEnd = true;
+	    	return this;
+	    }
+	    
+	    /**
+	     * it suggest the level of hovv deep the node is in the Tree
+	     * */
+	    public TechNode.Builder reference(int l){
+	    	this.referenceLevel = l<0?0:l;
+	    	return this;
+	    }
+	    
+	    public TechNode.Builder genUI(){
+	    	if(this.name!=null) {
+	        	this.UI = gen1(this.name);
+	        	this.DETAIL = gen2(this.name);
+	        	return this;
+	    	}else {
+	    		this.name = "default";
+	    		return this.genUI();
+	    	}
+	    }
+	    
+	    public TechNode.Builder resource(@Nullable Supplier<List<ItemStack>> items){
+	    	this.needResources = items.get();
+	    	return this;
+	    }
+		
+	    public TechNode.Builder time(int t){
+	    	this.needTime = t<0?t=0:t;
+	    	return this;
+	    }
+	    
+	    public TechNode.Builder position(int[] p){
+	    	return this.position(p[0],p[1]);
+	    }
+	    public TechNode.Builder position(int x,int y){
+	    	this.x=x;
+	    	this.y=y;
+	    	return this;
+	    }
+	    
+	    public TechNode.Builder ui(ResourceLocation ui){
+	    	this.UI = ui;
+	    	return this;
+	    }
+	    
+	    public TechNode.Builder detail(ResourceLocation ui){
+	    	this.DETAIL = ui;
+	    	return this;
+	    }
+	    
+		public TechNode build() {
+			return new TechNode(this);
+		}
+
+
+
+	}
 }

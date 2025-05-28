@@ -4,11 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import org.checkerframework.common.returnsreceiver.qual.This;
+
 import menu.ScreenHelper;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 
 /**
  * x1,y1,x2,y2传入需要是加上leftpos和toppos
@@ -40,7 +45,9 @@ public interface ResearchTableScreenHelper {
 	static final ResourceLocation STANDARD_TECH_BG_G = new ResourceLocation(MODID, "textures/gui/addon/tech_bg_g.png");
 	static final ResourceLocation STANDARD_TECH_BG_Y = new ResourceLocation(MODID, "textures/gui/addon/tech_bg_y.png");
 	static final ResourceLocation STANDARD_TECH_BG_R = new ResourceLocation(MODID, "textures/gui/addon/tech_bg_r.png");
-	
+
+	static final ResourceLocation BAR_EMPTY = new ResourceLocation(MODID, "textures/gui/addon/oxygen.png");
+	static final ResourceLocation BAR = new ResourceLocation(MODID, "textures/gui/addon/water.png");
 	
 	static void connection(GuiGraphics graphics,int[] start, int[] end) {
 		if(end.length!=2||start.length!=2) return;
@@ -119,6 +126,69 @@ public interface ResearchTableScreenHelper {
                 0, 0, width, height,to[0]-from[0],to[1]-from[1]); // 纹理起点坐标和绘制区域大小
 	}
 	
+	static void renderDescription(GuiGraphics graphics,int value,TechNode node,int width,int height,Font font,boolean canBeUnlock,boolean isUnlocking,boolean isUnlocked,Inventory player) {
+		if(node==null) return;
+        graphics.blit(node.bg(), 0, 0,
+                0, 0, width/3, height,width/3,height); // 纹理起点坐标和绘制区域大小
+        
+		String name = Component.translatable(node.getName()+".description").getString();
+		drawWrappedText(graphics, font, name, width/3+16, 16, width, height);
+		
+		logo(graphics,new int[] {width-standardBgSize[0]/2-16,height-standardBgSize[1]/2-16},standardBgSize[0]/2,standardBgSize[1]/2,STANDARD_TECH_BG_G);
+		String back = Component.translatable("back").getString();
+		graphics.drawCenteredString(font, back,
+				width-standardBgSize[0]/2-16,height-standardBgSize[1]/2-16-4, 
+				16777215);
+		
+		logo(graphics,new int[] {width/3+width/3,height*2/3},standardBgSize[0]/2,standardBgSize[1]/2,STANDARD_TECH_BG_G);
+		if(canBeUnlock&&!isUnlocking) {
+			String start = Component.translatable("tech.start").getString();
+			graphics.drawCenteredString(font, start,
+					width/3+width/3,height*2/3-4, 
+					16777215);
+		}else if(isUnlocking){
+			String isStart = Component.translatable("tech.isStarting").getString();
+			graphics.drawCenteredString(font, isStart,
+					width/3+width/3,height*2/3-4, 
+					16777215);
+			ScreenHelper.bar(graphics,BAR_EMPTY, width/3+width/3-64,height*2/3+16, 128, 8, 8, 100.0);
+			ScreenHelper.bar(graphics,BAR, width/3+width/3-64,height*2/3+16, 128, 8, 8, ((double)node.getTime()-(double)value)*100.0/(double)node.getTime());
+		}else if(isUnlocked){
+			String finish = Component.translatable("tech.finished").getString();
+			graphics.drawCenteredString(font, finish,
+					width/3+width/3,height*2/3-4, 
+					16777215);
+		}else {
+			String start = Component.translatable("tech.start").getString();
+			graphics.drawCenteredString(font, start,
+					width/3+width/3,height*2/3-4, 
+					0x808080);
+		}
+		List<ItemStack> s = node.getItem();
+		if (!(s==null)&&!s.isEmpty()) {
+		    // 设置基准渲染位置
+		    int baseX = width / 3 + width / 3 -8;
+		    int baseY = height * 2 / 3 - 32;
+		    
+		    // 渲染的偏移量 (可以根据物品数量进行动态调整)
+		    int spacing = 20;  // 设置每个物品之间的间隔
+		    int xOffset = -spacing*(s.size()-1)/2;
+		    
+		    for (ItemStack item : s) {
+		    	graphics.renderFakeItem(item, baseX + xOffset, baseY);
+		    	int have = 0;
+		    	for(ItemStack i : player.items) {
+		    		if(i.getItem().equals(item.getItem())) have += i.getCount();
+		    	}
+		    	String d = have+"/"+item.getCount();
+		    	
+		    	graphics.renderItemDecorations(font,item, baseX + xOffset, baseY,d);
+		        xOffset += spacing; 
+		    }
+		}
+		
+	}
+	
 	static void renderTechTree(GuiGraphics graphics,TechTree tree,Font font,int[] offset) {
 		if(tree.isEmpty()) return;
 		tree.SetOffset(offset);
@@ -174,7 +244,7 @@ public interface ResearchTableScreenHelper {
 	
 	private static List<int[]> provideAcceptPoint(TechNode askNode) {
 		List<int[]> o = new ArrayList<int[]>() ;
-		o.add(new int[] {askNode.getX(),askNode.getY()-standardBgSize[1]/2-14});
+		o.add(new int[] {askNode.getX(),askNode.getY()-standardBgSize[1]/2-7});
 		o.add(new int[] {askNode.getX()-standardBgSize[0]/4,askNode.getY()-standardBgSize[1]/2-7});
 		o.add(new int[] {askNode.getX()-standardBgSize[0]/3,askNode.getY()-standardBgSize[1]/2-7});
 		o.add(new int[] {askNode.getX()+standardBgSize[0]/4,askNode.getY()-standardBgSize[1]/2-7});
@@ -189,6 +259,40 @@ public interface ResearchTableScreenHelper {
 	    }
 	    
 	    return result;
+	}
+	
+	private static void drawWrappedText(GuiGraphics graphics, Font font, String text, int x, int y, int width, int height) {
+	    int maxWidth = width * 2 / 3 - 24;  // 最大宽度限制为 width 的 2/3-24
+	    int lineHeight = font.lineHeight; // 获取字体的高度，用于计算行间距
+	    int currentX = x;
+	    int currentY = y;
+
+	    StringBuilder currentLine = new StringBuilder();
+	    
+	    // 按字符遍历文本
+	    for (int i = 0; i < text.length(); i++) {
+	        // 向当前行添加字符
+	        currentLine.append(text.charAt(i));
+	        
+	        // 计算当前行的宽度
+	        int currentLineWidth = font.width(currentLine.toString());
+
+	        // 如果当前行宽度超出了最大宽度
+	        if (currentLineWidth > maxWidth) {
+	            // 换行：渲染当前行，更新位置
+	            graphics.drawString(font, currentLine.toString(), currentX, currentY, 16777215, false);
+	            currentY += lineHeight;  // 更新 y 位置
+
+	            // 清空当前行并将当前字符添加为新的一行
+	            currentLine.setLength(0);
+	            currentLine.append(text.charAt(i));
+	        }
+	    }
+
+	    // 渲染最后一行（如果有的话）
+	    if (currentLine.length() > 0) {
+	        graphics.drawString(font, currentLine.toString(), currentX, currentY, 16777215, false);
+	    }
 	}
 	
 }

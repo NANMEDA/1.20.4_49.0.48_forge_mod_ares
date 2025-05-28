@@ -5,6 +5,8 @@ import com.google.common.collect.Sets;
 import block.norm.BlockBasic;
 import block.norm.BlockRegister;
 import event.forge.TeleportAndCreateLanderEvent;
+import menu.etchingmachine.EtchingMachineMenuProvider;
+import menu.rocket.RocketMenuProvider;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
@@ -17,6 +19,7 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -38,6 +41,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
+import net.minecraftforge.common.extensions.IForgeServerPlayer;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.ItemStackHandler;
@@ -170,7 +174,7 @@ public abstract class IRocketEntity extends ModVehicle implements IGaugeValuesPr
         }
     }
 
-    private final ItemStackHandler inventory = new ItemStackHandler(10) {
+    private final ItemStackHandler inventory = new ItemStackHandler(8) {
         @Override
         public int getSlotLimit(int slot) {
             return 64;
@@ -225,13 +229,11 @@ public abstract class IRocketEntity extends ModVehicle implements IGaugeValuesPr
     public InteractionResult interact(Player player, InteractionHand hand) {
         super.interact(player, hand);
         InteractionResult result = InteractionResult.sidedSuccess(this.level().isClientSide);
-
         if (!this.level().isClientSide) {
             if (player.isCrouching()) {
-                //this.openCustomInventoryScreen(player);
+                this.openCustomInventoryScreen(player);
                 return InteractionResult.CONSUME;
             }
-
             player.startRiding(this);
             return InteractionResult.CONSUME;
         }
@@ -239,29 +241,17 @@ public abstract class IRocketEntity extends ModVehicle implements IGaugeValuesPr
         return result;
     }
 
-    /*
+    
     @Override
     public void openCustomInventoryScreen(Player player) {
         if (player instanceof ServerPlayer serverPlayer) {
-        	IForgeServerPlayer ifpe = (IForgeServerPlayer)player;
-			ifpe.openScreen(new MenuProvider() {
-                @Override
-                public Component getDisplayName() {
-                    return IRocketEntity.this.getName();
-                }
-
-                @Override
-                public AbstractContainerMenu createMenu(int id, Inventory inventory, Player player) {
-                    FriendlyByteBuf packetBuffer = new FriendlyByteBuf(Unpooled.buffer());
-                    packetBuffer.writeVarInt(IRocketEntity.this.getId());
-                    return new RocketMenu.GuiContainer(id, inventory, packetBuffer);
-                }
-            }, buf -> {
-                buf.writeVarInt(IRocketEntity.this.getId());
-            });
+			IForgeServerPlayer ifpe = (IForgeServerPlayer)player;
+			ifpe.openMenu(new RocketMenuProvider(this.getId()), buf -> {
+	            buf.writeInt(this.getId());  // 将当前实体的 ID 写入到数据中
+	        });
         }
     }
-*/
+
     @Override
     public Vec3 getDismountLocationForPassenger(LivingEntity livingEntity) {
         Vec3[] avector3d = new Vec3[]{getCollisionHorizontalEscapeVector(this.getBbWidth(), livingEntity.getBbWidth(), livingEntity.getYRot()), getCollisionHorizontalEscapeVector(this.getBbWidth(), livingEntity.getBbWidth(), livingEntity.getYRot() - 22.5F), getCollisionHorizontalEscapeVector(this.getBbWidth(), livingEntity.getBbWidth(), livingEntity.getYRot() + 22.5F), getCollisionHorizontalEscapeVector(this.getBbWidth(), livingEntity.getBbWidth(), livingEntity.getYRot() - 45.0F), getCollisionHorizontalEscapeVector(this.getBbWidth(), livingEntity.getBbWidth(), livingEntity.getYRot() + 45.0F)};

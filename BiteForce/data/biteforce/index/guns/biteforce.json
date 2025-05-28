@@ -1,0 +1,8 @@
+{
+    "name": "biteforce.biteforce.name",
+    "display": "biteforce:biteforce_display",
+    "data": "biteforce:biteforce_data",
+    "type": "rifle",
+    "item_type": "modern_kinetic",
+    "sort": 80
+}

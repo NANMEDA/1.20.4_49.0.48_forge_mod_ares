@@ -11,6 +11,8 @@ import net.minecraftforge.network.SimpleChannel;
 import network.client.CDomeControl;
 import network.client.CResearchTableUpdate;
 import network.client.CRocketStart;
+import network.client.CStartTech;
+import network.client.CTechTreeUpdate;
 import network.server.SRocketStart;
 import net.minecraft.resources.ResourceLocation;
 
@@ -41,6 +43,10 @@ public class NetworkHandler {
 	    		CResearchTableUpdate::handle);
 	    register(CDomeControl.class, CDomeControl::encode, CDomeControl::decode,
 	    		CDomeControl::handle);
+	    register(CTechTreeUpdate.class, CTechTreeUpdate::encode, CTechTreeUpdate::decode,
+	    		CTechTreeUpdate::handle);
+	    register(CStartTech.class, CStartTech::encode, CStartTech::decode,
+	    		CStartTech::handle);
 
 	    // Server 2 Client
 	    register(SRocketStart.class, SRocketStart::encode, SRocketStart::decode,

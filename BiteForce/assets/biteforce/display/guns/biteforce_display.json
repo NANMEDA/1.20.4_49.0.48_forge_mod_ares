@@ -1,0 +1,28 @@
+{
+    "model": "biteforce:gun/biteforce_geo",
+    "texture": "biteforce:gun/uv/biteforce",
+    "slot": "biteforce:gun/slot/biteforce",
+    "hud": "biteforce:gun/hud/biteforce",
+    "animation": "biteforce:biteforce",
+    "use_default_animation": "rifle",
+    "transform": {
+        "scale": {
+            "thirdperson": [
+                0.6,
+                0.6,
+                0.6
+            ],
+            "ground": [
+                0.6,
+                0.6,
+                0.6
+            ],
+            "fixed": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        }
+    },
+    "third_person_animation": "default"
+}

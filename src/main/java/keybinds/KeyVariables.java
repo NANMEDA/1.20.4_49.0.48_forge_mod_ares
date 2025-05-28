@@ -9,7 +9,6 @@ import com.mojang.blaze3d.platform.InputConstants;
 
 /**
  * 注册按键用的
- * @author NANMEDA
  * */
 public class KeyVariables {
 	

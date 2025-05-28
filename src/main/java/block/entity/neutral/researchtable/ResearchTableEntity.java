@@ -5,6 +5,7 @@ import block.entity.BlockEntityRegister;
 import block.entity.consumer.PowerConsumerEntity;
 import item.ItemRegister;
 import item.blueprint.ItemBlueprintNBT;
+import menu.reseachtable.TechNode;
 import menu.reseachtable.TechTree;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -39,6 +40,9 @@ public class ResearchTableEntity extends PowerConsumerEntity{
 	public int atLevel = -1;
 	static protected int itemstack_number=2;
 	private TechTree techTree = new TechTree(new int[]{0,0});;
+	private int remainTick = 0;
+	private TechNode pNode = null;
+	private boolean start = false;
 	
 	public ResearchTableEntity(BlockPos pos, BlockState pBlockState) {
 		super(BlockEntityRegister.researchtable_BLOCKENTITY.get(), pos, pBlockState);
@@ -91,6 +95,19 @@ public class ResearchTableEntity extends PowerConsumerEntity{
             loaddata(tag);
         }
     }
+    
+    public boolean isResearching() {
+    	return this.remainTick>0;
+    }
+    
+    public int getTime() {
+    	return this.remainTick;
+    }
+    
+    public boolean isResearching(String name) {
+    	if(this.pNode==null) return false;
+    	return this.pNode.getName().equals(name)&&isResearching();
+    }
 
     @Override
     public ClientboundBlockEntityDataPacket getUpdatePacket() {
@@ -130,6 +147,7 @@ public class ResearchTableEntity extends PowerConsumerEntity{
 	private final String TAG_T = "atTech";
 	private final String TAG_L = "atLevel";
 	private final String TAG_ITEM = "Item";
+	private final String TAG_TICK = "ticks";
 	
 	protected void savedata(CompoundTag tag) {
 		tag.put(TAG_ITEM, item.serializeNBT());
@@ -141,7 +159,12 @@ public class ResearchTableEntity extends PowerConsumerEntity{
         if (techTree != null) {
             tag.put("techTree", techTree.saveToNBT());
         }
+        if(pNode!=null) {
+        	tag.putString("Node", pNode.getName());
+        }
+        tag.putInt(TAG_TICK, this.remainTick);
 	}
+	
 	
 	protected void loaddata(CompoundTag tag) {
 		if(tag.contains(TAG_ITEM)) {
@@ -164,6 +187,12 @@ public class ResearchTableEntity extends PowerConsumerEntity{
 		}
         if (tag.contains("techTree")) {
             this.techTree = TechTree.loadFromNBT(tag.getCompound("techTree"));
+        }
+        if (tag.contains("Node")) {
+            this.pNode = TechNode.fromName(tag.getString("Node")); 
+        }
+        if (tag.contains(TAG_TICK)) {
+            remainTick = tag.getInt(TAG_TICK);
         }
 	}
 	
@@ -201,19 +230,38 @@ public class ResearchTableEntity extends PowerConsumerEntity{
 			return null;
 		}
 	}
+	
+	public void setResearch(TechNode node) {
+		this.remainTick = node.getTime();
+		this.pNode = node;
+		setChanged();
+	}
 
 	@Override
 	public void servertick() {
-		//System.out.println("ser is: at tech" + atTech + " at level" + atLevel + "tech1" + tech1);
-		if(atTech>=0&&atLevel>=0) {
-			//System.out.println("attech " + atTech + "atLevel" + atLevel);
-			getBlueprint(atTech,atLevel);
+		if(this.remainTick>0) {
+			if(pNode==null) {
+				this.remainTick = 0;
+				setChanged();
+				level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_CLIENTS);
+			}else {
+				this.remainTick--;
+				if(start) {
+					setChanged();
+					level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_CLIENTS);
+					start = false;
+				}
+			}
+			
+			if(this.remainTick==1) {
+				this.techTree.unlockTech(pNode);
+				pNode = null;
+			}
 		}
 	}
 	
 	@Override
 	public void clienttick() {
-		//System.out.println("cli is at tech" + atTech + " at level" + atLevel+ "tech1" + tech1);
 	}
 
 
@@ -293,6 +341,21 @@ public class ResearchTableEntity extends PowerConsumerEntity{
 
 	public TechTree getTechTree() {
 		return this.techTree;
+	}
+
+
+	public void setNode(TechNode node) {
+		this.pNode = node;
+	}
+
+
+	public void setTime(int tick) {
+		this.remainTick = tick;
+	}
+
+
+	public void startTech() {
+		this.start = true;	
 	}
 
 }

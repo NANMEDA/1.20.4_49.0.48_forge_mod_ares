@@ -47,7 +47,7 @@ public class CreativeTabsRegister {
             		output.accept(ItemRegister.FOOD_ITEMS[i].get());
             	}
         		output.accept(ItemRegister.CHEESE_PIECE.get());
-        		output.accept(ItemRegister.TOMATO.get());
+        		output.accept(ItemRegister.FROSTFIRE_FRUIT.get());
             }).build());
     
     public static final RegistryObject<CreativeModeTab> MAR_MACHINE_TAB = CREATIVE_MODE_TABS.register("mar_machine_tab", () -> CreativeModeTab.builder()

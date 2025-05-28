@@ -60,12 +60,15 @@ public class BlockJSON {
 	    if (file.exists()) {
 	        return;
 	    }
-	    
+
 	    JsonObject jsonObject = new JsonObject();
-	    jsonObject.addProperty("parent", "minecraft:block/crop");
+	    
+	    // Add render type and parent properties
+	    jsonObject.addProperty("render_type", "minecraft:cutout");
+	    jsonObject.addProperty("parent", "maring:block/crop_dense");
 
 	    JsonObject textures = new JsonObject();
-	    textures.addProperty("crop", "maring:block/" + name);  // 初始值为stage0
+	    textures.addProperty("crop", "maring:block/" + name + "_block_stage0");  // Updated texture path
 
 	    jsonObject.add("textures", textures);
 
@@ -77,6 +80,7 @@ public class BlockJSON {
 	        e.printStackTrace();
 	    }
 	}
+
 	
 	/***
 	 * 生成的use

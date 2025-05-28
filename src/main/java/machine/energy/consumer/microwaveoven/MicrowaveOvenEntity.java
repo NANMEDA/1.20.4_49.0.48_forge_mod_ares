@@ -27,7 +27,7 @@ import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
-import tags.register.TagkeyRegister;
+import tags.register.TagkeyRegistry;
 import util.net.EnergyNetProcess;
 
 /**
@@ -279,7 +279,7 @@ public class MicrowaveOvenEntity extends ConsumerEntity implements IConsumer{
 		} else {
 		    //for (int i = 1; i <= 9; i++) {
 		        //if (uncookfood == ItemRegister.FOOD_ITEMS[i].get()) {
-		        if(uncookfood.getDefaultInstance().is(TagkeyRegister.CAN_FOOD_TAG)) {//哪个更快捏？
+		        if(uncookfood.getDefaultInstance().is(TagkeyRegistry.CAN_FOOD_TAG)) {//哪个更快捏？
 		            return true;
 		        }
 		    //}

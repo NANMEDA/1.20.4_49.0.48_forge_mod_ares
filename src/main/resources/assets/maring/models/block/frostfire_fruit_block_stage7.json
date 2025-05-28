@@ -1,0 +1,7 @@
+{
+  "render_type": "minecraft:cutout",
+  "parent": "maring:block/crop_dense",
+  "textures": {
+    "crop": "maring:block/frostfire_fruit_block_stage7"
+  }
+}

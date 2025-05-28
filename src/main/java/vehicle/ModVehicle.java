@@ -257,4 +257,7 @@ public abstract class ModVehicle extends Entity {
     public void setDiscardFriction(boolean p_147245_) {
         this.discardFriction = p_147245_;
     }
+
+	public void openCustomInventoryScreen(Player player) {
+	}
 }

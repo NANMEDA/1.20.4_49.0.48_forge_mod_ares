@@ -286,7 +286,7 @@ public class BlockRegister {
     
     static {
     	block.norm.deposit.Register.init();
-    	block.norm.farm.Register.init();
+    	block.norm.farm.FarmBlockRegistry.init();
     }
     
     /***

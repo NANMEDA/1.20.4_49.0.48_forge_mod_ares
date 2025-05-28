@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "age\u003d0": {
+      "model": "maring:block/frostfire_fruit_block_stage0"
+    },
+    "age\u003d1": {
+      "model": "maring:block/frostfire_fruit_block_stage1"
+    },
+    "age\u003d2": {
+      "model": "maring:block/frostfire_fruit_block_stage2"
+    },
+    "age\u003d3": {
+      "model": "maring:block/frostfire_fruit_block_stage3"
+    },
+    "age\u003d4": {
+      "model": "maring:block/frostfire_fruit_block_stage4"
+    },
+    "age\u003d5": {
+      "model": "maring:block/frostfire_fruit_block_stage5"
+    },
+    "age\u003d6": {
+      "model": "maring:block/frostfire_fruit_block_stage6"
+    },
+    "age\u003d7": {
+      "model": "maring:block/frostfire_fruit_block_stage7"
+    }
+  }
+}

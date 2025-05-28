@@ -50,15 +50,15 @@ public class TechTreeLayout {
             
             for(TechNode t:techNodesAtLevel) {
             	if(level<5) {
-            		t.setPosition(t.getX()+offsetX+r.nextInt(-48,48), offsetY+ r.nextInt(-32,32));
+            		t.setPosition(t.getX()+offsetX+r.nextInt(-16,16), offsetY+ r.nextInt(-16,16));
             	}else {
-            		t.setPosition(t.getX()+offsetX+r.nextInt(-16,16), offsetY);
+            		t.setPosition(t.getX()+offsetX, offsetY);
             	}
             	offsetX+=referenceX;
             }
         }
         
-      //最远中心X偏移
+        //最远中心X偏移
         int logestCenterOffsetX = (int) ((((double) biggestLevelSize) - 1.0d)/2.0d * (double) referenceX);
 		for(TechNode node : nodes) {
 			node.setPosition(node.getX()+logestCenterOffsetX, node.getY());

@@ -5,7 +5,7 @@ import item.blueprint.ItemBlueprint;
 import item.can.ItemCan;
 import item.electric.BatteryHeart;
 import item.food.CheesePiece;
-import item.food.farm.Tomato;
+import item.food.farm.FrostfireFruit;
 import item.rocket.RocketItem;
 import item.tool.ItemChangeStick;
 import item.tool.ItemJunctionConnector;
@@ -139,7 +139,7 @@ public class ItemRegister {
     public static final RegistryObject<Item> CHEESE_PIECE = ITEMS.register(CheesePiece.global_name,
             () -> new CheesePiece(new Item.Properties()));
     
-    public static final RegistryObject<Item> TOMATO = ITEMS.register(Tomato.global_name,
-            () -> new Tomato(block.norm.farm.Register.TOMATO_B.get(),new Item.Properties()));
+    public static final RegistryObject<Item> FROSTFIRE_FRUIT = ITEMS.register(FrostfireFruit.global_name,
+            () -> new FrostfireFruit(block.norm.farm.FarmBlockRegistry.FROSTFIRE_FRUIT_B.get(),new Item.Properties()));
     
 }

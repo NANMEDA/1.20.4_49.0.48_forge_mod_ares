@@ -9,7 +9,7 @@ import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.resources.ResourceLocation;
-/*
+
 public class RocketrScreen extends AbstractContainerScreen<RocketMenu> {
 	
 	public static final String MODID = "maring";
@@ -23,8 +23,6 @@ public class RocketrScreen extends AbstractContainerScreen<RocketMenu> {
 	@Override
 	protected void renderBg(GuiGraphics pGraphics, float pPartialTick, int pMousex, int pMousey) {
 
-		AdvancedMetalManufactorEntity blockEntity =  this.getMenu().getBlockEntity();
-        int renderDis = blockEntity.getRenderDis();
         //55/36 72/51
         
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
@@ -36,11 +34,10 @@ public class RocketrScreen extends AbstractContainerScreen<RocketMenu> {
         int yStart = this.topPos + 35; // 屏幕上的 Y 坐标
         int u = 0; // 纹理中的 X 坐标
         int v = 0; // 纹理中的 Y 坐标
-        pGraphics.blit(GUI_DO, xStart + renderDis, yStart, u, v, width, height);
+        pGraphics.blit(GUI_DO, xStart + 0, yStart, u, v, width, height);
 		
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderTexture(0, GUI);
 		pGraphics.blit(GUI,this.leftPos,this.topPos,0,0,this.imageWidth,this.imageHeight);
 	}
 }
-*/

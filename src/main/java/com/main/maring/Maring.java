@@ -27,7 +27,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import network.NetworkHandler;
 import tags.register.AddTag;
-import tags.register.TagkeyRegister;
+import tags.register.TagkeyRegistry;
 import util.EntityGravity;
 import util.ItemGravity;
 import util.mar.EnvironmentDataManager;
@@ -49,7 +49,7 @@ public class Maring
     // Create a Deferred Register to hold Blocks which will all be registered under the "examplemod" namespace
     static{
     	//AddTag.init();
-    	TagkeyRegister.init();
+    	TagkeyRegistry.init();
     }
     
     public Maring()
@@ -90,8 +90,12 @@ public class Maring
         
         BrewRigster.registerBrewingRecipes();
         CanHelper.init();
+        
         TechManager.initiateTech();
         TechTreeLayout.genLayout(TechManager.getOriginalTechNodes());
+        
+        
+        Plugin.detect();
         
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
         

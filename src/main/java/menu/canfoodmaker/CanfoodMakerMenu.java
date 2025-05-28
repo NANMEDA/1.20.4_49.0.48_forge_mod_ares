@@ -12,7 +12,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.items.SlotItemHandler;
-import tags.register.TagkeyRegister;
+import tags.register.TagkeyRegistry;
 
 public class CanfoodMakerMenu extends BlockEntityMenuBasic{
 
@@ -27,7 +27,7 @@ public class CanfoodMakerMenu extends BlockEntityMenuBasic{
 				 @Override
 				    public boolean mayPlace(@NotNull ItemStack stack)
 				    {
-				    	if(stack.is(TagkeyRegister.CAN_FOOD_MATERIAL_TAG)||stack.getItem().isEdible()) {
+				    	if(stack.is(TagkeyRegistry.CAN_FOOD_MATERIAL_TAG)||stack.getItem().isEdible()) {
 				    		return true;
 				    	}
 				        return false;
@@ -37,7 +37,7 @@ public class CanfoodMakerMenu extends BlockEntityMenuBasic{
 				 @Override
 				    public boolean mayPlace(@NotNull ItemStack stack)
 				    {
-				    	if(stack.is(TagkeyRegister.CAN_FOOD_MATERIAL_TAG)||stack.getItem().isEdible()) {
+				    	if(stack.is(TagkeyRegistry.CAN_FOOD_MATERIAL_TAG)||stack.getItem().isEdible()) {
 				    		return true;
 				    	}
 				        return false;
@@ -47,7 +47,7 @@ public class CanfoodMakerMenu extends BlockEntityMenuBasic{
 				 @Override
 				    public boolean mayPlace(@NotNull ItemStack stack)
 				    {
-				    	if(stack.is(TagkeyRegister.CAN_FOOD_MATERIAL_TAG)||stack.getItem().isEdible()) {
+				    	if(stack.is(TagkeyRegistry.CAN_FOOD_MATERIAL_TAG)||stack.getItem().isEdible()) {
 				    		return true;
 				    	}
 				        return false;

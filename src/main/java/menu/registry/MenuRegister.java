@@ -15,6 +15,7 @@ import menu.microwaveoven.MicrowaveOvenMenu;
 import menu.playerextend.PlayerExtendMenu;
 import menu.powerstationburn.PowerStationBurnMenu;
 import menu.reseachtable.ResearchTableMenu;
+import menu.rocket.RocketMenu;
 import menu.show.ShowBlockMenu;
 import menu.show.itemstack.ShowItemStackMenu;
 import menu.stonewasher.StoneWasherMenu;
@@ -79,6 +80,9 @@ public class MenuRegister {
     
     public static final RegistryObject<MenuType<MarReactorMenu>> MARREACTOR_MENU = MENU_TYPES.register("marreactor_menu",
     		() -> IForgeMenuType.create((windowId, inv, data) -> new MarReactorMenu(inv, windowId, data.readBlockPos())));
+    
+    public static final RegistryObject<MenuType<RocketMenu>> ROCKET_MENU = MENU_TYPES.register("rocket_menu",
+    		() -> IForgeMenuType.create((windowId, inv, data) -> new RocketMenu(inv, windowId, data.readInt())));
     
     /*
     public static final RegistryObject<MenuType<PlayerExtendMenu>> ROCKET_MENU = MENU_TYPES.register("rocket_menu",

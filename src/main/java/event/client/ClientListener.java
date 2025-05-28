@@ -46,6 +46,7 @@ import menu.playerextend.PlayerExtendScreen;
 import menu.powerstationburn.PowerStationBurnScreen;
 import menu.registry.MenuRegister;
 import menu.reseachtable.ResearchTableScreen;
+import menu.rocket.RocketrScreen;
 import menu.show.ShowBlockScreen;
 import menu.show.itemstack.ShowItemStackScreen;
 import menu.stonewasher.StoneWasherScreen;
@@ -89,6 +90,7 @@ public class ClientListener{
 		
 		event.enqueueWork(()->MenuScreens.register(MenuRegister.MARREACTOR_MENU.get(), MarReactorScreen::new));
 		
+		event.enqueueWork(()->MenuScreens.register(MenuRegister.ROCKET_MENU.get(), RocketrScreen::new));
 		
 		
         event.enqueueWork(()-> EntityRenderers.register(MonsterRegister.JUMP_SPIDER.get(), JumpSpiderRenderer::new)); 

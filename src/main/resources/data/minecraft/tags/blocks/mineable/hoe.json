@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "maring:mar_tomato_block"
+    "maring:mar_tomato_block",
+    "maring:frostfire_fruit_block"
   ]
 }

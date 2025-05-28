@@ -1,27 +1,26 @@
 package menu;
 
-import net.minecraft.core.BlockPos;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.Block;
 
 public abstract class EntityMenuBasic extends AbstractContainerMenu{
 
 	//public final Entity entity;
 	private final int slot_count,slot_normal,slot_normalcount;
+	private final Entity target;
 	
-	protected EntityMenuBasic(MenuType<?> pMenuType, int pID,Object entity, int slot_count, int slot_normal, int slot_normalcount) {
+	protected EntityMenuBasic(MenuType<?> pMenuType, int pID,Entity entity, int slot_count, int slot_normal, int slot_normalcount) {
 		super(pMenuType, pID);
 		//this.entity = entity;
 		this.slot_count = slot_count;
 		this.slot_normal = slot_normal;
 		this.slot_normalcount = slot_normalcount;
+		this.target = entity;
 		}
 	
 	@Override
@@ -66,7 +65,7 @@ public abstract class EntityMenuBasic extends AbstractContainerMenu{
 	
 	@Override
 	public boolean stillValid(Player player) {
-		return true;
+		return player.getHealth()>0&&this.target!=null;
 		//return stillValid(ContainerLevelAccess.create(player.level(), pos),player,target_block);
 	}
 	
