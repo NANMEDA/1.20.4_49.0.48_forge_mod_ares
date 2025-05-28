@@ -2,7 +2,6 @@ package menu.blueprintbuilder;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 
-import block.entity.consumer.basicmetalmanufactor.BasicMetalManufactorEntity;
 import block.entity.neutral.blueprintbuilder.BlueprintBuilderEntity;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -21,7 +20,7 @@ public class BlueprintBuilderScreen extends AbstractContainerScreen<BlueprintBui
 	
     @Override
     public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
-        this.renderBackground(guiGraphics, mouseX, mouseY, partialTicks);
+        this.renderBackground(guiGraphics);
         this.renderTooltip(guiGraphics, mouseX, mouseY);
         super.render(guiGraphics, mouseX, mouseY, partialTicks);
     }

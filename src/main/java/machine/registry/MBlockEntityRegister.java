@@ -29,7 +29,7 @@ public class MBlockEntityRegister {
     
 	public static final RegistryObject<BlockEntityType<SolarBasementEntity>>SOLARBASEMENT_BE = 
 			BLOCKENTITIES.register(SolarBasement.global_name,
-					() -> BlockEntityType.Builder.of(SolarBasementEntity::new, machine.registry.MBlockRegister.SOLARBASEMENT_B.get()).build(null));
+					() -> BlockEntityType.Builder.of(SolarBasementEntity::new, MBlockRegister.SOLARBASEMENT_B.get()).build(null));
 
 	public static final RegistryObject<BlockEntityType<MicrowaveOvenEntity>> microwaveoven_BLOCKENTITY = 
 			BLOCKENTITIES.register("microwave_oven", 

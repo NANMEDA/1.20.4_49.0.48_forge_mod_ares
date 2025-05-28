@@ -136,8 +136,6 @@ public class MarPlaceEdit {
 	           block == Blocks.PEONY ||
 	           block == Blocks.TALL_GRASS ||
 	           block == Blocks.LARGE_FERN ||
-	           block == Blocks.LARGE_FERN ||
-	           block == Blocks.SHORT_GRASS ||
     		   block == Blocks.PINK_PETALS ||
 	           block == Blocks.FERN;
 	}

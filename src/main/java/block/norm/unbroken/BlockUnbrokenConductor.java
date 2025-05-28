@@ -3,7 +3,6 @@ package block.norm.unbroken;
 import javax.annotation.Nullable;
 
 import machine.energy.EnergyEntity;
-import machine.energy.consumer.microwaveoven.MicrowaveOvenEntity;
 import machine.energy.trans.UnbrokenConductorEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;

@@ -11,7 +11,6 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.ItemStack;
 import util.tech.TechManager;
 

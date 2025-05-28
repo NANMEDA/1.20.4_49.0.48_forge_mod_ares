@@ -2,7 +2,6 @@ package block.norm.machineparts;
 
 import javax.annotation.Nullable;
 
-import block.entity.machineparts.ElectronicPowerEntity;
 import block.entity.machineparts.MaterialInputEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -15,7 +14,6 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import util.json.BlockJSON;
 

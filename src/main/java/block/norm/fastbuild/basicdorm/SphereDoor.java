@@ -4,6 +4,7 @@ import javax.annotation.Nullable;
 
 import block.norm.BlockRegister;
 import block.norm.fastbuild.DormHelper;
+import block.norm.fastbuild.JunctionHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
@@ -58,16 +59,16 @@ public class SphereDoor extends Block {
     private void createJunctionBase(Level level, BlockPos pos,Direction direction) {
     	switch (direction) {
 		case NORTH: 
-			block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(0,0,5),6,pos);
+			JunctionHelper.BirthJuntionBase(level,pos.offset(0,0,5),6,pos);
 			break;
 		case SOUTH: 
-			block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(0,0,-5),2,pos);
+			JunctionHelper.BirthJuntionBase(level,pos.offset(0,0,-5),2,pos);
 			break;
 		case EAST: 
-			block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(5,0,0),0,pos);
+			JunctionHelper.BirthJuntionBase(level,pos.offset(5,0,0),0,pos);
 			break;
 		case WEST: 
-			block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(-5,0,0),4,pos);
+			JunctionHelper.BirthJuntionBase(level,pos.offset(-5,0,0),4,pos);
 			break;
 		default:
 			throw new IllegalArgumentException("Unexpected value: " + direction);

@@ -3,7 +3,6 @@ package block.entity.neutral.blueprintbuilder;
 
 import block.entity.BlockEntityRegister;
 import block.entity.consumer.PowerConsumerEntity;
-import item.ItemRegister;
 import item.blueprint.ItemBlueprintNBT;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

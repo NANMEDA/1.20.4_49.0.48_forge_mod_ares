@@ -3,7 +3,6 @@ package block.norm.researchtable;
 import javax.annotation.Nullable;
 
 import block.entity.neutral.researchtable.ResearchTableEntity;
-import menu.microwaveoven.MicrowaveOvenMenuProvider;
 import menu.reseachtable.ResearchTableMenuProvider;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -26,7 +25,6 @@ import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.extensions.IForgeServerPlayer;
 import util.json.BlockJSON;
 
 /**
@@ -64,9 +62,8 @@ public class BlockResearchTable extends Block implements EntityBlock{
 		if(!level.isClientSide()) {
 			var BlockEntity = level.getBlockEntity(pos);
 			if (BlockEntity instanceof ResearchTableEntity entity) {
-				player = (ServerPlayer) player;
-				IForgeServerPlayer ifpe = (IForgeServerPlayer)player;
-				ifpe.openMenu(new ResearchTableMenuProvider(pos), pos);
+				ServerPlayer ifpe = (ServerPlayer)player;
+				ifpe.openMenu(new ResearchTableMenuProvider(pos));
 			}else {
 				throw new IllegalStateException("missing block:"+global_name);
 			}

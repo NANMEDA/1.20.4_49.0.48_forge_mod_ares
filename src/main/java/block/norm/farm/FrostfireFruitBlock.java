@@ -2,8 +2,6 @@ package block.norm.farm;
 
 import java.util.Random;
 
-import com.mojang.serialization.MapCodec;
-
 import item.ItemRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
@@ -24,8 +22,6 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class FrostfireFruitBlock extends CropBlock {
-	
-	   public static final MapCodec<FrostfireFruitBlock> CODEC = simpleCodec(FrostfireFruitBlock::new);
 	   private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[]{
 			   Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), 
 			   Block.box(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D), 
@@ -37,10 +33,6 @@ public class FrostfireFruitBlock extends CropBlock {
 			   Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D)};
 	   
 	   public static final String global_name = "frostfire_fruit_block";
-
-	   public MapCodec<FrostfireFruitBlock> codec() {
-	      return CODEC;
-	   }
 	   
 
 	   public FrostfireFruitBlock(BlockBehaviour.Properties p_51328_) {

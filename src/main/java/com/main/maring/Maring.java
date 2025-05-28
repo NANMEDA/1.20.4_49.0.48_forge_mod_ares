@@ -1,16 +1,17 @@
 package com.main.maring;
 
 
+import block.entity.BlockEntityRegister;
+import block.norm.BlockRegister;
+import item.ItemRegister;
+import machine.registry.MBlockRegister;
 import com.mojang.logging.LogUtils;
 
 import animal.entity.MonsterRegister;
 import animal.entity.villager.ModVillager;
-import block.norm.*;
 import creativetab.CreativeTabsRegister;
 import effect.brew.BrewRigster;
 import effect.registry.EffectRegister;
-import event.forge.EnergyNetCalculation;
-import item.*;
 import item.can.CanHelper;
 import machine.registry.MBlockEntityRegister;
 import menu.registry.MenuRegister;
@@ -26,12 +27,10 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import network.NetworkHandler;
-import tags.register.AddTag;
 import tags.register.TagkeyRegistry;
 import util.EntityGravity;
 import util.ItemGravity;
 import util.mar.EnvironmentDataManager;
-import util.net.EnergyNetProcess;
 import util.tech.TechManager;
 import vehicle.VehicleRegister;
 import worldgen.feature.FeatureRegistry;
@@ -64,13 +63,13 @@ public class Maring
 
         BlockRegister.BLOCKS.register(modEventBus);
         BlockRegister.BLOCK_ITEMS.register(modEventBus);
-        machine.registry.MBlockRegister.BLOCKS.register(modEventBus);
-        machine.registry.MBlockRegister.BLOCK_ITEMS.register(modEventBus);   
+        MBlockRegister.BLOCKS.register(modEventBus);
+        MBlockRegister.BLOCK_ITEMS.register(modEventBus);
         
         EffectRegister.EFFECTS.register(modEventBus);
         
         ItemRegister.ITEMS.register(modEventBus);
-        block.entity.BlockEntityRegister.BLOCKENTITIES.register(modEventBus);
+        BlockEntityRegister.BLOCKENTITIES.register(modEventBus);
         MBlockEntityRegister.BLOCKENTITIES.register(modEventBus);
         
         MenuRegister.MENU_TYPES.register(modEventBus);

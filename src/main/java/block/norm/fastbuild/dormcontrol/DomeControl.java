@@ -2,15 +2,13 @@ package block.norm.fastbuild.dormcontrol;
 
 import javax.annotation.Nullable;
 
-import block.entity.consumer.basicmetalmanufactor.BasicMetalManufactorEntity;
 import block.entity.neutral.dormcontrol.DomeControlEntity;
-import menu.basicmetalmanufactor.BasicMetalManufactorMenuProvider;
 import menu.dormcontrol.DomeControlMenuProvider;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -21,7 +19,6 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraftforge.common.extensions.IForgeServerPlayer;
 import util.json.BlockJSON;
 
 public class DomeControl extends Block implements EntityBlock {
@@ -51,8 +48,8 @@ public class DomeControl extends Block implements EntityBlock {
 		if(!level.isClientSide()) {
 			var BlockEntity = level.getBlockEntity(pos);
 			if(BlockEntity instanceof DomeControlEntity entity) {
-				IForgeServerPlayer ifpe = (IForgeServerPlayer)player;
-				ifpe.openMenu(new DomeControlMenuProvider(pos), pos);
+				ServerPlayer ifpe = (ServerPlayer)player;
+				ifpe.openMenu(new DomeControlMenuProvider(pos));
 			}else {
 				throw new IllegalStateException("missing block-dorm_control");
 			}

@@ -20,7 +20,7 @@ public class EnergyViewerScreen extends AbstractContainerScreen<EnergyViewerMenu
 
     @Override
     public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-        this.renderBackground(graphics, mouseX, mouseY, partialTicks);
+        this.renderBackground(graphics);
         super.render(graphics, mouseX, mouseY, partialTicks);
         this.renderTooltip(graphics, mouseX, mouseY);
         EnergyViewerEntity blockEntity = (EnergyViewerEntity) this.getMenu().getBlockEntity();

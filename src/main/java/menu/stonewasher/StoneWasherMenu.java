@@ -1,5 +1,6 @@
 package menu.stonewasher;
 
+import block.norm.stonewasher.Register;
 import org.jetbrains.annotations.NotNull;
 
 import block.entity.consumer.stonewasher.StoneWasherEntity;
@@ -23,7 +24,7 @@ public class StoneWasherMenu extends BlockEntityMenuBasic{
 	private final StoneWasherEntity blockentity;
 
 	public StoneWasherMenu( Inventory pInventory, int pID,BlockPos pos) {
-		super(MenuRegister.STONEWASHER_MENU.get(), pID, pos, block.norm.stonewasher.Register.stonewasher_BLOCK.get(), 4, 0, 2);
+		super(MenuRegister.STONEWASHER_MENU.get(), pID, pos, Register.stonewasher_BLOCK.get(), 4, 0, 2);
 		this.blockentity = (StoneWasherEntity) pInventory.player.level().getBlockEntity(pos);
 		if(pInventory.player.level().getBlockEntity(pos) instanceof StoneWasherEntity stonewasherentity) {
 			addSlot(new SlotItemHandler(stonewasherentity.getItems(), 0, 56, 23) {

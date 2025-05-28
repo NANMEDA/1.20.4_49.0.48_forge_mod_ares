@@ -10,10 +10,4 @@ public class Deposit extends FallingBlock {
 		super(p_49795_);
 	}
 
-	@Override
-	protected MapCodec<? extends FallingBlock> codec() {
-		// TODO 自动生成的方法存根
-		return null;
-	}
-
 }

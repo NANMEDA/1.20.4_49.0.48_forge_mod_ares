@@ -3,7 +3,6 @@ package menu.basicmetalmanufactor;
 import org.jetbrains.annotations.NotNull;
 
 import block.entity.consumer.basicmetalmanufactor.BasicMetalManufactorEntity;
-import block.entity.consumer.etchingmachine.EtchingMachineEntity;
 import block.norm.BlockRegister;
 import menu.BlockEntityMenuBasic;
 import menu.registry.MenuRegister;

@@ -2,12 +2,11 @@ package block.norm.canfoodmaker;
 
 import javax.annotation.Nullable;
 
-import com.mojang.serialization.MapCodec;
-
 import block.entity.consumer.canfoodmaker.CanfoodMakerEntity;
 import menu.canfoodmaker.CanfoodMakerMenuProvider;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
@@ -32,7 +31,6 @@ import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.extensions.IForgeServerPlayer;
 import util.json.BlockJSON;
 
 /**
@@ -74,8 +72,8 @@ public class BlockCanfoodMaker extends HorizontalDirectionalBlock implements Ent
 		if(!level.isClientSide()) {
 			var BlockEntity = level.getBlockEntity(pos);
 			if(BlockEntity instanceof CanfoodMakerEntity entity) {
-				IForgeServerPlayer ifpe = (IForgeServerPlayer)player;
-				ifpe.openMenu(new CanfoodMakerMenuProvider(pos), pos);
+				ServerPlayer ifpe = (ServerPlayer)player;
+				ifpe.openMenu(new CanfoodMakerMenuProvider(pos));
 				
 			}else {
 				throw new IllegalStateException("missing block-canfood_maker");
@@ -209,11 +207,6 @@ public class BlockCanfoodMaker extends HorizontalDirectionalBlock implements Ent
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(BlockStateProperties.FACING);
     }
-
-	@Override
-	protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
-		return null;
-	}
 	
 	@Override
     public VoxelShape getVisualShape(BlockState p_312193_, BlockGetter p_310654_, BlockPos p_310658_, CollisionContext p_311129_) {

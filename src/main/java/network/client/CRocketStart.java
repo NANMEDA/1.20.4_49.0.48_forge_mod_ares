@@ -2,11 +2,12 @@ package network.client;
 
 
 import java.util.UUID;
+import java.util.function.Supplier;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraftforge.event.network.CustomPayloadEvent;
+import net.minecraftforge.network.NetworkEvent;
 import net.minecraftforge.server.ServerLifecycleHooks;
 import vehicle.rocket.RocketEntity;
 
@@ -26,7 +27,8 @@ public class CRocketStart {
     return new CRocketStart(buf.readUUID());
   }
 
-  public static void handle(CRocketStart msg, CustomPayloadEvent.Context ctx) {
+  public static void handle(CRocketStart msg, Supplier<NetworkEvent.Context> contextSupplier) {
+      NetworkEvent.Context ctx = contextSupplier.get();
 	  ctx.enqueueWork(() -> {
 		  ServerPlayer player = getPlayerByUUID(msg.carried);
           RocketEntity rocket = (RocketEntity) player.getVehicle();

@@ -2,7 +2,6 @@ package block.norm.machineparts;
 
 import javax.annotation.Nullable;
 
-import block.entity.consumer.basicmetalmanufactor.BasicMetalManufactorEntity;
 import block.entity.machineparts.ElectronicPowerEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

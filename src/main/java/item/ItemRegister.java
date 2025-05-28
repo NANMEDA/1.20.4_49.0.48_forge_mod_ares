@@ -1,5 +1,6 @@
 package item;
 
+import block.norm.farm.FarmBlockRegistry;
 import item.armor.ModArmorMaterials;
 import item.blueprint.ItemBlueprint;
 import item.can.ItemCan;
@@ -140,6 +141,6 @@ public class ItemRegister {
             () -> new CheesePiece(new Item.Properties()));
     
     public static final RegistryObject<Item> FROSTFIRE_FRUIT = ITEMS.register(FrostfireFruit.global_name,
-            () -> new FrostfireFruit(block.norm.farm.FarmBlockRegistry.FROSTFIRE_FRUIT_B.get(),new Item.Properties()));
+            () -> new FrostfireFruit(FarmBlockRegistry.FROSTFIRE_FRUIT_B.get(),new Item.Properties()));
     
 }

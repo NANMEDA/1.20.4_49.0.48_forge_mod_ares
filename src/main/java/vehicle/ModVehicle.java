@@ -108,17 +108,6 @@ public abstract class ModVehicle extends Entity {
         }
     }
 
-    @Override
-    public void lerpTo(double p_20977_, double p_20978_, double p_20979_, float p_20980_, float p_20981_, int p_20982_) {
-        this.lerpX = p_20977_;
-        this.lerpY = p_20978_;
-        this.lerpZ = p_20979_;
-        this.lerpYRot = p_20980_;
-        this.lerpXRot = p_20981_;
-        this.lerpSteps = p_20982_;
-    }
-     
-
     private void tickLerp() {
         if (this.isControlledByLocalInstance()) {
             this.lerpSteps = 0;

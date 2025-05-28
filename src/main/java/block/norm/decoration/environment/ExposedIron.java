@@ -2,7 +2,7 @@ package block.norm.decoration.environment;
 
 import menu.show.ShowBlockMenuProvider;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -11,13 +11,10 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.extensions.IForgeServerPlayer;
 
 public class ExposedIron extends Block{
 
@@ -61,8 +58,8 @@ public class ExposedIron extends Block{
     @Override
 	public InteractionResult use(BlockState blockstate,Level level,BlockPos pos,Player player,InteractionHand interactionhand,BlockHitResult blockHitResult) {
 		if(!level.isClientSide()) {
-			IForgeServerPlayer ifpe = (IForgeServerPlayer)player;
-			ifpe.openMenu(new ShowBlockMenuProvider(pos), pos);
+			ServerPlayer ifpe = (ServerPlayer)player;
+			ifpe.openMenu(new ShowBlockMenuProvider(pos));
 		}
 		return InteractionResult.SUCCESS;
 	}

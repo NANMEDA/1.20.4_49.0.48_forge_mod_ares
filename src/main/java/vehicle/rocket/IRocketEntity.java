@@ -5,7 +5,6 @@ import com.google.common.collect.Sets;
 import block.norm.BlockBasic;
 import block.norm.BlockRegister;
 import event.forge.TeleportAndCreateLanderEvent;
-import menu.etchingmachine.EtchingMachineMenuProvider;
 import menu.rocket.RocketMenuProvider;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -41,7 +40,6 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.common.extensions.IForgeServerPlayer;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.ItemStackHandler;
@@ -245,10 +243,8 @@ public abstract class IRocketEntity extends ModVehicle implements IGaugeValuesPr
     @Override
     public void openCustomInventoryScreen(Player player) {
         if (player instanceof ServerPlayer serverPlayer) {
-			IForgeServerPlayer ifpe = (IForgeServerPlayer)player;
-			ifpe.openMenu(new RocketMenuProvider(this.getId()), buf -> {
-	            buf.writeInt(this.getId());  // 将当前实体的 ID 写入到数据中
-	        });
+			ServerPlayer ifpe = (ServerPlayer)player;
+			ifpe.openMenu(new RocketMenuProvider(this.getId()));
         }
     }
 

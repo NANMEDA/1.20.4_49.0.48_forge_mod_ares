@@ -3,6 +3,8 @@ package creativetab;
 import block.norm.BlockBasic;
 import block.norm.BlockElectricBasic;
 import block.norm.BlockRegister;
+import block.norm.advancedmetalmanufactor.Register;
+import block.norm.fastbuild.FastBuildRegister;
 import item.ItemRegister;
 import item.itemFood;
 import item.itemMaterial;
@@ -73,7 +75,7 @@ public class CreativeTabsRegister {
                 output.accept(block.norm.canfoodmaker.Register.canfoodmaker_BLOCK_ITEM.get());
                 output.accept(MBlockRegister.MINCROWAVEOVEN_I.get());
                 output.accept(BlockRegister.basicmetalmanufactor_BLOCK_ITEM.get());
-                output.accept(block.norm.advancedmetalmanufactor.Register.advancedmetalmanufactor_BLOCK_ITEM.get());
+                output.accept(Register.advancedmetalmanufactor_BLOCK_ITEM.get());
                 output.accept(BlockRegister.bioplasticbuilder_BLOCK_ITEM.get());
                 output.accept(block.norm.crystalbuilder.Register.crystalbuilder_BLOCK_ITEM.get());
                 output.accept(block.norm.etchingmachine.Register.etchingmachine_BLOCK_ITEM.get());
@@ -123,14 +125,14 @@ public class CreativeTabsRegister {
     public static final RegistryObject<CreativeModeTab> MAR_DORM_TAB = CREATIVE_MODE_TABS.register("mar_dorm_tab", () -> CreativeModeTab.builder()
     		.title(Component.translatable("mar_dorm_tab"))
     		.withTabsBefore(MAR_TOOL_TAB.getId())
-            .icon(() -> block.norm.fastbuild.FastBuildRegister.basicspheredorm_BLOCK_ITEM.get().getDefaultInstance())
+            .icon(() -> FastBuildRegister.basicspheredorm_BLOCK_ITEM.get().getDefaultInstance())
             .displayItems((parameters, output) -> {
-            	output.accept(block.norm.fastbuild.FastBuildRegister.basicspheredorm_BLOCK_ITEM.get());
-            	output.accept(block.norm.fastbuild.FastBuildRegister.basicflatspheredorm_BLOCK_ITEM.get());
-            	output.accept(block.norm.fastbuild.FastBuildRegister.basiceclipsedorm_BLOCK_ITEM.get());
-            	output.accept(block.norm.fastbuild.FastBuildRegister.basicflateclipsedorm_BLOCK_ITEM.get());
-            	output.accept(block.norm.fastbuild.FastBuildRegister.spheredoor_BLOCK_ITEM.get());
-            	output.accept(block.norm.fastbuild.FastBuildRegister.basiccylinderdorm_BLOCK_ITEM.get());
+            	output.accept(FastBuildRegister.basicspheredorm_BLOCK_ITEM.get());
+            	output.accept(FastBuildRegister.basicflatspheredorm_BLOCK_ITEM.get());
+            	output.accept(FastBuildRegister.basiceclipsedorm_BLOCK_ITEM.get());
+            	output.accept(FastBuildRegister.basicflateclipsedorm_BLOCK_ITEM.get());
+            	output.accept(FastBuildRegister.spheredoor_BLOCK_ITEM.get());
+            	output.accept(FastBuildRegister.basiccylinderdorm_BLOCK_ITEM.get());
             	output.accept(block.norm.decoration.Register.LIGHT_PANE_BLOCK_ITEM.get());
             }).build());
 }

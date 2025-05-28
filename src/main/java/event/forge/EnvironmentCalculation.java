@@ -1,7 +1,5 @@
 package event.forge;
 
-import javax.swing.text.Segment;
-
 import event.client.MarSky;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;

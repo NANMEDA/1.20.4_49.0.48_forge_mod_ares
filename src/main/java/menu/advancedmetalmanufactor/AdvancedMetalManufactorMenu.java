@@ -1,9 +1,9 @@
 package menu.advancedmetalmanufactor;
 
+import block.norm.advancedmetalmanufactor.Register;
 import org.jetbrains.annotations.NotNull;
 
 import block.entity.consumer.advancedmetalmanufactor.AdvancedMetalManufactorEntity;
-import block.entity.consumer.basicmetalmanufactor.BasicMetalManufactorEntity;
 import item.ItemRegister;
 import menu.BlockEntityMenuBasic;
 import menu.registry.MenuRegister;
@@ -18,7 +18,7 @@ public class AdvancedMetalManufactorMenu extends BlockEntityMenuBasic{
 	private final AdvancedMetalManufactorEntity blockentity;
 	
 	public AdvancedMetalManufactorMenu( Inventory pInventory, int pID,BlockPos pos) {
-		super(MenuRegister.ADVANCEDMETALMANUFACTOR_MENU.get(), pID, pos, block.norm.advancedmetalmanufactor.Register.advancedmetalmanufactor_BLOCK.get(), 4, 0, 3);
+		super(MenuRegister.ADVANCEDMETALMANUFACTOR_MENU.get(), pID, pos, Register.advancedmetalmanufactor_BLOCK.get(), 4, 0, 3);
 		blockentity = (AdvancedMetalManufactorEntity) pInventory.player.level().getBlockEntity(pos);
 		if(pInventory.player.level().getBlockEntity(pos) instanceof AdvancedMetalManufactorEntity advancedmetalmanufactorEntity) {
 

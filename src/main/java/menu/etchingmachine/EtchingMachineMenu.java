@@ -1,5 +1,6 @@
 package menu.etchingmachine;
 
+import block.norm.etchingmachine.Register;
 import org.jetbrains.annotations.NotNull;
 
 import block.entity.consumer.etchingmachine.EtchingMachineEntity;
@@ -17,7 +18,7 @@ public class EtchingMachineMenu extends BlockEntityMenuBasic{
 	private final EtchingMachineEntity blockentity;
 
 	public EtchingMachineMenu( Inventory pInventory, int pID,BlockPos pos) {
-		super(MenuRegister.ETCHINGMACHINE_MENU.get(), pID, pos, block.norm.etchingmachine.Register.etchingmachine_BLOCK.get(), 6, 0, 5);
+		super(MenuRegister.ETCHINGMACHINE_MENU.get(), pID, pos, Register.etchingmachine_BLOCK.get(), 6, 0, 5);
 		this.blockentity = (EtchingMachineEntity) pInventory.player.level().getBlockEntity(pos);
 		if(pInventory.player.level().getBlockEntity(pos) instanceof EtchingMachineEntity etchingmachineEntity) {
 			

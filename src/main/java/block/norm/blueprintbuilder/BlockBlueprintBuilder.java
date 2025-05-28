@@ -4,8 +4,6 @@ import javax.annotation.Nullable;
 
 import block.entity.neutral.blueprintbuilder.BlueprintBuilderEntity;
 import menu.blueprintbuilder.BlueprintBuilderMenuProvider;
-import menu.microwaveoven.MicrowaveOvenMenuProvider;
-import menu.reseachtable.ResearchTableMenuProvider;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
@@ -27,7 +25,6 @@ import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.extensions.IForgeServerPlayer;
 import util.json.BlockJSON;
 
 /**
@@ -62,9 +59,8 @@ public class BlockBlueprintBuilder extends Block implements EntityBlock{
 		if(!level.isClientSide()) {
 			var BlockEntity = level.getBlockEntity(pos);
 			if (BlockEntity instanceof BlueprintBuilderEntity entity) {
-				player = (ServerPlayer) player;
-				IForgeServerPlayer ifpe = (IForgeServerPlayer)player;
-				ifpe.openMenu(new BlueprintBuilderMenuProvider(pos), pos);
+				ServerPlayer ifpe = (ServerPlayer)player;
+				ifpe.openMenu(new BlueprintBuilderMenuProvider(pos));
 			}else {
 				throw new IllegalStateException("missing block:"+global_name);
 			}

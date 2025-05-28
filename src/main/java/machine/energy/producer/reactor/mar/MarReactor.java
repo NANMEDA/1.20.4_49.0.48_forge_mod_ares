@@ -3,11 +3,10 @@ package machine.energy.producer.reactor.mar;
 import javax.annotation.Nullable;
 
 import machine.energy.EnergyEntity;
-import machine.energy.consumer.coredigger.CoreDiggerEntity;
-import menu.coredigger.CoreDiggerMenuProvider;
 import menu.marreactor.MarReactorMenuProvider;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -29,7 +28,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.extensions.IForgeServerPlayer;
 import util.json.BlockJSON;
 
 /**
@@ -79,8 +77,8 @@ public class MarReactor extends Block implements EntityBlock{
 		if(!level.isClientSide()) {
 			var BlockEntity = level.getBlockEntity(pos);
 			if(BlockEntity instanceof MarReactorEntity entity) {
-				IForgeServerPlayer ifpe = (IForgeServerPlayer)player;
-				ifpe.openMenu(new MarReactorMenuProvider(pos), pos);
+				ServerPlayer ifpe = (ServerPlayer)player;
+				ifpe.openMenu(new MarReactorMenuProvider(pos));
 			}else {
 				throw new IllegalStateException("missing block-mar_reactor");
 			}

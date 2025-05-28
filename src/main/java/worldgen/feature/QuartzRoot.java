@@ -1,5 +1,6 @@
 package worldgen.feature;
 
+import block.norm.decoration.Register;
 import com.mojang.serialization.Codec;
 
 import block.norm.BlockBasic;
@@ -21,7 +22,7 @@ public class QuartzRoot extends Feature<NoneFeatureConfiguration> {
 
     private static final BlockState QUARTZ = BlockRegister.COMMON_BLOCKS[BlockBasic.getIdFromName("quartz_stone")].get().defaultBlockState();
     private static final BlockState DEEP_QUARTZ = BlockRegister.COMMON_BLOCKS[BlockBasic.getIdFromName("deep_quartz_stone")].get().defaultBlockState();
-    private static final Block EXPOSED_QUARTZ = block.norm.decoration.Register.EXPOSEDQUARTZ_BLOCK.get();
+    private static final Block EXPOSED_QUARTZ = Register.EXPOSEDQUARTZ_BLOCK.get();
     
     
     private static final Block STONE = BlockRegister.COMMON_BLOCKS[BlockBasic.getIdFromName("mar_stone")].get();

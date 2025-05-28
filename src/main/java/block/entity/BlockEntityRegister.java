@@ -16,6 +16,8 @@ import block.entity.neutral.fuelrefiner.FuelRefinerEntity;
 import block.entity.neutral.researchtable.ResearchTableEntity;
 import block.entity.station.PowerStationBurnEntity;
 import block.norm.BlockRegister;
+import block.norm.advancedmetalmanufactor.Register;
+import block.norm.fastbuild.FastBuildRegister;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -50,7 +52,7 @@ public class BlockEntityRegister {
 			BLOCKENTITIES.register("research_table", () -> BlockEntityType.Builder.of(ResearchTableEntity::new, block.norm.researchtable.Register.researchtable_BLOCK.get()).build(null));
 
 	public static final RegistryObject<BlockEntityType<AdvancedMetalManufactorEntity>> advancedmetalmanufactor_BLOCKENTITY = 
-			BLOCKENTITIES.register("advancedmetal_manufactor", () -> BlockEntityType.Builder.of(AdvancedMetalManufactorEntity::new, block.norm.advancedmetalmanufactor.Register.advancedmetalmanufactor_BLOCK.get()).build(null));
+			BLOCKENTITIES.register("advancedmetal_manufactor", () -> BlockEntityType.Builder.of(AdvancedMetalManufactorEntity::new, Register.advancedmetalmanufactor_BLOCK.get()).build(null));
 
 	public static final RegistryObject<BlockEntityType<EtchingMachineEntity>> etchingmachine_BLOCKENTITY = 
 			BLOCKENTITIES.register("etching_machine", () -> BlockEntityType.Builder.of(EtchingMachineEntity::new, block.norm.etchingmachine.Register.etchingmachine_BLOCK.get()).build(null));
@@ -62,7 +64,7 @@ public class BlockEntityRegister {
 			BLOCKENTITIES.register("fuel_refiner", () -> BlockEntityType.Builder.of(FuelRefinerEntity::new, block.norm.fuelrefiner.Register.fuelrefiner_BLOCK.get()).build(null));
 
 	public static final RegistryObject<BlockEntityType<DormJunctionControlEntity>> dormjunctioncontrol_BLOCKENTITY = 
-			BLOCKENTITIES.register("dorm_junction_control", () -> BlockEntityType.Builder.of(DormJunctionControlEntity::new, block.norm.fastbuild.FastBuildRegister.dormjunctioncontrol_BLOCK.get()).build(null));
+			BLOCKENTITIES.register("dorm_junction_control", () -> BlockEntityType.Builder.of(DormJunctionControlEntity::new, FastBuildRegister.dormjunctioncontrol_BLOCK.get()).build(null));
 
 	public static final RegistryObject<BlockEntityType<DomeControlEntity>> dormcontrol_BLOCKENTITY = 
 			BLOCKENTITIES.register("dorm_control", () -> BlockEntityType.Builder.of(DomeControlEntity::new,  BlockRegister.dormcontrol_BLOCK.get()).build(null));

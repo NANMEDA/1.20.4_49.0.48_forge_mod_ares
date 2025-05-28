@@ -4,6 +4,7 @@ import javax.annotation.Nullable;
 
 import block.norm.BlockRegister;
 import block.norm.fastbuild.DormHelper;
+import block.norm.fastbuild.JunctionHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Vec3i;
@@ -68,11 +69,11 @@ public class BasicCylinderDorm extends Block {
     
     private void createJunctionBase(Level level, BlockPos pos,boolean rotate) {
     	if(rotate) {
-	    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(14,0,0),0,pos);
-	    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(-14,0,0),4,pos);
+	    	JunctionHelper.BirthJuntionBase(level,pos.offset(14,0,0),0,pos);
+	    	JunctionHelper.BirthJuntionBase(level,pos.offset(-14,0,0),4,pos);
     	}else {	    	
-    		block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(0,0,14),6,pos);
-    		block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(0,0,-14),2,pos);
+    		JunctionHelper.BirthJuntionBase(level,pos.offset(0,0,14),6,pos);
+    		JunctionHelper.BirthJuntionBase(level,pos.offset(0,0,-14),2,pos);
     	}
     	
 	}

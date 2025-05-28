@@ -6,7 +6,6 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraftforge.network.PacketDistributor;
 import network.NetworkHandler;
 import network.client.CDomeControl;
 import net.minecraft.resources.ResourceLocation;
@@ -42,7 +41,7 @@ public class DomeControlScreen extends AbstractContainerScreen<DomeControlMenu> 
 
     @Override
     public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-        this.renderBackground(graphics, mouseX, mouseY, partialTicks);
+        this.renderBackground(graphics);
         super.render(graphics, mouseX, mouseY, partialTicks);
         DomeControlEntity blockEntity = (DomeControlEntity) this.getMenu().getBlockEntity();
         int[] O2 = blockEntity.getO2();
@@ -98,8 +97,7 @@ public class DomeControlScreen extends AbstractContainerScreen<DomeControlMenu> 
         		this.leftPos+removeButtonStartPosX, this.leftPos+removeButtonStartPosX+removeButtonWidth, 
         		this.topPos+removeButtonStartPosY, this.topPos+removeButtonStartPosY+40)) {
             DomeControlEntity blockEntity = (DomeControlEntity) this.getMenu().getBlockEntity();
-            NetworkHandler.INSTANCE.send(new CDomeControl(blockEntity.getBlockPos()),
-                    PacketDistributor.SERVER.noArg());
+            NetworkHandler.INSTANCE.sendToServer(new CDomeControl(blockEntity.getBlockPos()));
             return true;
         }
         return super.mouseClicked(mouseX, mouseY, button);

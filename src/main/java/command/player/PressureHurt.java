@@ -5,7 +5,6 @@ import com.mojang.brigadier.Command;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 
-import boime.BiomeEffectApplier;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.network.chat.Component;
 

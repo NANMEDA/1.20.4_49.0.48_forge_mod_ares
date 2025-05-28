@@ -1,5 +1,6 @@
 package block.entity.neutral.blueprintbuilder;
 
+import block.norm.fastbuild.FastBuildRegister;
 import net.minecraft.world.item.ItemStack;
 
 /**
@@ -36,12 +37,12 @@ public class BlueprintBuilderHelper {
 		switch (tech) {
 		case 0: {
 			switch (level) {
-				case 0: return new ItemStack(block.norm.fastbuild.FastBuildRegister.basiceclipsedorm_BLOCK_ITEM.get());
-				case 1: return new ItemStack(block.norm.fastbuild.FastBuildRegister.spheredoor_BLOCK_ITEM.get());
-				case 2: return new ItemStack(block.norm.fastbuild.FastBuildRegister.basicflatspheredorm_BLOCK_ITEM.get());
-				case 3: return new ItemStack(block.norm.fastbuild.FastBuildRegister.basiceclipsedorm_BLOCK_ITEM.get());
-				case 4: return new ItemStack(block.norm.fastbuild.FastBuildRegister.basicflatspheredorm_BLOCK_ITEM.get());
-				case 5: return new ItemStack(block.norm.fastbuild.FastBuildRegister.basiccylinderdorm_BLOCK_ITEM.get());
+				case 0: return new ItemStack(FastBuildRegister.basiceclipsedorm_BLOCK_ITEM.get());
+				case 1: return new ItemStack(FastBuildRegister.spheredoor_BLOCK_ITEM.get());
+				case 2: return new ItemStack(FastBuildRegister.basicflatspheredorm_BLOCK_ITEM.get());
+				case 3: return new ItemStack(FastBuildRegister.basiceclipsedorm_BLOCK_ITEM.get());
+				case 4: return new ItemStack(FastBuildRegister.basicflatspheredorm_BLOCK_ITEM.get());
+				case 5: return new ItemStack(FastBuildRegister.basiccylinderdorm_BLOCK_ITEM.get());
 			}
 		}	
 		case 1:{

@@ -2,6 +2,7 @@ package command.energy;
 
 import java.util.Set;
 
+import util.net.EnergyNet;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
@@ -22,7 +23,7 @@ public class CheckAndClear implements Command<CommandSourceStack> {
         var energyNets = EnergyNetProcess.getAllEnergyNets();
         var level = context.getSource().getLevel();
         if (energyNets != null && !energyNets.isEmpty()) {
-        	for (util.net.EnergyNet energyNet : energyNets) {
+        	for (EnergyNet energyNet : energyNets) {
         	    for (EnergyEnum ee : EnergyEnum.values()) { // 遍历 EnergyEnum 中的每个值
         	        Set<BlockPos> r = energyNet.getSet(ee); // 获取对应的 BlockPos 集合
         	        for (BlockPos pos : r) {

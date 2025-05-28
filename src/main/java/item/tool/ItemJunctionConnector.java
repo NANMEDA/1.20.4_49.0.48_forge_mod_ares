@@ -1,5 +1,7 @@
 package item.tool;
 
+import block.norm.fastbuild.FastBuildRegister;
+import block.norm.fastbuild.JunctionHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionResult;
@@ -27,7 +29,7 @@ public class ItemJunctionConnector extends Item {
         BlockPos clickedPos = context.getClickedPos();
 
         if (!level.isClientSide) {
-        	if(!level.getBlockState(clickedPos).is(block.norm.fastbuild.FastBuildRegister.dormjunctioncontrol_BLOCK.get())) {
+        	if(!level.getBlockState(clickedPos).is(FastBuildRegister.dormjunctioncontrol_BLOCK.get())) {
         		player.sendSystemMessage(Component.literal("error"));
         		return InteractionResult.FAIL;
         	}
@@ -40,7 +42,7 @@ public class ItemJunctionConnector extends Item {
                 endPos = clickedPos;
                 endDirection = level.getBlockState(clickedPos).getValue(BlockStateProperties.LEVEL);
                 player.sendSystemMessage(Component.literal(String.format("Second Point X:%d, Y:%d, Z:%d; Direction:%d", endPos.getX(), endPos.getY(), endPos.getZ(),endDirection)));
-                block.norm.fastbuild.JunctionHelper.followChainCode(level,startPos, endPos, startDirection, endDirection, block.norm.fastbuild.JunctionHelper.birthConnection(startPos, startDirection, endPos, endDirection,player));
+                JunctionHelper.followChainCode(level,startPos, endPos, startDirection, endDirection, JunctionHelper.birthConnection(startPos, startDirection, endPos, endDirection,player));
                 startPos = null;
                 endPos = null;
             }

@@ -16,7 +16,6 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraftforge.common.extensions.IForgeServerPlayer;
 import util.json.BlockJSON;
 
 public class EnergyViewer extends Block implements EntityBlock {
@@ -72,9 +71,8 @@ public class EnergyViewer extends Block implements EntityBlock {
 		if(!level.isClientSide()) {
 			var BlockEntity = level.getBlockEntity(pos);
 			if(BlockEntity instanceof EnergyViewerEntity entity) {
-				player = (ServerPlayer) player;
-				IForgeServerPlayer ifpe = (IForgeServerPlayer)player;
-				ifpe.openMenu(new EnergyViewerMenuProvider(pos), pos);
+				ServerPlayer ifpe = (ServerPlayer)player;
+				ifpe.openMenu(new EnergyViewerMenuProvider(pos));
 			}else {
 				throw new IllegalStateException("missing block");
 			}

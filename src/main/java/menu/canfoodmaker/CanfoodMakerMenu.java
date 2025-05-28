@@ -1,16 +1,15 @@
 package menu.canfoodmaker;
 
+import block.norm.canfoodmaker.Register;
 import org.jetbrains.annotations.NotNull;
 
 import block.entity.consumer.canfoodmaker.CanfoodMakerEntity;
-import block.norm.BlockRegister;
 import menu.BlockEntityMenuBasic;
 import menu.registry.MenuRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.Level;
 import net.minecraftforge.items.SlotItemHandler;
 import tags.register.TagkeyRegistry;
 
@@ -19,7 +18,7 @@ public class CanfoodMakerMenu extends BlockEntityMenuBasic{
 	private final CanfoodMakerEntity blockEntity;
 
 	public CanfoodMakerMenu(Inventory pInventory, int pID,BlockPos pos) {
-		super(MenuRegister.CANFOODMAKER_MENU.get(), pID, pos, block.norm.canfoodmaker.Register.canfoodmaker_BLOCK.get(), 5, 0, 4);
+		super(MenuRegister.CANFOODMAKER_MENU.get(), pID, pos, Register.canfoodmaker_BLOCK.get(), 5, 0, 4);
 		this.blockEntity = (CanfoodMakerEntity) pInventory.player.level().getBlockEntity(pos);
 		//this.blockEntity = (CanfoodMakerEntity) pInventory.player.level().getBlockEntity(pos);
 		if(pInventory.player.level().getBlockEntity(pos) instanceof CanfoodMakerEntity canfoodmakerEntity) {

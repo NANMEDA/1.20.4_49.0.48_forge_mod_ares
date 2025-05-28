@@ -2,8 +2,6 @@ package block.norm.powerstation.burn;
 
 import net.minecraft.world.level.block.EntityBlock;
 
-
-import net.minecraftforge.common.extensions.IForgeServerPlayer;
 import util.json.BlockJSON;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -15,8 +13,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import javax.annotation.Nullable;
-
-import com.mojang.serialization.MapCodec;
 
 import block.entity.station.PowerStationBurnEntity;
 import menu.powerstationburn.PowerStationMenuProvider;
@@ -60,9 +56,8 @@ public class PowerStationBurn extends HorizontalDirectionalBlock implements Enti
 		if(!level.isClientSide()) {
 			var BlockEntity = level.getBlockEntity(pos);
 			if(BlockEntity instanceof PowerStationBurnEntity entity) {
-				player = (ServerPlayer) player;
-				IForgeServerPlayer ifpe = (IForgeServerPlayer)player;
-				ifpe.openMenu(new PowerStationMenuProvider(pos), pos);
+				ServerPlayer ifpe = (ServerPlayer)player;
+				ifpe.openMenu(new PowerStationMenuProvider(pos));
 				
 			}else {
 				throw new IllegalStateException("missing block-powerstation_burn");
@@ -102,17 +97,6 @@ public class PowerStationBurn extends HorizontalDirectionalBlock implements Enti
 
         super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
     }
-
-	@Override
-	protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
-		return null;
-	}
-	
-	@Override
-	public BlockState playerWillDestroy(Level pLevel, BlockPos pBlockPos, BlockState pBlockState, Player player) {
-		super.playerWillDestroy(pLevel, pBlockPos, pBlockState, player);
-		return pBlockState;
-	}
 	
 	 static {
 	        BlockJSON.GenModelsJSONBasic(global_name);

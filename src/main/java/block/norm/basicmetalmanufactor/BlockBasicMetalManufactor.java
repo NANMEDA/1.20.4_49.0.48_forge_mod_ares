@@ -7,6 +7,7 @@ import block.norm.BlockRegister;
 import menu.basicmetalmanufactor.BasicMetalManufactorMenuProvider;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
@@ -30,7 +31,6 @@ import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.extensions.IForgeServerPlayer;
 import util.json.BlockJSON;
 
 /**
@@ -80,8 +80,8 @@ public class BlockBasicMetalManufactor extends Block implements EntityBlock{
 					level.sendBlockUpdated(pos, blockstate, blockstate, Block.UPDATE_ALL);
 					return InteractionResult.SUCCESS;
 				}
-				IForgeServerPlayer ifpe = (IForgeServerPlayer)player;
-				ifpe.openMenu(new BasicMetalManufactorMenuProvider(pos), pos);
+				ServerPlayer ifpe = (ServerPlayer)player;
+				ifpe.openMenu(new BasicMetalManufactorMenuProvider(pos));
 			}else {
 				throw new IllegalStateException("missing block-basicmetal_manufactor");
 			}

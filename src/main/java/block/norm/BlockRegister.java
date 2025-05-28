@@ -1,10 +1,12 @@
 package block.norm;
 
+import block.norm.advancedmetalmanufactor.Register;
+import block.norm.farm.FarmBlockRegistry;
+import block.norm.fastbuild.FastBuildRegister;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraftforge.registries.DeferredRegister;
@@ -286,7 +288,7 @@ public class BlockRegister {
     
     static {
     	block.norm.deposit.Register.init();
-    	block.norm.farm.FarmBlockRegistry.init();
+    	FarmBlockRegistry.init();
     }
     
     /***
@@ -297,12 +299,12 @@ public class BlockRegister {
     	block.norm.glassbuilder.Register.init();
     	block.norm.watergather.Register.init();
     	block.norm.researchtable.Register.init();
-    	block.norm.advancedmetalmanufactor.Register.init();
+    	Register.init();
     	block.norm.etchingmachine.Register.init();
     	block.norm.canfoodmaker.Register.init();
     	block.norm.stonewasher.Register.init();
     	block.norm.fuelrefiner.Register.init();
-    	block.norm.fastbuild.FastBuildRegister.init();
+    	FastBuildRegister.init();
     	block.norm.blueprintbuilder.Register.init();
     }
 }

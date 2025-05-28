@@ -2,15 +2,10 @@ package machine.energy.consumer.microwaveoven;
 
 import javax.annotation.Nullable;
 
-import com.mojang.serialization.MapCodec;
-
-import machine.energy.EnergyEntity;
 import menu.microwaveoven.MicrowaveOvenMenuProvider;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -23,7 +18,6 @@ import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
-import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
@@ -36,7 +30,6 @@ import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.extensions.IForgeServerPlayer;
 import util.json.BlockJSON;
 
 /**
@@ -116,9 +109,8 @@ public class BlockMicrowaveOven extends Block implements EntityBlock{
 						return InteractionResult.SUCCESS;
 			        }
 				}
-				player = (ServerPlayer) player;
-				IForgeServerPlayer ifpe = (IForgeServerPlayer)player;
-				ifpe.openMenu(new MicrowaveOvenMenuProvider(pos), pos);
+				ServerPlayer ifpe = (ServerPlayer)player;
+				ifpe.openMenu(new MicrowaveOvenMenuProvider(pos));
 			}else {
 				throw new IllegalStateException("missing block-microwave oven");
 			}
@@ -141,7 +133,7 @@ public class BlockMicrowaveOven extends Block implements EntityBlock{
 	    		 if(blockentity instanceof MicrowaveOvenEntity entity) {
 	    			 if(entity.servertick(true)) {
 	    				 if (!level.isClientSide()) {
-	    					    Explosion explosion = new Explosion(level, null, null, null, pos.getX(), pos.getY(), pos.getZ(), 3.0f, false, Explosion.BlockInteraction.DESTROY_WITH_DECAY, ParticleTypes.FLAME, null, SoundEvents.GENERIC_EXPLODE);
+	    					    Explosion explosion = new Explosion(level, null, null, null, pos.getX(), pos.getY(), pos.getZ(), 3.0f, false, Explosion.BlockInteraction.DESTROY_WITH_DECAY);
 	    					    explosion.explode();
 	    					    explosion.finalizeExplosion(true);
 	    					}
@@ -150,11 +142,6 @@ public class BlockMicrowaveOven extends Block implements EntityBlock{
 	    	 };
 	     }
 	 }
-
-	@Override
-	protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
-		return null;
-	}
 	
 	@SuppressWarnings("deprecation")
 	@Override
@@ -171,13 +158,7 @@ public class BlockMicrowaveOven extends Block implements EntityBlock{
         super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
     }
 	
-	
-	
-	@Override
-	public BlockState playerWillDestroy(Level pLevel, BlockPos pBlockPos, BlockState pBlockState, Player player) {
-		super.playerWillDestroy(pLevel, pBlockPos, pBlockState, player);
-		return pBlockState;
-	}
+
 	
 	@Nullable
     @Override

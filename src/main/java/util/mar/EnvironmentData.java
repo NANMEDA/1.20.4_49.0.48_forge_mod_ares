@@ -5,10 +5,11 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.util.datafix.DataFixTypes;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.saveddata.SavedData;
 import util.enums.EnvironmentEnum;
+
+import java.util.Objects;
 
 /**
  * 环境数据类，用于保存和加载世界中的环境参数。
@@ -209,15 +210,11 @@ public class EnvironmentData extends SavedData {
 
     // 获取或创建数据实例
     public static EnvironmentData getOrCreate(ServerLevel level) {
-    	return level.getDataStorage().computeIfAbsent(EnvironmentData.factory(), DATA_NAME);
+    	return level.getDataStorage().computeIfAbsent(EnvironmentData::load, EnvironmentData::new, DATA_NAME);
     }
     
-    public static SavedData.Factory<EnvironmentData> factory() {
-        return new SavedData.Factory<>(EnvironmentData::new, EnvironmentData::load, DataFixTypes.LEVEL);
-     }
-    
     public static EnvironmentData get(ServerLevel level) {
-        return getOrCreate(level.getServer().getLevel(marKey));
+        return getOrCreate(Objects.requireNonNull(level.getServer().getLevel(marKey)));
     }
 
 

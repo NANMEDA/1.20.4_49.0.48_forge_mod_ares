@@ -3,8 +3,10 @@ package network.client;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraftforge.event.network.CustomPayloadEvent;
 import block.entity.neutral.dormcontrol.DomeControlEntity;
+import net.minecraftforge.network.NetworkEvent;
+
+import java.util.function.Supplier;
 
 public class CDomeControl {
 
@@ -25,7 +27,8 @@ public class CDomeControl {
         );
     }
 
-    public static void handle(CDomeControl msg, CustomPayloadEvent.Context ctx) {
+    public static void handle(CDomeControl msg, Supplier<NetworkEvent.Context> contextSupplier) {
+        NetworkEvent.Context ctx = contextSupplier.get();
         ctx.enqueueWork(() -> {
             ServerLevel level = (ServerLevel) ctx.getSender().level(); // Get the level from the context
             if (level != null && level.getBlockEntity(msg.pos) instanceof DomeControlEntity entity) {

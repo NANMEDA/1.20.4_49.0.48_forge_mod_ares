@@ -2,9 +2,9 @@ package block.norm.fastbuild.basicdorm;
 
 import javax.annotation.Nullable;
 
-import block.norm.BlockBasic;
 import block.norm.BlockRegister;
 import block.norm.fastbuild.DormHelper;
+import block.norm.fastbuild.JunctionHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Vec3i;
@@ -16,7 +16,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import util.json.BlockJSON;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -69,15 +68,15 @@ public class BasicFlatEclipseDorm extends Block {
     
     private void createJunctionBase(Level level, BlockPos pos,boolean rotate) {
     	if(rotate) {
-	    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(0,0,12),6,pos);
-	    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(0,0,-12),2,pos);
-	    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(17,0,0),0,pos);
-	    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(-17,0,0),4,pos);
+	    	JunctionHelper.BirthJuntionBase(level,pos.offset(0,0,12),6,pos);
+	    	JunctionHelper.BirthJuntionBase(level,pos.offset(0,0,-12),2,pos);
+	    	JunctionHelper.BirthJuntionBase(level,pos.offset(17,0,0),0,pos);
+	    	JunctionHelper.BirthJuntionBase(level,pos.offset(-17,0,0),4,pos);
     	}else {
-        	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(0,0,17),6,pos);
-        	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(0,0,-17),2,pos);
-        	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(12,0,0),0,pos);
-        	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(-12,0,0),4,pos);
+        	JunctionHelper.BirthJuntionBase(level,pos.offset(0,0,17),6,pos);
+        	JunctionHelper.BirthJuntionBase(level,pos.offset(0,0,-17),2,pos);
+        	JunctionHelper.BirthJuntionBase(level,pos.offset(12,0,0),0,pos);
+        	JunctionHelper.BirthJuntionBase(level,pos.offset(-12,0,0),4,pos);
     	}
     	
 	}

@@ -6,6 +6,7 @@ import block.entity.consumer.advancedmetalmanufactor.AdvancedMetalManufactorEnti
 import menu.advancedmetalmanufactor.AdvancedMetalManufactorMenuProvider;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
@@ -29,7 +30,6 @@ import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.extensions.IForgeServerPlayer;
 import util.json.BlockJSON;
 
 /**
@@ -87,8 +87,8 @@ public class BlockAdvancedMetalManufactor extends Block implements EntityBlock{
 						}
 					}
 				}
-				IForgeServerPlayer ifpe = (IForgeServerPlayer)player;
-				ifpe.openMenu(new AdvancedMetalManufactorMenuProvider(pos), pos);
+				ServerPlayer ifpe = (ServerPlayer)player;
+				ifpe.openMenu(new AdvancedMetalManufactorMenuProvider(pos));
 			}else {
 				throw new IllegalStateException("missing block:"+ global_name);
 			}

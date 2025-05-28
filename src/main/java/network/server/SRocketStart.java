@@ -5,7 +5,9 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.event.network.CustomPayloadEvent;
+import net.minecraftforge.network.NetworkEvent;
+
+import java.util.function.Supplier;
 
 public class SRocketStart {
 
@@ -23,8 +25,8 @@ public class SRocketStart {
     return new SRocketStart(buf.readItem());
   }
 
-  @SuppressWarnings("resource")
-public static void handle(SRocketStart msg, CustomPayloadEvent.Context ctx) {
+public static void handle(SRocketStart msg, Supplier<NetworkEvent.Context> contextSupplier) {
+    NetworkEvent.Context ctx = contextSupplier.get();
     ctx.enqueueWork(() -> {
       LocalPlayer clientPlayer = Minecraft.getInstance().player;
 

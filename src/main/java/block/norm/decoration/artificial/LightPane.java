@@ -2,6 +2,7 @@ package block.norm.decoration.artificial;
 
 import javax.annotation.Nullable;
 
+import util.json.BlockJSON;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
@@ -124,10 +125,10 @@ public class LightPane extends Block {
 
 	
 	 static {
-	        util.json.BlockJSON.GenModelsJSONBasic(global_name);
-	        util.json.BlockJSON.GenBlockStateJSONBasic(global_name);
-	        util.json.BlockJSON.GenItemJSONBasic(global_name);
-	        util.json.BlockJSON.GenLootTableJSONBasic(global_name);
+	        BlockJSON.GenModelsJSONBasic(global_name);
+	        BlockJSON.GenBlockStateJSONBasic(global_name);
+	        BlockJSON.GenItemJSONBasic(global_name);
+	        BlockJSON.GenLootTableJSONBasic(global_name);
 	 }
 
 }

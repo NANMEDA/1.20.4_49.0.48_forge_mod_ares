@@ -6,7 +6,6 @@ import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.network.PacketDistributor;
 import network.NetworkHandler;
 import network.client.CStartTech;
 
@@ -124,8 +123,7 @@ public class ResearchTableScreen extends AbstractContainerScreen<ResearchTableMe
 	    		if(chooseNode.canUnlock(this.getMenu().getBlockEntity().getTechTree().getUnlocked())) {
 	    			if(this.getMenu().getBlockEntity().isResearching(this.chooseNode.getName())) return false;
 	    			if(chooseNode.getItem()==null||chooseNode.getItem().isEmpty()) {
-	                    NetworkHandler.INSTANCE.send(new CStartTech(this.getMenu().getBlockEntity().getBlockPos(),chooseNode.getName(),chooseNode.getTime()),
-	                            PacketDistributor.SERVER.noArg());
+	                    NetworkHandler.INSTANCE.sendToServer(new CStartTech(this.getMenu().getBlockEntity().getBlockPos(),chooseNode.getName(),chooseNode.getTime()));
 	                    return true;
 	    			}
 	    			boolean[] enough = new boolean[chooseNode.getItem().size()];;
@@ -148,8 +146,7 @@ public class ResearchTableScreen extends AbstractContainerScreen<ResearchTableMe
 	    					return super.mouseClicked(mouseX, mouseY, button);
 	    				}
 	    			}
-                    NetworkHandler.INSTANCE.send(new CStartTech(this.getMenu().getBlockEntity().getBlockPos(),chooseNode.getName(),chooseNode.getTime()),
-                            PacketDistributor.SERVER.noArg());
+                    NetworkHandler.INSTANCE.sendToServer(new CStartTech(this.getMenu().getBlockEntity().getBlockPos(),chooseNode.getName(),chooseNode.getTime()));
 	    			for(ItemStack need : chooseNode.getItem()) {
 	    				int count = need.getCount();
 	    				for(ItemStack have : this.getMenu().getInventory().items) {

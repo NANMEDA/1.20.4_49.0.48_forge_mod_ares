@@ -3,9 +3,11 @@ package network.client;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraftforge.event.network.CustomPayloadEvent;
 import block.entity.neutral.researchtable.ResearchTableEntity;
 import menu.reseachtable.TechNode;
+import net.minecraftforge.network.NetworkEvent;
+
+import java.util.function.Supplier;
 
 public class CTechTreeUpdate {
 
@@ -29,7 +31,8 @@ public class CTechTreeUpdate {
         );
     }
 
-    public static void handle(CTechTreeUpdate msg, CustomPayloadEvent.Context ctx) {
+    public static void handle(CTechTreeUpdate msg, Supplier<NetworkEvent.Context> contextSupplier) {
+        NetworkEvent.Context ctx = contextSupplier.get();
         ctx.enqueueWork(() -> {
             ServerLevel level = (ServerLevel) ctx.getSender().level(); // Get the level from the context
             if (level != null && level.getBlockEntity(msg.pos) instanceof ResearchTableEntity entity) {

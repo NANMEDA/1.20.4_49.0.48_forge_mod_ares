@@ -6,6 +6,7 @@ import block.entity.consumer.etchingmachine.EtchingMachineEntity;
 import menu.etchingmachine.EtchingMachineMenuProvider;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
@@ -28,7 +29,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.extensions.IForgeServerPlayer;
 import util.json.BlockJSON;
 
 /**
@@ -82,8 +82,8 @@ public class BlockEtchingMachine extends Block implements EntityBlock{
 						}
 					}
 				}
-				IForgeServerPlayer ifpe = (IForgeServerPlayer)player;
-				ifpe.openMenu(new EtchingMachineMenuProvider(pos), pos);
+				ServerPlayer ifpe = (ServerPlayer)player;
+				ifpe.openMenu(new EtchingMachineMenuProvider(pos));
 			}else {
 				throw new IllegalStateException("missing block:"+ global_name);
 			}

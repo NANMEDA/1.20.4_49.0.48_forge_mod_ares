@@ -4,6 +4,7 @@ import javax.annotation.Nullable;
 
 import block.norm.BlockRegister;
 import block.norm.fastbuild.DormHelper;
+import block.norm.fastbuild.JunctionHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Vec3i;
@@ -69,15 +70,15 @@ public class BasicEclipseDorm extends Block {
     
     private void createJunctionBase(Level level, BlockPos pos,boolean rotate) {
     	if(rotate) {
-	    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(-10,0,8),5,pos);
-	    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(10,0,-8),1,pos);
-	    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(10,0,8),7,pos);
-	    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(-10,0,-8),3,pos);
+	    	JunctionHelper.BirthJuntionBase(level,pos.offset(-10,0,8),5,pos);
+	    	JunctionHelper.BirthJuntionBase(level,pos.offset(10,0,-8),1,pos);
+	    	JunctionHelper.BirthJuntionBase(level,pos.offset(10,0,8),7,pos);
+	    	JunctionHelper.BirthJuntionBase(level,pos.offset(-10,0,-8),3,pos);
     	}else {
-	    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(-8,0,10),5,pos);
-	    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(8,0,-10),1,pos);
-	    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(8,0,10),7,pos);
-	    	block.norm.fastbuild.JunctionHelper.BirthJuntionBase(level,pos.offset(-8,0,-10),3,pos);
+	    	JunctionHelper.BirthJuntionBase(level,pos.offset(-8,0,10),5,pos);
+	    	JunctionHelper.BirthJuntionBase(level,pos.offset(8,0,-10),1,pos);
+	    	JunctionHelper.BirthJuntionBase(level,pos.offset(8,0,10),7,pos);
+	    	JunctionHelper.BirthJuntionBase(level,pos.offset(-8,0,-10),3,pos);
     	}
     	
 	}

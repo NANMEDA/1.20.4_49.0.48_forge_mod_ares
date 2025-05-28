@@ -14,15 +14,7 @@ public class EffectMain extends MobEffect {
         this.instant = isInstant;
         
     }
-    
-    @Override
-    public boolean shouldApplyEffectTickThisTick(int remainingTicks, int level) {
-        if (isInstantenous()) {
-            return true;
-        }
-        return canApplyEffect(remainingTicks, level);
-    }
-    
+
     protected boolean canApplyEffect(int remainingTicks, int level) {
         if (!isInstantenous()) {
             Thread.dumpStack();

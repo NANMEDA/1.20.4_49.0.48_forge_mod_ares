@@ -6,7 +6,6 @@ import block.norm.researchtable.Register;
 import menu.BlockEntityMenuBasic;
 import menu.registry.MenuRegister;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
 
 public class ResearchTableMenu extends BlockEntityMenuBasic {

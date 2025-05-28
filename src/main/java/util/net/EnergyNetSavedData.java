@@ -76,13 +76,7 @@ public class EnergyNetSavedData extends SavedData {
     public static EnergyNetSavedData get(ServerLevel level) {
         DimensionDataStorage storage = level.getDataStorage();
 
-        return storage.computeIfAbsent(
-            new SavedData.Factory<>(
-                EnergyNetSavedData::new,      // Supplier for new instances
-                EnergyNetSavedData::load,     // Function for loading from NBT
-                null       // DataFixTypes, if applicable, otherwise pass null or appropriate type
-            ), 
-            DATA_NAME
+        return storage.computeIfAbsent(EnergyNetSavedData::load, EnergyNetSavedData::new ,DATA_NAME
         );
     }
 }

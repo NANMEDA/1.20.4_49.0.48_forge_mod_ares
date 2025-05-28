@@ -5,8 +5,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.checkerframework.common.returnsreceiver.qual.This;
-
 import menu.reseachtable.TechNode;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;

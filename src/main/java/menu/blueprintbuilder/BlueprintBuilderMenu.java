@@ -1,18 +1,15 @@
 package menu.blueprintbuilder;
 
+import block.norm.blueprintbuilder.Register;
 import org.jetbrains.annotations.NotNull;
 
-import block.entity.consumer.basicmetalmanufactor.BasicMetalManufactorEntity;
-import block.entity.consumer.etchingmachine.EtchingMachineEntity;
 import block.entity.neutral.blueprintbuilder.BlueprintBuilderEntity;
-import block.norm.BlockRegister;
 import item.ItemRegister;
 import menu.BlockEntityMenuBasic;
 import menu.registry.MenuRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraftforge.items.SlotItemHandler;
 
 public class BlueprintBuilderMenu extends BlockEntityMenuBasic{
@@ -20,7 +17,7 @@ public class BlueprintBuilderMenu extends BlockEntityMenuBasic{
 	private final BlueprintBuilderEntity blockentity;
 	
 	public BlueprintBuilderMenu( Inventory pInventory, int pID,BlockPos pos) {
-		super(MenuRegister.BLUEPRINTBUILDER_MENU.get(), pID, pos, block.norm.blueprintbuilder.Register.blueprintbuilder_BLOCK.get(), 8, 0, 7);
+		super(MenuRegister.BLUEPRINTBUILDER_MENU.get(), pID, pos, Register.blueprintbuilder_BLOCK.get(), 8, 0, 7);
 		blockentity = (BlueprintBuilderEntity) pInventory.player.level().getBlockEntity(pos);
 		if(pInventory.player.level().getBlockEntity(pos) instanceof BlueprintBuilderEntity entity) {
 			addSlot(new SlotItemHandler(entity.getItems(), 0, 136, 60) {

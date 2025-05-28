@@ -1,18 +1,15 @@
 package menu.playerextend;
 
+import block.norm.advancedmetalmanufactor.Register;
 import org.jetbrains.annotations.NotNull;
 
-import block.entity.consumer.advancedmetalmanufactor.AdvancedMetalManufactorEntity;
-import block.entity.consumer.basicmetalmanufactor.BasicMetalManufactorEntity;
 import item.ItemRegister;
 import menu.BlockEntityMenuBasic;
 import menu.registry.MenuRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.block.Block;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
@@ -27,7 +24,7 @@ public class PlayerExtendMenu extends BlockEntityMenuBasic{
     };
 
 	public PlayerExtendMenu( Inventory pInventory, int pID,BlockPos pos) {
-		super(MenuRegister.ADVANCEDMETALMANUFACTOR_MENU.get(), pID, pos, block.norm.advancedmetalmanufactor.Register.advancedmetalmanufactor_BLOCK.get(), 4, 0, 3);
+		super(MenuRegister.ADVANCEDMETALMANUFACTOR_MENU.get(), pID, pos, Register.advancedmetalmanufactor_BLOCK.get(), 4, 0, 3);
 		
 			addSlot(new SlotItemHandler(item, 0, 51, 11) {
 				 @Override

@@ -1,5 +1,6 @@
 package menu.fuelrefiner;
 
+import block.norm.fuelrefiner.Register;
 import org.jetbrains.annotations.NotNull;
 
 import block.entity.neutral.fuelrefiner.FuelRefinerEntity;
@@ -20,7 +21,7 @@ public class FuelRefinerMenu extends BlockEntityMenuBasic{
 	private final FuelRefinerEntity blockentity;
 
 	public FuelRefinerMenu( Inventory pInventory, int pID,BlockPos pos) {
-		super(MenuRegister.FUELREFINER_MENU.get(), pID, pos, block.norm.fuelrefiner.Register.fuelrefiner_BLOCK.get(), 4, 0, 2);
+		super(MenuRegister.FUELREFINER_MENU.get(), pID, pos, Register.fuelrefiner_BLOCK.get(), 4, 0, 2);
 		this.blockentity = (FuelRefinerEntity) pInventory.player.level().getBlockEntity(pos);
 		if(pInventory.player.level().getBlockEntity(pos) instanceof FuelRefinerEntity entity) {
 			addSlot(new SlotItemHandler(entity.getItems(), 0, 56, 23) {

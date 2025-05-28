@@ -2,6 +2,7 @@ package command.energy;
 
 import java.util.Set;
 
+import util.net.EnergyNet;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
@@ -24,7 +25,7 @@ public class Display implements Command<CommandSourceStack> {
         var energyNets = EnergyNetProcess.getAllEnergyNets();
         var level = context.getSource().getLevel();
         if (energyNets != null && !energyNets.isEmpty()) {
-            for (util.net.EnergyNet energyNet : energyNets) {
+            for (EnergyNet energyNet : energyNets) {
                 // Displaying the EnergyNet info
                 context.getSource().getPlayer().sendSystemMessage(
                     Component.translatable("maring.command.energyNet.display.separator")
@@ -60,7 +61,7 @@ public class Display implements Command<CommandSourceStack> {
         return 1;
     }
     
-    private void displaySet(EnergyEnum energyEnum, util.net.EnergyNet energyNet, CommandContext<CommandSourceStack> context, Level level) {
+    private void displaySet(EnergyEnum energyEnum, EnergyNet energyNet, CommandContext<CommandSourceStack> context, Level level) {
         Set<BlockPos> set = energyNet.getSet(energyEnum);
         if (set != null && !set.isEmpty()) {
             // Display the set name

@@ -2,7 +2,6 @@ package menu.rocket;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 
-import block.entity.consumer.advancedmetalmanufactor.AdvancedMetalManufactorEntity;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;

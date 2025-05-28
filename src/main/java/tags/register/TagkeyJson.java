@@ -17,7 +17,7 @@ public class TagkeyJson {
 		if(is_vanilla) {
 			return "/forge-1.20.4-49.0.48-mdk/src/main/resources/data/minecraft/tags/" + path_simple +".json";
 		}else {
-			return "/forge-1.20.4-49.0.48-mdk/src/main/resources/data/"+MODID+"/tags/" + path_simple +".json";	
+			return "/forge-1.20.4-49.0.48-mdk/src/main/resources/data/"+MODID+ "/tags/" + path_simple +".json";
 		}
 	}
 	protected static String createName(String name_simple) {

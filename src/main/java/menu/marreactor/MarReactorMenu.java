@@ -4,7 +4,6 @@ import org.jetbrains.annotations.NotNull;
 
 import item.ItemRegister;
 import item.itemMaterial;
-import machine.energy.consumer.coredigger.CoreDiggerEntity;
 import machine.energy.producer.reactor.mar.MarReactorEntity;
 import machine.registry.MBlockRegister;
 import menu.BlockEntityMenuBasic;

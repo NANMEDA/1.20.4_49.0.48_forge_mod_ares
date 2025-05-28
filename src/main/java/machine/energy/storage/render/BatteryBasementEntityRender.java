@@ -4,7 +4,6 @@ import java.util.Map;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 
-import machine.energy.producer.reactor.mar.MarReactorEntity;
 import machine.energy.storage.battery.BatteryBasementEntity;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
