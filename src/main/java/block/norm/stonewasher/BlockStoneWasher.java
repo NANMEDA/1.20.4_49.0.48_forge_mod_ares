@@ -30,6 +30,7 @@ import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.network.NetworkHooks;
 import util.json.BlockJSON;
 
 /**
@@ -72,7 +73,7 @@ public class BlockStoneWasher extends Block implements EntityBlock{
 			var BlockEntity = level.getBlockEntity(pos);
 			if(BlockEntity instanceof StoneWasherEntity entity) {
 				ServerPlayer ifpe = (ServerPlayer)player;
-				ifpe.openMenu(new StoneWasherMenuProvider(pos));
+				NetworkHooks.openScreen(ifpe, new StoneWasherMenuProvider(pos), pos);
 			}else {
 				throw new IllegalStateException("missing block-stone washer");
 			}

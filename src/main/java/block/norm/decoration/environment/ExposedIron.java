@@ -15,6 +15,7 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.network.NetworkHooks;
 
 public class ExposedIron extends Block{
 
@@ -59,7 +60,7 @@ public class ExposedIron extends Block{
 	public InteractionResult use(BlockState blockstate,Level level,BlockPos pos,Player player,InteractionHand interactionhand,BlockHitResult blockHitResult) {
 		if(!level.isClientSide()) {
 			ServerPlayer ifpe = (ServerPlayer)player;
-			ifpe.openMenu(new ShowBlockMenuProvider(pos));
+			NetworkHooks.openScreen(ifpe, new ShowBlockMenuProvider(pos), pos);
 		}
 		return InteractionResult.SUCCESS;
 	}

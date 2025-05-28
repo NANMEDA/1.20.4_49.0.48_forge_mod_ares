@@ -30,6 +30,7 @@ import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.network.NetworkHooks;
 import util.json.BlockJSON;
 
 /**
@@ -110,7 +111,7 @@ public class BlockMicrowaveOven extends Block implements EntityBlock{
 			        }
 				}
 				ServerPlayer ifpe = (ServerPlayer)player;
-				ifpe.openMenu(new MicrowaveOvenMenuProvider(pos));
+				NetworkHooks.openScreen(ifpe, new MicrowaveOvenMenuProvider(pos), pos);
 			}else {
 				throw new IllegalStateException("missing block-microwave oven");
 			}

@@ -28,6 +28,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.network.NetworkHooks;
 import util.json.BlockJSON;
 
 /**
@@ -78,7 +79,7 @@ public class MarReactor extends Block implements EntityBlock{
 			var BlockEntity = level.getBlockEntity(pos);
 			if(BlockEntity instanceof MarReactorEntity entity) {
 				ServerPlayer ifpe = (ServerPlayer)player;
-				ifpe.openMenu(new MarReactorMenuProvider(pos));
+				NetworkHooks.openScreen(ifpe, new MarReactorMenuProvider(pos), pos);
 			}else {
 				throw new IllegalStateException("missing block-mar_reactor");
 			}

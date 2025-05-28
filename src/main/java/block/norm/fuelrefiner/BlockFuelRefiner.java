@@ -30,6 +30,7 @@ import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.network.NetworkHooks;
 import util.json.BlockJSON;
 
 /**
@@ -72,7 +73,7 @@ public class BlockFuelRefiner extends Block implements EntityBlock{
 			var BlockEntity = level.getBlockEntity(pos);
 			if(BlockEntity instanceof FuelRefinerEntity entity) {
 				ServerPlayer ifpe = (ServerPlayer)player;
-				ifpe.openMenu(new FuelRefinerMenuProvider(pos));
+				NetworkHooks.openScreen(ifpe, new FuelRefinerMenuProvider(pos), pos);
 			}else {
 				throw new IllegalStateException("missing block-fuel refiner");
 			}

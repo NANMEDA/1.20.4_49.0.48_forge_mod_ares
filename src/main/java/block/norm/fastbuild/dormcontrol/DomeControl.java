@@ -19,6 +19,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraftforge.network.NetworkHooks;
 import util.json.BlockJSON;
 
 public class DomeControl extends Block implements EntityBlock {
@@ -49,7 +50,7 @@ public class DomeControl extends Block implements EntityBlock {
 			var BlockEntity = level.getBlockEntity(pos);
 			if(BlockEntity instanceof DomeControlEntity entity) {
 				ServerPlayer ifpe = (ServerPlayer)player;
-				ifpe.openMenu(new DomeControlMenuProvider(pos));
+				NetworkHooks.openScreen(ifpe, new DomeControlMenuProvider(pos), pos);
 			}else {
 				throw new IllegalStateException("missing block-dorm_control");
 			}

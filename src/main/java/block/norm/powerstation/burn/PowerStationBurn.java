@@ -2,6 +2,7 @@ package block.norm.powerstation.burn;
 
 import net.minecraft.world.level.block.EntityBlock;
 
+import net.minecraftforge.network.NetworkHooks;
 import util.json.BlockJSON;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -57,7 +58,7 @@ public class PowerStationBurn extends HorizontalDirectionalBlock implements Enti
 			var BlockEntity = level.getBlockEntity(pos);
 			if(BlockEntity instanceof PowerStationBurnEntity entity) {
 				ServerPlayer ifpe = (ServerPlayer)player;
-				ifpe.openMenu(new PowerStationMenuProvider(pos));
+				NetworkHooks.openScreen(ifpe, new PowerStationMenuProvider(pos), pos);
 				
 			}else {
 				throw new IllegalStateException("missing block-powerstation_burn");

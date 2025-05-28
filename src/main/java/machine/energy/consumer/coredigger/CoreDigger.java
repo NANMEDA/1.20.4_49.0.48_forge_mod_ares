@@ -27,6 +27,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.network.NetworkHooks;
 import util.json.BlockJSON;
 
 /**
@@ -68,7 +69,7 @@ public class CoreDigger extends Block implements EntityBlock{
 			var BlockEntity = level.getBlockEntity(pos);
 			if(BlockEntity instanceof CoreDiggerEntity entity) {
 				ServerPlayer ifpe = (ServerPlayer)player;
-				ifpe.openMenu(new CoreDiggerMenuProvider(pos));
+				NetworkHooks.openScreen(ifpe, new CoreDiggerMenuProvider(pos), pos);
 			}else {
 				throw new IllegalStateException("missing block-coredigger");
 			}

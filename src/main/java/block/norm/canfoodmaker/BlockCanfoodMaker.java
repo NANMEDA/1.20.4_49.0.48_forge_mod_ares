@@ -31,6 +31,7 @@ import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.network.NetworkHooks;
 import util.json.BlockJSON;
 
 /**
@@ -73,7 +74,7 @@ public class BlockCanfoodMaker extends HorizontalDirectionalBlock implements Ent
 			var BlockEntity = level.getBlockEntity(pos);
 			if(BlockEntity instanceof CanfoodMakerEntity entity) {
 				ServerPlayer ifpe = (ServerPlayer)player;
-				ifpe.openMenu(new CanfoodMakerMenuProvider(pos));
+				NetworkHooks.openScreen(ifpe, new CanfoodMakerMenuProvider(pos), pos);
 				
 			}else {
 				throw new IllegalStateException("missing block-canfood_maker");

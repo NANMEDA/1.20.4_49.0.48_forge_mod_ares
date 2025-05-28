@@ -29,6 +29,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.network.NetworkHooks;
 import util.json.BlockJSON;
 
 /**
@@ -83,7 +84,7 @@ public class BlockEtchingMachine extends Block implements EntityBlock{
 					}
 				}
 				ServerPlayer ifpe = (ServerPlayer)player;
-				ifpe.openMenu(new EtchingMachineMenuProvider(pos));
+				NetworkHooks.openScreen(ifpe, new EtchingMachineMenuProvider(pos), pos);
 			}else {
 				throw new IllegalStateException("missing block:"+ global_name);
 			}
