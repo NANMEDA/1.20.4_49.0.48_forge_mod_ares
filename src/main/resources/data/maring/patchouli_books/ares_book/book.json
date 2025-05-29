@@ -2,6 +2,12 @@
   "name":"patchouli.book.name",
   "landing_text":"patchouli.book.introduction",
   "version":1,
-  "creative_tab":"minecraft:tools_and_utilities",
-  "use_resource_pack":true
+  "creative_tab":"maring:mar_tool_tab",
+  "use_resource_pack":true,
+  "i18n": true,
+  "nameplate_color": "FFAA00",
+  "link_color": "00AAAA",
+  "link_hover_color": "AA00AA",
+  "show_progress": false,
+  "text_overflow_mode": "overflow"
 }
