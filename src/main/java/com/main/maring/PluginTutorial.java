@@ -2,10 +2,10 @@ package com.main.maring;
 
 import java.util.List;
 
-import menu.reseachtable.TechNode;
+import com.main.maring.menu.reseachtable.TechNode;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import util.tech.TechManager;
+import com.main.maring.util.tech.TechManager;
 
 /**
  * Use @MaringPlugin to be as the entrance
