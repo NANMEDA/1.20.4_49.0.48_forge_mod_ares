@@ -21,8 +21,8 @@ public class ominous implements IBrewingRecipe {
     @Override
     public ItemStack getOutput(ItemStack input, ItemStack ingredient) {
         if (!input.isEmpty() && !ingredient.isEmpty()) {
-            if (ingredient.getItem() == ItemRegister.MATERIAL_ITEMS[0].get()) {
-                ItemStack result = new ItemStack(ItemRegister.FOOD_ITEMS[10].get(),8);
+            if (ingredient.getItem() == ItemRegister.OMINOUS_CAKE.get()) {
+                ItemStack result = new ItemStack(ItemRegister.OMINOUS_CAKE.get(),8);
                 return result;
             }
             

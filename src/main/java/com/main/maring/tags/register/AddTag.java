@@ -1,6 +1,5 @@
 package com.main.maring.tags.register;
 
-import com.main.maring.item.itemFood;
 
 public class AddTag {
 	
@@ -31,10 +30,6 @@ public class AddTag {
 		TagkeyJson.TagCreate(TagkeyJson.createPath("blocks/unbreakable_block", false),TagkeyJson.createName("unbroken_glass"));
 		TagkeyJson.TagCreate(TagkeyJson.createPath("blocks/unbreakable_block", false),TagkeyJson.createName("unbroken_decoration_green"));
 		TagkeyJson.TagCreate(TagkeyJson.createPath("blocks/unbreakable_block", false),TagkeyJson.createName("unbroken_decoration_lightblue"));
-		/***/
-		for(int i=1;i<=9;i++) {
-			TagkeyJson.TagCreate(TagkeyJson.createPath("items/can_food", false),TagkeyJson.createName(itemFood.getFoodName(i)));
-		}
 		/****************************/
 	}
 	

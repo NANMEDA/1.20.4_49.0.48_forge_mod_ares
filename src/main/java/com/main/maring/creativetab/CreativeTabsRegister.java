@@ -6,7 +6,6 @@ import com.main.maring.block.norm.BlockRegister;
 import com.main.maring.block.norm.advancedmetalmanufactor.Register;
 import com.main.maring.block.norm.fastbuild.FastBuildRegister;
 import com.main.maring.item.ItemRegister;
-import com.main.maring.item.itemFood;
 import com.main.maring.item.itemMaterial;
 import com.main.maring.machine.registry.MBlockRegister;
 import net.minecraft.core.registries.Registries;
@@ -43,11 +42,8 @@ public class CreativeTabsRegister {
     public static final RegistryObject<CreativeModeTab> MAR_FOOD_TAB = CREATIVE_MODE_TABS.register("mar_food_tab", () -> CreativeModeTab.builder()
     		.title(Component.translatable("mar_food_tab"))
     		.withTabsBefore(MAR_MAIN_TAB.getId())
-            .icon(() -> ItemRegister.FOOD_ITEMS[0].get().getDefaultInstance())
+            .icon(() -> ItemRegister.CHEESE_PIECE.get().getDefaultInstance())
             .displayItems((parameters, output) -> {
-            	for(int i=0;i<itemFood.ITEM_FOOD_NUMBER;i++) {
-            		output.accept(ItemRegister.FOOD_ITEMS[i].get());
-            	}
         		output.accept(ItemRegister.CHEESE_PIECE.get());
         		output.accept(ItemRegister.FROSTFIRE_FRUIT.get());
             }).build());

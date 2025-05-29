@@ -1,6 +1,7 @@
 package com.main.maring.item;
 
 import com.main.maring.block.norm.farm.FarmBlockRegistry;
+import com.main.maring.effect.registry.EffectRegister;
 import com.main.maring.item.armor.ModArmorMaterials;
 import com.main.maring.item.blueprint.ItemBlueprint;
 import com.main.maring.item.can.ItemCan;
@@ -18,6 +19,8 @@ import com.main.maring.item.tool.electric.WireCreator;
 import com.main.maring.item.tool.electric.WireCutor;
 import com.main.maring.item.weapon.ItemFrenchBread;
 import com.main.maring.item.weapon.SwordTier;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
@@ -25,6 +28,8 @@ import net.minecraft.world.item.Tiers;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+
+import java.util.Random;
 
 /**
  * 除了方块物品
@@ -34,9 +39,7 @@ import net.minecraftforge.registries.RegistryObject;
 public class ItemRegister {
 	private static final String MODID = "maring";
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
-	
-	@SuppressWarnings("unchecked")
-	public static final RegistryObject<Item>[] FOOD_ITEMS = new RegistryObject[itemFood.ITEM_FOOD_NUMBER];
+
 	@SuppressWarnings("unchecked")
 	public static final RegistryObject<Item>[] MATERIAL_ITEMS = new RegistryObject[itemMaterial.ITEM_MATERIAL_NUMBER];
 	
@@ -56,24 +59,6 @@ public class ItemRegister {
         			.food(foodBuilder.build())
         			));
         });*/
-		for (int i = 0; i < itemFood.ITEM_FOOD_NUMBER; i++) {
-		    FoodProperties.Builder foodBuilder = new FoodProperties.Builder()
-		        .nutrition(itemFood.getFoodNutrition(i))
-		        .saturationMod(itemFood.getFoodFull(i));
-		    
-		    if (itemFood.getFoodEffect(i) != null) {
-		        foodBuilder.effect(itemFood.getFoodEffect(i), itemFood.getFoodEffectProbal(i));
-		    }
-		    
-		    if (itemFood.getFoodEat(i)) {
-		        foodBuilder.alwaysEat();
-		    }
-		    
-		    FOOD_ITEMS[i] = ITEMS.register(itemFood.getFoodName(i), () -> new Item(new Item.Properties()
-		        .food(foodBuilder.build())
-		    ));
-		}
-		System.out.println("here come MM");
 
 		for (int i = 0; i < itemMaterial.ITEM_MATERIAL_NUMBER; i++) {
 		    if (i == 0) {
@@ -85,6 +70,22 @@ public class ItemRegister {
 		    }
 		}
 	}
+	public static final RegistryObject<Item> OMINOUS_CAKE = ITEMS.register("ominous_cake",() -> new Item(new Item.Properties()
+			.food(new FoodProperties.Builder()
+					.nutrition(1)
+					.saturationMod(20)
+					.effect( () -> {
+						int rand = new Random().nextInt(100) + 1;
+						if (rand <= 30) {
+							return new MobEffectInstance(EffectRegister.OMINOUSLUCK.get(), 1200 * 7);
+						} else if (rand <= 95) {
+							return new MobEffectInstance(EffectRegister.MENTALABUSE.get(), 20 * 100);
+						} else {
+							return new MobEffectInstance(MobEffects.BAD_OMEN, 1200 * 15);
+						}
+					}, 1.0f)
+					.build())
+	));
 
 	public static final RegistryObject<Item> FRENCH_BREAD = ITEMS.register(ItemFrenchBread.global_name, () -> new ItemFrenchBread(SwordTier.frenchBread, 4, 1f, new Item.Properties()));
 

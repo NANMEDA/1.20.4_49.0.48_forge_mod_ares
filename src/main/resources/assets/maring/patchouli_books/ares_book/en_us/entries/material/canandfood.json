@@ -1,0 +1,49 @@
+{
+  "name": "patchouli.entry.material.canandfood.name",
+  "icon": "maring:canfood_maker",
+  "category": "maring:material",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "maring:canfood_maker"
+      },
+      "text": "patchouli.entry.material.canandfood.text1"
+    },
+    {
+      "type": "crafting",
+      "recipe": "maring:canfood_maker",
+      "text": "patchouli.entry.material.canandfood.text2"
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "maring:textures/gui/patchouli/entries/canandfood/m2.png"
+      ],
+      "text": "patchouli.entry.material.canandfood.text3"
+    },
+    {
+      "type": "crafting",
+      "recipe": "maring:ominous_cake",
+      "text": "patchouli.entry.material.canandfood.text4"
+    },
+    {
+      "type": "text",
+      "text": "patchouli.entry.material.canandfood.text5"
+    },
+    {
+      "type": "patchouli:empty"
+    },
+    {
+      "type": "crafting",
+      "recipe": "maring:microwave_oven",
+      "text": "patchouli.entry.material.canandfood.text6"
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "maring:textures/gui/patchouli/entries/canandfood/m8.png"
+      ]
+    }
+  ]
+}

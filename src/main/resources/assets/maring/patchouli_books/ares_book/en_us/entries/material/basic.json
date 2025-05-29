@@ -11,8 +11,114 @@
       "text": "patchouli.entry.material.basic.text1"
     },
     {
-      "type": "patchouli:text",
+      "type": "crafting",
+      "recipe": "maring:basic_metal_parts",
       "text": "patchouli.entry.material.basic.text2"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "maring:basicmetal_manufactor"
+      },
+      "text": "patchouli.entry.material.basic.text3"
+    },
+    {
+      "type": "crafting",
+      "recipe": "maring:basicmetal_manufactor"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "maring:advanced_metal_parts"
+      },
+      "text": "patchouli.entry.material.basic.text4"
+    },
+    {
+      "type": "patchouli:empty"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "maring:advancedmetal_manufactor"
+      },
+      "text": "patchouli.entry.material.basic.text5"
+    },
+    {
+      "type": "crafting",
+      "recipe": "maring:advancedmetal_manufactor"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "maring:bioplastic_parts"
+      },
+      "text": "patchouli.entry.material.basic.text6"
+    },
+    {
+      "type": "patchouli:empty"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "maring:bioplastic_builder"
+      },
+      "text": "patchouli.entry.material.basic.text7"
+    },
+    {
+      "type": "crafting",
+      "recipe": "maring:bioplastic_builder"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "maring:semiconductor_parts"
+      },
+      "text": "patchouli.entry.material.basic.text8"
+    },
+    {
+      "type": "patchouli:empty"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "maring:etching_machine"
+      },
+      "text": "patchouli.entry.material.basic.text9"
+    },
+    {
+      "type": "crafting",
+      "recipe": "maring:etching_machine"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "maring:crystal_parts"
+      },
+      "text": "patchouli.entry.material.basic.text10"
+    },
+    {
+      "type": "patchouli:empty"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "maring:crystal_builder"
+      },
+      "text": "patchouli.entry.material.basic.text11"
+    },
+    {
+      "type": "crafting",
+      "recipe": "maring:crystal_builder"
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "maring:textures/gui/patchouli/entries/basic/m18.png"
+      ]
+    },    {
+      "type": "crafting",
+      "recipe": "maring:villager_handmake_table",
+      "text": "patchouli.entry.material.basic.text12"
     }
   ]
 }
