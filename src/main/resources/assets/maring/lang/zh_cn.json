@@ -432,5 +432,13 @@
   
   "villager.poops": "普通的",
   "villager.poops.valuable": "典藏的",
-  "spe.foolgold": "愚人金"
+  "spe.foolgold": "愚人金",
+
+  "patchouli.book.name": "向火星-教程包",
+  "patchouli.book.introduction": "这里向你们介绍下这个模组",
+  "patchouli.category.material.name": "向火星-材料",
+  "patchouli.category.material.description": "介绍材料",
+  "patchouli.entry.material.basic.name": "基础材料",
+  "patchouli.entry.material.basic.text1": "基础材料1",
+  "patchouli.entry.material.basic.text2": "基础材料2"
 }

@@ -22,6 +22,8 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class FrostfireFruitBlock extends CropBlock {
+
+
 	   private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[]{
 			   Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), 
 			   Block.box(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D), 
@@ -33,7 +35,6 @@ public class FrostfireFruitBlock extends CropBlock {
 			   Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D)};
 	   
 	   public static final String global_name = "frostfire_fruit_block";
-	   
 
 	   public FrostfireFruitBlock(BlockBehaviour.Properties p_51328_) {
 	      super(p_51328_);

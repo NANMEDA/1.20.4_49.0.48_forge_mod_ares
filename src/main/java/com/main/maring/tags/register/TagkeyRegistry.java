@@ -17,7 +17,7 @@ public class TagkeyRegistry {
 	public static TagKey<Item> CAN_FOOD_TAG;
 	public static TagKey<Item> CAN_FOOD_MATERIAL_TAG;
 	public static TagKey<Item> FUEL_BUCKET_TAG;
-	
+
 	public static void init() {
 		UNBREAKABLE_BLOCK_TAG = BlockTags.create(new ResourceLocation(MODID, "unbreakable_block"));
 		
@@ -25,6 +25,8 @@ public class TagkeyRegistry {
 		CAN_FOOD_TAG = ItemTags.create(new ResourceLocation(MODID, "can_food"));
 		CAN_FOOD_MATERIAL_TAG = ItemTags.create(new ResourceLocation(MODID, "can_food_material"));
 		FUEL_BUCKET_TAG = ItemTags.create(new ResourceLocation(MODID, "fuel_bucket"));
+
+
 	}
 	
 }

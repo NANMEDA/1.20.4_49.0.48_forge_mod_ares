@@ -1,0 +1,18 @@
+{
+  "name": "patchouli.entry.material.basic.name",
+  "icon": "maring:basic_metal_parts",
+  "category": "maring:material",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "maring:basic_metal_parts"
+      },
+      "text": "patchouli.entry.material.basic.text1"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "patchouli.entry.material.basic.text2"
+    }
+  ]
+}
