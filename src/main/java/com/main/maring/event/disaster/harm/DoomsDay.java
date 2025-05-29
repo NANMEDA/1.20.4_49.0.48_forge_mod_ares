@@ -1,7 +1,6 @@
 package com.main.maring.event.disaster.harm;
 
-import com.main.maring.ExtraConfig;
-
+import com.main.maring.config.CommonConfig;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
@@ -14,14 +13,9 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = "maring", bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class DoomsDay {
-	
-	//public static boolean DOOMS_WILL_ARRIVE = ExtraConfig.DOOMS_WILL_ARRIVE;
-	//public static long DOOMS_DAY_START = ExtraConfig.DOOMS_DAY_START;
-	//public static long DOOMS_DAY_END = ExtraConfig.DOOMS_DAY_END;
-	//public static long DOOMS_DAY_TOMORROW = ExtraConfig.DOOMS_DAY_TOMORROW;
-	
-	//public static boolean DOOMS_DAY_OCCUR = false;
-	//public static boolean WARNING = false;
+
+	public static boolean WARNING = false;
+	public static boolean DOOMS_DAY_OCCUR = false;
 	private static ResourceKey<Level> limboKey = ResourceKey.create(Registries.DIMENSION, new ResourceLocation("maring", "limbo"));
 	
 	
@@ -33,8 +27,8 @@ public class DoomsDay {
 	 * ***/
 	@SubscribeEvent
 	public static void doomsDay(LevelTickEvent event) {
-		if(!ExtraConfig.DOOMS_WILL_ARRIVE) return;
-		if(ExtraConfig.DOOMS_DAY_OCCUR) {
+		if(!CommonConfig.DOOMS_WILL_ARRIVE.get()) return;
+		if(DOOMS_DAY_OCCUR) {
 			Level level = event.level;
 			if(!level.isClientSide() && level.dimension()==Level.OVERWORLD) {
 				ServerLevel limbo = level.getServer().getLevel(limboKey);
@@ -55,9 +49,8 @@ public class DoomsDay {
 		Level level = event.level;
 		if(!level.isClientSide() && level.dimension()==Level.OVERWORLD) {
 			long time = level.getDayTime();
-			if(time>ExtraConfig.DOOMS_DAY_END) {
-				ExtraConfig.DOOMS_DAY_OCCUR = true;
-				ExtraConfig.save(event.level.getServer());
+			if (time > CommonConfig.DOOMS_DAY_TOMORROW.get() + CommonConfig.DAY_TICKS + CommonConfig.DOOM_EVENT_DURATION) {
+				DOOMS_DAY_OCCUR = true;
 				ServerLevel limbo = level.getServer().getLevel(limboKey);
 				if (limbo == null) {
 					System.out.println("找不到Limbo");
@@ -68,14 +61,13 @@ public class DoomsDay {
                     
                 });
 				//deleteOverworld(event.level.getServer());
-			}else if(time>=ExtraConfig.DOOMS_DAY_START) {
+			}else if(time >= CommonConfig.DOOMS_DAY_TOMORROW.get() + CommonConfig.DAY_TICKS) {
 				//DOOMS_DAY_OCCUR = true;
 				foreTime(time,level);
 				lastTime(time,level);
-			}else if(time>=ExtraConfig.DOOMS_DAY_TOMORROW) {
-            	if(!ExtraConfig.WARNING) {
-            		ExtraConfig.WARNING = true;
-            		ExtraConfig.save(event.level.getServer());
+			}else if(time >= CommonConfig.DOOMS_DAY_TOMORROW.get()) {
+            	if(!WARNING) {
+            		WARNING = true;
             		level.players().forEach(player -> player.sendSystemMessage(Component.translatable("maring.disaster.dooms_day.warning")));
             	}
 			}
