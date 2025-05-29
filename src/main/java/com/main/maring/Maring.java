@@ -4,7 +4,6 @@ package com.main.maring;
 import com.main.maring.block.entity.BlockEntityRegister;
 import com.main.maring.block.norm.BlockRegister;
 import com.main.maring.config.CommonConfig;
-import com.main.maring.event.disaster.harm.DoomsDay;
 import com.main.maring.item.ItemRegister;
 import com.main.maring.machine.registry.MBlockRegister;
 import com.mojang.logging.LogUtils;
@@ -19,14 +18,10 @@ import com.main.maring.machine.registry.MBlockEntityRegister;
 import com.main.maring.menu.registry.MenuRegister;
 import com.main.maring.menu.reseachtable.TechTreeLayout;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import com.main.maring.network.NetworkHandler;
 import com.main.maring.tags.register.TagkeyRegistry;
@@ -54,7 +49,6 @@ public class Maring
     	
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CommonConfig.init());
-        NetworkHandler.register();
 
         TagkeyRegistry.init();
 

@@ -19,8 +19,6 @@ public class CommonConfig {
     public static ForgeConfigSpec.BooleanValue DOOMS_WILL_ARRIVE;
     public static ForgeConfigSpec.LongValue DOOMS_DAY_TOMORROW;
 
-    public static ForgeConfigSpec.BooleanValue WILL_PRESSURE_HURT;
-
     public static ForgeConfigSpec init() {
         ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
         builder.comment("Maring Config");
@@ -53,10 +51,6 @@ public class CommonConfig {
         DOOMS_DAY_TOMORROW = builder
                 .comment("When the doomsday warning occurs (in ticks)")
                 .defineInRange("doomsDayTomorrow", 39 * DAY_TICKS + NIGHT_TICKS, 0, Long.MAX_VALUE);
-
-        WILL_PRESSURE_HURT = builder
-                .comment("Whether pressure can hurt players")
-                .define("willPressureHurt", true);
 
         builder.pop();
         return builder.build();

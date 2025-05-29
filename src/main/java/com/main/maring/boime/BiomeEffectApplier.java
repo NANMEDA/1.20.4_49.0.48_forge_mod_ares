@@ -1,5 +1,6 @@
 package com.main.maring.boime;
 
+import com.main.maring.command.gamerule.ModGameRules;
 import com.main.maring.config.CommonConfig;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -37,9 +38,9 @@ public class BiomeEffectApplier {
      * ***/
     @SubscribeEvent
     public static void onLivingUpdate(LivingTickEvent event) {
-    	if(!CommonConfig.WILL_PRESSURE_HURT.get()) return;
-
     	Level level = event.getEntity().level();
+        if(!level.getGameRules().getBoolean(ModGameRules.WILL_PRESSURE_HURT)) return;
+
         if (level.isClientSide) {
             return;
         }
