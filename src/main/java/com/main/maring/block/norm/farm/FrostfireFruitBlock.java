@@ -49,15 +49,15 @@ public class FrostfireFruitBlock extends CropBlock {
 	   }
 	   
 		@Override
-		public InteractionResult use(BlockState blockstate,Level level,BlockPos pos,Player player,InteractionHand interactionhand,BlockHitResult blockHitResult) {
+		public InteractionResult use(BlockState pblockstate,Level level,BlockPos pos,Player player,InteractionHand interactionhand,BlockHitResult blockHitResult) {
 	
-			if(this.getAge(blockstate)==this.getMaxAge()) {
+			if(this.getAge(pblockstate)==this.getMaxAge()) {
 				Random r = new Random();
 				r.setSeed(pos.getX()+pos.getY()+pos.getZ());
 				int output = r.nextInt(1,4);
 				ItemStack outputItemStack = new ItemStack(ItemRegister.FROSTFIRE_FRUIT.get(),output);
 				Containers.dropContents(level, pos, NonNullList.of(ItemStack.EMPTY, outputItemStack));
-				level.setBlockAndUpdate(pos, blockstate.setValue(AGE, 4));
+				level.setBlockAndUpdate(pos, pblockstate.setValue(AGE, 4));
 			}
 			return InteractionResult.PASS;
 		}

@@ -34,7 +34,7 @@ public class BlueprintBuilderMenu extends BlockEntityMenuBasic{
 				 @Override
 				    public boolean mayPlace(@NotNull ItemStack stack)
 				    {
-				    	if(stack.getItem()==ItemRegister.MATERIAL_ITEMS[1].get()){
+				    	if(stack.getItem()==ItemRegister.BASIC_METAL_PARTS.get()){
 				    		return true;
 				    	}
 				        return false;
@@ -44,7 +44,7 @@ public class BlueprintBuilderMenu extends BlockEntityMenuBasic{
 				 @Override
 				    public boolean mayPlace(@NotNull ItemStack stack)
 				    {
-				    	if(stack.getItem()==ItemRegister.MATERIAL_ITEMS[2].get()){
+				    	if(stack.getItem()==ItemRegister.ADVANCED_METAL_PARTS.get()){
 				    		return true;
 				    	}
 				        return false;
@@ -54,7 +54,7 @@ public class BlueprintBuilderMenu extends BlockEntityMenuBasic{
 				 @Override
 				    public boolean mayPlace(@NotNull ItemStack stack)
 				    {
-				    	if(stack.getItem()==ItemRegister.MATERIAL_ITEMS[3].get()){
+				    	if(stack.getItem()==ItemRegister.BIOPLASTIC_PARTS.get()){
 				    		return true;
 				    	}
 				        return false;
@@ -64,7 +64,7 @@ public class BlueprintBuilderMenu extends BlockEntityMenuBasic{
 				 @Override
 				    public boolean mayPlace(@NotNull ItemStack stack)
 				    {
-				    	if(stack.getItem()==ItemRegister.MATERIAL_ITEMS[4].get()){
+					if(stack.getItem()==ItemRegister.SEMICONDUCTOR_PARTS.get()){
 				    		return true;
 				    	}
 				        return false;
@@ -74,7 +74,7 @@ public class BlueprintBuilderMenu extends BlockEntityMenuBasic{
 				 @Override
 				    public boolean mayPlace(@NotNull ItemStack stack)
 				    {
-				    	if(stack.getItem()==ItemRegister.MATERIAL_ITEMS[5].get()){
+				    	if(stack.getItem()==ItemRegister.CRYSTAL_PARTS.get()){
 				    		return true;
 				    	}
 				        return false;

@@ -194,7 +194,7 @@ public class BasicMetalManufactorEntity extends PowerConsumerEntity{
 			stack[2].shrink(1);
 			stack[3].shrink(1);
 			stack[4].shrink(1);
-			ItemStack items5 = new ItemStack(ItemRegister.MATERIAL_ITEMS[1].get(), stack[5].getCount()+1);
+			ItemStack items5 = new ItemStack(ItemRegister.BASIC_METAL_PARTS.get(), stack[5].getCount()+1);
 			
 			item.setStackInSlot(0, stack[0]);
 			item.setStackInSlot(1, stack[1]);

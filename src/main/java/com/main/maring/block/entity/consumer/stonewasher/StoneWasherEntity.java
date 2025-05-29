@@ -43,7 +43,7 @@ public class StoneWasherEntity extends PowerConsumerEntity{
 	
 	private static Item mar_stone_item = BlockRegister.COMMON_BLOCK_ITEMS[BlockBasic.getIdFromName("mar_stone")].get();
 	private static Item mar_deep_stone_item = BlockRegister.COMMON_BLOCK_ITEMS[BlockBasic.getIdFromName("mar_deep_stone")].get();
-	private static Item raw_iron_nugget = ItemRegister.MATERIAL_ITEMS[11].get();
+	private static Item raw_iron_nugget = ItemRegister.RAW_IRON_NUGGET.get();
 	
 	private static Random rd = new Random();
 	

@@ -240,7 +240,7 @@ public class CoreDiggerEntity extends ConsumerEntity implements IConsumer{
 		}else if(i<=71) {
 			return new ItemStack(Items.NETHERITE_INGOT,Math.min(1, c));
 		}else if(i<=90){
-			return new ItemStack(ItemRegister.MATERIAL_ITEMS[25].get(),c);
+			return new ItemStack(ItemRegister.PIECE_OBSIDIAN.get(),c);
 		}else {
 			return ItemStack.EMPTY;
 		}

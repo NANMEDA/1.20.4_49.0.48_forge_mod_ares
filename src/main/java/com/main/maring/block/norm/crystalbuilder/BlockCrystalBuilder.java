@@ -77,7 +77,7 @@ public class BlockCrystalBuilder extends Block implements EntityBlock{
 			    ItemStack entityStackSlot1 = entity.getItems().getStackInSlot(1);
 			    if (!entityStackSlot0.isEmpty() &&
 			        (mainHandItem.isEmpty() ||
-			         (mainHandItem.getItem() == ItemRegister.MATERIAL_ITEMS[5].get()))) {
+			         (mainHandItem.getItem() == ItemRegister.CRYSTAL_PARTS.get()))) {
 			    	int count = mainHandItem.getCount() + entityStackSlot0.getCount();
 			        player.setItemInHand(InteractionHand.MAIN_HAND, mainHandItem.isEmpty() ?
 			                             entityStackSlot0 : new ItemStack(entityStackSlot0.getItem(), count<=64?count:64));
@@ -113,7 +113,7 @@ public class BlockCrystalBuilder extends Block implements EntityBlock{
 			            } else if (holdItem == Items.AMETHYST_SHARD) {
 			                accelerate = 3600; // 3 minutes
 			                accelerateIndex = 1; // speed x 2 = 60s
-			            } else if (holdItem == ItemRegister.MATERIAL_ITEMS[0].get()) {
+			            } else if (holdItem == ItemRegister.OMINOUS_GEMSTONE.get()) {
 			                accelerate = 600; // 30 seconds
 			                accelerateIndex = 239; // speed x 240 = 0.5s
 			            } else {

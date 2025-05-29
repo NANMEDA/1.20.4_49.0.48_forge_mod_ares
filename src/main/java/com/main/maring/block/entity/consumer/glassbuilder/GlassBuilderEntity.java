@@ -158,7 +158,7 @@ public class GlassBuilderEntity extends PowerConsumerEntity{
 				return;
 			}
 			process_progress -= 720;
-			int add = stack[0].getItem()==ItemRegister.MATERIAL_ITEMS[3].get() ? 3 : 5;
+			int add = stack[0].getItem()==ItemRegister.BIOPLASTIC_PARTS.get() ? 3 : 5;
 			item.setStackInSlot(0, new ItemStack(stack[0].getItem(),stack[0].getCount()-1));
 			item.setStackInSlot(1, new ItemStack(Items.GLASS,stack[1].getCount()+add));
 			setChanged();

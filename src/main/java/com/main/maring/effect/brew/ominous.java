@@ -15,7 +15,7 @@ public class ominous implements IBrewingRecipe {
 
     @Override
     public boolean isIngredient(ItemStack stack) {
-        return stack.getItem() == ItemRegister.MATERIAL_ITEMS[0].get();
+        return stack.getItem() == ItemRegister.OMINOUS_GEMSTONE.get();
     }
 
     @Override

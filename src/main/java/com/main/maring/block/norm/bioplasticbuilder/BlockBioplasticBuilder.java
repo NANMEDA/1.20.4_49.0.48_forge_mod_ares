@@ -75,7 +75,7 @@ public class BlockBioplasticBuilder extends Block implements EntityBlock{
 			if(BlockEntity instanceof BioplasticBuilderEntity entity) {
 				if (!entity.getItems().getStackInSlot(0).isEmpty() &&
 					    (player.getMainHandItem().isEmpty() ||
-					    (player.getMainHandItem().getItem() == ItemRegister.MATERIAL_ITEMS[3].get() &&
+					    (player.getMainHandItem().getItem() == ItemRegister.BIOPLASTIC_PARTS.get() &&
 					    (player.getMainHandItem().getCount() + entity.getItems().getStackInSlot(0).getCount() <= 64)))) {
 					player.setItemInHand(InteractionHand.MAIN_HAND, player.getMainHandItem().isEmpty() ? entity.getItems().getStackInSlot(0):new ItemStack(player.getMainHandItem().getItem(),player.getMainHandItem().getCount()+entity.getItems().getStackInSlot(0).getCount()));
 					entity.getItems().setStackInSlot(0, ItemStack.EMPTY);
@@ -108,7 +108,7 @@ public class BlockBioplasticBuilder extends Block implements EntityBlock{
 							player.setItemInHand(InteractionHand.MAIN_HAND,new ItemStack(holdItem,hold.getCount()-1));
 							entity.bio += 270;
 						}
-					}else if(holdItem==Items.COAL||holdItem==ItemRegister.MATERIAL_ITEMS[6].get()) {
+					}else if(holdItem==Items.COAL||holdItem==ItemRegister.BOTTLED_METHANE.get()) {
 						if(!player.isCrouching()) {
 							player.setItemInHand(InteractionHand.MAIN_HAND,ItemStack.EMPTY);
 							entity.bio +=150*hold.getCount();

@@ -39,37 +39,75 @@ import java.util.Random;
 public class ItemRegister {
 	private static final String MODID = "maring";
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
-
-	@SuppressWarnings("unchecked")
-	public static final RegistryObject<Item>[] MATERIAL_ITEMS = new RegistryObject[itemMaterial.ITEM_MATERIAL_NUMBER];
 	
 	static {
 		System.out.println("here come Register the Item");
 	}
 	
-	static {
-		/*
-        IntStream.range(0, itemFood.ITEM_FOOD_NUMBER).parallel().forEach(i -> {
-        	FoodProperties.Builder foodBuilder = new FoodProperties.Builder()
-        	        .nutrition(itemFood.getFoodNutrition(i))
-        	        .saturationMod(itemFood.getFoodFull(i));
-        	if (itemFood.getFoodEffect(i) != null) {foodBuilder.effect(itemFood.getFoodEffect(i), itemFood.getFoodEffectProbal(i));}
-        	if (itemFood.getFoodEat(i)) {foodBuilder.alwaysEat();}
-        	FOOD_ITEMS[i] = ITEMS.register(itemFood.getFoodName(i), () -> new Item(new Item.Properties()
-        			.food(foodBuilder.build())
-        			));
-        });*/
 
-		for (int i = 0; i < itemMaterial.ITEM_MATERIAL_NUMBER; i++) {
-		    if (i == 0) {
-		        MATERIAL_ITEMS[i] = ITEMS.register(itemMaterial.getMaterialName(i), () -> new Item(new Item.Properties().stacksTo(8)));
-		    } else if (i < 6) {
-		        MATERIAL_ITEMS[i] = ITEMS.register(itemMaterial.getMaterialName(i), () -> new Item(new Item.Properties().stacksTo(16)));
-		    } else {
-		        MATERIAL_ITEMS[i] = ITEMS.register(itemMaterial.getMaterialName(i), () -> new Item(new Item.Properties()));
-		    }
-		}
-	}
+	public static final RegistryObject<Item> OMINOUS_GEMSTONE = ITEMS.register("ominous_gemstone",
+			() -> new Item(new Item.Properties().stacksTo(8)));
+
+	public static final RegistryObject<Item> BASIC_METAL_PARTS = ITEMS.register("basic_metal_parts",
+			() -> new Item(new Item.Properties().stacksTo(16))); 	// 深蓝色系
+	public static final RegistryObject<Item> ADVANCED_METAL_PARTS = ITEMS.register("advanced_metal_parts",
+			() -> new Item(new Item.Properties().stacksTo(16)));	// 浅蓝色系
+	public static final RegistryObject<Item> BIOPLASTIC_PARTS = ITEMS.register("bioplastic_parts",
+			() -> new Item(new Item.Properties().stacksTo(16)));	// 土黄色系
+	public static final RegistryObject<Item> SEMICONDUCTOR_PARTS = ITEMS.register("semiconductor_parts",
+			() -> new Item(new Item.Properties().stacksTo(16)));	// 紫灰色系
+	public static final RegistryObject<Item> CRYSTAL_PARTS = ITEMS.register("crystal_parts",
+			() -> new Item(new Item.Properties().stacksTo(16)));	// 橙红色系
+
+	public static final RegistryObject<Item> BOTTLED_METHANE = ITEMS.register("bottled_methane",
+			() -> new Item(new Item.Properties()));// 一瓶可以烧8个
+	public static final RegistryObject<Item> BIG_BOTTLED_METHANE = ITEMS.register("big_bottled_methane",
+			() -> new Item(new Item.Properties()));// 容量是上面的64倍，不能直接烧，需要气体压缩机
+	public static final RegistryObject<Item> BOTTLED_OXYGEN = ITEMS.register("bottled_oxygen",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> BIG_BOTTLED_OXYGEN = ITEMS.register("big_bottled_oxygen",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> BOTTLED_FUEL = ITEMS.register("bottled_fuel",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> RAW_IRON_NUGGET = ITEMS.register("raw_iron_nugget",
+			() -> new Item(new Item.Properties()));
+
+	public static final RegistryObject<Item> INSULATION_MATERIAL = ITEMS.register("insulation_material",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> INSULATION_LAYER = ITEMS.register("insulation_layer",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> STRUCTURE_LAYER = ITEMS.register("sructure_layer",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> RADIATION_LAYER = ITEMS.register("radiation_layer",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> ROCKET_SHELL = ITEMS.register("rocket_shell",
+			() -> new Item(new Item.Properties()));
+
+	public static final RegistryObject<Item> ROCKET_FUEL_TANK = ITEMS.register("rocket_fuel_tank",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> ROCKET_OXYGEN_TANK = ITEMS.register("rocket_oxygen_tank",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> ROCKET_ACTIVE_SPACE = ITEMS.register("rocket_active_space",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> ROCKET_COWLING = ITEMS.register("rocket_cowling",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> ROCKET_SPOUT = ITEMS.register("rocket_spout",
+			() -> new Item(new Item.Properties()));
+
+	public static final RegistryObject<Item> OMINOUS_UPGRADE_SMITHING_TEMPLATE = ITEMS.register("ominous_upgrade_smithing_template",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> PIECE_RAWGOLD = ITEMS.register("piece_rawgold",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> PIECE_OBSIDIAN = ITEMS.register("piece_obsidian",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> MAGNET_SUPPRESSOR = ITEMS.register("magnet_suppressor",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> SUCKER = ITEMS.register("sucker",
+			() -> new Item(new Item.Properties()));
+
+	public static final RegistryObject<Item> OMINOUS_GEMSTONE_REACTOR = ITEMS.register("ominous_gemstone_reactor",
+			() -> new Item(new Item.Properties()));
+
 	public static final RegistryObject<Item> OMINOUS_CAKE = ITEMS.register("ominous_cake",() -> new Item(new Item.Properties()
 			.food(new FoodProperties.Builder()
 					.nutrition(1)

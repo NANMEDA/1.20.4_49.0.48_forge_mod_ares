@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class itemMaterial {
-
+/*
     private static final String[] MATERIAL_NAMES = {
         "ominous_gemstone",
 
@@ -22,7 +22,7 @@ public class itemMaterial {
         "bottled_oxygen",
         "big_bottled_oxygen",
         "bottled_fuel",            // 上面的8倍
-        "raw_iron_nugget",
+        "raw_iron_nugget",  //12
 
         "insulation_material",
         "insulation_layer",
@@ -34,7 +34,7 @@ public class itemMaterial {
         "rocket_oxygen_tank",
         "rocket_active_space",
         "rocket_cowling",
-        "rocket_spout",
+        "rocket_spout", //22
 
         "ominous_upgrade_smithing_template",
         "piece_rawgold",
@@ -61,13 +61,13 @@ public class itemMaterial {
      *
      * @param id 材料的 ID
      * @return 对应的材料名称，如果 ID 无效则返回 null
-     */
+     *//*
     public static String getMaterialName(int id) {
         if (id >= 0 && id < ITEM_MATERIAL_NUMBER) {
             return MATERIAL_NAMES[id];
         }
         return null;
-    }
+    }*/
 
     /**
      * 获取材料 ID 通过名称
@@ -75,17 +75,20 @@ public class itemMaterial {
      * @param name 材料名称
      * @return 对应的 ID，如果名称不存在则返回 -1
      */
+    /*
     public static int getMaterialId(String name) {
         return NAME_TO_ID_MAP.getOrDefault(name, -1);
     }
-
+*/
     /**
      * 判断材料名称是否存在
      *
      * @param name 材料名称
      * @return 如果存在返回 true，否则返回 false
      */
+    /*
     public static boolean isMaterialNameValid(String name) {
         return NAME_TO_ID_MAP.containsKey(name);
     }
+*/
 }

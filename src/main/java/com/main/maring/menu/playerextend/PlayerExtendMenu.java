@@ -30,7 +30,7 @@ public class PlayerExtendMenu extends BlockEntityMenuBasic{
 				 @Override
 				    public boolean mayPlace(@NotNull ItemStack stack)
 				    {
-				    	if(stack.getItem()==ItemRegister.MATERIAL_ITEMS[1].get()){
+				    	if(stack.getItem()==ItemRegister.BASIC_METAL_PARTS.get()){
 				    		return true;
 				    	}
 				        return false;

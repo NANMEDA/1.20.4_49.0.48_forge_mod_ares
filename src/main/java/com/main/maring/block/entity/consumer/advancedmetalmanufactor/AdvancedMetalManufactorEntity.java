@@ -197,7 +197,7 @@ public class AdvancedMetalManufactorEntity extends PowerConsumerEntity{
 			item.setStackInSlot(0, new ItemStack(stack[0].getItem(),stack[0].getCount()-4));
 			item.setStackInSlot(1, new ItemStack(stack[1].getItem(),stack[1].getCount()-8));
 			item.setStackInSlot(2, new ItemStack(stack[2].getItem(),stack[2].getCount()-1));
-			item.setStackInSlot(3, new ItemStack(ItemRegister.MATERIAL_ITEMS[2].get(),stack[3].getCount()+1));
+			item.setStackInSlot(3, new ItemStack(ItemRegister.ADVANCED_METAL_PARTS.get(),stack[3].getCount()+1));
 			setChanged();
 		}
 	}

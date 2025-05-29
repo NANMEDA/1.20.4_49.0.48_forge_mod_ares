@@ -25,7 +25,7 @@ public class MarReactorMenu extends BlockEntityMenuBasic{
 				@Override
 			    public boolean mayPlace(@NotNull ItemStack stack)
 			    {
-					if(stack.is(ItemRegister.MATERIAL_ITEMS[itemMaterial.getMaterialId("ominous_gemstone_reactor")].get())) {
+					if(stack.is(ItemRegister.OMINOUS_GEMSTONE_REACTOR.get())) {
 						return true;
 					}
 					return false;

@@ -163,7 +163,7 @@ public class BioplasticBuilderEntity extends PowerConsumerEntity{
 				return;
 			}
 			process_progress = 20*15*3;
-			item.setStackInSlot(0, new ItemStack(ItemRegister.MATERIAL_ITEMS[3].get(),stack.getCount()+1));
+			item.setStackInSlot(0, new ItemStack(ItemRegister.BIOPLASTIC_PARTS.get(),stack.getCount()+1));
 			bio -= 100;
 			setChanged();
 		}

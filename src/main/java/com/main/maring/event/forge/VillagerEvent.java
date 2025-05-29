@@ -32,11 +32,11 @@ public class VillagerEvent {
 		Random random = new Random();
         if(event.getType() == ModVillager.HANDMAKE_MASTER.get()) {
         	Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
-            ItemStack stack1 = new ItemStack(ItemRegister.MATERIAL_ITEMS[1].get(), 1);
-            ItemStack stack2 = new ItemStack(ItemRegister.MATERIAL_ITEMS[3].get(), 1);
-            ItemStack stack3 = new ItemStack(ItemRegister.MATERIAL_ITEMS[5].get(), 1);
-            ItemStack stack4 = new ItemStack(ItemRegister.MATERIAL_ITEMS[2].get(), 1);
-            ItemStack stack5 = new ItemStack(ItemRegister.MATERIAL_ITEMS[4].get(), 1);//小心顺序哦
+            ItemStack stack1 = new ItemStack(ItemRegister.BASIC_METAL_PARTS.get(), 1);
+            ItemStack stack2 = new ItemStack(ItemRegister.BIOPLASTIC_PARTS.get(), 1);
+            ItemStack stack3 = new ItemStack(ItemRegister.CRYSTAL_PARTS.get(), 1);
+            ItemStack stack4 = new ItemStack(ItemRegister.ADVANCED_METAL_PARTS.get(), 1);
+            ItemStack stack5 = new ItemStack(ItemRegister.SEMICONDUCTOR_PARTS.get(), 1);//小心顺序哦
             ItemStack stack6 = new ItemStack(BlockRegister.ELECTRIC_BLOCK_ITEMS[BlockElectricBasic.getIdFromName("villager_burried_package")].get(), 1);
             trades.get(1).add((trader, rand) -> new MerchantOffer(
                 new ItemStack(Items.EMERALD, 4 + random.nextInt(3)),

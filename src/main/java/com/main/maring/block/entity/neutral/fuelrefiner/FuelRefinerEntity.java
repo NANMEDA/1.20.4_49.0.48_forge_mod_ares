@@ -37,8 +37,8 @@ public class FuelRefinerEntity extends PowerConsumerEntity{
 	private int fuel = 0;
 	public boolean is_button = false;
 	
-	private static Item bottled_fuel = ItemRegister.MATERIAL_ITEMS[10].get();
-	private static Item bottled_methane = ItemRegister.MATERIAL_ITEMS[6].get();
+	private static Item bottled_fuel = ItemRegister.BOTTLED_FUEL.get();
+	private static Item bottled_methane = ItemRegister.BOTTLED_METHANE.get();
 	
 	static protected int itemstack_number = 4;
 	

@@ -16,7 +16,7 @@ import net.minecraftforge.items.SlotItemHandler;
 
 public class FuelRefinerMenu extends BlockEntityMenuBasic{
 	
-	private static Item bottled_methane = ItemRegister.MATERIAL_ITEMS[6].get();
+	private static Item bottled_methane = ItemRegister.BOTTLED_METHANE.get();
 
 	private final FuelRefinerEntity blockentity;
 

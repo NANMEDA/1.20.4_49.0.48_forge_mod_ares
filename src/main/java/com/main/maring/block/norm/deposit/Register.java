@@ -56,10 +56,11 @@ public class Register {
 
     
     public static void init() {
+		/*
     	gen(f+DepositEmpty.global_name);
     	gen(f+DepositIce.global_name);
     	gen(f+DepositIron.global_name);
-    	gen(f+DepositGold.global_name);
+    	gen(f+DepositGold.global_name);*/
     }
     
     private static void gen(String name) {

@@ -203,7 +203,7 @@ public class EtchingMachineEntity extends PowerConsumerEntity{
 			item.setStackInSlot(2, new ItemStack(stack[2].getItem(),stack[2].getCount()-16));
 			item.setStackInSlot(3, new ItemStack(stack[3].getItem(),stack[3].getCount()-2));
 			item.setStackInSlot(4, new ItemStack(stack[4].getItem(),stack[4].getCount()-4));
-			item.setStackInSlot(5, new ItemStack(ItemRegister.MATERIAL_ITEMS[4].get(),stack[5].getCount()+1));
+			item.setStackInSlot(5, new ItemStack(ItemRegister.SEMICONDUCTOR_PARTS.get(),stack[5].getCount()+1));
 			setChanged();
 		}
 	}

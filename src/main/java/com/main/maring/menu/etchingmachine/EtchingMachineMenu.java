@@ -26,7 +26,7 @@ public class EtchingMachineMenu extends BlockEntityMenuBasic{
 				 @Override
 				    public boolean mayPlace(@NotNull ItemStack stack)
 				    {
-				    	if(stack.getItem()==ItemRegister.MATERIAL_ITEMS[3].get()){
+				    	if(stack.getItem()==ItemRegister.BIOPLASTIC_PARTS.get()){
 				    		return true;
 				    	}
 				        return false;

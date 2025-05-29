@@ -152,7 +152,7 @@ public class MarReactorEntity extends ProducerEntity implements IProducer {
 	public int provideEnergySupply() {
 		int gen = 100;
 		ItemStack in = this.getItems().getStackInSlot(0);
-		if(in.is(ItemRegister.MATERIAL_ITEMS[itemMaterial.getMaterialId("ominous_gemstone_reactor")].get())) {
+		if(in.is(ItemRegister.OMINOUS_GEMSTONE_REACTOR.get())) {
 			gen+= in.getCount() * 100;
 		}
 		return gen;

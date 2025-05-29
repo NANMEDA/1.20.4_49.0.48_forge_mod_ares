@@ -84,7 +84,7 @@ public class BlockGlassBuilder extends Block implements EntityBlock{
 			        return InteractionResult.PASS;
 			    } else {
 			        Item holdItem = mainHandItem.getItem();
-			        if(holdItem!=ItemRegister.MATERIAL_ITEMS[3].get()&&holdItem!=ItemRegister.MATERIAL_ITEMS[5].get()) {
+			        if(holdItem!=ItemRegister.BIOPLASTIC_PARTS.get()&&holdItem!=ItemRegister.CRYSTAL_PARTS.get()) {
 			        	return InteractionResult.PASS;
 			        }
 			        if (entityStackSlot0.isEmpty()) {

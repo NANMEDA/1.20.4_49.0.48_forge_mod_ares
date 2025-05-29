@@ -87,12 +87,38 @@ public class CreativeTabsRegister {
     public static final RegistryObject<CreativeModeTab> MAR_MATERIAL_TAB = CREATIVE_MODE_TABS.register("mar_material_tab", () -> CreativeModeTab.builder()
     		.title(Component.translatable("mar_material_tab"))
     		.withTabsBefore(MAR_MACHINE_TAB.getId())
-            .icon(() -> ItemRegister.MATERIAL_ITEMS[0].get().getDefaultInstance())
+            .icon(() -> ItemRegister.OMINOUS_GEMSTONE.get().getDefaultInstance())
             .displayItems((parameters, output) -> {
-            	for(int i=0;i<itemMaterial.ITEM_MATERIAL_NUMBER;i++) {
-            		output.accept(ItemRegister.MATERIAL_ITEMS[i].get());
-            	}
-                output.accept(ItemRegister.BUILDING_STRUCTURE.get());
+				output.accept(ItemRegister.OMINOUS_GEMSTONE.get());
+				output.accept(ItemRegister.BASIC_METAL_PARTS.get());
+				output.accept(ItemRegister.ADVANCED_METAL_PARTS.get());
+				output.accept(ItemRegister.BIOPLASTIC_PARTS.get());
+				output.accept(ItemRegister.SEMICONDUCTOR_PARTS.get());
+				output.accept(ItemRegister.CRYSTAL_PARTS.get());
+				output.accept(ItemRegister.BOTTLED_METHANE.get());
+				output.accept(ItemRegister.BIG_BOTTLED_METHANE.get());
+				output.accept(ItemRegister.BOTTLED_OXYGEN.get());
+				output.accept(ItemRegister.BIG_BOTTLED_OXYGEN.get());
+				output.accept(ItemRegister.BOTTLED_FUEL.get());
+				output.accept(ItemRegister.RAW_IRON_NUGGET.get());
+				output.accept(ItemRegister.INSULATION_MATERIAL.get());
+				output.accept(ItemRegister.INSULATION_LAYER.get());
+				output.accept(ItemRegister.STRUCTURE_LAYER.get());
+				output.accept(ItemRegister.RADIATION_LAYER.get());
+				output.accept(ItemRegister.ROCKET_SHELL.get());
+				output.accept(ItemRegister.ROCKET_FUEL_TANK.get());
+				output.accept(ItemRegister.ROCKET_OXYGEN_TANK.get());
+				output.accept(ItemRegister.ROCKET_ACTIVE_SPACE.get());
+				output.accept(ItemRegister.ROCKET_COWLING.get());
+				output.accept(ItemRegister.ROCKET_SPOUT.get());
+				output.accept(ItemRegister.OMINOUS_UPGRADE_SMITHING_TEMPLATE.get());
+				output.accept(ItemRegister.PIECE_RAWGOLD.get());
+				output.accept(ItemRegister.PIECE_OBSIDIAN.get());
+				output.accept(ItemRegister.MAGNET_SUPPRESSOR.get());
+				output.accept(ItemRegister.SUCKER.get());
+				output.accept(ItemRegister.OMINOUS_GEMSTONE_REACTOR.get());
+
+				output.accept(ItemRegister.BUILDING_STRUCTURE.get());
                 output.accept(ItemRegister.BATTERY_HEART.get());
             }).build());
     

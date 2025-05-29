@@ -176,7 +176,7 @@ public class CrystalBuilderEntity extends PowerConsumerEntity{
 				return;
 			}
 			process_progress -= 2400;
-			item.setStackInSlot(0, new ItemStack(ItemRegister.MATERIAL_ITEMS[5].get(),stack[0].getCount()+1));
+			item.setStackInSlot(0, new ItemStack(ItemRegister.CRYSTAL_PARTS.get(),stack[0].getCount()+1));
 			crystal -= 15;
 			setChanged();
 		}
