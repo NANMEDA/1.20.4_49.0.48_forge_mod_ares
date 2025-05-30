@@ -1,6 +1,7 @@
 package com.main.maring.event.disaster.harm;
 
 import com.main.maring.config.CommonConfig;
+import com.main.maring.world.data.ModWorldData;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -20,39 +21,41 @@ import com.main.maring.animal.entity.jumpspider.JumpSpider;
 
 @Mod.EventBusSubscriber(modid = "maring", bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class SpiderComing {
-	
+
 	public static final int SPAWN_INTERVAL_TICKS = 60;
-    public static boolean SPIDER_DAY_OCCUR = false;
-    public static boolean SPIDER_DAY_INIT = false;
-	
+
     /***
      * 不间断的召唤抱子蜘蛛
      * @author NANMEDA
      * ***/
 	@SubscribeEvent
     public static void spiderDay(PlayerTickEvent event) {
+        Player player = event.player;
+        Level level = player.level();
 		if(!CommonConfig.DOOMS_WILL_ARRIVE.get()) return;
 		//System.out.println("当前tick: "+ level.getDayTime());
-		if(!SPIDER_DAY_OCCUR) {
-			Player player = event.player;
-			Level level = player.level();
+        ModWorldData data = ModWorldData.get(level);
+        if (data == null) {
+            return;
+        }
+		if(!data.SPIDER_DAY_OCCUR) {
 	        if (!level.isClientSide() && level.dimension()==Level.OVERWORLD) {//不要忘了这个level是player的level
 	            long time = level.getDayTime();
 	            if(time >= CommonConfig.DOOMS_DAY_TOMORROW.get()) {
-	            	SPIDER_DAY_OCCUR = true;
+	            	data.SPIDER_DAY_OCCUR = true;
 	            	return;
 	            }
 	            if (time >= CommonConfig.SPIDER_EVENT_START.get() && time % SPAWN_INTERVAL_TICKS == 0) {
-	            	if(!SPIDER_DAY_INIT) {
-	            		SPIDER_DAY_INIT = true;
+	            	if(!data.SPIDER_DAY_INIT) {
+	            		data.SPIDER_DAY_INIT = true;
 	            		player.sendSystemMessage(Component.translatable("maring.disaster.spider_day.init"));
 	            	}
 	                if (time<CommonConfig.SPIDER_EVENT_DURATION.get()+CommonConfig.SPIDER_EVENT_START.get()) {
 	                	if(!spiderTooMuch((ServerLevel) level))
-	                	spawnEntityAroundPlayers((ServerLevel) level , player);
-	                }else 
+                            spawnEntityAroundPlayers((ServerLevel) level , player);
+	                }else
 	                {
-	                	SPIDER_DAY_OCCUR = true;
+	                	data.SPIDER_DAY_OCCUR = true;
 	                }
 	            }
 	        }
@@ -70,12 +73,10 @@ public class SpiderComing {
             	return;
             }
             JumpSpider spider = new JumpSpider(MonsterRegister.JUMP_SPIDER.get(), world);
-            if (spider != null) {
-            	spider.setPos(spawnPos.getX(), spawnPos.getY(), spawnPos.getZ());
-                world.addFreshEntityWithPassengers(spider);
-            }
+        spider.setPos(spawnPos.getX(), spawnPos.getY(), spawnPos.getZ());
+        world.addFreshEntityWithPassengers(spider);
     }
-    
+
     public static boolean spiderTooMuch(ServerLevel world) {
         int count = 0;
         EntityType<?> entityType = MonsterRegister.JUMP_SPIDER.get();
@@ -84,7 +85,7 @@ public class SpiderComing {
             if (entityType.equals(entity.getType())) {
                 count++;
             }
-            if(count>30) 
+            if(count>30)
             	return true;
         }
         return false;

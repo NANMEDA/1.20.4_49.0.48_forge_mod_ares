@@ -1,6 +1,7 @@
 package com.main.maring.event.disaster.harm;
 
 import com.main.maring.config.CommonConfig;
+import com.main.maring.world.data.ModWorldData;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
@@ -14,8 +15,6 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(modid = "maring", bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class DoomsDay {
 
-	public static boolean WARNING = false;
-	public static boolean DOOMS_DAY_OCCUR = false;
 	private static ResourceKey<Level> limboKey = ResourceKey.create(Registries.DIMENSION, new ResourceLocation("maring", "limbo"));
 	
 	
@@ -27,9 +26,13 @@ public class DoomsDay {
 	 * ***/
 	@SubscribeEvent
 	public static void doomsDay(LevelTickEvent event) {
+		Level level = event.level;
 		if(!CommonConfig.DOOMS_WILL_ARRIVE.get()) return;
-		if(DOOMS_DAY_OCCUR) {
-			Level level = event.level;
+		ModWorldData data = ModWorldData.get(level);
+		if (data == null) {
+			return;
+		}
+		if(data.DOOMS_DAY_OCCUR) {
 			if(!level.isClientSide() && level.dimension()==Level.OVERWORLD) {
 				ServerLevel limbo = level.getServer().getLevel(limboKey);
 				if (limbo == null) {
@@ -46,11 +49,11 @@ public class DoomsDay {
 		if(event.level.getDayTime()%20==0) {
 			//System.out.println("当前距离doom tick: "+ (DOOMS_DAY_START - event.level.getDayTime()));
 		}
-		Level level = event.level;
+
 		if(!level.isClientSide() && level.dimension()==Level.OVERWORLD) {
 			long time = level.getDayTime();
 			if (time > CommonConfig.DOOMS_DAY_TOMORROW.get() + CommonConfig.DAY_TICKS + CommonConfig.DOOM_EVENT_DURATION) {
-				DOOMS_DAY_OCCUR = true;
+				data.DOOMS_DAY_OCCUR = true;
 				ServerLevel limbo = level.getServer().getLevel(limboKey);
 				if (limbo == null) {
 					System.out.println("找不到Limbo");
@@ -66,8 +69,8 @@ public class DoomsDay {
 				foreTime(time,level);
 				lastTime(time,level);
 			}else if(time >= CommonConfig.DOOMS_DAY_TOMORROW.get()) {
-            	if(!WARNING) {
-            		WARNING = true;
+            	if(!data.WARNING) {
+            		data.WARNING = true;
             		level.players().forEach(player -> player.sendSystemMessage(Component.translatable("maring.disaster.dooms_day.warning")));
             	}
 			}
