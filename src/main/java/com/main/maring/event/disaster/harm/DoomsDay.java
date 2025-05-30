@@ -1,5 +1,6 @@
 package com.main.maring.event.disaster.harm;
 
+import com.main.maring.Maring;
 import com.main.maring.config.CommonConfig;
 import com.main.maring.world.data.ModWorldData;
 import net.minecraft.core.registries.Registries;
@@ -12,10 +13,10 @@ import net.minecraftforge.event.TickEvent.LevelTickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(modid = "maring", bus = Mod.EventBusSubscriber.Bus.FORGE)
+@Mod.EventBusSubscriber
 public class DoomsDay {
 
-	private static ResourceKey<Level> limboKey = ResourceKey.create(Registries.DIMENSION, new ResourceLocation("maring", "limbo"));
+	private static ResourceKey<Level> limboKey = ResourceKey.create(Registries.DIMENSION, new ResourceLocation(Maring.MODID, "limbo"));
 	
 	
 	/***

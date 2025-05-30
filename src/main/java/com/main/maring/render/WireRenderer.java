@@ -1,5 +1,6 @@
 package com.main.maring.render;
 
+import com.main.maring.Maring;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -19,8 +20,7 @@ import org.joml.Matrix4f;
  * */
 @OnlyIn(Dist.CLIENT)
 public class WireRenderer {
-	private static final String MODID = "maring";
-	private static final ResourceLocation TEXTURE_LOCATION = new ResourceLocation(MODID,"textures/entity/line_knot.png");
+	private static final ResourceLocation TEXTURE_LOCATION = new ResourceLocation(Maring.MODID,"textures/entity/line_knot.png");
     private static final RenderType RENDER_TYPE = RenderType.entityCutout(TEXTURE_LOCATION);
 
     // 主要的电线渲染方法

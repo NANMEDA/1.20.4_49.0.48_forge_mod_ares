@@ -22,7 +22,7 @@ import com.main.maring.util.net.EnergyNet;
 import com.main.maring.util.net.EnergyNet.EnergyEnum;
 import com.main.maring.util.net.EnergyNetProcess;
 
-@Mod.EventBusSubscriber(modid = "maring", bus = Mod.EventBusSubscriber.Bus.FORGE)
+@Mod.EventBusSubscriber
 public class EnergyNetCalculation {
 	
 	

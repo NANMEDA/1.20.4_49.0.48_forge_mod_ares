@@ -10,6 +10,7 @@ import java.util.function.Consumer;
 
 import com.google.common.collect.Maps;
 
+import com.main.maring.Maring;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
@@ -29,7 +30,7 @@ import net.minecraftforge.common.ForgeMod;
 public class EntityGravity {
 
     public static final UUID ARTIFICIAL_GRAVITY_ID = UUID.fromString("242A6B8D-DA4E-4C3C-1234-96EA6096568D");
-    private static ResourceKey<Level> marKey = ResourceKey.create(Registries.DIMENSION, new ResourceLocation("maring", "maringmar"));
+    private static ResourceKey<Level> marKey = ResourceKey.create(Registries.DIMENSION, new ResourceLocation(Maring.MODID, "maringmar"));
     
     public record GravitySource(BlockPos centre, float gravity, int range) {
     }

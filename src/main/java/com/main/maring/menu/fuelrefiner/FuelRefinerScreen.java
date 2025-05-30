@@ -1,6 +1,7 @@
 package com.main.maring.menu.fuelrefiner;
 
 
+import com.main.maring.Maring;
 import com.mojang.blaze3d.systems.RenderSystem;
 
 import com.main.maring.block.entity.neutral.fuelrefiner.FuelRefinerEntity;
@@ -12,9 +13,8 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.resources.ResourceLocation;
 
 public class FuelRefinerScreen extends AbstractContainerScreen<FuelRefinerMenu> {
-	public static final String MODID = "maring";
-	public static final ResourceLocation GUI = new ResourceLocation(MODID,"textures/gui/container/fuel_refiner.png");
-	public static final ResourceLocation GUI_DO = new ResourceLocation(MODID,"textures/gui/container/skyline.png");
+	public static final ResourceLocation GUI = new ResourceLocation(Maring.MODID,"textures/gui/container/fuel_refiner.png");
+	public static final ResourceLocation GUI_DO = new ResourceLocation(Maring.MODID,"textures/gui/container/skyline.png");
 	//private Button button;
 	
 	public FuelRefinerScreen(FuelRefinerMenu pMenu, Inventory pInventory, Component pComponent) {

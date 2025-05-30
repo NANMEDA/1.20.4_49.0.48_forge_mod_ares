@@ -1,5 +1,6 @@
 package com.main.maring.menu.energyviewer;
 
+import com.main.maring.Maring;
 import com.main.maring.machine.energy.viewer.EnergyViewerEntity;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -10,8 +11,7 @@ import com.main.maring.util.net.EnergyNetProcess;
 import net.minecraft.resources.ResourceLocation;
 
 public class EnergyViewerScreen extends AbstractContainerScreen<EnergyViewerMenu> {
-	public static final String MODID = "maring";
-	public static final ResourceLocation GUI = new ResourceLocation(MODID,"textures/gui/container/energy_viewer.png");
+	public static final ResourceLocation GUI = new ResourceLocation(Maring.MODID,"textures/gui/container/energy_viewer.png");
 	
 	public EnergyViewerScreen(EnergyViewerMenu pMenu, Inventory pInventory, Component pComponent) {
 		super(pMenu, pInventory, pComponent);

@@ -19,7 +19,7 @@ import java.util.Random;
 import com.main.maring.animal.entity.MonsterRegister;
 import com.main.maring.animal.entity.jumpspider.JumpSpider;
 
-@Mod.EventBusSubscriber(modid = "maring", bus = Mod.EventBusSubscriber.Bus.FORGE)
+@Mod.EventBusSubscriber
 public class SpiderComing {
 
 	public static final int SPAWN_INTERVAL_TICKS = 60;

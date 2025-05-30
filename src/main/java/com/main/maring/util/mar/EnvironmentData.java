@@ -1,5 +1,6 @@
 package com.main.maring.util.mar;
 
+import com.main.maring.Maring;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceKey;
@@ -16,7 +17,7 @@ import java.util.Objects;
  */
 public class EnvironmentData extends SavedData {
     private static final String DATA_NAME = "environment_data";
-    private static ResourceKey<Level> marKey = ResourceKey.create(Registries.DIMENSION, new ResourceLocation("maring", "maringmar"));
+    private static ResourceKey<Level> marKey = ResourceKey.create(Registries.DIMENSION, new ResourceLocation(Maring.MODID, "maringmar"));
     // 环境参数
     private double humid = 0d;          // 湿度 (0 - 200)					100最佳
     private double oxygen = 0d;         // 氧气含量方便计算 (0 - 200)		20最佳

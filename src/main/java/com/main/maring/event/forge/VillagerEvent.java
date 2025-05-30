@@ -18,7 +18,7 @@ import net.minecraftforge.fml.common.Mod;
 /**
  * 这里定义了所有村民交易具体的内容
  * */
-@Mod.EventBusSubscriber(modid = "maring")
+@Mod.EventBusSubscriber
 public class VillagerEvent {
 	
 	/***

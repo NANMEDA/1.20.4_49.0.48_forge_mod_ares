@@ -2,6 +2,7 @@ package com.main.maring.vehicle.rocket;
 
 import com.google.common.collect.Sets;
 
+import com.main.maring.Maring;
 import com.main.maring.block.norm.BlockBasic;
 import com.main.maring.block.norm.BlockRegister;
 import com.main.maring.event.forge.TeleportAndCreateLanderEvent;
@@ -64,8 +65,6 @@ import java.util.Random;
  * https://github.com/MrScautHD/Beyond-Earth
  * */
 public abstract class IRocketEntity extends ModVehicle implements IGaugeValuesProvider{
-
-	private static final String MODID = "maring";
 
     public static final EntityDataAccessor<Boolean> ROCKET_START = SynchedEntityData.defineId(IRocketEntity.class, EntityDataSerializers.BOOLEAN);
     public static final EntityDataAccessor<Boolean> ROCKET_IS_DROP = SynchedEntityData.defineId(IRocketEntity.class, EntityDataSerializers.BOOLEAN);
@@ -492,8 +491,8 @@ public abstract class IRocketEntity extends ModVehicle implements IGaugeValuesPr
     }
     
   
-    private static ResourceKey<Level> limboKey = ResourceKey.create(Registries.DIMENSION, new ResourceLocation("maring", "limbo"));
-    private static ResourceKey<Level> marKey = ResourceKey.create(Registries.DIMENSION, new ResourceLocation("maring", "maringmar"));
+    private static ResourceKey<Level> limboKey = ResourceKey.create(Registries.DIMENSION, new ResourceLocation(Maring.MODID, "limbo"));
+    private static ResourceKey<Level> marKey = ResourceKey.create(Registries.DIMENSION, new ResourceLocation(Maring.MODID, "maringmar"));
  
     public void GoingTo() {
     	if (this.yo > 1200) {
@@ -565,7 +564,7 @@ public abstract class IRocketEntity extends ModVehicle implements IGaugeValuesPr
                     player.closeContainer();
                 }
 
-                player.getPersistentData().putBoolean(MODID + ":planet_selection_menu_open", true);
+                player.getPersistentData().putBoolean(Maring.MODID + ":planet_selection_menu_open", true);
 
                 /** SAVE ITEMS IN THE PLAYER */
                 ListTag tag = new ListTag();
@@ -576,7 +575,7 @@ public abstract class IRocketEntity extends ModVehicle implements IGaugeValuesPr
                     tag.add(this.getInventory().getStackInSlot(i).save(new CompoundTag()));
                 }
 
-                player.getPersistentData().put(MODID + ":rocket_item_list", tag);
+                player.getPersistentData().put(Maring.MODID + ":rocket_item_list", tag);
                 player.setNoGravity(false);
 
                 /** STOP ROCKET SOUND */

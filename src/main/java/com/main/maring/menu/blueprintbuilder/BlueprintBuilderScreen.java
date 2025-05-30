@@ -1,5 +1,6 @@
 package com.main.maring.menu.blueprintbuilder;
 
+import com.main.maring.Maring;
 import com.mojang.blaze3d.systems.RenderSystem;
 
 import com.main.maring.block.entity.neutral.blueprintbuilder.BlueprintBuilderEntity;
@@ -11,8 +12,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.resources.ResourceLocation;
 
 public class BlueprintBuilderScreen extends AbstractContainerScreen<BlueprintBuilderMenu> {
-	public static final String MODID = "maring";
-	public static final ResourceLocation GUI = new ResourceLocation(MODID,"textures/gui/container/blueprint_builder.png");
+	public static final ResourceLocation GUI = new ResourceLocation(Maring.MODID,"textures/gui/container/blueprint_builder.png");
 	
 	public BlueprintBuilderScreen(BlueprintBuilderMenu pMenu, Inventory pInventory, Component pComponent) {
 		super(pMenu, pInventory, pComponent);

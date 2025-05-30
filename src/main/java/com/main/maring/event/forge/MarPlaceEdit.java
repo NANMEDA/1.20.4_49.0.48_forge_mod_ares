@@ -1,5 +1,6 @@
 package com.main.maring.event.forge;
 
+import com.main.maring.Maring;
 import com.main.maring.block.norm.BlockRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
@@ -30,10 +31,10 @@ import com.main.maring.util.mar.EnvironmentData;
  * <br>TODO:<br> 放置水
  * @author NANMEDA
  * */
-@Mod.EventBusSubscriber(modid = "maring", bus = Mod.EventBusSubscriber.Bus.FORGE)
+@Mod.EventBusSubscriber
 public class MarPlaceEdit {
 	
-	private static ResourceKey<Level> marKey = ResourceKey.create(Registries.DIMENSION, new ResourceLocation("maring", "maringmar"));
+	private static ResourceKey<Level> marKey = ResourceKey.create(Registries.DIMENSION, new ResourceLocation(Maring.MODID, "maringmar"));
 	
 	@SuppressWarnings("deprecation")
 	private static final LazyLoadedValue<BlockState> A_AIR_BLOCK_STATE = 

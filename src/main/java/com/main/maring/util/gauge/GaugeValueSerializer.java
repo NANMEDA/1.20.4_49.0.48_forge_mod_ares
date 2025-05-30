@@ -4,6 +4,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import com.main.maring.Maring;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
@@ -17,11 +18,9 @@ import net.minecraftforge.common.util.INBTSerializable;
 public class GaugeValueSerializer<T extends INBTSerializable<CompoundTag>> {
 
 	public static final GaugeValueSerializer<IGaugeValue> Serializer = new GaugeValueSerializer<>();
-	private static final String MODID = "maring";
-
 	static {
-		Serializer.addCodec(new ResourceLocation(MODID, "fluidstack"), GaugeValueFluidStack.class);
-		Serializer.addCodec(new ResourceLocation(MODID, "simple"), GaugeValueSimple.class);
+		Serializer.addCodec(new ResourceLocation(Maring.MODID, "fluidstack"), GaugeValueFluidStack.class);
+		Serializer.addCodec(new ResourceLocation(Maring.MODID, "simple"), GaugeValueSimple.class);
 	}
 
 	private final Map<ResourceLocation, Class<? extends T>> location_class_map = new LinkedHashMap<>();

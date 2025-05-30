@@ -23,7 +23,7 @@ import com.main.maring.util.mar.EnvironmentData;
  * 火星大气伤害
  * @author NANMEDA
  * */
-@Mod.EventBusSubscriber(modid = "maring", bus = Mod.EventBusSubscriber.Bus.FORGE)
+@Mod.EventBusSubscriber
 public class BiomeEffectApplier {
 
     private static final int TICK_INTERVAL = 10; // 检测间隔

@@ -1,5 +1,6 @@
 package com.main.maring.block.entity;
 
+import com.main.maring.Maring;
 import com.main.maring.block.entity.consumer.advancedmetalmanufactor.AdvancedMetalManufactorEntity;
 import com.main.maring.block.entity.consumer.basicmetalmanufactor.BasicMetalManufactorEntity;
 import com.main.maring.block.entity.consumer.bioplasticbuilder.BioplasticBuilderEntity;
@@ -24,8 +25,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class BlockEntityRegister {
-	private static final String MODID = "maring";
-    public static final DeferredRegister<BlockEntityType<?>> BLOCKENTITIES =  DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, MODID);
+    public static final DeferredRegister<BlockEntityType<?>> BLOCKENTITIES =  DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, Maring.MODID);
 	
 	public static final RegistryObject<BlockEntityType<PowerStationBurnEntity>> PowerStationBurn_BLOCKENTITY = 
 			BLOCKENTITIES.register("powerstation_burn", () -> BlockEntityType.Builder.of(PowerStationBurnEntity::new, BlockRegister.PowerStationBurn_BLOCK.get()).build(null));

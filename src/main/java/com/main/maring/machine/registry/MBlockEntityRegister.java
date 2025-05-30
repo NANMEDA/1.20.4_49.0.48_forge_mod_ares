@@ -1,5 +1,6 @@
 package com.main.maring.machine.registry;
 
+import com.main.maring.Maring;
 import com.main.maring.block.entity.neutral.dormcontrol.DomeControlEntity;
 import com.main.maring.block.norm.BlockRegister;
 import com.main.maring.block.norm.fastbuild.dormcontrol.DomeControl;
@@ -24,8 +25,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class MBlockEntityRegister {
-	private static final String MODID = "maring";
-    public static final DeferredRegister<BlockEntityType<?>> BLOCKENTITIES =  DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, MODID);
+    public static final DeferredRegister<BlockEntityType<?>> BLOCKENTITIES =  DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, Maring.MODID);
     
 	public static final RegistryObject<BlockEntityType<SolarBasementEntity>>SOLARBASEMENT_BE = 
 			BLOCKENTITIES.register(SolarBasement.global_name,

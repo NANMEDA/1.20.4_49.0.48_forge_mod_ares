@@ -2,6 +2,7 @@ package com.main.maring.network;
 
 import java.util.Optional;
 
+import com.main.maring.Maring;
 import com.main.maring.network.client.CDomeControl;
 import com.main.maring.network.client.CResearchTableUpdate;
 import com.main.maring.network.client.CRocketStart;
@@ -17,9 +18,7 @@ public class NetworkHandler {
 
 	  private static final String PTC_VERSION = "1.0.0";
 
-	  private static final String MODID = "maring";
-
-	  public static SimpleChannel INSTANCE = NetworkRegistry.newSimpleChannel(new ResourceLocation(MODID, "main"), () -> PTC_VERSION, it -> it.equals(PTC_VERSION), it -> it.equals(PTC_VERSION));;
+	  public static SimpleChannel INSTANCE = NetworkRegistry.newSimpleChannel(new ResourceLocation(Maring.MODID, "main"), () -> PTC_VERSION, it -> it.equals(PTC_VERSION), it -> it.equals(PTC_VERSION));;
 
 	  
 	  /***

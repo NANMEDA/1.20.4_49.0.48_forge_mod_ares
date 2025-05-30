@@ -1,5 +1,6 @@
 package com.main.maring.vehicle.rocket;
 
+import com.main.maring.Maring;
 import com.main.maring.event.forge.SetRocketItemStackEvent;
 import com.main.maring.item.ItemRegister;
 import net.minecraft.core.particles.ParticleTypes;
@@ -19,7 +20,6 @@ import net.minecraftforge.common.MinecraftForge;
 public class RocketEntity extends IRocketEntity {
 
 	public static final int DEFAULT_FUEL_BUCKETS = 3;
-	private static final String MODID = "maring";
 
 	public RocketEntity(EntityType<?> type, Level level) {
 		super(type, level);
@@ -53,7 +53,7 @@ public class RocketEntity extends IRocketEntity {
 	@Override
 	public ItemStack getRocketItem() {
 		ItemStack itemStack = new ItemStack(ItemRegister.ROCKET_ITEM.get(), 1);
-		itemStack.getOrCreateTag().putInt(MODID + ":fuel", this.getEntityData().get(FUEL));
+		itemStack.getOrCreateTag().putInt(Maring.MODID + ":fuel", this.getEntityData().get(FUEL));
 		MinecraftForge.EVENT_BUS.post(new SetRocketItemStackEvent(this, itemStack));
 
 		return itemStack;

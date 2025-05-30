@@ -1,6 +1,7 @@
 package com.main.maring.menu.coredigger;
 
 
+import com.main.maring.Maring;
 import com.mojang.blaze3d.systems.RenderSystem;
 
 import com.main.maring.machine.energy.consumer.coredigger.CoreDiggerEntity;
@@ -12,8 +13,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.resources.ResourceLocation;
 
 public class CoreDiggerScreen extends AbstractContainerScreen<CoreDiggerMenu> {
-	public static final String MODID = "maring";
-	public static final ResourceLocation GUI = new ResourceLocation(MODID,"textures/gui/container/core_digger.png");
+	public static final ResourceLocation GUI = new ResourceLocation(Maring.MODID,"textures/gui/container/core_digger.png");
 	
 	public CoreDiggerScreen(CoreDiggerMenu pMenu, Inventory pInventory, Component pComponent) {
 		super(pMenu, pInventory, pComponent);
