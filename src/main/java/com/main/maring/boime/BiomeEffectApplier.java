@@ -1,5 +1,7 @@
 package com.main.maring.boime;
 
+import com.main.maring.command.gamerule.ModGameRules;
+import com.main.maring.config.CommonConfig;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -7,8 +9,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.effect.MobEffectInstance;
-
-import com.main.maring.ExtraConfig;
 
 import com.main.maring.effect.registry.EffectRegister;
 import com.main.maring.item.ItemRegister;
@@ -38,9 +38,9 @@ public class BiomeEffectApplier {
      * ***/
     @SubscribeEvent
     public static void onLivingUpdate(LivingTickEvent event) {
-    	if(!ExtraConfig.WILL_PRESSURE_HURT) return;
-
     	Level level = event.getEntity().level();
+        if(!level.getGameRules().getBoolean(ModGameRules.WILL_PRESSURE_HURT)) return;
+
         if (level.isClientSide) {
             return;
         }

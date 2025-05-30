@@ -26,7 +26,7 @@ public class NetworkHandler {
 	   * 实现 C 和 S 互相传包
 	   * 比如 按下火箭发射键后 要把这个信息传到 Server
 	   * ***/
-	  public static void register() {
+	  public static void init() {
 	    //Client 2 Server
 		  INSTANCE.registerMessage(0, CRocketStart.class, CRocketStart::encode, CRocketStart::decode,
 				  CRocketStart::handle, Optional.of(NetworkDirection.PLAY_TO_SERVER));

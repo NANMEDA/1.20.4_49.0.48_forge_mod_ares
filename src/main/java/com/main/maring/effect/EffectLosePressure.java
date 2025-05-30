@@ -10,11 +10,9 @@ import net.minecraft.world.entity.LivingEntity;
  * @author NANMEDA
  * */
 public class EffectLosePressure extends EffectMain {
-    private int amplified;
-    
-	public EffectLosePressure(MobEffectCategory type, int color, boolean isInstant, int amplified) {
+
+    public EffectLosePressure(MobEffectCategory type, int color, boolean isInstant, int amplified) {
         super(type, color, isInstant);
-        this.amplified = amplified;
     }
     
     @Override

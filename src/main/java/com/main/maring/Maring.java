@@ -3,6 +3,7 @@ package com.main.maring;
 
 import com.main.maring.block.entity.BlockEntityRegister;
 import com.main.maring.block.norm.BlockRegister;
+import com.main.maring.config.CommonConfig;
 import com.main.maring.item.ItemRegister;
 import com.main.maring.machine.registry.MBlockRegister;
 import com.mojang.logging.LogUtils;
@@ -17,14 +18,10 @@ import com.main.maring.machine.registry.MBlockEntityRegister;
 import com.main.maring.menu.registry.MenuRegister;
 import com.main.maring.menu.reseachtable.TechTreeLayout;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import com.main.maring.network.NetworkHandler;
 import com.main.maring.tags.register.TagkeyRegistry;
@@ -46,20 +43,14 @@ public class Maring
     // Directly reference a slf4j logger
     private static final Logger LOGGER = LogUtils.getLogger();
     // Create a Deferred Register to hold Blocks which will all be registered under the "examplemod" namespace
-    static{
-    	//AddTag.init();
-    	TagkeyRegistry.init();
-    }
     
     public Maring()
     {
     	
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        
-        NetworkHandler.register();
-        // Register the commonSetup method for modloading
-        //modEventBus.addListener(this::commonSetup);
-        modEventBus.addListener(this::clientSetup);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CommonConfig.init());
+
+        TagkeyRegistry.init();
 
         BlockRegister.BLOCKS.register(modEventBus);
         BlockRegister.BLOCK_ITEMS.register(modEventBus);
@@ -96,59 +87,7 @@ public class Maring
         
         Plugin.detect();
         
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
-        
         MinecraftForge.EVENT_BUS.register(EnvironmentDataManager.class);
-      
-        
         
     }
-    
-
-    private void commonSetup(final FMLCommonSetupEvent event)
-    {
-        // Some common setup code
-        LOGGER.info("HELLO FROM COMMON SETUP");
-
-        LOGGER.info(Config.magicNumberIntroduction + Config.magicNumber);
-
-        Config.items.forEach((item) -> LOGGER.info("ITEM >> {}", item.toString()));
-        
-        //NetworkHandler.register();
-        
-        
-    }
-    
-    private void clientSetup(final FMLClientSetupEvent event) {
-        LOGGER.info("HELLO FROM CLIENT SETUP");
-    }
-
-    @SubscribeEvent
-    public void onServerStarting(ServerStartingEvent event)
-    {
-        // Do something when the server starts
-        LOGGER.info("HELLO from server starting");
-        
-        ExtraConfig.load(event.getServer());
-    }
-    
-    
-    // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
-    /*
-    @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
-    public static class ClientModEvents
-    {
-        @SubscribeEvent
-        public static void onClientSetup(FMLClientSetupEvent event)
-        {
-            // Some client setup code
-            LOGGER.info("HELLO FROM CLIENT SETUP");
-            LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
-            
-        }
-        
-    }*/
-    
-    
-    
 }

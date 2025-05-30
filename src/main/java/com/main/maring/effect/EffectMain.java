@@ -37,5 +37,9 @@ public class EffectMain extends MobEffect {
     public boolean isRegistered() {
         return isRegistered;
     }
-	
+
+    @Override
+    public boolean isDurationEffectTick(int p_19455_, int p_19456_) {
+        return this.canApplyEffect(p_19455_, p_19456_);
+    }
 }

@@ -6,15 +6,12 @@ import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.LongArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 
-import com.main.maring.command.disaster.DisasterDo;
-import com.main.maring.command.disaster.DoomsSetDays;
 import com.main.maring.command.energy.CheckAndClear;
 import com.main.maring.command.energy.DeleteNet;
 import com.main.maring.command.energy.Display;
 import com.main.maring.command.energy.EnergyNet;
 import com.main.maring.command.environment.EnvironmentDisplay;
 import com.main.maring.command.environment.EnvironmentSet;
-import com.main.maring.command.player.PressureHurt;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraftforge.event.RegisterCommandsEvent;
@@ -35,18 +32,6 @@ public class CommandRegistry {
             Commands.literal(MODID)
                 .then(Commands.literal("rule")
                     .requires(commandSourceStack -> commandSourceStack.hasPermission(2)) // 需要权限等级 2
-                    // 子命令: whenDisasterCome
-                    .then(Commands.literal("whenDisasterCome")
-                        .then(Commands.argument("value", IntegerArgumentType.integer())
-                            .executes(DoomsSetDays.INSTANCE))) // 设置灾难时间
-                    // 子命令: willDisasterCome
-                    .then(Commands.literal("willDisasterCome")
-                        .then(Commands.argument("value", BoolArgumentType.bool())
-                            .executes(DisasterDo.INSTANCE))) // 切换灾难开关
-                    // 子命令: willPressureHurt
-                    .then(Commands.literal("willPressureHurt")
-                        .then(Commands.argument("value", BoolArgumentType.bool())
-                            .executes(PressureHurt.INSTANCE))) // 切换压力伤害开关
                     // 子命令组: energyNet
                     .then(Commands.literal("energyNet")
                         // 子命令: calcSpeed
