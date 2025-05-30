@@ -4,6 +4,7 @@ import java.util.function.Supplier;
 
 import com.google.common.collect.ImmutableSet;
 
+import com.main.maring.Maring;
 import com.main.maring.block.norm.BlockRegister;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.sounds.SoundEvents;
@@ -19,11 +20,9 @@ import net.minecraft.core.Holder;
  * @author NANMEDA
  * */
 public class ModVillager {
-	
-    private static final String MODID = "maring";
 
 	public static final DeferredRegister<PoiType> POI_TYPES =
-            DeferredRegister.create(Registries.POINT_OF_INTEREST_TYPE, MODID);
+            DeferredRegister.create(Registries.POINT_OF_INTEREST_TYPE, Maring.MODID);
 
     public static final Supplier<PoiType> HANDMAKE_TABLE_POI = POI_TYPES.register("villager_handmake_table_poi",
             () -> new PoiType(ImmutableSet.copyOf(BlockRegister.VILLAGER_HANDMAKE_TABLE.get().getStateDefinition().getPossibleStates()),
@@ -34,7 +33,7 @@ public class ModVillager {
     }
     
     public static final DeferredRegister<VillagerProfession> VILLAGER_PROFESSIONS =
-            DeferredRegister.create(Registries.VILLAGER_PROFESSION, MODID);
+            DeferredRegister.create(Registries.VILLAGER_PROFESSION, Maring.MODID);
 
     public static final Predicate<Holder<PoiType>> IS_HANDMAKE_TABLE_POI = poiTypeHolder -> poiTypeHolder.value() == HANDMAKE_TABLE_POI.get();
 
