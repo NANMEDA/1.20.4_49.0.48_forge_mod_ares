@@ -4,7 +4,6 @@ import java.util.function.Supplier;
 
 import com.google.common.collect.ImmutableSet;
 
-import com.main.maring.block.norm.BlockElectricBasic;
 import com.main.maring.block.norm.BlockRegister;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.sounds.SoundEvents;
@@ -27,7 +26,7 @@ public class ModVillager {
             DeferredRegister.create(Registries.POINT_OF_INTEREST_TYPE, MODID);
 
     public static final Supplier<PoiType> HANDMAKE_TABLE_POI = POI_TYPES.register("villager_handmake_table_poi",
-            () -> new PoiType(ImmutableSet.copyOf(BlockRegister.ELECTRIC_BLOCKS[BlockElectricBasic.getIdFromName("villager_handmake_table")].get().getStateDefinition().getPossibleStates()),
+            () -> new PoiType(ImmutableSet.copyOf(BlockRegister.VILLAGER_HANDMAKE_TABLE.get().getStateDefinition().getPossibleStates()),
                     1, 1));
 
     public static void POIRegister(IEventBus eventBus) {

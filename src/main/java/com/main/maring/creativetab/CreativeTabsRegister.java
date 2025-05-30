@@ -1,12 +1,10 @@
 package com.main.maring.creativetab;
 
 import com.main.maring.block.norm.BlockBasic;
-import com.main.maring.block.norm.BlockElectricBasic;
 import com.main.maring.block.norm.BlockRegister;
 import com.main.maring.block.norm.advancedmetalmanufactor.Register;
 import com.main.maring.block.norm.fastbuild.FastBuildRegister;
 import com.main.maring.item.ItemRegister;
-import com.main.maring.item.itemMaterial;
 import com.main.maring.machine.registry.MBlockRegister;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -53,10 +51,18 @@ public class CreativeTabsRegister {
     		.withTabsBefore(MAR_FOOD_TAB.getId())
             .icon(() -> MBlockRegister.MINCROWAVEOVEN_I.get().getDefaultInstance())
             .displayItems((parameters, output) -> {
-            	for(int i=0;i<BlockElectricBasic.BLOCK_ELECTRIC_NUMBER;i++){
-            		output.accept(BlockRegister.ELECTRIC_BLOCK_ITEMS[i].get());
-            	}
+
+				output.accept(BlockRegister.VILLAGER_HANDMAKE_TABLE_BLOCK_ITEMS.get());
+				output.accept(BlockRegister.BROKEN_ELECTRONIC_BLOCK_ITEMS.get());
+				output.accept(BlockRegister.BROKEN_CHEMICAL_BLOCK_ITEMS.get());
+				output.accept(BlockRegister.BROKEN_ADVANCED_ELECTRONIC_BLOCK_ITEMS.get());
+				output.accept(BlockRegister.BROKEN_STRUCTURE_BLOCK_ITEMS.get());
+				output.accept(BlockRegister.BROKEN_METAL_BLOCK_ITEMS.get());
+				output.accept(BlockRegister.VILLAGER_BURRIED_PACKAGE_BLOCK_ITEMS.get());
+				output.accept(BlockRegister.UNBROKEN_DORM_JUNCTION_BLOCK_ITEMS.get());
+
                 //output.accept(BlockRegister.PowerStationBurn_BLOCK_ITEM.get());
+
             	output.accept(MBlockRegister.SOLARBASEMENT_I.get());
             	output.accept(MBlockRegister.SOLARPILLAR_I.get());
             	output.accept(MBlockRegister.SOLARPANEL_I.get());

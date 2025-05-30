@@ -1,5 +1,6 @@
 package com.main.maring.block.norm;
 
+import com.main.maring.Maring;
 import com.main.maring.block.norm.advancedmetalmanufactor.Register;
 import com.main.maring.block.norm.farm.FarmBlockRegistry;
 import com.main.maring.block.norm.fastbuild.FastBuildRegister;
@@ -42,7 +43,13 @@ import com.main.maring.block.norm.unbroken.BlockUnbrokenMagma;
  * @author NANMEDA
  * */
 public class BlockRegister {
-	private static final String MODID = "maring";
+	static float[] dirt_strength = new float[]{0.5F, 0.5F};
+	static float[] stone_strength = new float[]{1.5F, 6.0F};
+	static float[] ore_strength = new float[]{3.0F, 3.0F};
+	static float[] deep_ore_strength = new float[]{4.5F, 3.0F};
+
+
+	private static final String MODID = Maring.MODID;
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MODID);
     public static final DeferredRegister<Item> BLOCK_ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
     
@@ -51,9 +58,6 @@ public class BlockRegister {
     @SuppressWarnings("unchecked")
 	public static final RegistryObject<Item>[] COMMON_BLOCK_ITEMS = new RegistryObject[BlockBasic.BLOCK_BASIC_NUMBER];
     @SuppressWarnings("unchecked")
-	public static final RegistryObject<Block>[] ELECTRIC_BLOCKS = new RegistryObject[BlockElectricBasic.BLOCK_ELECTRIC_NUMBER];
-    @SuppressWarnings("unchecked")
-	public static final RegistryObject<Item>[] ELECTRIC_BLOCK_ITEMS = new RegistryObject[BlockElectricBasic.BLOCK_ELECTRIC_NUMBER];
     
     public static final RegistryObject<Block> PowerStationBurn_BLOCK;
     public static final RegistryObject<Item> PowerStationBurn_BLOCK_ITEM;
@@ -90,24 +94,7 @@ public class BlockRegister {
         	});
         	COMMON_BLOCK_ITEMS[i] = BLOCK_ITEMS.register(BlockBasic.getBlockName(i), () -> new BlockItem(COMMON_BLOCKS[i].get(), new Item.Properties()));
         });
-        
-        
-        IntStream.range(0, BlockElectricBasic.BLOCK_ELECTRIC_NUMBER).forEach(i -> {
-        	ELECTRIC_BLOCKS[i] = BLOCKS.register(BlockElectricBasic.getBlockName(i), () -> {
-        	    BlockBehaviour.Properties properties = BlockBehaviour.Properties.of()
-        	    		//.noOcclusion()
-        	            .sound(BlockElectricBasic.getBlockSound(i))
-        	            .strength(BlockElectricBasic.getBlockStrength(i)[0], BlockElectricBasic.getBlockStrength(i)[1])
-        	            .mapColor(BlockElectricBasic.getBlockMapColor(i));
-        	    if (BlockElectricBasic.needTool(i)) {
-        	        properties.requiresCorrectToolForDrops();
-        	    }
-        	    return new Block(properties) {
-        	    };
-        	});
-        	ELECTRIC_BLOCK_ITEMS[i] = BLOCK_ITEMS.register(BlockElectricBasic.getBlockName(i), () -> new BlockItem(ELECTRIC_BLOCKS[i].get(), new Item.Properties()));
-        });
-        
+
 
     	PowerStationBurn_BLOCK = BLOCKS.register(PowerStationBurn.global_name, () -> {
     		return new PowerStationBurn(BlockBehaviour.Properties.of()
@@ -127,6 +114,95 @@ public class BlockRegister {
     
     	com.main.maring.block.norm.decoration.Register.init();
     }
+	public static final RegistryObject<Block> VILLAGER_HANDMAKE_TABLE = BLOCKS.register("villager_handmake_table",
+			() -> {
+				return new Block(BlockBehaviour.Properties.of()
+						.sound(SoundType.AMETHYST)
+						.strength(deep_ore_strength[0], deep_ore_strength[1])
+						.mapColor(MapColor.COLOR_GRAY)
+				);
+			});
+	public static final RegistryObject<BlockItem> VILLAGER_HANDMAKE_TABLE_BLOCK_ITEMS =
+			BLOCK_ITEMS.register("villager_handmake_table",
+					() -> new BlockItem(VILLAGER_HANDMAKE_TABLE.get(), new Item.Properties()));
+	public static final RegistryObject<Block> BROKEN_STRUCTURE_BLOCK = BLOCKS.register("broken_structure_block",
+			() -> {
+				return new Block(BlockBehaviour.Properties.of()
+						.sound(SoundType.AMETHYST)
+						.strength(deep_ore_strength[0], deep_ore_strength[1])
+						.mapColor(MapColor.COLOR_GRAY)
+				);
+			});
+	public static final RegistryObject<BlockItem> BROKEN_STRUCTURE_BLOCK_ITEMS =
+			BLOCK_ITEMS.register("broken_structure_block",
+					() -> new BlockItem(BROKEN_STRUCTURE_BLOCK.get(), new Item.Properties()));
+	public static final RegistryObject<Block> BROKEN_CHEMICAL_BLOCK = BLOCKS.register("broken_chemical_block",
+			() -> {
+				return new Block(BlockBehaviour.Properties.of()
+						.sound(SoundType.AMETHYST)
+						.strength(ore_strength[0], ore_strength[1])
+						.mapColor(MapColor.COLOR_GRAY)
+				);
+			});
+	public static final RegistryObject<BlockItem> BROKEN_CHEMICAL_BLOCK_ITEMS =
+			BLOCK_ITEMS.register("broken_chemical_block",
+					() -> new BlockItem(BROKEN_CHEMICAL_BLOCK.get(), new Item.Properties()));
+	public static final RegistryObject<Block> BROKEN_METAL_BLOCK = BLOCKS.register("broken_metal_block",
+			() -> {
+				return new Block(BlockBehaviour.Properties.of()
+						.sound(SoundType.AMETHYST)
+						.strength(deep_ore_strength[0], deep_ore_strength[1])
+						.mapColor(MapColor.COLOR_GRAY)
+				);
+			});
+	public static final RegistryObject<BlockItem> BROKEN_METAL_BLOCK_ITEMS =
+			BLOCK_ITEMS.register("broken_metal_block",
+					() -> new BlockItem(BROKEN_METAL_BLOCK.get(), new Item.Properties()));
+	public static final RegistryObject<Block> BROKEN_ELECTRONIC_BLOCK = BLOCKS.register("broken_electronic_block",
+			() -> {
+				return new Block(BlockBehaviour.Properties.of()
+						.sound(SoundType.AMETHYST)
+						.strength(ore_strength[0], ore_strength[1])
+						.mapColor(MapColor.COLOR_GRAY)
+				);
+			});
+	public static final RegistryObject<BlockItem> BROKEN_ELECTRONIC_BLOCK_ITEMS =
+			BLOCK_ITEMS.register("broken_electronic_block",
+					() -> new BlockItem(BROKEN_ELECTRONIC_BLOCK.get(), new Item.Properties()));
+	public static final RegistryObject<Block> BROKEN_ADVANCED_ELECTRONIC_BLOCK = BLOCKS.register("broken_advanced_electronic_block",
+			() -> {
+				return new Block(BlockBehaviour.Properties.of()
+						.sound(SoundType.AMETHYST)
+						.strength(deep_ore_strength[0], deep_ore_strength[1])
+						.mapColor(MapColor.COLOR_GRAY)
+				);
+			});
+	public static final RegistryObject<BlockItem> BROKEN_ADVANCED_ELECTRONIC_BLOCK_ITEMS =
+			BLOCK_ITEMS.register("broken_advanced_electronic_block",
+					() -> new BlockItem(BROKEN_ADVANCED_ELECTRONIC_BLOCK.get(), new Item.Properties()));
+	public static final RegistryObject<Block> VILLAGER_BURRIED_PACKAGE = BLOCKS.register("villager_burried_package",
+			() -> {
+				return new Block(BlockBehaviour.Properties.of()
+						.sound(SoundType.WOOL)
+						.strength(0.2f, 0.5f)
+						.mapColor(MapColor.COLOR_GRAY)
+				);
+			});
+	public static final RegistryObject<BlockItem> VILLAGER_BURRIED_PACKAGE_BLOCK_ITEMS =
+			BLOCK_ITEMS.register("villager_burried_package",
+					() -> new BlockItem(VILLAGER_BURRIED_PACKAGE.get(), new Item.Properties()));
+	public static final RegistryObject<Block> UNBROKEN_DORM_JUNCTION = BLOCKS.register("unbroken_dorm_junction",
+			() -> {
+				return new Block(BlockBehaviour.Properties.of()
+						.sound(SoundType.AMETHYST)
+						.strength(-1.0f, 3600000.0F)
+						.mapColor(MapColor.COLOR_GRAY)
+				);
+			});
+	public static final RegistryObject<BlockItem> UNBROKEN_DORM_JUNCTION_BLOCK_ITEMS =
+			BLOCK_ITEMS.register("unbroken_dorm_junction",
+					() -> new BlockItem(UNBROKEN_DORM_JUNCTION.get(), new Item.Properties()));
+
 
     public static final RegistryObject<Block> basicmetalmanufactor_BLOCK = BLOCKS.register(BlockBasicMetalManufactor.global_name, () -> {
 		return new BlockBasicMetalManufactor(BlockBehaviour.Properties.of()

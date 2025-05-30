@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Random;
 
 import com.main.maring.animal.entity.villager.ModVillager;
-import com.main.maring.block.norm.BlockElectricBasic;
 import com.main.maring.block.norm.BlockRegister;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import com.main.maring.item.ItemRegister;
@@ -37,7 +36,7 @@ public class VillagerEvent {
             ItemStack stack3 = new ItemStack(ItemRegister.CRYSTAL_PARTS.get(), 1);
             ItemStack stack4 = new ItemStack(ItemRegister.ADVANCED_METAL_PARTS.get(), 1);
             ItemStack stack5 = new ItemStack(ItemRegister.SEMICONDUCTOR_PARTS.get(), 1);//小心顺序哦
-            ItemStack stack6 = new ItemStack(BlockRegister.ELECTRIC_BLOCK_ITEMS[BlockElectricBasic.getIdFromName("villager_burried_package")].get(), 1);
+            ItemStack stack6 = new ItemStack(BlockRegister.VILLAGER_BURRIED_PACKAGE_BLOCK_ITEMS.get(), 1);
             trades.get(1).add((trader, rand) -> new MerchantOffer(
                 new ItemStack(Items.EMERALD, 4 + random.nextInt(3)),
                 new ItemStack(Items.GOLD_INGOT, 1),

@@ -1,7 +1,6 @@
 package com.main.maring.worldgen.feature;
 
 import com.main.maring.block.norm.BlockBasic;
-import com.main.maring.block.norm.BlockElectricBasic;
 import com.main.maring.block.norm.BlockRegister;
 import net.minecraft.world.level.block.Block;
 
@@ -14,11 +13,11 @@ public class FeatureHelper {
 	public static final Block DRY_MUCUS = BlockRegister.COMMON_BLOCKS[BlockBasic.getIdFromName("dry_mucus")].get();
     public static final Block MAR_DEEP_STONE = BlockRegister.COMMON_BLOCKS[BlockBasic.getIdFromName("mar_deep_stone")].get();
     
-    public static final Block METAL = BlockRegister.ELECTRIC_BLOCKS[BlockElectricBasic.getIdFromName("broken_metal_block")].get();
-    public static final Block STRUCTURE = BlockRegister.ELECTRIC_BLOCKS[BlockElectricBasic.getIdFromName("broken_structure_block")].get();
-    public static final Block ELEC = BlockRegister.ELECTRIC_BLOCKS[BlockElectricBasic.getIdFromName("broken_electronic_block")].get();
-    public static final Block ELEC_A = BlockRegister.ELECTRIC_BLOCKS[BlockElectricBasic.getIdFromName("broken_advanced_electronic_block")].get();
-    public static final Block CHEMICAL = BlockRegister.ELECTRIC_BLOCKS[BlockElectricBasic.getIdFromName("broken_chemical_block")].get();
+    public static final Block METAL = BlockRegister.BROKEN_METAL_BLOCK.get();
+    public static final Block STRUCTURE = BlockRegister.BROKEN_STRUCTURE_BLOCK.get();
+    public static final Block ELEC = BlockRegister.BROKEN_ELECTRONIC_BLOCK.get();
+    public static final Block ELEC_A = BlockRegister.BROKEN_ADVANCED_ELECTRONIC_BLOCK.get();
+    public static final Block CHEMICAL = BlockRegister.BROKEN_CHEMICAL_BLOCK.get();
 
     protected static final Block SOFT = BlockRegister.COMMON_BLOCKS[BlockBasic.getIdFromName("mar_soft_cheese")].get();
 	protected static final Block HARD = BlockRegister.COMMON_BLOCKS[BlockBasic.getIdFromName("mar_hard_cheese")].get();

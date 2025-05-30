@@ -13,7 +13,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 
 public class BlockJSON {
-	private static final String toResource = "/forge-1.20.4-49.0.48-mdk/src/main/resources"; 
+	private static final String toResource = "/1.20.4_49.0.48_forge_mod_ares/src/main/resources";
 	
 	public static void fastGen(String global_name) {
         GenModelsJSONBasic(global_name);
