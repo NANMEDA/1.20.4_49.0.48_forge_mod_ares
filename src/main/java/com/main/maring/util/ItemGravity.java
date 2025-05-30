@@ -1,5 +1,6 @@
 package com.main.maring.util;
 
+import com.main.maring.Maring;
 import com.main.maring.event.forge.ItemGravityEvent;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
@@ -16,7 +17,7 @@ import net.minecraftforge.common.MinecraftForge;
 public class ItemGravity {
 
     public static final double DEFAULT_ITEM_GRAVITY = 0.04;//注意这个初始值
-    private static ResourceKey<Level> marKey = ResourceKey.create(Registries.DIMENSION, new ResourceLocation("maring", "maringmar"));
+    private static ResourceKey<Level> marKey = ResourceKey.create(Registries.DIMENSION, new ResourceLocation(Maring.MODID, "maringmar"));
 
     
     public static void setGravities(ItemEntity itemEntity, Level level) {

@@ -6,22 +6,23 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.main.maring.Maring;
+
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
 public class TagkeyJson {
-	private static final String MODID = "maring";
 	protected static String createPath(String path_simple,boolean is_vanilla) {
 		if(is_vanilla) {
 			return "/forge-1.20.4-49.0.48-mdk/src/main/resources/data/minecraft/tags/" + path_simple +".json";
 		}else {
-			return "/forge-1.20.4-49.0.48-mdk/src/main/resources/data/"+MODID+ "/com/main/maring/tags/" + path_simple +".json";
+			return "/forge-1.20.4-49.0.48-mdk/src/main/resources/data/"+ Maring.MODID+ "/com/main/maring/tags/" + path_simple +".json";
 		}
 	}
 	protected static String createName(String name_simple) {
-		return MODID + ":" + name_simple;
+		return Maring.MODID + ":" + name_simple;
 	}
 	
 	protected static void TagCreate(String path, String name) {

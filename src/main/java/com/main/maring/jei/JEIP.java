@@ -1,5 +1,6 @@
 package com.main.maring.jei;
 
+import com.main.maring.Maring;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
@@ -12,7 +13,7 @@ public class JEIP implements IModPlugin {
 	@Override
 	public ResourceLocation getPluginUid() {
 		// TODO 自动生成的方法存根
-		return new ResourceLocation("maring", "jei_plugin");
+		return new ResourceLocation(Maring.MODID, "jei_plugin");
 	}
 
 	public void registerCategories(IRecipeCategoryRegistration registration) {

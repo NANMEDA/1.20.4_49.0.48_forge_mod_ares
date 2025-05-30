@@ -1,6 +1,7 @@
 package com.main.maring.menu.stonewasher;
 
 
+import com.main.maring.Maring;
 import com.mojang.blaze3d.systems.RenderSystem;
 
 import com.main.maring.block.entity.consumer.stonewasher.StoneWasherEntity;
@@ -12,9 +13,8 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.resources.ResourceLocation;
 
 public class StoneWasherScreen extends AbstractContainerScreen<StoneWasherMenu> {
-	public static final String MODID = "maring";
-	public static final ResourceLocation GUI = new ResourceLocation(MODID,"textures/gui/container/stone_washer.png");
-	public static final ResourceLocation GUI_DO = new ResourceLocation(MODID,"textures/gui/container/skyline.png");
+	public static final ResourceLocation GUI = new ResourceLocation(Maring.MODID,"textures/gui/container/stone_washer.png");
+	public static final ResourceLocation GUI_DO = new ResourceLocation(Maring.MODID,"textures/gui/container/skyline.png");
 	//private Button button;
 	
 	public StoneWasherScreen(StoneWasherMenu pMenu, Inventory pInventory, Component pComponent) {

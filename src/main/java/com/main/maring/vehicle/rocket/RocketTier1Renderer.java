@@ -1,5 +1,6 @@
 package com.main.maring.vehicle.rocket;
 
+import com.main.maring.Maring;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
@@ -14,8 +15,7 @@ import com.main.maring.vehicle.VehicleRenderer;
 @OnlyIn(Dist.CLIENT)
 public class RocketTier1Renderer extends VehicleRenderer<RocketEntity, RocketModel<RocketEntity>> {
 
-    private static final String MODID = "maring";
-	public static final ResourceLocation TEXTURE = new ResourceLocation(MODID, "textures/vehicle/rocket_1.png");
+	public static final ResourceLocation TEXTURE = new ResourceLocation(Maring.MODID, "textures/vehicle/rocket_1.png");
 
     public RocketTier1Renderer(EntityRendererProvider.Context renderManagerIn) {
         super(renderManagerIn, new RocketModel<>(renderManagerIn.bakeLayer(RocketModel.LAYER_LOCATION)), 0.5f);

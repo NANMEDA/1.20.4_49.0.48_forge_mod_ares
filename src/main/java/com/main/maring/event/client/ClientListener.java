@@ -51,7 +51,7 @@ import com.main.maring.menu.show.ShowBlockScreen;
 import com.main.maring.menu.show.itemstack.ShowItemStackScreen;
 import com.main.maring.menu.stonewasher.StoneWasherScreen;
 
-@Mod.EventBusSubscriber(modid = "maring",bus = Mod.EventBusSubscriber.Bus.MOD,value = Dist.CLIENT)
+@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD,value = Dist.CLIENT)
 public class ClientListener{
 
 	@SubscribeEvent

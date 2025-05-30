@@ -1,6 +1,7 @@
 package com.main.maring.menu.marreactor;
 
 
+import com.main.maring.Maring;
 import com.mojang.blaze3d.systems.RenderSystem;
 
 import net.minecraft.client.gui.GuiGraphics;
@@ -11,8 +12,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.resources.ResourceLocation;
 
 public class MarReactorScreen extends AbstractContainerScreen<MarReactorMenu> {
-	public static final String MODID = "maring";
-	public static final ResourceLocation GUI = new ResourceLocation(MODID,"textures/gui/container/mar_reactor.png");
+	public static final ResourceLocation GUI = new ResourceLocation(Maring.MODID,"textures/gui/container/mar_reactor.png");
 	
 	public MarReactorScreen(MarReactorMenu pMenu, Inventory pInventory, Component pComponent) {
 		super(pMenu, pInventory, pComponent);

@@ -1,5 +1,6 @@
 package com.main.maring.menu.powerstationburn;
 
+import com.main.maring.Maring;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
@@ -7,8 +8,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.resources.ResourceLocation;
 
 public class PowerStationBurnScreen extends AbstractContainerScreen<PowerStationBurnMenu> {
-	public static final String MODID = "maring";
-	public static final ResourceLocation GUI = new ResourceLocation(MODID,"textures/gui/container/powerstation_burn.png");
+	public static final ResourceLocation GUI = new ResourceLocation(Maring.MODID,"textures/gui/container/powerstation_burn.png");
 	
 	public PowerStationBurnScreen(PowerStationBurnMenu pMenu, Inventory pInventory, Component pComponent) {
 		super(pMenu, pInventory, pComponent);

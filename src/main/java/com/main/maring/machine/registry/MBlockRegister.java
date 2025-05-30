@@ -1,5 +1,6 @@
 package com.main.maring.machine.registry;
 
+import com.main.maring.Maring;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -24,9 +25,8 @@ import com.main.maring.machine.energy.viewer.EnergyViewer;
  * @author NANMEDA
  * */
 public class MBlockRegister {
-	private static final String MODID = "maring";
-    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MODID);
-    public static final DeferredRegister<Item> BLOCK_ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
+    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Maring.MODID);
+    public static final DeferredRegister<Item> BLOCK_ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Maring.MODID);
     
     public static final RegistryObject<Block> SOLARBASEMENT_B = BLOCKS.register(SolarBasement.global_name, () -> {
 		return new SolarBasement(BlockBehaviour.Properties.of()); 

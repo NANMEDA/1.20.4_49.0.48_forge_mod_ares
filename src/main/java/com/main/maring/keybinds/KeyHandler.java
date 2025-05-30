@@ -9,7 +9,7 @@ import net.minecraftforge.fml.common.Mod;
 /**
  * 实现按键和函数的对应
  * */
-@Mod.EventBusSubscriber(modid = "maring")
+@Mod.EventBusSubscriber
 public class KeyHandler {
 
     @SubscribeEvent

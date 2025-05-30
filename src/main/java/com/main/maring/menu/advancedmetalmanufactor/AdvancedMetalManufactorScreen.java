@@ -1,5 +1,6 @@
 package com.main.maring.menu.advancedmetalmanufactor;
 
+import com.main.maring.Maring;
 import com.mojang.blaze3d.systems.RenderSystem;
 
 import com.main.maring.block.entity.consumer.advancedmetalmanufactor.AdvancedMetalManufactorEntity;
@@ -11,9 +12,8 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.resources.ResourceLocation;
 
 public class AdvancedMetalManufactorScreen extends AbstractContainerScreen<AdvancedMetalManufactorMenu> {
-	public static final String MODID = "maring";
-	public static final ResourceLocation GUI = new ResourceLocation(MODID,"textures/gui/container/advancedmetal_manufactor.png");
-	public static final ResourceLocation GUI_DO = new ResourceLocation(MODID,"textures/gui/container/skyline.png");
+	public static final ResourceLocation GUI = new ResourceLocation(Maring.MODID,"textures/gui/container/advancedmetal_manufactor.png");
+	public static final ResourceLocation GUI_DO = new ResourceLocation(Maring.MODID,"textures/gui/container/skyline.png");
 	
 	public AdvancedMetalManufactorScreen(AdvancedMetalManufactorMenu pMenu, Inventory pInventory, Component pComponent) {
 		super(pMenu, pInventory, pComponent);

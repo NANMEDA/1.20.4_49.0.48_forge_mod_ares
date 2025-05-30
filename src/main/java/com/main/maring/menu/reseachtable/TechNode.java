@@ -10,12 +10,12 @@ import java.util.function.Supplier;
 
 import javax.annotation.Nullable;
 
+import com.main.maring.Maring;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import com.main.maring.util.tech.TechManager;
 
 public class TechNode {
-	static final String MODID = "maring";
     private String name; // 科技名称
     private String description; // 科技描述
     private Set<TechNode> prerequisites; // 需要解锁的前置科技
@@ -32,10 +32,10 @@ public class TechNode {
     private int needTime = 1200;
     
     private static ResourceLocation gen1(String name) {
-    	return new ResourceLocation(MODID,"textures/gui/addon/tech_ui_"+name+".png");
+    	return new ResourceLocation(Maring.MODID,"textures/gui/addon/tech_ui_"+name+".png");
     }
     private static ResourceLocation gen2(String name) {
-    	return new ResourceLocation(MODID,"textures/gui/addon/tech_detail_"+name+".png");
+    	return new ResourceLocation(Maring.MODID,"textures/gui/addon/tech_detail_"+name+".png");
     }
     
     public TechNode(Builder builder) {
@@ -263,8 +263,7 @@ public class TechNode {
 	}
 	
 	public static class Builder{
-		static final String MODID = "maring";
-	    private String name; // 科技名称
+        private String name; // 科技名称
 	    private String description; // 科技描述
 	    private Set<TechNode> prerequisites; // 需要解锁的前置科技
 	    private Set<TechNode> point; // 指向

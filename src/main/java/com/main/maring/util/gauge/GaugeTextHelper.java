@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.google.common.collect.Lists;
 
+import com.main.maring.Maring;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -22,17 +23,15 @@ import net.minecraftforge.registries.ForgeRegistries;
  * https://github.com/MrScautHD/Beyond-Earth
  * */
 public class GaugeTextHelper {
-
-	private static final String MODID = "maring";
 	
-	public static final ResourceLocation USING_NAME = new ResourceLocation(MODID, "using");
-	public static final ResourceLocation USING2_NAME = new ResourceLocation(MODID, "using2");
-	public static final ResourceLocation GENERATING_NAME = new ResourceLocation(MODID, "generating");
-	public static final ResourceLocation MAXGENERATION_NAME = new ResourceLocation(MODID, "maxgeneration");
-	public static final ResourceLocation TOTAL_NAME = new ResourceLocation(MODID, "total");
-	public static final ResourceLocation STORED_NAME = new ResourceLocation(MODID, "stored");
-	public static final ResourceLocation CAPACITY_NAME = new ResourceLocation(MODID, "capacity");
-	public static final ResourceLocation TRANSFER_NAME = new ResourceLocation(MODID, "transfer");
+	public static final ResourceLocation USING_NAME = new ResourceLocation(Maring.MODID, "using");
+	public static final ResourceLocation USING2_NAME = new ResourceLocation(Maring.MODID, "using2");
+	public static final ResourceLocation GENERATING_NAME = new ResourceLocation(Maring.MODID, "generating");
+	public static final ResourceLocation MAXGENERATION_NAME = new ResourceLocation(Maring.MODID, "maxgeneration");
+	public static final ResourceLocation TOTAL_NAME = new ResourceLocation(Maring.MODID, "total");
+	public static final ResourceLocation STORED_NAME = new ResourceLocation(Maring.MODID, "stored");
+	public static final ResourceLocation CAPACITY_NAME = new ResourceLocation(Maring.MODID, "capacity");
+	public static final ResourceLocation TRANSFER_NAME = new ResourceLocation(Maring.MODID, "transfer");
 
 	public static final String USING_KEY = makeTranslationKey(USING_NAME);
 	public static final String USING2_KEY = makeTranslationKey(USING2_NAME);

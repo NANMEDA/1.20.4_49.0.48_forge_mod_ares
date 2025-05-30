@@ -23,7 +23,7 @@ import com.main.maring.util.ItemGravity;
  * BeyondEarth
  * https://github.com/MrScautHD/Beyond-Earth
  * */
-@Mod.EventBusSubscriber(modid = "maring")
+@Mod.EventBusSubscriber
 public class GravityEvents {
 
     @SubscribeEvent

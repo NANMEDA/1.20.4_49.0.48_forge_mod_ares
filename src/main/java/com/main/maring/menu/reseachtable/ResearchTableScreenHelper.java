@@ -3,6 +3,7 @@ package com.main.maring.menu.reseachtable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.main.maring.Maring;
 import com.main.maring.menu.ScreenHelper;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
@@ -16,8 +17,6 @@ import net.minecraft.world.item.ItemStack;
  */
 public interface ResearchTableScreenHelper {
 	
-	static final String MODID = "maring";
-	
 	static int[] standardBgSize = {96,36};
 	static int[] standardUISize = {32,32};
 	static int[] standardUIOffset = {-standardBgSize[0]/2+standardUISize[0]/2+2,0};
@@ -25,25 +24,25 @@ public interface ResearchTableScreenHelper {
 	static int[] standardTextOffset = {standardUIOffset[0]+standardBgSize[0]/2-2,-4};
 	
 	//x4y16 "|" "——"
-	static final ResourceLocation LINE1 = new ResourceLocation(MODID, "textures/gui/addon/line0.png");
-	static final ResourceLocation LINE_ = new ResourceLocation(MODID, "textures/gui/addon/line1.png");
+	static final ResourceLocation LINE1 = new ResourceLocation(Maring.MODID, "textures/gui/addon/line0.png");
+	static final ResourceLocation LINE_ = new ResourceLocation(Maring.MODID, "textures/gui/addon/line1.png");
 	
 	//x16y16 like "L""""""" rotate clockly
-	static final ResourceLocation LINE_CORNER0 = new ResourceLocation(MODID, "textures/gui/addon/line_c0.png");
-	static final ResourceLocation LINE_CORNER1 = new ResourceLocation(MODID, "textures/gui/addon/line_c1.png");
-	static final ResourceLocation LINE_CORNER2 = new ResourceLocation(MODID, "textures/gui/addon/line_c2.png");
-	static final ResourceLocation LINE_CORNER3 = new ResourceLocation(MODID, "textures/gui/addon/line_c3.png");
+	static final ResourceLocation LINE_CORNER0 = new ResourceLocation(Maring.MODID, "textures/gui/addon/line_c0.png");
+	static final ResourceLocation LINE_CORNER1 = new ResourceLocation(Maring.MODID, "textures/gui/addon/line_c1.png");
+	static final ResourceLocation LINE_CORNER2 = new ResourceLocation(Maring.MODID, "textures/gui/addon/line_c2.png");
+	static final ResourceLocation LINE_CORNER3 = new ResourceLocation(Maring.MODID, "textures/gui/addon/line_c3.png");
 	
 	//x16y16 "point dovvn/up"
-	static final ResourceLocation LINE_TIPD = new ResourceLocation(MODID, "textures/gui/addon/line_td.png");
-	static final ResourceLocation LINE_TIPU = new ResourceLocation(MODID, "textures/gui/addon/line_tu.png");
+	static final ResourceLocation LINE_TIPD = new ResourceLocation(Maring.MODID, "textures/gui/addon/line_td.png");
+	static final ResourceLocation LINE_TIPU = new ResourceLocation(Maring.MODID, "textures/gui/addon/line_tu.png");
 	
-	static final ResourceLocation STANDARD_TECH_BG_G = new ResourceLocation(MODID, "textures/gui/addon/tech_bg_g.png");
-	static final ResourceLocation STANDARD_TECH_BG_Y = new ResourceLocation(MODID, "textures/gui/addon/tech_bg_y.png");
-	static final ResourceLocation STANDARD_TECH_BG_R = new ResourceLocation(MODID, "textures/gui/addon/tech_bg_r.png");
+	static final ResourceLocation STANDARD_TECH_BG_G = new ResourceLocation(Maring.MODID, "textures/gui/addon/tech_bg_g.png");
+	static final ResourceLocation STANDARD_TECH_BG_Y = new ResourceLocation(Maring.MODID, "textures/gui/addon/tech_bg_y.png");
+	static final ResourceLocation STANDARD_TECH_BG_R = new ResourceLocation(Maring.MODID, "textures/gui/addon/tech_bg_r.png");
 
-	static final ResourceLocation BAR_EMPTY = new ResourceLocation(MODID, "textures/gui/addon/oxygen.png");
-	static final ResourceLocation BAR = new ResourceLocation(MODID, "textures/gui/addon/water.png");
+	static final ResourceLocation BAR_EMPTY = new ResourceLocation(Maring.MODID, "textures/gui/addon/oxygen.png");
+	static final ResourceLocation BAR = new ResourceLocation(Maring.MODID, "textures/gui/addon/water.png");
 	
 	static void connection(GuiGraphics graphics,int[] start, int[] end) {
 		if(end.length!=2||start.length!=2) return;

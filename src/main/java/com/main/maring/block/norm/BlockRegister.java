@@ -1,5 +1,6 @@
 package com.main.maring.block.norm;
 
+import com.main.maring.Maring;
 import com.main.maring.block.norm.advancedmetalmanufactor.Register;
 import com.main.maring.block.norm.farm.FarmBlockRegistry;
 import com.main.maring.block.norm.fastbuild.FastBuildRegister;
@@ -42,9 +43,8 @@ import com.main.maring.block.norm.unbroken.BlockUnbrokenMagma;
  * @author NANMEDA
  * */
 public class BlockRegister {
-	private static final String MODID = "maring";
-    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MODID);
-    public static final DeferredRegister<Item> BLOCK_ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
+    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Maring.MODID);
+    public static final DeferredRegister<Item> BLOCK_ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Maring.MODID);
     
     @SuppressWarnings("unchecked")
 	public static final RegistryObject<Block>[] COMMON_BLOCKS = new RegistryObject[BlockBasic.BLOCK_BASIC_NUMBER];

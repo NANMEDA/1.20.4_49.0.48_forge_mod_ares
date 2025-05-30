@@ -1,5 +1,6 @@
 package com.main.maring.item;
 
+import com.main.maring.Maring;
 import com.main.maring.block.norm.farm.FarmBlockRegistry;
 import com.main.maring.effect.registry.EffectRegister;
 import com.main.maring.item.armor.ModArmorMaterials;
@@ -37,8 +38,7 @@ import java.util.Random;
  * @author NANMEDA
  * */
 public class ItemRegister {
-	private static final String MODID = "maring";
-	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
+	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Maring.MODID);
 	
 	static {
 		System.out.println("here come Register the Item");

@@ -1,5 +1,6 @@
 package com.main.maring.menu.registry;
 
+import com.main.maring.Maring;
 import com.main.maring.item.ItemRegister;
 import com.main.maring.menu.advancedmetalmanufactor.AdvancedMetalManufactorMenu;
 import com.main.maring.menu.basicmetalmanufactor.BasicMetalManufactorMenu;
@@ -27,8 +28,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class MenuRegister {
-	public static final String MODID = "maring";
-	public static final DeferredRegister<MenuType<?>> MENU_TYPES = DeferredRegister.create(ForgeRegistries.MENU_TYPES, MODID);
+	public static final DeferredRegister<MenuType<?>> MENU_TYPES = DeferredRegister.create(ForgeRegistries.MENU_TYPES, Maring.MODID);
     
     public static final RegistryObject<MenuType<PowerStationBurnMenu>> POWERSTATIONBURN_MENU = MENU_TYPES.register("powerstationburn_menu",
             () -> IForgeMenuType.create((windowId, inv, data) -> new PowerStationBurnMenu(inv, windowId, data.readBlockPos())));

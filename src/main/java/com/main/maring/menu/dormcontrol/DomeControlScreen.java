@@ -1,5 +1,6 @@
 package com.main.maring.menu.dormcontrol;
 
+import com.main.maring.Maring;
 import com.main.maring.block.entity.neutral.dormcontrol.DomeControlEntity;
 import com.main.maring.menu.ScreenHelper;
 import net.minecraft.client.gui.GuiGraphics;
@@ -11,10 +12,9 @@ import com.main.maring.network.client.CDomeControl;
 import net.minecraft.resources.ResourceLocation;
 
 public class DomeControlScreen extends AbstractContainerScreen<DomeControlMenu> {
-	public static final String MODID = "maring";
-	public static final ResourceLocation GUI = new ResourceLocation(MODID,"textures/gui/container/dorm_control.png");
-	public static final ResourceLocation O2_UI = new ResourceLocation(MODID,"textures/gui/addon/oxygen.png");
-	public static final ResourceLocation H2O_UI = new ResourceLocation(MODID,"textures/gui/addon/water.png");
+	public static final ResourceLocation GUI = new ResourceLocation(Maring.MODID,"textures/gui/container/dorm_control.png");
+	public static final ResourceLocation O2_UI = new ResourceLocation(Maring.MODID,"textures/gui/addon/oxygen.png");
+	public static final ResourceLocation H2O_UI = new ResourceLocation(Maring.MODID,"textures/gui/addon/water.png");
 	
 	private static int removeButtonStartPosX = 180;
 	private static int removeButtonStartPosY = 127;

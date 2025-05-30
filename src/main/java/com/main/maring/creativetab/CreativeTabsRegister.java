@@ -1,5 +1,6 @@
 package com.main.maring.creativetab;
 
+import com.main.maring.Maring;
 import com.main.maring.block.norm.BlockBasic;
 import com.main.maring.block.norm.BlockElectricBasic;
 import com.main.maring.block.norm.BlockRegister;
@@ -19,8 +20,7 @@ import net.minecraftforge.registries.RegistryObject;
  * 所有创造模式物品栏在此注册
  * */
 public class CreativeTabsRegister {
-	private static final String MODID = "maring";
-	public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
+	public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, Maring.MODID);
 
     public static final RegistryObject<CreativeModeTab> MAR_MAIN_TAB = CREATIVE_MODE_TABS.register("mar_main_block_tab", () -> CreativeModeTab.builder()
     		.title(Component.translatable("mar_main_block_tab"))

@@ -1,5 +1,6 @@
 package com.main.maring.command;
 
+import com.main.maring.Maring;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.BoolArgumentType;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
@@ -19,17 +20,16 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 
-@Mod.EventBusSubscriber(modid = "maring")
+@Mod.EventBusSubscriber
 public class CommandRegistry {
 
-    private static final String MODID = "maring";
     @SubscribeEvent
     public static void onServerStarting(RegisterCommandsEvent event) {
         CommandDispatcher<CommandSourceStack> dispatcher = event.getDispatcher();
 
         // 注册 "maring rule" 命令及其子命令
         dispatcher.register(
-            Commands.literal(MODID)
+            Commands.literal(Maring.MODID)
                 .then(Commands.literal("rule")
                     .requires(commandSourceStack -> commandSourceStack.hasPermission(2)) // 需要权限等级 2
                     // 子命令组: energyNet
@@ -54,7 +54,7 @@ public class CommandRegistry {
 
         // 注册 "maring display" 和 "maring rule environment" 命令及其子命令
         dispatcher.register(
-            Commands.literal(MODID)
+            Commands.literal(Maring.MODID)
                 .then(Commands.literal("display")
                     .then(Commands.literal("environment")
                         .executes(EnvironmentDisplay.INSTANCE))) // 显示环境参数

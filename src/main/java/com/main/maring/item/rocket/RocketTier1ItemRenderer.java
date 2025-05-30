@@ -1,5 +1,6 @@
 package com.main.maring.item.rocket;
 
+import com.main.maring.Maring;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
@@ -19,13 +20,11 @@ import net.minecraftforge.fml.common.Mod;
 import com.main.maring.vehicle.rocket.RocketEntity;
 import com.main.maring.vehicle.rocket.RocketModel;
 
-@Mod.EventBusSubscriber(modid = "maring", bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class RocketTier1ItemRenderer<T extends RocketEntity> extends BlockEntityWithoutLevelRenderer {
 
-    private static final String MODID = "maring";
-
 	/** TEXTURE */
-    public static final ResourceLocation TEXTURE = new ResourceLocation(MODID, "textures/vehicle/rocket_t1.png");
+    public static final ResourceLocation TEXTURE = new ResourceLocation(Maring.MODID, "textures/vehicle/rocket_t1.png");
 
     /** MODEL */
     private RocketModel model;

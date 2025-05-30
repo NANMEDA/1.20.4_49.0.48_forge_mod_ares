@@ -1,5 +1,6 @@
 package com.main.maring.vehicle.rocket;
 
+import com.main.maring.Maring;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 
@@ -16,9 +17,8 @@ import net.minecraft.resources.ResourceLocation;
  * https://github.com/MrScautHD/Beyond-Earth
  * */
 public class RocketModel<T extends RocketEntity> extends EntityModel<T> {
-	
-    private static final String MODID = "maring";
-    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(MODID, "rocket_1"), "main");
+
+    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(Maring.MODID, "rocket_1"), "main");
 	private final ModelPart rocket;
 
 	public RocketModel(ModelPart root) {

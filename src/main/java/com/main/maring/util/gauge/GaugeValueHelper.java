@@ -1,5 +1,6 @@
 package com.main.maring.util.gauge;
 
+import com.main.maring.Maring;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.energy.IEnergyStorage;
@@ -13,14 +14,12 @@ import net.minecraftforge.fluids.IFluidTank;
  * */
 public class GaugeValueHelper {
 
-	private static final String MODID = "maring";
-
-	public static final ResourceLocation ENERGY_NAME = new ResourceLocation(MODID, "energy");
-	public static final ResourceLocation OXYGEN_NAME = new ResourceLocation(MODID, "oxygen");
-	public static final ResourceLocation FLUID_NAME = new ResourceLocation(MODID, "fluid");
-	public static final ResourceLocation FUEL_NAME = new ResourceLocation(MODID, "fuel");
-	public static final ResourceLocation BURNTIME_NAME = new ResourceLocation(MODID, "burntime");
-	public static final ResourceLocation COOKTIME_NAME = new ResourceLocation(MODID, "cooktime");
+	public static final ResourceLocation ENERGY_NAME = new ResourceLocation(Maring.MODID, "energy");
+	public static final ResourceLocation OXYGEN_NAME = new ResourceLocation(Maring.MODID, "oxygen");
+	public static final ResourceLocation FLUID_NAME = new ResourceLocation(Maring.MODID, "fluid");
+	public static final ResourceLocation FUEL_NAME = new ResourceLocation(Maring.MODID, "fuel");
+	public static final ResourceLocation BURNTIME_NAME = new ResourceLocation(Maring.MODID, "burntime");
+	public static final ResourceLocation COOKTIME_NAME = new ResourceLocation(Maring.MODID, "cooktime");
 
 	public static final int ENERGY_COLOR = 0xA0FF404B;
 	public static final int OXYGEN_COLOR = 0xA000FFFF;
