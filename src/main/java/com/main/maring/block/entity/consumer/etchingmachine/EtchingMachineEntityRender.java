@@ -19,8 +19,7 @@ public class EtchingMachineEntityRender implements BlockEntityRenderer<EtchingMa
 	
 	public EtchingMachineEntityRender(BlockEntityRendererProvider.Context context) {
 	}
-	
-	@SuppressWarnings("resource")
+
 	@Override
 	public void render(EtchingMachineEntity entity, float partialTick, PoseStack pPoseStack, MultiBufferSource pBuffer,
 			int packedLight, int packedOverlay) {
@@ -29,9 +28,9 @@ public class EtchingMachineEntityRender implements BlockEntityRenderer<EtchingMa
 				var itemrender = Minecraft.getInstance().getItemRenderer();
 				if(!output.isEmpty()) {
 					pPoseStack.pushPose();
-					Float scale = 1.0f/0.6f;
+					float scale = 1.0f/0.6f;
 					pPoseStack.scale(1.0f/scale, 1.0f/scale, 1.0f/scale);
-					pPoseStack.translate(0.8f*scale/1.6f, 1.2f*scale/1.6f+0.15f/1.6f, 0.8f*scale/1.6f);
+					pPoseStack.translate(0.8f*scale/1.6f, 1.4f*scale/1.6f+0.15f/1.6f, 0.8f*scale/1.6f);
 					pPoseStack.mulPose(Axis.XN.rotationDegrees(-90f));
 					itemrender.renderStatic(output, ItemDisplayContext.FIXED, packedLight, packedOverlay, pPoseStack, pBuffer, Minecraft.getInstance().level, 0);
 					pPoseStack.popPose();

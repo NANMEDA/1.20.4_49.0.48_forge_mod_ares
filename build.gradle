@@ -186,6 +186,12 @@ dependencies {
     implementation fg.deobf("curse.maven:forgeconfigscreen-544048:4672356")
 
     implementation fg.deobf("curse.maven:embeddium-908741:5681725")
+
+    //farmers'delight
+    implementation fg.deobf("curse.maven:farmersdelight-398521:6597298")
+
+    //create
+    implementation fg.deobf("curse.maven:create-328085:6624074")
     // Example mod dependency using a mod jar from ./libs with a flat dir repository
     // This maps to ./libs/coolmod-${mc_version}-${coolmod_version}.jar
     // The group id is ignored when searching -- in this case, it is "blank"

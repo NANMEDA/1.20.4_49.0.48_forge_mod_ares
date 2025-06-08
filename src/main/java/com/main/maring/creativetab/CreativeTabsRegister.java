@@ -13,8 +13,10 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
+import net.minecraftforge.fml.ModList;
 
 /**
+ * All the item show in the creative tabs register there
  * 所有创造模式物品栏在此注册
  * */
 public class CreativeTabsRegister {
@@ -34,6 +36,7 @@ public class CreativeTabsRegister {
                 output.accept(com.main.maring.block.norm.deposit.Register.DEPOSIT_ICE_ITEM.get());
                 output.accept(com.main.maring.block.norm.deposit.Register.DEPOSIT_IRON_ITEM.get());
                 output.accept(com.main.maring.block.norm.deposit.Register.DEPOSIT_GOLD_ITEM.get());
+				output.accept(BlockRegister.unbrokenmagma_BLOCK_ITEM.get());
                 
             }).build());
     
@@ -44,6 +47,12 @@ public class CreativeTabsRegister {
             .displayItems((parameters, output) -> {
         		output.accept(ItemRegister.CHEESE_PIECE.get());
         		output.accept(ItemRegister.FROSTFIRE_FRUIT.get());
+				output.accept(ItemRegister.FROSTFIRE_FRUIT_PIECE.get());
+				output.accept(ItemRegister.ARTIFICIAL_DOUGH.get());
+				if (ModList.get().isLoaded("farmersdelight")) {
+					//for farmersdelight
+
+				}
             }).build());
     
     public static final RegistryObject<CreativeModeTab> MAR_MACHINE_TAB = CREATIVE_MODE_TABS.register("mar_machine_tab", () -> CreativeModeTab.builder()

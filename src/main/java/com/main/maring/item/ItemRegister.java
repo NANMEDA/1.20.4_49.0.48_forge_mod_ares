@@ -181,5 +181,20 @@ public class ItemRegister {
     
     public static final RegistryObject<Item> FROSTFIRE_FRUIT = ITEMS.register(FrostfireFruit.global_name,
             () -> new FrostfireFruit(FarmBlockRegistry.FROSTFIRE_FRUIT_B.get(),new Item.Properties()));
-    
+	public static final RegistryObject<Item> FROSTFIRE_FRUIT_PIECE = ITEMS.register("frostfire_fruit_piece",
+			() -> new Item(new Item.Properties().food(new FoodProperties.Builder()
+					.nutrition(1)
+					.saturationMod(0)
+					.build()
+			)));
+
+
+	public static final RegistryObject<Item> ARTIFICIAL_DOUGH = ITEMS.register("artificial_dough",
+			() -> new Item(new Item.Properties()));
+
+
+
+
+
+
 }

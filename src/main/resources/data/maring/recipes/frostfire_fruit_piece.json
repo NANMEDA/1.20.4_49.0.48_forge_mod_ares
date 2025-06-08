@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "maring:frostfire_fruit"
+    }
+  ],
+  "result": {
+    "item": "maring:frostfire_fruit_piece",
+    "count": 2
+  }
+}

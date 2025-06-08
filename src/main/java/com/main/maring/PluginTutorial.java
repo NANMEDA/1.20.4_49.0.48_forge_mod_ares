@@ -12,8 +12,7 @@ import com.main.maring.util.tech.TechManager;
  * */
 @MaringPlugin
 public class PluginTutorial{
-	
-	
+
 	/**
 	 * register a tech-node like this
 	 * then, the code might organize it automatically
