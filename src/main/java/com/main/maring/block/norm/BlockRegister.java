@@ -4,12 +4,16 @@ import com.main.maring.Maring;
 import com.main.maring.block.norm.advancedmetalmanufactor.Register;
 import com.main.maring.block.norm.farm.FarmBlockRegistry;
 import com.main.maring.block.norm.fastbuild.FastBuildRegister;
+import com.main.maring.block.norm.food.PieBlock;
+import net.minecraft.world.level.block.CakeBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -383,4 +387,18 @@ public class BlockRegister {
     	FastBuildRegister.init();
     	com.main.maring.block.norm.blueprintbuilder.Register.init();
     }
+
+	public static final RegistryObject<Block> CHEESE_PIE;
+	static {
+		if (ModList.get().isLoaded("farmersdelight")) {
+			CHEESE_PIE = BLOCKS.register("cheese_pie",
+					() -> new PieBlock(BlockBehaviour.Properties.of()
+							.forceSolidOn()
+							.strength(0.5F)
+							.sound(SoundType.WOOL)
+							.pushReaction(PushReaction.DESTROY)));
+		} else {
+			CHEESE_PIE = null;
+		}
+	}
 }

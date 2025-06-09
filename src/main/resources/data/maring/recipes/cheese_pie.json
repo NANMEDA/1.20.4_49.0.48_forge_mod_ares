@@ -1,0 +1,32 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "farmersdelight"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CCC",
+    "MMM",
+    "SBS"
+  ],
+  "key": {
+    "C": {
+      "tag": "maring:cheese"
+    },
+    "M": {
+      "tag": "forge:milk"
+    },
+    "S": {
+      "item": "minecraft:sugar"
+    },
+    "B": {
+      "item": "farmersdelight:pie_crust"
+    }
+  },
+  "result": {
+    "item": "maring:cheese_pie",
+    "count": 1
+  }
+}

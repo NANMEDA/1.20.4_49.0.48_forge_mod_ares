@@ -51,7 +51,7 @@ public class CreativeTabsRegister {
 				output.accept(ItemRegister.ARTIFICIAL_DOUGH.get());
 				if (ModList.get().isLoaded("farmersdelight")) {
 					//for farmersdelight
-
+					output.accept(ItemRegister.CHEESE_PIE.get());
 				}
             }).build());
     

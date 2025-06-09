@@ -220,6 +220,18 @@ public class CanfoodMakerEntity extends PowerConsumerEntity{
 							) {
 							stack[4].grow(1);
 							item.setStackInSlot(4, stack[4]);
+							stack[0].shrink(1);
+							stack[1].shrink(1);
+							stack[2].shrink(1);
+							item.setStackInSlot(0, stack[0]);
+							item.setStackInSlot(1, stack[1]);
+							item.setStackInSlot(2, stack[2]);
+							if(stack[3].getItem()==Items.IRON_INGOT) {
+								stack[3].shrink(1);
+							}else {
+								stack[3].shrink(9);
+							}
+							item.setStackInSlot(3, stack[3]);
 						}else {
 							materialChangeLabel = false;
 							return;
@@ -255,6 +267,7 @@ public class CanfoodMakerEntity extends PowerConsumerEntity{
 					// 设置槽位4中的物品为itemStack
 					
 					item.setStackInSlot(4, can);
+
 				}
 				process_progress = 0;
 				int renderHeight = 0;

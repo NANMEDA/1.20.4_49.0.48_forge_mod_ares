@@ -176,6 +176,10 @@
   "item.maring.wire_cutor": "导线剪切器",
   
   "item.maring.frostfire_fruit": "热霜果",
+  "item.maring.frostfire_fruit_piece": "热霜果片",
+
+  "block.maring.cheese_pie": "奶酪派",
+
   
   "item.can.show.vegetable": "  蔬菜值: %d",
   "item.can.show.meat": "  肉值: %d",

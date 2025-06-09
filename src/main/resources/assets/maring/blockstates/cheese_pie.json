@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "bites=0": {
+      "model": "maring:block/cheese_pie"
+    },
+    "bites=1": {
+      "model": "maring:block/cheese_pie1"
+    },
+    "bites=2": {
+      "model": "maring:block/cheese_pie2"
+    },
+    "bites=3": {
+      "model": "maring:block/cheese_pie3"
+    }
+  }
+}

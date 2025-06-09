@@ -1,6 +1,7 @@
 package com.main.maring.item;
 
 import com.main.maring.Maring;
+import com.main.maring.block.norm.BlockRegister;
 import com.main.maring.block.norm.farm.FarmBlockRegistry;
 import com.main.maring.effect.registry.EffectRegister;
 import com.main.maring.item.armor.ModArmorMaterials;
@@ -24,8 +25,11 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Tiers;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -193,8 +197,8 @@ public class ItemRegister {
 			() -> new Item(new Item.Properties()));
 
 
-
-
-
-
+	public static final RegistryObject<Item> CHEESE_PIE = ModList.get().isLoaded("farmersdelight")
+			? ITEMS.register("cheese_pie",
+			() -> new BlockItem(BlockRegister.CHEESE_PIE.get(), new Item.Properties().stacksTo(1)))
+			: null;
 }

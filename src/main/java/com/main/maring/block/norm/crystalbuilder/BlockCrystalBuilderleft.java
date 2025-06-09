@@ -36,11 +36,7 @@ public class BlockCrystalBuilderleft extends Block{
 	
 	@Override
     public VoxelShape getShape(BlockState p_60555_, BlockGetter p_60556_, BlockPos p_60557_, CollisionContext p_60558_) {
-		return Shapes.join(
-				Block.box(0, 0, 0, 16, 16, 16), 
-				Block.box(7, 0, 7, 9, 2, 9), 
-			    BooleanOp.ONLY_FIRST
-			);
+		return Block.box(0,0,0,16,16,16);
     }
 	
 	@Override
