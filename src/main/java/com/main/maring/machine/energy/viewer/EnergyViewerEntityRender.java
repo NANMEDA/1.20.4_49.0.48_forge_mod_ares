@@ -2,6 +2,7 @@ package com.main.maring.machine.energy.viewer;
 
 import java.util.Map;
 
+import com.main.maring.machine.energy.storage.battery.BatteryBasementEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 
 import net.minecraft.client.renderer.MultiBufferSource;

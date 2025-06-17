@@ -5,12 +5,21 @@ import com.main.maring.block.norm.advancedmetalmanufactor.Register;
 import com.main.maring.block.norm.farm.FarmBlockRegistry;
 import com.main.maring.block.norm.fastbuild.FastBuildRegister;
 import com.main.maring.block.norm.food.PieBlock;
+import com.main.maring.item.ItemRegister;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CakeBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraftforge.fml.ModList;
@@ -18,6 +27,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+import java.util.List;
 import java.util.stream.IntStream;
 
 import com.main.maring.block.norm.basicmetalmanufactor.BlockBasicMetalManufactor;
@@ -38,6 +48,8 @@ import com.main.maring.block.norm.unbroken.BlockUnbrokenGlass;
 import com.main.maring.block.norm.unbroken.BlockUnbrokenGreen;
 import com.main.maring.block.norm.unbroken.BlockUnbrokenLightblue;
 import com.main.maring.block.norm.unbroken.BlockUnbrokenMagma;
+
+import javax.annotation.Nullable;
 
 /**
  * 所有方块和方块类物品的注册
@@ -396,9 +408,48 @@ public class BlockRegister {
 							.forceSolidOn()
 							.strength(0.5F)
 							.sound(SoundType.WOOL)
-							.pushReaction(PushReaction.DESTROY)));
+							.pushReaction(PushReaction.DESTROY),4,true,3,5f) {
+						@Override
+						public List<ItemStack> getSlice(BlockState state) {
+							return List.of(new ItemStack(ItemRegister.CHEESE_PIE_SLICE.get(),max_bites - state.getValue(BITES)));
+						}
+					});
 		} else {
 			CHEESE_PIE = null;
 		}
 	}
+
+	public static final RegistryObject<Block> DEVELOPERS_PIE = BLOCKS.register("developers_pie",
+			() -> new PieBlock(BlockBehaviour.Properties.of()
+					.forceSolidOn()
+					.strength(0.5F)
+					.sound(SoundType.WOOL)
+					.pushReaction(PushReaction.DESTROY),
+					1, false, 20, 20) {
+
+				// 新增属性
+				public static final IntegerProperty TYPE_PROPERTY = IntegerProperty.create("type", 0, 1);
+				{
+					this.registerDefaultState(this.defaultBlockState()
+							.setValue(BITES, 0)
+							.setValue(TYPE_PROPERTY, 0));
+				}
+
+				@Override
+				protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+					super.createBlockStateDefinition(builder);
+					builder.add(TYPE_PROPERTY); // 添加自定义属性
+				}
+				@Nullable
+				@Override
+				public BlockState getStateForPlacement(BlockPlaceContext context) {
+					BlockPos pos = context.getClickedPos();
+					int value = Math.abs(pos.getX()+pos.getY()+pos.getZ()) % 2; // 取 X 坐标模 4，确保在 0-3 范围
+					return this.defaultBlockState()
+							.setValue(BITES, 0)
+							.setValue(TYPE_PROPERTY, value);
+				}
+
+
+			});
 }

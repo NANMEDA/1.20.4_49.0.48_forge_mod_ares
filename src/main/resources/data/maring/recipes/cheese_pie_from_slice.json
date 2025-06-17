@@ -1,0 +1,22 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "farmersdelight"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CC",
+    "CC"
+  ],
+  "key": {
+    "C": {
+      "item": "maring:cheese_pie_slice"
+    }
+  },
+  "result": {
+    "item": "maring:cheese_pie",
+    "count": 1
+  }
+}

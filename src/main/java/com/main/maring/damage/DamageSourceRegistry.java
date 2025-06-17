@@ -9,6 +9,7 @@ import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.level.Level;
 
 /**
+ * DAMAGE SOURCE REGISTRY
  * 伤害来源注册
  * */
 public class DamageSourceRegistry {

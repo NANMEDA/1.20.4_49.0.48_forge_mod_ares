@@ -1,7 +1,11 @@
 package com.main.maring.boime;
 
+import com.main.maring.Maring;
 import com.main.maring.command.gamerule.ModGameRules;
 import com.main.maring.config.CommonConfig;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -20,20 +24,23 @@ import net.minecraftforge.fml.common.Mod;
 import com.main.maring.util.mar.EnvironmentData;
 
 /**
+ * THE DAMAGE OF MARS ATMOSPHERE
  * 火星大气伤害
  * @author NANMEDA
  * */
 @Mod.EventBusSubscriber
 public class BiomeEffectApplier {
 
-    private static final int TICK_INTERVAL = 10; // 检测间隔
-    //public static boolean WILL_PRESSURE_HURT = ; // 检测间隔
+    private static final int TICK_INTERVAL = 10; // INTERBAL 检测间隔
+    //public static boolean WILL_PRESSURE_HURT = ;
     //private static Supplier<BlockState>  A_AIR_STATE = () -> {return BlockRegister.A_AIR.get().defaultBlockState();};
     private static EnvironmentData environmentData = null;
-
+    private static ResourceKey<Level> marKey = ResourceKey.create(Registries.DIMENSION, new ResourceLocation(Maring.MODID, "maringmar"));
     /***
+     * GIVE EFFECT
+     * DETECT THE ENTITY'S DIMENSION AND BLOCK
      * 赋予药水效果
-     * 检测玩家在火星群系的颜色 和 所处方块
+     * 检测玩家在火星 和 所处方块
      * @author NANMEDA
      * ***/
     @SubscribeEvent
@@ -53,14 +60,12 @@ public class BiomeEffectApplier {
             return;
         }
         BlockPos entityPos = entity.blockPosition().above();
-        
+
         /**
-         * 这里需要修改
-         * 根据getFoliageColor来判断是否在火星上虽然快，但是不合适
-         */
-        int theColor = level.getBiome(entityPos).get().getFoliageColor();
-        if (theColor != 9334293) {
-        	return;
+         * DIMENSION
+         * */
+        if (!level.dimension().equals(marKey)) {
+            return;
         }
         
         if (level.getBlockState(entityPos.above())!=Blocks.AIR.defaultBlockState()) {

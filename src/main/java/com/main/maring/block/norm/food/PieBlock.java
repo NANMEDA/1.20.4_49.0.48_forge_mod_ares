@@ -4,10 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -20,7 +17,6 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.SugarCaneBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -41,13 +37,20 @@ import java.util.Collections;
 import java.util.List;
 
 public class PieBlock extends Block {
-    public static final int MAX_BITES = 4;
+    public final int max_bites;
     public static final IntegerProperty BITES = BlockStateProperties.BITES;
-    public static final int FULL_PIE_SIGNAL = getOutputSignal(0);
+    public final int FULL_PIE_SIGNAL = getOutputSignal(0);
     protected static final VoxelShape SHAPE = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D);
+    private final boolean can_cut_slice;
+    private final int bite_nutrition;
+    private final float bite_saturation;
 
-    public PieBlock(BlockBehaviour.Properties properties) {
+    public PieBlock(BlockBehaviour.Properties properties,int max_bites, boolean can_cut_slice, int biteNutrition, float biteSaturation) {
         super(properties);
+        this.can_cut_slice = can_cut_slice;
+        this.bite_nutrition = biteNutrition;
+        this.bite_saturation = biteSaturation;
+        this.max_bites = max_bites;
         this.registerDefaultState(this.stateDefinition.any().setValue(BITES, 0));
     }
 
@@ -74,17 +77,17 @@ public class PieBlock extends Block {
         return eat(level, pos, state, player);
     }
 
-    protected static InteractionResult eat(LevelAccessor level, BlockPos pos, BlockState state, Player player) {
+    protected InteractionResult eat(LevelAccessor level, BlockPos pos, BlockState state, Player player) {
         if (!player.canEat(false)) {
             return InteractionResult.PASS;
         }
 
         player.awardStat(Stats.EAT_CAKE_SLICE);
-        player.getFoodData().eat(3, 1.0F); // 可自定义 Pie 恢复的饥饿和饱和度
+        player.getFoodData().eat(this.bite_nutrition, this.bite_saturation);
         int i = state.getValue(BITES);
         level.gameEvent(player, GameEvent.EAT, pos);
 
-        if (i < MAX_BITES - 1) {
+        if (i < max_bites - 1) {
             level.setBlock(pos, state.setValue(BITES, i + 1), 3);
         } else {
             level.removeBlock(pos, false);
@@ -119,8 +122,8 @@ public class PieBlock extends Block {
         return getOutputSignal(state.getValue(BITES));
     }
 
-    public static int getOutputSignal(int bites) {
-        return (MAX_BITES + 1 - bites) * 2;
+    public int getOutputSignal(int bites) {
+        return (max_bites + 1 - bites) * 2;
     }
 
     @Override
@@ -133,9 +136,19 @@ public class PieBlock extends Block {
 
     }
 
+    public List<ItemStack> getSlice(BlockState state){
+        return Collections.emptyList();
+    }
+
     @Override
     public List<ItemStack> getDrops(BlockState state, LootParams.Builder builder) {
-        if(state.getValue(BITES)>0) return Collections.emptyList();
+        if(state.getValue(BITES)>0){
+            if(can_cut_slice){
+                return this.getSlice(state);
+            }else {
+                return Collections.emptyList();
+            }
+        }
         ResourceLocation lootTableLocation = this.getLootTable();
         if (lootTableLocation == BuiltInLootTables.EMPTY) {
             return Collections.emptyList();

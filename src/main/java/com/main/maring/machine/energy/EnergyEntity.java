@@ -97,7 +97,7 @@ public abstract class EnergyEntity extends BlockEntity{
 		this.setChanged();
 	}
 
-	
+
     public void remove(Level level) {
         if (haveNet()) {
         	EnergyNet net = EnergyNetProcess.getEnergyNetNotCreate(this.NET);
@@ -110,11 +110,12 @@ public abstract class EnergyEntity extends BlockEntity{
         	
         	//Set<BlockPos> affectPos = net.getEdges(this.worldPosition);
         	Set<BlockPos> affectPos = new HashSet<>(net.getEdges(this.worldPosition));
-        	//不要用上面那个，下面修改了net，会导致affectPos变化，然后循环崩溃!!
+        	//不要用上面那个，下面修改了net，会导致affectPos变化，然后循环崩溃
         	
         	if(affectPos.isEmpty()) {
         		EnergyNetProcess.deleteEnergyNet(this.NET);
         		cleanNet();
+				return;
         	}
         	
         	//net.removeAllEdgesFromPoint(this.worldPosition);

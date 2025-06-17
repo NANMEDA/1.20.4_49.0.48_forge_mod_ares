@@ -74,7 +74,6 @@ public class Maring
         //MinecraftForge.EVENT_BUS.register(new BiomeEffectApplier());
         MinecraftForge.EVENT_BUS.register(new EntityGravity());
         MinecraftForge.EVENT_BUS.register(new ItemGravity());
-        MinecraftForge.EVENT_BUS.register(new ItemGravity());
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
         

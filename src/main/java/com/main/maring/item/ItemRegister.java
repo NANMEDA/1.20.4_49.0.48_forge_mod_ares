@@ -199,6 +199,17 @@ public class ItemRegister {
 
 	public static final RegistryObject<Item> CHEESE_PIE = ModList.get().isLoaded("farmersdelight")
 			? ITEMS.register("cheese_pie",
-			() -> new BlockItem(BlockRegister.CHEESE_PIE.get(), new Item.Properties().stacksTo(1)))
+			() -> new BlockItem(BlockRegister.CHEESE_PIE.get(), new Item.Properties().stacksTo(16)))
 			: null;
+	public static final RegistryObject<Item> CHEESE_PIE_SLICE = ModList.get().isLoaded("farmersdelight")
+			? ITEMS.register("cheese_pie_slice",
+			() -> new Item(new Item.Properties()
+					.food(new FoodProperties.Builder()
+							.nutrition(3)
+							.saturationMod(5).build())
+			))
+			: null;
+
+	public static final RegistryObject<Item> DEVELOPERS_PIE = ITEMS.register("developers_pie",
+			() -> new BlockItem(BlockRegister.DEVELOPERS_PIE.get(), new Item.Properties().stacksTo(1)));
 }

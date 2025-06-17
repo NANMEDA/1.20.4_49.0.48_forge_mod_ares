@@ -1,5 +1,6 @@
 package com.main.maring.command.energy;
 
+import java.util.ArrayList;
 import java.util.Set;
 
 import com.main.maring.util.net.EnergyNet;
@@ -26,17 +27,16 @@ public class CheckAndClear implements Command<CommandSourceStack> {
         	for (EnergyNet energyNet : energyNets) {
         	    for (EnergyEnum ee : EnergyEnum.values()) { // 遍历 EnergyEnum 中的每个值
         	        Set<BlockPos> r = energyNet.getSet(ee); // 获取对应的 BlockPos 集合
-        	        for (BlockPos pos : r) {
-        	            if (level.dimension().location().equals(energyNet.getDimension())) { // 确保维度匹配
-        	                if (level.getBlockEntity(pos) instanceof IEnergy) {
-        	                    continue; // 如果是 IEnergy 类型，跳过
-        	                } else {
-        	                    // 否则移除 BlockPos 和所有相关的边
-        	                    energyNet.removeBlockPos(pos, ee);
-        	                    energyNet.removeAllEdgesFromPoint(pos);
-        	                }
-        	            }
-        	        }
+					for (BlockPos pos : new ArrayList<>(r)) { 	//避免下面删除的时候崩溃
+						if (level.dimension().location().equals(energyNet.getDimension())) {
+							if (level.getBlockEntity(pos) instanceof IEnergy) {
+								continue;
+							} else {
+								energyNet.removeBlockPos(pos, ee);
+								energyNet.removeAllEdgesFromPoint(pos);
+							}
+						}
+					}
         	    }
         	    // 向玩家发送消息
         	    context.getSource().getPlayer().sendSystemMessage(

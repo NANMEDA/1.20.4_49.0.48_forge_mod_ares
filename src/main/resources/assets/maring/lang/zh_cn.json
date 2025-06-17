@@ -179,7 +179,8 @@
   "item.maring.frostfire_fruit_piece": "热霜果片",
 
   "block.maring.cheese_pie": "奶酪派",
-
+  "item.maring.cheese_pie_slice": "奶酪派切片",
+  "block.maring.developers_pie": "mod开发者派",
   
   "item.can.show.vegetable": "  蔬菜值: %d",
   "item.can.show.meat": "  肉值: %d",

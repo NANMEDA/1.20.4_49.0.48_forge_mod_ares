@@ -2,6 +2,7 @@ package com.main.maring.machine.energy.storage.render;
 
 import java.util.Map;
 
+import com.main.maring.machine.energy.producer.solar.SolarBasementEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 
 import com.main.maring.machine.energy.storage.battery.BatteryBasementEntity;

@@ -17,7 +17,7 @@ public class CoreDiggerEntityRender implements BlockEntityRenderer<CoreDiggerEnt
 	
 	public CoreDiggerEntityRender(BlockEntityRendererProvider.Context context) {
 	}
-	
+
 	@SuppressWarnings("resource")
 	@Override
 	public void render(CoreDiggerEntity entity, float partialTick, PoseStack pPoseStack, MultiBufferSource pBuffer,
