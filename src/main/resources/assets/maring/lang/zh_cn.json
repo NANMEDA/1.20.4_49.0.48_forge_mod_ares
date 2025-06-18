@@ -207,6 +207,7 @@
   "effect.maring.mental_abuse": "精神错乱",
   "effect.maring.ominous_luck": "？",
   "effect.maring.lose_pressure": "失压",
+  "effect.maring.parasite": "寄生",
   
   "mar_main_block_tab": "莪瑞斯-方块",
   "mar_food_tab": "莪瑞斯-食物",
@@ -228,6 +229,7 @@
   "menu.dome_control": "穹顶控制",
   "menu.core_digger": "地幔吸口",
   "menu.mar_reactor": "荧惑反应堆内部",
+  "menu.energy_viwer": "电网查看器",
   
   "menu.energyviewer.supply": "供应: %d",
   "menu.energyviewer.consume": "消耗: %d",

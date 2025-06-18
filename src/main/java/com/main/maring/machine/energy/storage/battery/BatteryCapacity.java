@@ -20,12 +20,20 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import com.main.maring.util.json.BlockJSON;
 
 public class BatteryCapacity extends Block implements EntityBlock {
 
 	public static final String global_name = "battery_capacity";
+
+	public static final IntegerProperty BATTERY_HEART = IntegerProperty.create("battery_heart", 0, 2);
+	{
+		this.registerDefaultState(this.defaultBlockState()
+				.setValue(BATTERY_HEART, 0));
+	}
+
 
 	public BatteryCapacity(Properties p_49795_) {
 		super(p_49795_.noOcclusion());
@@ -57,12 +65,16 @@ public class BatteryCapacity extends Block implements EntityBlock {
 	    	if(level.getBlockEntity(pos,MBlockEntityRegister.BATTERYCAPACITY_BE.get()).get().addLevel()) {
 	        	handItemStack.shrink(1);
 	    		player.setItemInHand(InteractionHand.MAIN_HAND, handItemStack);
+				BlockState newState = blockstate.setValue(BATTERY_HEART, blockstate.getValue(BATTERY_HEART)+1);
+				level.setBlockAndUpdate(pos,newState);
 	    		return InteractionResult.SUCCESS;
 	    	}
 	    }else if(handItemStack.isEmpty()&&player.isCrouching()) {
 	    	if(level.getBlockEntity(pos,MBlockEntityRegister.BATTERYCAPACITY_BE.get()).get().removeLevel()) {
 	    		ItemStack stack = new ItemStack(ItemRegister.BATTERY_HEART.get(),1);
 	    		player.setItemInHand(InteractionHand.MAIN_HAND, stack);
+				BlockState newState = blockstate.setValue(BATTERY_HEART, blockstate.getValue(BATTERY_HEART)-1);
+				level.setBlockAndUpdate(pos,newState);
 	    		return InteractionResult.SUCCESS;
 	    	}
 	    }
@@ -89,8 +101,8 @@ public class BatteryCapacity extends Block implements EntityBlock {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(BlockStateProperties.AGE_7);
         builder.add(BlockStateProperties.FACING);
+		builder.add(BATTERY_HEART); // 添加自定义属性
     }
     
     @SuppressWarnings("deprecation")
@@ -106,11 +118,5 @@ public class BatteryCapacity extends Block implements EntityBlock {
         }
         super.onRemove(oldState, level, pos, newState, isMoving);
     }
-	
-	 static {
-	        BlockJSON.GenModelsJSONBasic(global_name);
-	        BlockJSON.GenBlockStateJSONBasic(global_name);
-	        BlockJSON.GenItemJSONBasic(global_name);
-	        BlockJSON.GenLootTableJSONBasic(global_name);
-	 }
+
 }

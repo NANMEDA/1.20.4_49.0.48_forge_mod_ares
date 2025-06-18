@@ -1,7 +1,13 @@
 {
   "variants": {
-    "": {
-      "model": "maring:block/battery_capacity"
+    "battery_heart=0": {
+      "model": "maring:block/battery_capacity_0"
+    },
+    "battery_heart=1": {
+      "model": "maring:block/battery_capacity_1"
+    },
+    "battery_heart=2": {
+      "model": "maring:block/battery_capacity_2"
     }
   }
 }

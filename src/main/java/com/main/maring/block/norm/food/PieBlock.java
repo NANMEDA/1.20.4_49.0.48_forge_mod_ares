@@ -64,7 +64,6 @@ public class PieBlock extends Block {
         ItemStack itemstack = player.getItemInHand(hand);
         Item item = itemstack.getItem();
 
-
         if (level.isClientSide) {
             if (eat(level, pos, state, player).consumesAction()) {
                 return InteractionResult.SUCCESS;
