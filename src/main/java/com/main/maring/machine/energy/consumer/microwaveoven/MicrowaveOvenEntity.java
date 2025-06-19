@@ -2,6 +2,7 @@ package com.main.maring.machine.energy.consumer.microwaveoven;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 import com.main.maring.item.ItemRegister;
 import com.main.maring.machine.energy.consumer.ConsumerEntity;
@@ -14,12 +15,17 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.Containers;
+import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.SmokingRecipe;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
@@ -143,34 +149,23 @@ public class MicrowaveOvenEntity extends ConsumerEntity implements IConsumer{
 			return super.getCapability(cap, side);
 		}
 	}
-	
-	private static final String TAG_ID = "id";
-	private static final String TAG_NET = "connection";
+
 	private static final String TAG_NAME = "Item";
 	private static final String TAG_PROGRESS = "progress";
 	private static final String tAG_IS_BUTTON = "button";
 	private static final String TAG_RENDER = "com/main/maring/render";	//不放在tag里面的不会被同步到client ！！！!!!即使设置同步
 	
 	protected void savedata(CompoundTag tag) {
+		super.savedata(tag);
 		tag.put(TAG_NAME, item.serializeNBT());
 		tag.putShort(TAG_PROGRESS, process_progress);
 		tag.putBoolean(tAG_IS_BUTTON, is_button);
 		tag.putInt(TAG_RENDER, render);
-		
-		tag.putLong(TAG_ID, this.NET);
-	    ListTag connectList = new ListTag();
-	    for (Map.Entry<BlockPos, Boolean> entry : connectMap.entrySet()) {
-	        CompoundTag entryTag = new CompoundTag();
-	        entryTag.putLong("pos", entry.getKey().asLong());
-	        // 存储 Boolean 值
-	        entryTag.putBoolean("connected", entry.getValue());
-	        connectList.add(entryTag);
-	    }
-	    tag.put(TAG_NET, connectList);
 	 
 	}
 	
 	protected void loaddata(CompoundTag tag) {
+		super.loaddata(tag);
 		if(tag.contains(TAG_NAME)) {
 			item.deserializeNBT(tag.getCompound(TAG_NAME));
 		}
@@ -183,171 +178,117 @@ public class MicrowaveOvenEntity extends ConsumerEntity implements IConsumer{
 		if(tag.contains(TAG_RENDER)) {
 			this.render = tag.getShort(TAG_RENDER);
 		}
-		
-		if(tag.contains(TAG_ID)) {
-			this.NET = tag.getLong(TAG_ID);
-		}
-	    if (tag.contains(TAG_NET)) {
-	        ListTag connectList = tag.getList(TAG_NET, 10);
-	        Map<BlockPos, Boolean> loadedMap = new HashMap<>();
-	        for (int i = 0; i < connectList.size(); i++) {
-	            CompoundTag entryTag = connectList.getCompound(i);
-	            
-	            BlockPos pos = BlockPos.of(entryTag.getLong("pos"));
-	            boolean connected = entryTag.getBoolean("connected");
-	            
-	            loadedMap.put(pos, connected);
-	        }
-	        connectMap = loadedMap;
-	    }
 	}
-	
+
+	RecipeType<SmokingRecipe> RECIPE_TYPE = RecipeType.SMOKING;
+
 	@Override
 	public boolean servertick(boolean u) {
 		this.energy_consume = 0;
 		this.energy_supply = getEnergySupplyLevel();
-		ItemStack[] stack = new ItemStack[2];
-		for (int i = 0; i < 2; i++) {
-		    stack[i] = item.getStackInSlot(i);
-		}
-		if(stack[0]==ItemStack.EMPTY){
-			this.is_button = false;			//按钮弹起
-			this.process_progress = -1;		//-1状态就是准备好了的状态
-			
-	        int render = 0;
-			if(render != this.render) {
-				this.render = render;
-				level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_CLIENTS);
-			}
-			return false;
-		}
-		if(stack[1]!=ItemStack.EMPTY) {
-			this.is_button = false;//按钮弹起
+
+		ItemStack input = item.getStackInSlot(0);
+		ItemStack output = item.getStackInSlot(1);
+
+		// 输入为空或输出不为空时无法工作
+		if (input.isEmpty() || !output.isEmpty()) {
+			this.is_button = false;
 			this.process_progress = -1;
-	        int render = 0;
-			if(render != this.render) {
-				this.render = render;
+			if (render != 0) {
+				this.render = 0;
 				level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_CLIENTS);
 			}
-			//System.out.println("1 is nor EMEPTY");
 			return false;
 		}
-		if(this.process_progress>0) {
-			//System.out.println("IS processing");
-			this.process_progress -= (energy_supply > 75) ? 3 : ((energy_supply > 50) ? 2 : ((energy_supply > 25) ? 1 : 0));
-			
-			if(this.energy_supply==0) {
+
+		// 正在加工
+		if (this.process_progress > 0) {
+			int speed = (energy_supply > 75) ? 3 : ((energy_supply > 50) ? 2 : ((energy_supply > 25) ? 1 : 0));
+			this.process_progress -= speed;
+
+			if (this.energy_supply == 0) {
 				this.is_button = false;
 				this.process_progress = -1;
-		        int render = 0;
-				if(render != this.render) {
-					this.render = render;
+				if (render != 0) {
+					this.render = 0;
 					level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_CLIENTS);
 				}
 				return false;
 			}
-			
-			if(this.process_progress<0) {this.process_progress = 0;}
+
+			if (this.process_progress < 0) this.process_progress = 0;
 			this.energy_consume = this.FULL_ENERGY;
-			
-			//int progress = process_progress/150;//除到10
-			int progress = 10 - 10*process_progress/pg_max;
-	        int render = progress * 22 / 10; //移动像素/距离
-			if(render != this.render) {
-				this.render = render;
+
+			int progress = 10 - 10 * process_progress / pg_max;
+			int newRender = progress * 22 / 10;
+			if (newRender != this.render) {
+				this.render = newRender;
 			}
-			
+
 			setChanged();
 			level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_ALL);
 			return false;
 		}
-		if(!is_button) {
-			//System.out.println("not button");
-			return false;
-		}
-		Item uncookfood = stack[0].getItem();
-		short cook_food;
-		if (uncookfood == Items.POTATO) {cook_food=0;
-		} else if (uncookfood == Items.COD) {cook_food=1;
-		} else if (uncookfood == Items.SALMON) {cook_food=2;
-		} else if (uncookfood == Items.BEEF) {cook_food=3;
-		} else if (uncookfood == Items.CHICKEN) {cook_food=4;
-		} else if (uncookfood == Items.MUTTON) {cook_food=5;
-		} else if (uncookfood == Items.RABBIT) {cook_food=6;
-		} else if (uncookfood == Items.PORKCHOP) {cook_food=7;
-		} else if (uncookfood == Items.WET_SPONGE) {cook_food=8;
-		} else {
-		    //for (int i = 1; i <= 9; i++) {
-		        //if (uncookfood == ItemRegister.FOOD_ITEMS[i].get()) {
-		        if(uncookfood.getDefaultInstance().is(TagkeyRegistry.CAN_FOOD_TAG)) {//哪个更快捏？
-		            return true;
-		        }
-		    //}
-			if(uncookfood == Items.EGG||uncookfood == ItemRegister.CAN.get()){
-				return true;
-			} 
-			//System.out.println("food not UNCOOK");
-			this.is_button = false;//按钮弹起
-			this.process_progress = -1;
-			
-	        int render = 0;
-			if(render != this.render) {
-				this.render = render;
-				level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_CLIENTS);
-			}
-			
-			return false;
-		}
-		int uncookfood_number = stack[0].getCount();
 
-		if(this.process_progress==0) {
-			item.setStackInSlot(0, ItemStack.EMPTY);
-			ItemStack cooked_food = ItemStack.EMPTY;
-			switch (cook_food) {
-		    case 0:
-		        cooked_food = new ItemStack(Items.BAKED_POTATO, uncookfood_number);
-		        break;
-		    case 1:
-		        cooked_food = new ItemStack(Items.COOKED_COD, uncookfood_number);
-		        break;
-		    case 2:
-		        cooked_food = new ItemStack(Items.COOKED_SALMON, uncookfood_number);
-		        break;
-		    case 3:
-		        cooked_food = new ItemStack(Items.COOKED_BEEF, uncookfood_number);
-		        break;
-		    case 4:
-		        cooked_food = new ItemStack(Items.COOKED_CHICKEN, uncookfood_number);
-		        break;
-		    case 5:
-		        cooked_food = new ItemStack(Items.COOKED_MUTTON, uncookfood_number);
-		        break;
-		    case 6:
-		        cooked_food = new ItemStack(Items.COOKED_RABBIT, uncookfood_number);
-		        break;
-		    case 7:
-		        cooked_food = new ItemStack(Items.COOKED_PORKCHOP, uncookfood_number);
-		        break;
-		    case 8:
-		        cooked_food = new ItemStack(Items.SPONGE, uncookfood_number);
-		        break;
-		    default:
-		        return false;
+		// 非按钮状态，不能开始加工
+		if (!is_button) return false;
+
+		// 特殊物品：湿海绵 → 干海绵
+		if (input.getItem() == Items.WET_SPONGE) {
+			if (this.process_progress == 0) {
+				item.setStackInSlot(0, ItemStack.EMPTY);
+				item.setStackInSlot(1, new ItemStack(Items.SPONGE, input.getCount()));
+				this.process_progress = -1;
+				this.is_button = false;
+				this.should_playsound = true;
+				this.render = 0;
+				level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_CLIENTS);
+			} else if (this.process_progress == -1) {
+				this.process_progress = 5 * 60;
+				this.pg_max = this.process_progress;
+			}
+			setChanged();
+			return false;
+		}else if (input.is(ItemTags.create(new ResourceLocation("forge", "eggs"))) ||
+				input.getItem() == ItemRegister.CAN.get()) {
+			return true;
 		}
-			item.setStackInSlot(1, cooked_food);
-			this.process_progress=-1;
-			this.is_button = false;//按钮弹起
-			this.should_playsound = true;
+
+		// 配方检查：烟熏炉
+		Optional<SmokingRecipe> recipeOptional = level.getRecipeManager()
+				.getRecipeFor(RecipeType.SMOKING, new SimpleContainer(input), level);
+
+		if (recipeOptional.isPresent()) {
+			SmokingRecipe recipe = recipeOptional.get();
+			ItemStack result = recipe.getResultItem(level.registryAccess());
+
+			if (this.process_progress == 0) {
+				item.setStackInSlot(0, ItemStack.EMPTY);
+				item.setStackInSlot(1, new ItemStack(result.getItem(), input.getCount()));
+				this.process_progress = -1;
+				this.is_button = false;
+				this.should_playsound = true;
+				this.render = 0;
+				level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_CLIENTS);
+			} else if (this.process_progress == -1) {
+				this.process_progress = (short) ((input.getCount() > 32) ? 30*60 : ((input.getCount() > 16) ? 20*60 : ((input.getCount() > 6) ? 10*60 : 5*60)));
+				this.pg_max = this.process_progress;
+			}
+			setChanged();
+			return false;
+		}
+
+		// 无法处理的物品
+		this.is_button = false;
+		this.process_progress = -1;
+		if (render != 0) {
 			this.render = 0;
-			this.level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_CLIENTS);
-		}else if(process_progress==-1) {
-			this.process_progress = (short) ((uncookfood_number > 32) ? 30*60 : ((uncookfood_number > 16) ? 20*60 : ((uncookfood_number > 6) ? 10*60 : 5*60)));
-			//为什么要这么做呢，3*是因为当满电时，process_progress减的速度是3;  *20因为一秒20tick,3*20=60
-			this.pg_max = process_progress;
+			level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_CLIENTS);
 		}
-		setChanged();
+
 		return false;
 	}
+
 	
 	@Override
 	public void clienttick() {

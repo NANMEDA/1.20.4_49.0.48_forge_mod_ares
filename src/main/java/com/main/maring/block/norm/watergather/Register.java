@@ -1,6 +1,7 @@
 package com.main.maring.block.norm.watergather;
 
 import com.main.maring.block.norm.BlockRegister;
+import com.main.maring.machine.energy.consumer.watergather.BlockWaterGather;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;

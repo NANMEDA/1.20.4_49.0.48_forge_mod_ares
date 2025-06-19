@@ -44,5 +44,12 @@
   "patchouli.category.material.description": "introduce material",
   "patchouli.entry.material.basic.name": "basic material",
   "patchouli.entry.material.basic.text1": "basic material1",
-  "patchouli.entry.material.basic.text2": "basic material2"
+  "patchouli.entry.material.basic.text2": "basic material2",
+
+  "electricdebuggerstick.maring.title": "[Debug] Block at %s",
+  "electricdebuggerstick.maring.netid": "NET ID: %s",
+  "electricdebuggerstick.maring.hasnet": "Has Network: %s",
+  "electricdebuggerstick.maring.connections": "Connection count: %s",
+  "electricdebuggerstick.maring.coordtitle": "Connected Positions:",
+  "electricdebuggerstick.maring.coordentry": "- [%s, %s, %s]"
 }

@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IMI",
+    "I I",
+    "ISI"
+  ],
+  "key": {
+    "S": {
+      "item": "maring:advanced_metal_parts"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "M": {
+      "item": "maring:insulation_material"
+    }
+  },
+  "result": {
+    "item": "maring:core_digger",
+    "count": 1
+  }
+}

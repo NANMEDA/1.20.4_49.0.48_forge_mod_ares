@@ -21,25 +21,19 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public class SolarBasementEntity extends ProducerEntity implements IProducer {
 
-	
-
 	public SolarBasementEntity(BlockPos pos, BlockState pBlockState) {
 		super(MBlockEntityRegister.SOLARBASEMENT_BE.get(), pos, pBlockState);
-		this.FULL_ENERGY = 0;
-		this.NET = 0;
 	}
 	
 
     @Override
     protected void saveAdditional(CompoundTag tag) {
         super.saveAdditional(tag);
-        savedata(tag);
     }
 
     @Override
     public void load(CompoundTag tag) {
         super.load(tag);
-        loaddata(tag);
     }
 
     @Override
@@ -69,57 +63,13 @@ public class SolarBasementEntity extends ProducerEntity implements IProducer {
         }
     }
 
-	private final String TAG_ID = "id";
-	private final String TAG_NET = "connection";
-	
 	protected void savedata(CompoundTag tag) {
-
-		tag.putLong(TAG_ID, this.NET);
-	    // 创建一个列表，用于存储每个键值对
-	    ListTag connectList = new ListTag();
-
-	    // 遍历 Map，将每个 BlockPos 和 Boolean 对存入 ListTag 中
-	    for (Map.Entry<BlockPos, Boolean> entry : connectMap.entrySet()) {
-	        CompoundTag entryTag = new CompoundTag();
-	        
-	        // 将 BlockPos 转换为 Long 类型存储
-	        entryTag.putLong("pos", entry.getKey().asLong());
-	        // 存储 Boolean 值
-	        entryTag.putBoolean("connected", entry.getValue());
-	        connectList.add(entryTag);
-	    }
-	    // 将 ListTag 存入 CompoundTag
-	    tag.put(TAG_NET, connectList);
+		super.savedata(tag);
 	}
 	
 	protected void loaddata(CompoundTag tag) {
-		
-		if(tag.contains(TAG_ID)) {
-			this.NET = tag.getLong(TAG_ID);
-		}
-	    if (tag.contains(TAG_NET)) {
-	        ListTag connectList = tag.getList(TAG_NET, 10); // 10 是 CompoundTag 的 ID 类型
-	        
-	        // 创建一个新的 Map 用来存储加载的值
-	        Map<BlockPos, Boolean> loadedMap = new HashMap<>();
-	        
-	        // 遍历 ListTag，逐个加载
-	        for (int i = 0; i < connectList.size(); i++) {
-	            CompoundTag entryTag = connectList.getCompound(i);
-	            
-	            // 从 CompoundTag 中读取 BlockPos 和 Boolean
-	            BlockPos pos = BlockPos.of(entryTag.getLong("pos"));
-	            boolean connected = entryTag.getBoolean("connected");
-	            
-	            // 将读取的键值对存入 Map
-	            loadedMap.put(pos, connected);
-	        }
-
-	        // 更新 connectMap 为加载后的数据
-	        connectMap = loadedMap;
-	    }
+		super.loaddata(tag);
 	}
-	
 	
 	@Override
 	public int provideEnergySupply() {

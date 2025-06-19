@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " M ",
+    "LML",
+    " M "
+  ],
+  "key": {
+    "M": {
+      "item": "maring:insulation_material"
+    },
+    "L": {
+      "item": "minecraft:lapis_lazuli"
+    }
+  },
+  "result": {
+    "item": "maring:core_coldpipe",
+    "count": 3
+  }
+}

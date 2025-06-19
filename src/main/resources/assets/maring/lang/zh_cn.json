@@ -174,6 +174,7 @@
   "item.maring.junction_connector": "穹顶连接器",
   "item.maring.wire_creator": "导线架设器",
   "item.maring.wire_cutor": "导线剪切器",
+  "item.maring.electric_debugger_stick": "电器检查器",
   
   "item.maring.frostfire_fruit": "热霜果",
   "item.maring.frostfire_fruit_piece": "热霜果片",
@@ -242,6 +243,9 @@
   "menu.domecontrol.o2": "氧气含量",
   "menu.domecontrol.h2o": "水含量",
   "menu.domecontrol.remove": "移除",
+  "menu.coredigger.cantfindsucker": "缺少热吸口",
+  "menu.coredigger.cantouchcore": "无法触及核心",
+
   
   "calculus.name": "微积分",
   "basic_astronomy.name": "制镜观星",
@@ -321,6 +325,14 @@
   
   "maring.key.category": "莪瑞斯-按键绑定",
   "maring.key.sendrocket": "火箭发射",
+
+
+  "electricdebuggerstick.maring.title": "[调试] 方块位于 %s",
+  "electricdebuggerstick.maring.netid": "网络 ID: %s",
+  "electricdebuggerstick.maring.hasnet": "有网络: %s",
+  "electricdebuggerstick.maring.connections": "连接数: %s",
+  "electricdebuggerstick.maring.coordtitle": "连接坐标:",
+  "electricdebuggerstick.maring.coordentry": "- %s",
   
   "advancements.maringmaterial.maringmaterial_init.title": "火星材料",
   "advancements.maringmaterial.maringmaterial_init.description": "这是个初始化的成就",
@@ -376,7 +388,7 @@
   "advancements.ends.end_1.description": "神说: 不再有光了; 于是世界永远的陷入了黑暗, 时间也失掉了意义",
   "advancements.ends.end_2.title": "幸存 [结局2/3]",
   "advancements.ends.end_2.description": "虽然地球毁灭了, 但人类的火种仍然苟延残喘, 末日还会再到来吗? ",
-  "advancements.ends.end_3.title": "升华 [结局3/3]",			//beyond mortal
+  "advancements.ends.end_3.title": "升华 [结局3/3]",
   "advancements.ends.end_3.description": "这真的是一条路吗?",
   
   "maring.command.doomsdaycome.change.true": "末日情况设置: 来",
@@ -428,7 +440,7 @@
   "dorm.connection.unable.tooclose": "连接点过近<曼哈顿距离小于8>",
   "dorm.connection.unable.toosteep": "连接点过陡峭<斜率应至少小于1/6>",
   "dorm.connection.unable.toofar": "连接点过远<曼哈顿距离大于100>",
-  "dorm.connection.unable.anglenotgood": "不适合的角度 <算法里检测两个连接点向其方向发射的射线是否相交,以避免出现奇怪的情况>",
+  "dorm.connection.unable.anglenotgood": "不适合的角度 <算法检测两个连接点向其方向发射的射线是否相交,以避免出现奇怪的情况>",
   
   "first.point.ok": "第 1 点设置成功",
   "second.point.ok": "第 2 点设置成功",

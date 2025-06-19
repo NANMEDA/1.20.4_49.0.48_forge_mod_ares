@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IMI",
+    "IMI",
+    "ISI"
+  ],
+  "key": {
+    "S": {
+      "item": "maring:sucker"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "M": {
+      "item": "maring:insulation_material"
+    }
+  },
+  "result": {
+    "item": "maring:core_sucker",
+    "count": 1
+  }
+}

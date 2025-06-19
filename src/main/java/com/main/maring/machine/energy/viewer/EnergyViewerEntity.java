@@ -17,7 +17,6 @@ public class EnergyViewerEntity extends EnergyEntity implements IEnergy {
 	
 	public EnergyViewerEntity(BlockPos pos, BlockState pBlockState) {
 		super(MBlockEntityRegister.ENERGYVIEWER_BE.get(), pos, pBlockState);
-		this.NET = 0;
 		this.energyConsume=0;
 		this.energySupply=0;
 		this.storage=0;
@@ -70,7 +69,7 @@ public class EnergyViewerEntity extends EnergyEntity implements IEnergy {
 	private static final String TAG_CAPACITY = "capacity";
 	
 	protected void savedata(CompoundTag tag) {
-	    tag.putLong(TAG_NET, this.getNet());
+		super.savedata(tag);
 	    tag.putLong(TAG_ENERGY_SUPPLY, this.energySupply);
 	    tag.putLong(TAG_ENERGY_CONSUME, this.energyConsume);
 	    tag.putLong(TAG_STORAGE, this.storage);
@@ -78,9 +77,7 @@ public class EnergyViewerEntity extends EnergyEntity implements IEnergy {
 	}
 	
 	protected void loaddata(CompoundTag tag) {
-	    if (tag.contains(TAG_NET)) {
-	        this.setNet(tag.getLong(TAG_NET));
-	    }
+	    super.loaddata(tag);
 	    if (tag.contains(TAG_ENERGY_SUPPLY)) {
 	        this.energySupply = tag.getLong(TAG_ENERGY_SUPPLY);
 	    }

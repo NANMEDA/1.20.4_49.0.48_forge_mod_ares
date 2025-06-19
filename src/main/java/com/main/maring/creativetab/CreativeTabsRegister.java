@@ -155,6 +155,7 @@ public class CreativeTabsRegister {
                 output.accept(ItemRegister.JUNCTION_CONNECTOR.get());
                 output.accept(ItemRegister.WIRE_CREATOR.get());
                 output.accept(ItemRegister.WIRE_CUTOR.get());
+				output.accept(ItemRegister.ELECTRIC_DEBUGGER_STICK.get());
             }).build());
     
 

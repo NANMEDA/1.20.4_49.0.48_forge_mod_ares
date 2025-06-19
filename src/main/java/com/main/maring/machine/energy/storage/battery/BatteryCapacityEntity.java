@@ -18,7 +18,6 @@ public class BatteryCapacityEntity extends StorageEntity {
 	public BatteryCapacityEntity(BlockPos pos, BlockState pBlockState) {
 		super(MBlockEntityRegister.BATTERYCAPACITY_BE.get(), pos, pBlockState);
 		this.storage = 0;
-		this.NET = 0;
 		this.storageLevel = 0;
 	}
 
@@ -132,7 +131,6 @@ public class BatteryCapacityEntity extends StorageEntity {
 
 	public CapacitySize getCapacitySize() {
 		return CapacitySize.SMALL;
-		
 	} 
 	
     @Override

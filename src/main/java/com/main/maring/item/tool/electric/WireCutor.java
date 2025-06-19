@@ -23,7 +23,6 @@ public class WireCutor extends Item {
 
 	public WireCutor(Properties p_41383_) {
 		super(p_41383_);
-		// TODO 自动生成的构造函数存根
 	}
 	
 	public static final String global_name = "wire_cutor";
@@ -48,7 +47,6 @@ public class WireCutor extends Item {
         if(!level.isClientSide) {
         	if(level.getBlockEntity(pos) instanceof EnergyEntity blockentity) {
         		if(blockentity.isConnectable()) {
-        			
 	        		if(this.startPos==null) {
 	        			this.startPos = pos;
 	        			this.startNet = blockentity.getNet();
@@ -85,7 +83,6 @@ public class WireCutor extends Item {
 	        					context.getPlayer().sendSystemMessage(Component.translatable("energynet.noline"));
 	        				}
 	        			}else {//两个不一样
-	        				
 	        			}
 	        			this.startPos = null;
 	        			this.startNet = 0;
@@ -95,9 +92,6 @@ public class WireCutor extends Item {
         }
         return InteractionResult.PASS;
     }
-    
-	static {
-		ItemJSON.GenJSON(global_name);
-	}
+
 
 }

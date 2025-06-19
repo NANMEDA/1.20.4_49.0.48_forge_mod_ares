@@ -25,13 +25,7 @@ public class BlockAAIR extends Block {
         propagateAAir(world, fromPos);
         
     }
-    /*
-    @Override
-    public void onPlace(BlockState state, Level world, BlockPos pos, BlockState oldState, boolean isMoving) {
-    	propagateAAir(world, pos);
-        super.onPlace(state, world, pos, oldState, isMoving);
-    }
-     */
+
     private void propagateAAir(Level world, BlockPos pos) {
         BlockPos neighborPos = pos;
         BlockState neighborState = world.getBlockState(neighborPos);

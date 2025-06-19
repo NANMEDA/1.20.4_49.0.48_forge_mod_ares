@@ -1,6 +1,7 @@
 package com.main.maring.block.norm.watergather;
 
 
+import com.main.maring.machine.energy.consumer.watergather.BlockWaterGather;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
@@ -92,7 +93,7 @@ public class BlockWaterGatheraround extends Block{
 	        BlockJSON.GenModelsJSONBasic(global_name,"empty");
 	        BlockJSON.GenBlockStateJSONBasic(global_name);
 	        BlockJSON.GenItemJSONBasic(global_name);
-	        BlockJSON.GenLootTableJSONBasic(global_name,BlockWaterGather.global_name);
+	        BlockJSON.GenLootTableJSONBasic(global_name, BlockWaterGather.global_name);
 	 }
 }
 

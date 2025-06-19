@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -18,12 +20,13 @@ public abstract class EnergyEntity extends BlockEntity{
     protected long NET;
     protected Map<BlockPos, Boolean> connectMap;
     protected boolean isDirty = false;
+	protected  static final String TAG_ID = "net_id";
+	protected  static final String TAG_NET = "connection";
 	
 	public EnergyEntity(BlockEntityType<?> p_155228_, BlockPos p_155229_, BlockState p_155230_) {
 		super(p_155228_, p_155229_, p_155230_);
 		this.NET = 0;
 		this.connectMap = new HashMap<>();
-
 	}
 	
 	/**
@@ -94,6 +97,7 @@ public abstract class EnergyEntity extends BlockEntity{
 
 	public void setNet(long id) {
 		this.NET = id;
+		this.isDirty = true;
 		this.setChanged();
 	}
 
@@ -134,4 +138,48 @@ public abstract class EnergyEntity extends BlockEntity{
 	protected abstract void servertick();
 
 	protected abstract void clienttick();
+
+	@Override
+	protected void saveAdditional(CompoundTag tag) {
+		super.saveAdditional(tag);
+		savedata(tag);
+	}
+
+	@Override
+	public void load(CompoundTag tag) {
+		super.load(tag);
+		loaddata(tag);
+	}
+
+	protected void savedata(CompoundTag tag) {
+		tag.putLong(TAG_ID, this.NET);
+		ListTag connectList = new ListTag();
+		for (Map.Entry<BlockPos, Boolean> entry : connectMap.entrySet()) {
+			CompoundTag entryTag = new CompoundTag();
+			entryTag.putLong("pos", entry.getKey().asLong());
+			// 存储 Boolean 值
+			entryTag.putBoolean("connected", entry.getValue());
+			connectList.add(entryTag);
+		}
+		tag.put(TAG_NET, connectList);
+	}
+
+	protected void loaddata(CompoundTag tag) {
+		if(tag.contains(TAG_ID)) {
+			this.NET = tag.getLong(TAG_ID);
+		}
+		if (tag.contains(TAG_NET)) {
+			ListTag connectList = tag.getList(TAG_NET, 10);
+			Map<BlockPos, Boolean> loadedMap = new HashMap<>();
+			for (int i = 0; i < connectList.size(); i++) {
+				CompoundTag entryTag = connectList.getCompound(i);
+
+				BlockPos pos = BlockPos.of(entryTag.getLong("pos"));
+				boolean connected = entryTag.getBoolean("connected");
+
+				loadedMap.put(pos, connected);
+			}
+			connectMap = loadedMap;
+		}
+	}
 }

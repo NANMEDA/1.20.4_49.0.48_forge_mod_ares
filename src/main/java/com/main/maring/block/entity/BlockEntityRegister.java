@@ -8,7 +8,7 @@ import com.main.maring.block.entity.consumer.canfoodmaker.CanfoodMakerEntity;
 import com.main.maring.block.entity.consumer.etchingmachine.EtchingMachineEntity;
 import com.main.maring.block.entity.consumer.glassbuilder.GlassBuilderEntity;
 import com.main.maring.block.entity.consumer.stonewasher.StoneWasherEntity;
-import com.main.maring.block.entity.consumer.watergather.WaterGatherEntity;
+import com.main.maring.machine.energy.consumer.watergather.WaterGatherEntity;
 import com.main.maring.block.entity.neutral.blueprintbuilder.BlueprintBuilderEntity;
 import com.main.maring.block.entity.neutral.crystalbuilder.CrystalBuilderEntity;
 import com.main.maring.block.entity.neutral.dormcontrol.DomeControlEntity;

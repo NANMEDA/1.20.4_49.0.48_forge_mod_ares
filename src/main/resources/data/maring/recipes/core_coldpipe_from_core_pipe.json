@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " C ",
+    "LCL",
+    " C "
+  ],
+  "key": {
+    "C": {
+      "item": "maring:core_pipe"
+    },
+    "L": {
+      "item": "minecraft:lapis_lazuli"
+    }
+  },
+  "result": {
+    "item": "maring:core_coldpipe",
+    "count": 3
+  }
+}

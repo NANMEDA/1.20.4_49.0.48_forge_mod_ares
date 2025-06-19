@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "M",
+    "M",
+    "M"
+  ],
+  "key": {
+    "M": {
+      "item": "maring:insulation_material"
+    }
+  },
+  "result": {
+    "item": "maring:core_pipe",
+    "count": 3
+  }
+}

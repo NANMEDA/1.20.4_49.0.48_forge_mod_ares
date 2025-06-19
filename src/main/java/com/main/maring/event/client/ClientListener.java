@@ -21,7 +21,7 @@ import com.main.maring.block.entity.consumer.canfoodmaker.CanfoodMakerEntityRend
 import com.main.maring.block.entity.consumer.etchingmachine.EtchingMachineEntityRender;
 import com.main.maring.block.entity.consumer.glassbuilder.GlassBuilderEntityRender;
 import com.main.maring.block.entity.consumer.stonewasher.StoneWasherEntityRender;
-import com.main.maring.block.entity.consumer.watergather.WaterGatherEntityRender;
+import com.main.maring.machine.energy.consumer.render.WaterGatherEntityRender;
 import com.main.maring.block.entity.neutral.crystalbuilder.CrystalBuilderEntityRender;
 import com.main.maring.block.entity.neutral.researchtable.ResearchTableEntityRender;
 import com.main.maring.machine.energy.consumer.render.CoreDiggerEntityRender;

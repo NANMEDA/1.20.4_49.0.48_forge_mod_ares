@@ -17,6 +17,7 @@ import com.main.maring.item.tool.OminousAxe;
 import com.main.maring.item.tool.OminousHoe;
 import com.main.maring.item.tool.OminousPickaxe;
 import com.main.maring.item.tool.OminousShovel;
+import com.main.maring.item.tool.electric.ElectricDebuggerStick;
 import com.main.maring.item.tool.electric.WireCreator;
 import com.main.maring.item.tool.electric.WireCutor;
 import com.main.maring.item.weapon.ItemFrenchBread;
@@ -176,6 +177,9 @@ public class ItemRegister {
     
     public static final RegistryObject<Item> WIRE_CUTOR = ITEMS.register(WireCutor.global_name,
             () -> new WireCutor(new Item.Properties().stacksTo(1)));
+
+	public static final RegistryObject<Item> ELECTRIC_DEBUGGER_STICK = ITEMS.register(ElectricDebuggerStick.global_name,
+			() -> new ElectricDebuggerStick(new Item.Properties().stacksTo(1)));
     
     public static final RegistryObject<Item> BATTERY_HEART = ITEMS.register(BatteryHeart.global_name,
             () -> new BatteryHeart(new Item.Properties()));
