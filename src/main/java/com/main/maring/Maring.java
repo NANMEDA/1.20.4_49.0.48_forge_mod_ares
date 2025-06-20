@@ -4,6 +4,7 @@ package com.main.maring;
 import com.main.maring.block.entity.BlockEntityRegister;
 import com.main.maring.block.norm.BlockRegister;
 import com.main.maring.config.CommonConfig;
+import com.main.maring.fluid.FluidRegistry;
 import com.main.maring.item.ItemRegister;
 import com.main.maring.machine.registry.MBlockRegister;
 import com.mojang.logging.LogUtils;
@@ -23,7 +24,6 @@ import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import com.main.maring.network.NetworkHandler;
 import com.main.maring.tags.register.TagkeyRegistry;
 import com.main.maring.util.EntityGravity;
 import com.main.maring.util.ItemGravity;
@@ -33,6 +33,7 @@ import com.main.maring.vehicle.VehicleRegister;
 import com.main.maring.worldgen.feature.FeatureRegistry;
 
 import org.slf4j.Logger;
+
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(Maring.MODID)
@@ -52,6 +53,7 @@ public class Maring
 
         TagkeyRegistry.init();
 
+
         BlockRegister.BLOCKS.register(modEventBus);
         BlockRegister.BLOCK_ITEMS.register(modEventBus);
         MBlockRegister.BLOCKS.register(modEventBus);
@@ -62,7 +64,9 @@ public class Maring
         ItemRegister.ITEMS.register(modEventBus);
         BlockEntityRegister.BLOCKENTITIES.register(modEventBus);
         MBlockEntityRegister.BLOCKENTITIES.register(modEventBus);
-        
+
+        FluidRegistry.register(modEventBus);
+
         MenuRegister.MENU_TYPES.register(modEventBus);
         CreativeTabsRegister.CREATIVE_MODE_TABS.register(modEventBus);
         MonsterRegister.ENTITY_TYPES.register(modEventBus);

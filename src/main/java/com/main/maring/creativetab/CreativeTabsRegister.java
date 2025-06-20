@@ -92,6 +92,7 @@ public class CreativeTabsRegister {
                 output.accept(com.main.maring.block.norm.etchingmachine.Register.etchingmachine_BLOCK_ITEM.get());
                 output.accept(com.main.maring.block.norm.glassbuilder.Register.glassbuilder_BLOCK_ITEM.get());
                 output.accept(com.main.maring.block.norm.watergather.Register.watergather_BLOCK_ITEM.get());
+				output.accept(MBlockRegister.ELECTROLYTICDEVICE_I.get());
                 output.accept(com.main.maring.block.norm.stonewasher.Register.stonewasher_BLOCK_ITEM.get());
                 output.accept(com.main.maring.block.norm.fuelrefiner.Register.fuelrefiner_BLOCK_ITEM.get());
                 output.accept(com.main.maring.block.norm.researchtable.Register.researchtable_BLOCK_ITEM.get());
@@ -156,6 +157,7 @@ public class CreativeTabsRegister {
                 output.accept(ItemRegister.WIRE_CREATOR.get());
                 output.accept(ItemRegister.WIRE_CUTOR.get());
 				output.accept(ItemRegister.ELECTRIC_DEBUGGER_STICK.get());
+				output.accept(ItemRegister.CHEESE_BUCKET.get());
             }).build());
     
 

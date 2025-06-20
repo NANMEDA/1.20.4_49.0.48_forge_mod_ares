@@ -86,12 +86,13 @@
   "block.maring.research_table": "研究台",
   "block.maring.blueprint_builder": "蓝图制作桌",
   "block.maring.mar_reactor": "荧惑反应堆",
+  "block.maring.electrolytic_device": "电解槽",
   
   "block.maring.villager_handmake_table": "村民手搓台",
   "block.maring.broken_structure_block": "远古破损结构块",
   "block.maring.broken_chemical_block": "远古残留生物质",
   "block.maring.broken_metal_block": "远古破损金属块",
-  "block.maring.broken_electronic_block": "远古损坏仪器",
+  "block.maring.broken_electronic_block": "远古损坏机械",
   "block.maring.broken_advanced_electronic_block": "远古损坏仪器",
   "block.maring.villager_burried_package": "村民埋藏的包裹 <据称>",
   
@@ -106,7 +107,16 @@
   "block.maring.sphere_door": "出口阀模块",
   "block.maring.dome_control": "穹顶控制器",
   "block.maring.unbroken_conductor": "穹顶导电块",
-  
+
+  "block.maring.cheese_fluid_block": "火星奶酪",
+  "fluid_type.maring.cheese_fluid": "火星奶酪",
+  "block.maring.oxygen_fluid_block": "氧",
+  "fluid_type.maring.oxygen_fluid": "氧",
+  "block.maring.hydrogen_fluid_block": "氢",
+  "fluid_type.maring.hydrogen_fluid": "氢",
+
+
+
   "blueprint.last": "蓝图",
   "dorm.basic.sphere": "球形穹顶I",
   "dorm.basic.door": "出口阀",
@@ -128,6 +138,7 @@
   "item.maring.ominous_cake": "荧惑糕",
   "item.maring.french_bread": "🥖",
   "item.maring.cheese_piece": "火星奶酪片",
+  "item.maring.cheese_fluid_bucket": "火星奶酪桶",
   
   "item.maring.ominous_gemstone": "荧惑石",
   "item.maring.basic_metal_parts": "基础金属零件套件",

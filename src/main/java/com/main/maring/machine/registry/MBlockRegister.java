@@ -1,6 +1,9 @@
 package com.main.maring.machine.registry;
 
 import com.main.maring.Maring;
+import com.main.maring.block.norm.machineparts.ElectronicPower;
+import com.main.maring.machine.energy.consumer.electrolyticdevice.BlockElectrolyticDevice;
+import com.main.maring.machine.energy.consumer.electrolyticdevice.ElectrolyticDeviceEntity;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -99,4 +102,10 @@ public class MBlockRegister {
 	});
     public static final RegistryObject<Item> MARREACTOR_I = BLOCK_ITEMS.register(MarReactor.global_name,
     		() -> new BlockItem(MARREACTOR_B.get(), new Item.Properties()));
+
+	public static final RegistryObject<Block> ELECTROLYTICDEVICE_B = BLOCKS.register(BlockElectrolyticDevice.global_name, () -> {
+		return new BlockElectrolyticDevice(BlockBehaviour.Properties.of());
+	});
+	public static final RegistryObject<Item> ELECTROLYTICDEVICE_I = BLOCK_ITEMS.register(BlockElectrolyticDevice.global_name,
+			() -> new BlockItem(ELECTROLYTICDEVICE_B.get(), new Item.Properties()));
 }

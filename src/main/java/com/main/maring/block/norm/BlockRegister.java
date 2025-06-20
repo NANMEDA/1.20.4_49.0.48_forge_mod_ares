@@ -5,17 +5,17 @@ import com.main.maring.block.norm.advancedmetalmanufactor.Register;
 import com.main.maring.block.norm.farm.FarmBlockRegistry;
 import com.main.maring.block.norm.fastbuild.FastBuildRegister;
 import com.main.maring.block.norm.food.PieBlock;
+import com.main.maring.fluid.EvaporatingFluidBlock;
+import com.main.maring.fluid.cheese.CheeseFluid;
+import com.main.maring.fluid.hydrogen.HydrogenFluid;
+import com.main.maring.fluid.oxygen.OxygenFluid;
 import com.main.maring.item.ItemRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.CakeBlock;
-import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -399,6 +399,22 @@ public class BlockRegister {
     	FastBuildRegister.init();
     	com.main.maring.block.norm.blueprintbuilder.Register.init();
     }
+
+	public static final RegistryObject<LiquidBlock> CHEESE_FLUID_BLOCK = BLOCKS.register("cheese_fluid_block",
+			() -> new LiquidBlock(CheeseFluid.SOURCE_CHEESE_FLUID, BlockBehaviour.Properties.copy(Blocks.LAVA).lightLevel(state->0)));
+	public static final RegistryObject<LiquidBlock> OXYGEN_FLUID_BLOCK = BLOCKS.register("oxygen_fluid_block",
+			() -> new EvaporatingFluidBlock(
+					OxygenFluid.SOURCE_OXYGEN_FLUID.get(),
+					BlockBehaviour.Properties.copy(Blocks.LAVA).lightLevel(state -> 0),
+					20 // 2秒后消失
+			));
+
+	public static final RegistryObject<LiquidBlock> HYDROGEN_FLUID_BLOCK = BLOCKS.register("hydrogen_fluid_block",
+			() -> new EvaporatingFluidBlock(
+					HydrogenFluid.SOURCE_HYDROGEN_FLUID.get(),
+					BlockBehaviour.Properties.copy(Blocks.LAVA).lightLevel(state -> 0),
+					20
+			));
 
 	public static final RegistryObject<Block> CHEESE_PIE;
 	static {

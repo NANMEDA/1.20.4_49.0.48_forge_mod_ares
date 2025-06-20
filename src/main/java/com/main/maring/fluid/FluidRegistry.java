@@ -1,19 +1,23 @@
 package com.main.maring.fluid;
 
 import com.main.maring.Maring;
-import net.minecraft.core.Registry;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.material.*;
-import net.minecraftforge.fluids.FluidType;
-import net.minecraftforge.fluids.ForgeFlowingFluid;
-import net.minecraftforge.fluids.ForgeFlowingFluid.Source;
-import net.minecraftforge.fluids.ForgeFlowingFluid.Flowing;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
-
+import com.main.maring.fluid.cheese.CheeseFluid;
+import com.main.maring.fluid.cheese.CheeseFluidType;
+import com.main.maring.fluid.hydrogen.HydrogenFluid;
+import com.main.maring.fluid.hydrogen.HydrogenFluidType;
+import com.main.maring.fluid.oxygen.OxygenFluid;
+import com.main.maring.fluid.oxygen.OxygenFluidType;
+import net.minecraftforge.eventbus.api.IEventBus;
 
 public class FluidRegistry {
 
+
+    public static void register(IEventBus eventBus) {
+        CheeseFluid.FLUIDS.register(eventBus);
+        CheeseFluidType.FLUID_TYPES.register(eventBus);
+        HydrogenFluid.FLUIDS.register(eventBus);
+        HydrogenFluidType.FLUID_TYPES.register(eventBus);
+        OxygenFluid.FLUIDS.register(eventBus);
+        OxygenFluidType.FLUID_TYPES.register(eventBus);
+    }
 }

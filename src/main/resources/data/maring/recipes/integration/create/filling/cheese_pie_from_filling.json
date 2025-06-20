@@ -1,0 +1,27 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "create"
+    },
+    {
+      "type": "forge:mod_loaded",
+      "modid": "farmersdelight"
+    }
+  ],
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "farmersdelight:pie_crust"
+    },
+    {
+      "fluidTag": "forge:cheese",
+      "amount": 500
+    }
+  ],
+  "results": [
+    {
+      "item": "maring:cheese_pie"
+    }
+  ]
+}

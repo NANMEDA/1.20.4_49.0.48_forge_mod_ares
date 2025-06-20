@@ -4,6 +4,7 @@ import com.main.maring.Maring;
 import com.main.maring.block.norm.BlockRegister;
 import com.main.maring.block.norm.farm.FarmBlockRegistry;
 import com.main.maring.effect.registry.EffectRegister;
+import com.main.maring.fluid.cheese.CheeseFluid;
 import com.main.maring.item.armor.ModArmorMaterials;
 import com.main.maring.item.blueprint.ItemBlueprint;
 import com.main.maring.item.can.ItemCan;
@@ -25,11 +26,7 @@ import com.main.maring.item.weapon.SwordTier;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Tiers;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.item.*;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -216,4 +213,8 @@ public class ItemRegister {
 
 	public static final RegistryObject<Item> DEVELOPERS_PIE = ITEMS.register("developers_pie",
 			() -> new BlockItem(BlockRegister.DEVELOPERS_PIE.get(), new Item.Properties().stacksTo(1)));
+
+	public static final RegistryObject<Item> CHEESE_BUCKET = ITEMS.register("cheese_fluid_bucket",
+			() -> new BucketItem(CheeseFluid.SOURCE_CHEESE_FLUID,
+					new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
 }

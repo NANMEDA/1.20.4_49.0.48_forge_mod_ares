@@ -7,6 +7,8 @@ import com.main.maring.block.norm.fastbuild.dormcontrol.DomeControl;
 import com.main.maring.block.norm.unbroken.BlockUnbrokenConductor;
 import com.main.maring.machine.energy.consumer.coredigger.CoreDigger;
 import com.main.maring.machine.energy.consumer.coredigger.CoreDiggerEntity;
+import com.main.maring.machine.energy.consumer.electrolyticdevice.BlockElectrolyticDevice;
+import com.main.maring.machine.energy.consumer.electrolyticdevice.ElectrolyticDeviceEntity;
 import com.main.maring.machine.energy.consumer.microwaveoven.MicrowaveOvenEntity;
 import com.main.maring.machine.energy.producer.reactor.mar.MarReactor;
 import com.main.maring.machine.energy.producer.reactor.mar.MarReactorEntity;
@@ -63,5 +65,8 @@ public class MBlockEntityRegister {
 			BLOCKENTITIES.register(MarReactor.global_name, 
 					() -> BlockEntityType.Builder.of(MarReactorEntity::new, MBlockRegister.MARREACTOR_B.get()).build(null));
 
-	
+	public static final RegistryObject<BlockEntityType<ElectrolyticDeviceEntity>> ELECTROLYTICDEVICE_BE =
+			BLOCKENTITIES.register(BlockElectrolyticDevice.global_name,
+					() -> BlockEntityType.Builder.of(ElectrolyticDeviceEntity::new, MBlockRegister.ELECTROLYTICDEVICE_B.get()).build(null));
+
 }

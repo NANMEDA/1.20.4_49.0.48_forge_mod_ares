@@ -1,0 +1,27 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "type": "create:mixing",
+  "heatRequirement": "heated",
+  "ingredients": [
+    {
+      "item": "maring:cheese_piece"
+    },
+    {
+      "item": "maring:cheese_piece"
+    },
+    {
+      "item": "maring:cheese_piece"
+    }
+  ],
+  "results": [
+    {
+      "amount": 300,
+      "fluid": "maring:source_cheese_fluid"
+    }
+  ]
+}
