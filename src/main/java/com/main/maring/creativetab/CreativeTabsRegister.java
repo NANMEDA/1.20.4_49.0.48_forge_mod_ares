@@ -112,6 +112,7 @@ public class CreativeTabsRegister {
 				output.accept(ItemRegister.BIOPLASTIC_PARTS.get());
 				output.accept(ItemRegister.SEMICONDUCTOR_PARTS.get());
 				output.accept(ItemRegister.CRYSTAL_PARTS.get());
+				output.accept(ItemRegister.PRESSURIZED_CAN.get());
 				output.accept(ItemRegister.BOTTLED_METHANE.get());
 				output.accept(ItemRegister.BIG_BOTTLED_METHANE.get());
 				output.accept(ItemRegister.BOTTLED_OXYGEN.get());
@@ -142,7 +143,7 @@ public class CreativeTabsRegister {
     public static final RegistryObject<CreativeModeTab> MAR_TOOL_TAB = CREATIVE_MODE_TABS.register("mar_tool_tab", () -> CreativeModeTab.builder()
     		.title(Component.translatable("mar_tool_tab"))
     		.withTabsBefore(MAR_MATERIAL_TAB.getId())
-            .icon(() -> ItemRegister.FRENCH_BREAD.get().getDefaultInstance())
+            .icon(() -> ItemRegister.ELECTRIC_DEBUGGER_STICK.get().getDefaultInstance())
             .displayItems((parameters, output) -> {
             	output.accept(ItemRegister.SPACESUIT_BOOTS.get());
             	output.accept(ItemRegister.SPACESUIT_LEGGINGS.get());

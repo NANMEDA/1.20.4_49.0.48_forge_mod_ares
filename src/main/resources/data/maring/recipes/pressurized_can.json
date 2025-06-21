@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "M",
+    "B"
+  ],
+  "key": {
+    "M": {
+      "item": "maring:basic_metal_parts"
+    },
+    "B": {
+      "item": "minecraft:bucket"
+    }
+  },
+  "result": {
+    "item": "maring:pressurized_can",
+    "count": 1
+  }
+}

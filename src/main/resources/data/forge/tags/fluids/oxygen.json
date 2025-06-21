@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "maring:source_oxygen_fluid",
+    "maring:flowing_oxygen_fluid"
+  ]
+}

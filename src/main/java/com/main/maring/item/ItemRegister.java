@@ -217,4 +217,9 @@ public class ItemRegister {
 	public static final RegistryObject<Item> CHEESE_BUCKET = ITEMS.register("cheese_fluid_bucket",
 			() -> new BucketItem(CheeseFluid.SOURCE_CHEESE_FLUID,
 					new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+
+	public static final RegistryObject<Item> PRESSURIZED_CAN = ITEMS.register("pressurized_can",
+			() -> new Item(new Item.Properties()));
+
+
 }

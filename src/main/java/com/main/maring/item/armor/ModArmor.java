@@ -10,11 +10,4 @@ public class ModArmor extends ArmorItem {
         super(pMaterial, pType, pProperties);
     }
 
-	static {
-		ItemJSON.GenJSON("spacesuit_helmet");
-		ItemJSON.GenJSON("spacesuit_chestplate");
-		ItemJSON.GenJSON("spacesuit_leggings");
-		ItemJSON.GenJSON("spacesuit_boots");
-	}
-	
 }

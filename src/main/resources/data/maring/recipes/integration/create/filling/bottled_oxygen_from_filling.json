@@ -1,0 +1,23 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "maring:pressurized_can"
+    },
+    {
+      "fluidTag": "forge:oxygen",
+      "amount": 1000
+    }
+  ],
+  "results": [
+    {
+      "item": "maring:bottled_oxygen"
+    }
+  ]
+}
