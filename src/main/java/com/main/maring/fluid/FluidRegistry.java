@@ -5,6 +5,8 @@ import com.main.maring.fluid.cheese.CheeseFluid;
 import com.main.maring.fluid.cheese.CheeseFluidType;
 import com.main.maring.fluid.hydrogen.HydrogenFluid;
 import com.main.maring.fluid.hydrogen.HydrogenFluidType;
+import com.main.maring.fluid.mathane.MethaneFluid;
+import com.main.maring.fluid.mathane.MethaneFluidType;
 import com.main.maring.fluid.oxygen.OxygenFluid;
 import com.main.maring.fluid.oxygen.OxygenFluidType;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -19,5 +21,7 @@ public class FluidRegistry {
         HydrogenFluidType.FLUID_TYPES.register(eventBus);
         OxygenFluid.FLUIDS.register(eventBus);
         OxygenFluidType.FLUID_TYPES.register(eventBus);
+        MethaneFluid.FLUIDS.register(eventBus);
+        MethaneFluidType.FLUID_TYPES.register(eventBus);
     }
 }

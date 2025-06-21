@@ -78,7 +78,7 @@ public class EnergyViewer extends Block implements EntityBlock {
 				throw new IllegalStateException("missing block");
 			}
 		}
-		return InteractionResult.SUCCESS;
+		return InteractionResult.PASS;
 	}
 	
 	

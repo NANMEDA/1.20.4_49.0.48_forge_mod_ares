@@ -8,6 +8,7 @@ import com.main.maring.block.norm.food.PieBlock;
 import com.main.maring.fluid.EvaporatingFluidBlock;
 import com.main.maring.fluid.cheese.CheeseFluid;
 import com.main.maring.fluid.hydrogen.HydrogenFluid;
+import com.main.maring.fluid.mathane.MethaneFluid;
 import com.main.maring.fluid.oxygen.OxygenFluid;
 import com.main.maring.item.ItemRegister;
 import net.minecraft.core.BlockPos;
@@ -406,12 +407,17 @@ public class BlockRegister {
 			() -> new EvaporatingFluidBlock(
 					OxygenFluid.SOURCE_OXYGEN_FLUID.get(),
 					BlockBehaviour.Properties.copy(Blocks.LAVA).lightLevel(state -> 0),
-					20 // 2秒后消失
+					20
 			));
-
 	public static final RegistryObject<LiquidBlock> HYDROGEN_FLUID_BLOCK = BLOCKS.register("hydrogen_fluid_block",
 			() -> new EvaporatingFluidBlock(
 					HydrogenFluid.SOURCE_HYDROGEN_FLUID.get(),
+					BlockBehaviour.Properties.copy(Blocks.LAVA).lightLevel(state -> 0),
+					20
+			));
+	public static final RegistryObject<LiquidBlock> METHANE_FLUID_BLOCK = BLOCKS.register("methane_fluid_block",
+			() -> new EvaporatingFluidBlock(
+					MethaneFluid.SOURCE_METHANE_FLUID.get(),
 					BlockBehaviour.Properties.copy(Blocks.LAVA).lightLevel(state -> 0),
 					20
 			));

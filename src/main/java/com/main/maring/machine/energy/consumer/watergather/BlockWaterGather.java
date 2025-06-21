@@ -85,7 +85,7 @@ public class BlockWaterGather extends Block implements EntityBlock{
 				throw new IllegalStateException("Missing block entity at: " + pos);
 			}
 		}
-		return InteractionResult.SUCCESS;
+		return InteractionResult.PASS;
 	}
 	
 	

@@ -15,13 +15,7 @@ import java.util.Map;
 import java.util.Set;
 
 
-/**
- * 这个是用来Cut电力网络的
- * @author NANMEDA
- * */
 public class ElectricDebuggerStick extends Item {
-	private BlockPos startPos = null;
-	private long startNet = 0;
 
 	public ElectricDebuggerStick(Properties p_41383_) {
 		super(p_41383_);

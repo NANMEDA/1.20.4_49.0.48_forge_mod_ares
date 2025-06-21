@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "maring:block/methane_synthesizer" },
+    "facing=east": { "model": "maring:block/methane_synthesizer", "y": 90 },
+    "facing=south": { "model": "maring:block/methane_synthesizer", "y": 180 },
+    "facing=west": { "model": "maring:block/methane_synthesizer", "y": 270}
+  }
+}

@@ -153,33 +153,34 @@ public class ElectrolyticDeviceEntity extends ConsumerEntity implements IConsume
 		}
 	}
 
+
 	@Override
 	public void servertick() {
 		if (this.level == null || this.level.isClientSide) return;
 
-		// 获取能量等级
 		int energy_supply = this.getEnergySupplyLevel();
 
-		// 能量
+		int maxElectrolyze = 0;
+		if (energy_supply > 85) {
+			maxElectrolyze = 50;
+		} else if (energy_supply > 50) {
+			maxElectrolyze = 30;
+		} else if (energy_supply > 25) {
+			maxElectrolyze = 10;
+		} else {
+			return; // 没电，直接跳过
+		}
 
-		final int maxElectrolyze = 50;
-
-		// 实际准备消耗的水量
 		int drainWater = Math.min(inputTank.getFluidAmount(), maxElectrolyze);
 
 		if (drainWater > 0) {
-			// 假设比例为 2:1 —— 2 氢气 : 1 氧气
 			int hydrogenAmount = drainWater;
 			int oxygenAmount = drainWater / 2;
 
-			// 模拟填充看看是否可以接受
 			if (hydrogenTank.fill(new FluidStack(HydrogenFluid.SOURCE_HYDROGEN_FLUID.get(), hydrogenAmount), IFluidHandler.FluidAction.SIMULATE) == hydrogenAmount &&
 					oxygenTank.fill(new FluidStack(OxygenFluid.SOURCE_OXYGEN_FLUID.get(), oxygenAmount), IFluidHandler.FluidAction.SIMULATE) == oxygenAmount) {
 
-				// 真正 drain 掉水
 				inputTank.drain(drainWater, IFluidHandler.FluidAction.EXECUTE);
-
-				// 真正填充氢气 & 氧气
 				hydrogenTank.fill(new FluidStack(HydrogenFluid.SOURCE_HYDROGEN_FLUID.get(), hydrogenAmount), IFluidHandler.FluidAction.EXECUTE);
 				oxygenTank.fill(new FluidStack(OxygenFluid.SOURCE_OXYGEN_FLUID.get(), oxygenAmount), IFluidHandler.FluidAction.EXECUTE);
 
@@ -187,6 +188,7 @@ public class ElectrolyticDeviceEntity extends ConsumerEntity implements IConsume
 			}
 		}
 	}
+
 
 	@Override
 	public void clienttick() {}

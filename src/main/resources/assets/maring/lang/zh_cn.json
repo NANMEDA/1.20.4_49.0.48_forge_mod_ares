@@ -87,6 +87,7 @@
   "block.maring.blueprint_builder": "蓝图制作桌",
   "block.maring.mar_reactor": "荧惑反应堆",
   "block.maring.electrolytic_device": "电解槽",
+  "block.maring.methane_synthesizer": "甲烷构成仪",
   
   "block.maring.villager_handmake_table": "村民手搓台",
   "block.maring.broken_structure_block": "远古破损结构块",
@@ -114,6 +115,8 @@
   "fluid_type.maring.oxygen_fluid": "氧",
   "block.maring.hydrogen_fluid_block": "氢",
   "fluid_type.maring.hydrogen_fluid": "氢",
+  "block.maring.methane_fluid_block": "甲烷",
+  "fluid_type.maring.methane_fluid": "甲烷",
 
 
 

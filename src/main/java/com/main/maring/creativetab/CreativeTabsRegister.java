@@ -93,6 +93,7 @@ public class CreativeTabsRegister {
                 output.accept(com.main.maring.block.norm.glassbuilder.Register.glassbuilder_BLOCK_ITEM.get());
                 output.accept(com.main.maring.block.norm.watergather.Register.watergather_BLOCK_ITEM.get());
 				output.accept(MBlockRegister.ELECTROLYTICDEVICE_I.get());
+				output.accept(MBlockRegister.METHANESYNTHESIZER_I.get());
                 output.accept(com.main.maring.block.norm.stonewasher.Register.stonewasher_BLOCK_ITEM.get());
                 output.accept(com.main.maring.block.norm.fuelrefiner.Register.fuelrefiner_BLOCK_ITEM.get());
                 output.accept(com.main.maring.block.norm.researchtable.Register.researchtable_BLOCK_ITEM.get());

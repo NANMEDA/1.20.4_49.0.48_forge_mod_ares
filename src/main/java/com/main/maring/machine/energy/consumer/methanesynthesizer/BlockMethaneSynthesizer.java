@@ -1,5 +1,6 @@
-package com.main.maring.machine.energy.consumer.electrolyticdevice;
+package com.main.maring.machine.energy.consumer.methanesynthesizer;
 
+import com.main.maring.item.ItemRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
@@ -36,11 +37,11 @@ import javax.annotation.Nullable;
  * - 水分阻隔栏需要放在收集台上方3*3*3的范围内，并且要和收集台垂直方向上有连接
  * @author NANMEDA
  * */
-public class BlockElectrolyticDevice extends Block implements EntityBlock {
+public class BlockMethaneSynthesizer extends Block implements EntityBlock {
 	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-	public static String global_name = "electrolytic_device";
+	public static String global_name = "methane_synthesizer";
 
-	public BlockElectrolyticDevice(Properties properties) {
+	public BlockMethaneSynthesizer(Properties properties) {
 		super(properties);
 		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
 	}
@@ -48,7 +49,7 @@ public class BlockElectrolyticDevice extends Block implements EntityBlock {
 	@Nullable
 	@Override
 	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-		return new ElectrolyticDeviceEntity(pos, state);
+		return new MethaneSynthesizerEntity(pos, state);
 	}
 
 	@Override
@@ -81,47 +82,42 @@ public class BlockElectrolyticDevice extends Block implements EntityBlock {
 	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
 		if (!level.isClientSide()) {
 			BlockEntity be = level.getBlockEntity(pos);
-			if (!(be instanceof ElectrolyticDeviceEntity entity)) {
+			if (!(be instanceof MethaneSynthesizerEntity entity)) {
 				throw new IllegalStateException("Missing block entity at: " + pos);
 			}
 
 			ItemStack held = player.getItemInHand(hand);
 
-
-			// === 玩家手持水桶，倒入水 ===
-			if (held.getItem() == Items.WATER_BUCKET && held.getCount() == 1) {
-				FluidStack waterStack = new FluidStack(Fluids.WATER, 1000);
-				if (entity.inputTank.fill(waterStack, IFluidHandler.FluidAction.SIMULATE) == 1000) {
-					entity.inputTank.fill(waterStack, IFluidHandler.FluidAction.EXECUTE);
-					player.setItemInHand(hand, new ItemStack(Items.BUCKET));
+			// === 手持木炭或煤炭，添加 carbon ===
+			if ((held.getItem() == Items.CHARCOAL || held.getItem() == Items.COAL)) {
+				if (entity.carbon < 990) {
+					entity.addCarbon(10); // 每个炭添加10单位
+					held.shrink(1);
+					return InteractionResult.CONSUME;
+				}
+			} else if (held.getItem() == ItemRegister.BIOPLASTIC_PARTS.get()) {
+				if (entity.carbon < 920) {
+					entity.addCarbon(80); // 每个炭添加10单位
+					held.shrink(1);
 					return InteractionResult.CONSUME;
 				}
 			}
 
-			// === 玩家用干海绵吸水 ===
-			else if (held.getItem() == Items.SPONGE && held.getCount() == 1) {
-				if (!entity.inputTank.isEmpty()) {
-					entity.inputTank.drain(entity.inputTank.getFluidAmount(), IFluidHandler.FluidAction.EXECUTE);
-					player.setItemInHand(hand, new ItemStack(Items.WET_SPONGE));
-					return InteractionResult.CONSUME;
-				}
-			}
 		}
 		return InteractionResult.PASS;
 	}
-
 	@Nullable
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
 		if (level.isClientSide()) {
 			return (lvl, pos, st, be) -> {
-				if (be instanceof ElectrolyticDeviceEntity entity) {
+				if (be instanceof MethaneSynthesizerEntity entity) {
 					entity.clienttick();
 				}
 			};
 		} else {
 			return (lvl, pos, st, be) -> {
-				if (be instanceof ElectrolyticDeviceEntity entity) {
+				if (be instanceof MethaneSynthesizerEntity entity) {
 					entity.servertick();
 				}
 			};
@@ -133,7 +129,7 @@ public class BlockElectrolyticDevice extends Block implements EntityBlock {
 	public void onRemove(BlockState oldState, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
 		if (oldState.getBlock() != newState.getBlock()) {
 			BlockEntity be = level.getBlockEntity(pos);
-			if (be instanceof ElectrolyticDeviceEntity entity) {
+			if (be instanceof MethaneSynthesizerEntity entity) {
 				entity.drop();
 			}
 		}

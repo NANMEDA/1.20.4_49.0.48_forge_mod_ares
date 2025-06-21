@@ -70,11 +70,12 @@ public class CoreDigger extends Block implements EntityBlock{
 			if(BlockEntity instanceof CoreDiggerEntity entity) {
 				ServerPlayer ifpe = (ServerPlayer)player;
 				NetworkHooks.openScreen(ifpe, new CoreDiggerMenuProvider(pos), pos);
+				return InteractionResult.SUCCESS;
 			}else {
 				throw new IllegalStateException("missing block-coredigger");
 			}
 		}
-		return InteractionResult.SUCCESS;
+		return InteractionResult.PASS;
 	}
 	
 	

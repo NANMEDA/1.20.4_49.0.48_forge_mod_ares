@@ -4,6 +4,7 @@ import com.main.maring.Maring;
 import com.main.maring.block.norm.machineparts.ElectronicPower;
 import com.main.maring.machine.energy.consumer.electrolyticdevice.BlockElectrolyticDevice;
 import com.main.maring.machine.energy.consumer.electrolyticdevice.ElectrolyticDeviceEntity;
+import com.main.maring.machine.energy.consumer.methanesynthesizer.BlockMethaneSynthesizer;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -108,4 +109,10 @@ public class MBlockRegister {
 	});
 	public static final RegistryObject<Item> ELECTROLYTICDEVICE_I = BLOCK_ITEMS.register(BlockElectrolyticDevice.global_name,
 			() -> new BlockItem(ELECTROLYTICDEVICE_B.get(), new Item.Properties()));
+
+	public static final RegistryObject<Block> METHANESYNTHESIZER_B = BLOCKS.register(BlockMethaneSynthesizer.global_name, () -> {
+		return new BlockMethaneSynthesizer(BlockBehaviour.Properties.of());
+	});
+	public static final RegistryObject<Item> METHANESYNTHESIZER_I = BLOCK_ITEMS.register(BlockMethaneSynthesizer.global_name,
+			() -> new BlockItem(METHANESYNTHESIZER_B.get(), new Item.Properties()));
 }
