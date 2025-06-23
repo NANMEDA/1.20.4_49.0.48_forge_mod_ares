@@ -11,11 +11,14 @@ import com.main.maring.machine.energy.producer.IProducer;
 import com.main.maring.machine.energy.storage.EnergyStorageMode;
 import com.main.maring.machine.energy.storage.IStorage;
 import com.main.maring.machine.energy.viewer.EnergyViewerEntity;
+import com.main.maring.util.net.EnergyNetSavedData;
+import net.minecraft.client.telemetry.events.WorldUnloadEvent;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.event.TickEvent.LevelTickEvent;
+import net.minecraftforge.event.level.LevelEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import com.main.maring.util.net.EnergyNet;
@@ -24,9 +27,7 @@ import com.main.maring.util.net.EnergyNetProcess;
 
 @Mod.EventBusSubscriber
 public class EnergyNetCalculation {
-	
-	
-	private static boolean init = false;
+
 	public static int speed = 1;
 	public static Random rd = new Random();
 	private static boolean debug = false;
@@ -43,9 +44,9 @@ public class EnergyNetCalculation {
 	public static void EnergyNetCalculate(LevelTickEvent event) {
 	    Level level = event.level;
 	    if (!level.isClientSide) {
-	        if (!init) {
+	        if (!EnergyNetProcess.initialized) {
 	            EnergyNetProcess.init(level);
-	            init = true;
+				EnergyNetProcess.initialized = true;
 	        }
 	        Collection<EnergyNet> energySet = EnergyNetProcess.getAllEnergyNets();
 	        if (energySet==null) return;
@@ -68,7 +69,7 @@ public class EnergyNetCalculation {
 	            Set<BlockPos> trans = energyNet.getSet(EnergyEnum.TRANS); 
 	            Set<BlockPos> nul = energyNet.getSet(EnergyEnum.NULL); 
 	            
-	            if(energyNet.checkEmpty()||!energyNet.haveDimension()) {
+	            if(energyNet._checkEmpty()||!energyNet.haveDimension()) {
 	            	if(debug)
 	            	System.out.println("delete a NET ID: energyNet.getId()" );
 	                long id = energyNet.getId(); 
@@ -187,6 +188,24 @@ public class EnergyNetCalculation {
 	        
 	    }
 	}
+
+	@SubscribeEvent
+	public static void onWorldUnload(LevelEvent.Unload event) {
+		if (!event.getLevel().isClientSide()) {
+			EnergyNetProcess.initialized = false;  // 重置初始化状态
+			// 如果你还想清理数据：
+			EnergyNetSavedData data = EnergyNetProcess.savedData;
+			data.setDirty();
+		}
+	}
+
+	@SubscribeEvent
+	public static void onWorldload(LevelEvent.Load event) {
+		if (!event.getLevel().isClientSide()) {
+			EnergyNetProcess.savedData=null;
+		}
+	}
+
 
 	private static void findViewerAndSet(Level level,Set<BlockPos> nul,long supply,long consume,long cap,long storage) {
 		if(nul.isEmpty()||nul==null) return;

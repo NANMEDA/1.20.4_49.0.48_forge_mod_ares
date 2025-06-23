@@ -22,10 +22,12 @@ import com.main.maring.machine.energy.IEnergy;
  * 这是能量网络的基本结构
  * 一个能量网络里面分成5种组成成分
  * supplyLevel是当前的供电能力，以100为满供电,过高过低都不行
- * 没有结构，导致无法正确的将电网分成两部分<br>
+ * 没有结构，导致无法正确的将电网分成两部分
+ * 可以定义多父多子节点为F,S
  *  TODO 非正常退出会导致数据丢失,需要修改
  * @author NANMEDA
  * */
+
 public class EnergyNet {
     private long id;
     private int supplyLevel; //100 is full
@@ -224,13 +226,13 @@ public class EnergyNet {
 			case NULL:
 			default:
 				nullSet.add(pos);
-				return;
 		}
     }
     
 	public void removeBlockPos(BlockPos pos, BlockEntity blockEntity) {
-		if(blockEntity!=null&&!blockEntity.getLevel().isClientSide)
-		removeBlockPos(pos, getEnergyKind(blockEntity));
+		if(blockEntity!=null&&!blockEntity.getLevel().isClientSide) {
+            removeBlockPos(pos, getEnergyKind(blockEntity));
+        }
 		if(consumerSet.isEmpty()&&producerSet.isEmpty()&&storageSet.isEmpty()&&nullSet.isEmpty()) {
 			EnergyNetProcess.deleteEnergyNet(this.id);
 		}
@@ -260,7 +262,7 @@ public class EnergyNet {
     /**
      * @return true-Empty
      */
-    public boolean checkEmpty() {
+    public boolean _checkEmpty() {
     	return producerSet.isEmpty()&&consumerSet.isEmpty()&&storageSet.isEmpty()&&transSet.isEmpty()&&nullSet.isEmpty();
     }
     
@@ -279,34 +281,34 @@ public class EnergyNet {
     
     public CompoundTag writeToNBT() {
         CompoundTag tag = new CompoundTag();
-        tag.putLong("Id", this.id);
+        tag.putLong("netId", this.id);
         tag.putInt("SupplyLevel", this.supplyLevel);
-        tag.putString("Dimension", this.dimension.toString());
+        tag.putString("netDimension", this.dimension.toString());
 
-        tag.put("ConsumerSet", serializeBlockPosSet(consumerSet));
-        tag.put("ProducerSet", serializeBlockPosSet(producerSet));
-        tag.put("StorageSet", serializeBlockPosSet(storageSet));
-        tag.put("TransSet", serializeBlockPosSet(transSet));
-        tag.put("NullSet", serializeBlockPosSet(nullSet));
-        tag.put("EdgeMap", serializeBlockPosMap(edgeMap));
+        tag.put("ConsumerSet", _serializeBlockPosSet(consumerSet));
+        tag.put("ProducerSet", _serializeBlockPosSet(producerSet));
+        tag.put("StorageSet", _serializeBlockPosSet(storageSet));
+        tag.put("TransSet", _serializeBlockPosSet(transSet));
+        tag.put("NullSet", _serializeBlockPosSet(nullSet));
+        tag.put("EdgeMap", _serializeBlockPosMap(edgeMap));
 
         return tag;
     }
 
     public void readFromNBT(CompoundTag tag) {
-        this.id = tag.getLong("Id");
+        this.id = tag.getLong("netId");
         this.supplyLevel = tag.getInt("SupplyLevel");
-        this.dimension = new ResourceLocation(tag.getString("Dimension"));
+        this.dimension = new ResourceLocation(tag.getString("betDimension"));
 
-        this.consumerSet = deserializeBlockPosSet(tag.getList("ConsumerSet", 10));
-        this.producerSet = deserializeBlockPosSet(tag.getList("ProducerSet", 10));
-        this.storageSet = deserializeBlockPosSet(tag.getList("StorageSet", 10));
-        this.transSet = deserializeBlockPosSet(tag.getList("TransSet", 10));
-        this.nullSet = deserializeBlockPosSet(tag.getList("NullSet", 10));
-        this.edgeMap = deserializeBlockPosMap(tag.getList("EdgeMap",10));
+        this.consumerSet = _deserializeBlockPosSet(tag.getList("ConsumerSet", 10));
+        this.producerSet = _deserializeBlockPosSet(tag.getList("ProducerSet", 10));
+        this.storageSet = _deserializeBlockPosSet(tag.getList("StorageSet", 10));
+        this.transSet = _deserializeBlockPosSet(tag.getList("TransSet", 10));
+        this.nullSet = _deserializeBlockPosSet(tag.getList("NullSet", 10));
+        this.edgeMap = _deserializeBlockPosMap(tag.getList("EdgeMap",10));
     }
 
-    private ListTag serializeBlockPosSet(Set<BlockPos> set) {
+    private ListTag _serializeBlockPosSet(Set<BlockPos> set) {
         ListTag listTag = new ListTag();
         for (BlockPos pos : set) {
             listTag.add(NbtUtils.writeBlockPos(pos));
@@ -315,7 +317,7 @@ public class EnergyNet {
     }
     
 
-    private ListTag serializeBlockPosMap(Map<BlockPos, Set<BlockPos>> map) {
+    private ListTag _serializeBlockPosMap(Map<BlockPos, Set<BlockPos>> map) {
         ListTag listTag = new ListTag();
         for (Map.Entry<BlockPos, Set<BlockPos>> entry : map.entrySet()) {
             CompoundTag pairTag = new CompoundTag();
@@ -332,7 +334,7 @@ public class EnergyNet {
         return listTag;
     }
 
-    private Set<BlockPos> deserializeBlockPosSet(ListTag listTag) {
+    private Set<BlockPos> _deserializeBlockPosSet(ListTag listTag) {
         Set<BlockPos> set = new HashSet<>();
         for (int i = 0; i < listTag.size(); i++) {
             set.add(NbtUtils.readBlockPos(listTag.getCompound(i)));
@@ -340,7 +342,7 @@ public class EnergyNet {
         return set;
     }
     
-    private Map<BlockPos, Set<BlockPos>> deserializeBlockPosMap(ListTag listTag) {
+    private Map<BlockPos, Set<BlockPos>> _deserializeBlockPosMap(ListTag listTag) {
         Map<BlockPos, Set<BlockPos>> map = new HashMap<>();
         for (int i = 0; i < listTag.size(); i++) {
             CompoundTag pairTag = listTag.getCompound(i);

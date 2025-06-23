@@ -4,6 +4,7 @@ import java.util.EnumMap;
 
 import com.google.common.base.Supplier;
 
+import com.main.maring.Maring;
 import net.minecraft.Util;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -14,7 +15,7 @@ import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.crafting.Ingredient;
 
 @SuppressWarnings("deprecation")
-public enum ModArmorMaterials implements StringRepresentable, ArmorMaterial {
+public enum ModArmorMaterials implements ArmorMaterial {
 
     SPACESUIT("spacesuit", 600, Util.make(new EnumMap<>(ArmorItem.Type.class), (pConsumer) -> {
         pConsumer.put(ArmorItem.Type.BOOTS, 2);
@@ -73,7 +74,7 @@ public enum ModArmorMaterials implements StringRepresentable, ArmorMaterial {
     }
 
     public String getName() {
-        return this.name;
+        return  Maring.MODID + ":" + this.name;
     }
 
     public float getToughness() {
@@ -84,7 +85,4 @@ public enum ModArmorMaterials implements StringRepresentable, ArmorMaterial {
         return this.knockbackResistance;
     }
 
-    public String getSerializedName() {
-        return this.name;
-    }
 }

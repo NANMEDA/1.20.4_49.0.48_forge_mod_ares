@@ -37,7 +37,7 @@ public class CreativeTabsRegister {
                 output.accept(com.main.maring.block.norm.deposit.Register.DEPOSIT_IRON_ITEM.get());
                 output.accept(com.main.maring.block.norm.deposit.Register.DEPOSIT_GOLD_ITEM.get());
 				output.accept(BlockRegister.unbrokenmagma_BLOCK_ITEM.get());
-                
+				output.accept(BlockRegister.MARGRASS_I.get());
             }).build());
     
     public static final RegistryObject<CreativeModeTab> MAR_FOOD_TAB = CREATIVE_MODE_TABS.register("mar_food_tab", () -> CreativeModeTab.builder()
@@ -48,6 +48,7 @@ public class CreativeTabsRegister {
         		output.accept(ItemRegister.CHEESE_PIECE.get());
         		output.accept(ItemRegister.FROSTFIRE_FRUIT.get());
 				output.accept(ItemRegister.FROSTFIRE_FRUIT_PIECE.get());
+				output.accept(ItemRegister.OMINOUS_CAKE.get());
 				output.accept(ItemRegister.ARTIFICIAL_DOUGH.get());
 				if (ModList.get().isLoaded("farmersdelight")) {
 					//for farmersdelight
@@ -68,7 +69,7 @@ public class CreativeTabsRegister {
 				output.accept(BlockRegister.BROKEN_STRUCTURE_BLOCK_ITEMS.get());
 				output.accept(BlockRegister.BROKEN_METAL_BLOCK_ITEMS.get());
 				output.accept(BlockRegister.VILLAGER_BURRIED_PACKAGE_BLOCK_ITEMS.get());
-				output.accept(BlockRegister.UNBROKEN_DORM_JUNCTION_BLOCK_ITEMS.get());
+				//output.accept(BlockRegister.UNBROKEN_DORM_JUNCTION_BLOCK_ITEMS.get());
 
                 //output.accept(BlockRegister.PowerStationBurn_BLOCK_ITEM.get());
 

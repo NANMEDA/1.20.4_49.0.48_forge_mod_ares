@@ -29,9 +29,11 @@ public class EnergyNetProcess {
     private static Set<Long> existingIds;
     private static Map<Long, EnergyNet> energyNetMap;
 
-    private static EnergyNetSavedData savedData;
+    public static EnergyNetSavedData savedData;
+    public static boolean initialized = false;
 
     public static void init(Level level) {
+        initialized = true;
         if (!level.isClientSide) {
             savedData = EnergyNetSavedData.get((ServerLevel) level);
             existingIds = savedData.getExistingIds();
@@ -100,7 +102,7 @@ public class EnergyNetProcess {
         if (existingIds.contains(id)) {
             return energyNetMap.get(id);
         } else {
-        	System.out.println("ATTENTION< CREATE A NET HEN TRY TO GET IT");
+        	System.out.println("ATTENTION< CREATE A NET THEN TRY TO GET IT");
             return createEnergyNet(null);
         }
     }

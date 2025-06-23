@@ -383,6 +383,18 @@ public class BlockRegister {
     	com.main.maring.block.norm.deposit.Register.init();
     	FarmBlockRegistry.init();
     }
+
+	public static final RegistryObject<Block> MARGRASS_B = BLOCKS.register(BlockMarGrass.global_name, () -> {
+		return new BlockMarGrass(BlockBehaviour.Properties.of()
+				.strength(0.5F, 0.5F)
+				.mapColor(MapColor.COLOR_PURPLE)
+				.sound(SoundType.GRASS)
+				.randomTicks()
+		);
+	});
+
+	public static final RegistryObject<Item> MARGRASS_I = BLOCK_ITEMS.register(BlockMarGrass.global_name,
+			() -> new BlockItem(MARGRASS_B.get(), new Item.Properties()));
     
     /***
      * 推荐这样子注册机器

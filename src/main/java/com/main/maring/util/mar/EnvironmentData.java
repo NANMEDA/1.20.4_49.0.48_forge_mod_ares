@@ -65,8 +65,7 @@ public class EnvironmentData extends SavedData {
     }
     
     public boolean suitableANIMAL() {
-    	return getEnvironmentEnum("humid").isOrBetter(EnvironmentEnum.ALIVE)
-    			&&getEnvironmentEnum("oxygen").isOrBetter(EnvironmentEnum.ALIVE)
+    	return getEnvironmentEnum("oxygen").isOrBetter(EnvironmentEnum.ALIVE)
     			&&getEnvironmentEnum("pressure").isOrBetter(EnvironmentEnum.ALIVE)
     			&&getEnvironmentEnum("temperature").isOrBetter(EnvironmentEnum.ALIVE);
     }
@@ -79,7 +78,7 @@ public class EnvironmentData extends SavedData {
     		else if(this.humid<25||this.humid>180) {
     			return EnvironmentEnum.STRUGGLE;
     		}
-    		else if(this.humid<70||this.humid>130) {
+    		else if(this.humid<70||this.humid>150) {
     			return EnvironmentEnum.ALIVE;
     		}
     		else{
@@ -106,7 +105,7 @@ public class EnvironmentData extends SavedData {
     		else if(this.pressure<700||this.pressure>2000) {
     			return EnvironmentEnum.STRUGGLE;
     		}
-    		else if(this.pressure<900||this.pressure>1100) {
+    		else if(this.pressure<800||this.pressure>1300) {
     			return EnvironmentEnum.ALIVE;
     		}
     		else{
@@ -130,7 +129,7 @@ public class EnvironmentData extends SavedData {
 	}
     
 	public boolean iceMelt() {
-		return this.temperature>-10&&this.pressure>500;
+		return this.temperature>0&&this.pressure>500;
 	}
 	
 	public boolean genClouds(){
@@ -140,15 +139,14 @@ public class EnvironmentData extends SavedData {
     public boolean canBurn() {
     	return this.oxygen>16;
     }
-    
-    // Getter 和 Setter 方法
+
     public double getHumid() {
         return humid;
     }
 
     public void setHumid(int humid) {
         this.humid = Math.max(0, Math.min(humid, 200));
-        setDirty(); // 标记数据已修改
+        setDirty();
     }
 
     public double getOxygen() {

@@ -15,7 +15,6 @@ import com.main.maring.util.net.EnergyNetProcess;
 
 /**
  * 这个是用来Cut电力网络的
- * @author NANMEDA
  * */
 public class WireCutor extends Item {
 	private BlockPos startPos = null;

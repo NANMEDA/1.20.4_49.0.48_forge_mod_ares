@@ -80,3 +80,4 @@ public class EnergyNetSavedData extends SavedData {
         );
     }
 }
+

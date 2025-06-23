@@ -7,6 +7,5 @@ public class SpacesuitRenderer extends HumanoidArmorModel {
     public SpacesuitRenderer(ModelPart p_270765_) {
         super(p_270765_);
     }
-    //渲染盔甲穿在身上的每一个部位的效果
 
 }

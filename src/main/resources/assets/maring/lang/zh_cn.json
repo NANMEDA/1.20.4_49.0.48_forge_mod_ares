@@ -48,6 +48,7 @@
   "block.maring.deposit_iron": "含铁沉积土",
   "block.maring.deposit_gold": "含金沉积土",
   "block.maring.mar_foolgold_ore": "愚人金",
+  "block.maring.exposed_iron": "裸露铁矿",
   "block.maring.mar_deep_foolgold_ore": "深层愚人金",
   "block.maring.quartz_stone": "火星石英矿",
   "block.maring.deep_quartz_stone": "火星深层石英矿",
@@ -59,6 +60,7 @@
   "block.maring.mar_glitter_cheese_red": "火星红色闪光奶酪",
   "block.maring.mar_glitter_cheese_orange": "火星橘色闪光奶酪",
   "block.maring.mar_glitter_cheese_purple": "火星紫色闪光奶酪",
+  "block.maring.mar_grass": "火星草地",
   
   "block.maring.powerstation_burn": "火力发电机",
   "block.maring.powerstation_sun": "太阳能发电机",
@@ -225,12 +227,12 @@
   "effect.maring.lose_pressure": "失压",
   "effect.maring.parasite": "寄生",
   
-  "mar_main_block_tab": "莪瑞斯-方块",
-  "mar_food_tab": "莪瑞斯-食物",
-  "mar_machine_tab": "莪瑞斯-机器",
-  "mar_material_tab": "莪瑞斯-材料",
-  "mar_tool_tab": "莪瑞斯-工具护甲",
-  "mar_dorm_tab": "莪瑞斯-建筑",
+  "mar_main_block_tab": "火星生活-方块",
+  "mar_food_tab": "火星生活-食物",
+  "mar_machine_tab": "火星生活-机器",
+  "mar_material_tab": "火星生活-材料",
+  "mar_tool_tab": "火星生活-工具护甲",
+  "mar_dorm_tab": "火星生活-建筑",
   
   "menu.powerstation_burn": "火力发电站",
   "menu.canfood_maker": "食品罐装",
@@ -338,7 +340,7 @@
   
   "maring.gui.microwave.button": "启动",  
   
-  "maring.key.category": "莪瑞斯-按键绑定",
+  "maring.key.category": "火星生活-按键绑定",
   "maring.key.sendrocket": "火箭发射",
 
 
