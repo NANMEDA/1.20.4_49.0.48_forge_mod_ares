@@ -118,6 +118,8 @@ public class CreativeTabsRegister {
 				output.accept(ItemRegister.BIG_BOTTLED_METHANE.get());
 				output.accept(ItemRegister.BOTTLED_OXYGEN.get());
 				output.accept(ItemRegister.BIG_BOTTLED_OXYGEN.get());
+				output.accept(ItemRegister.EMPTY_HYDROGEN_TANK.get());
+				output.accept(ItemRegister.HYDROGEN_TANK.get());
 				output.accept(ItemRegister.BOTTLED_FUEL.get());
 				output.accept(ItemRegister.RAW_IRON_NUGGET.get());
 				output.accept(ItemRegister.INSULATION_MATERIAL.get());
@@ -161,6 +163,7 @@ public class CreativeTabsRegister {
                 output.accept(ItemRegister.WIRE_CUTOR.get());
 				output.accept(ItemRegister.ELECTRIC_DEBUGGER_STICK.get());
 				output.accept(ItemRegister.CHEESE_BUCKET.get());
+				output.accept(ItemRegister.ROCKET_ITEM.get());
             }).build());
     
 

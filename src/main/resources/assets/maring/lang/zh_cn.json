@@ -156,6 +156,8 @@
   "item.maring.big_bottled_methane": "大甲烷瓶",
   "item.maring.bottled_oxygen": "装瓶氧气",
   "item.maring.big_bottled_oxygen": "大氧气瓶",
+  "item.maring.empty_hydrogen_tank": "空储氢罐",
+  "item.maring.hydrogen_tank": "氢罐",
   "item.maring.bottled_fuel": "燃料",
   "item.maring.raw_iron_nugget": "生铁粒",
   "item.maring.insulation_material": "隔热材料",
@@ -216,8 +218,12 @@
   "cans.third.havefruit": "水果",
   "cans.last": "罐头",
   "cans.axolotl": "美西螈大餐罐头",
-  
-  
+
+
+  "entity.maring.rocket_t1": "一级火箭",
+  "entity.rocket.message.nofuel": "火箭燃料未过半",
+
+
   "entity.maring.jump_spider": "抱子蜘蛛",
   "entity.minecraft.villager.maring.handmake_master": "手搓大师",
   
@@ -247,7 +253,8 @@
   "menu.dome_control": "穹顶控制",
   "menu.core_digger": "地幔吸口",
   "menu.mar_reactor": "荧惑反应堆内部",
-  "menu.energy_viwer": "电网查看器",
+  "menu.energy_viewer": "电网查看器",
+  "menu.rocket": "火箭仓",
   
   "menu.energyviewer.supply": "供应: %d",
   "menu.energyviewer.consume": "消耗: %d",

@@ -145,7 +145,7 @@ public class ItemRegister {
 	
 	public static final RegistryObject<Item> CAN = ITEMS.register("cans", ItemCan::new);
     public static final RegistryObject<RocketItem> ROCKET_ITEM = ITEMS.register("rocket", 
-    		() -> new RocketItem(new Item.Properties()));
+    		() -> new RocketItem(new Item.Properties().stacksTo(1)));
 	
     public static final RegistryObject<Item> OMINOUS_AXE = ITEMS.register(OminousAxe.global_name,
             () -> new OminousAxe(Tiers.GOLD, 6.0F, -3.0F, new Item.Properties().stacksTo(1)));
@@ -221,5 +221,10 @@ public class ItemRegister {
 	public static final RegistryObject<Item> PRESSURIZED_CAN = ITEMS.register("pressurized_can",
 			() -> new Item(new Item.Properties()));
 
+	//only storage with 500mB
+	public static final RegistryObject<Item> EMPTY_HYDROGEN_TANK = ITEMS.register("empty_hydrogen_tank",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> HYDROGEN_TANK = ITEMS.register("hydrogen_tank",
+			() -> new Item(new Item.Properties()));
 
 }

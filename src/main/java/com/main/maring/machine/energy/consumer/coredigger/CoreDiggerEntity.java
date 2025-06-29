@@ -1,7 +1,5 @@
 package com.main.maring.machine.energy.consumer.coredigger;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 
 import com.main.maring.item.ItemRegister;
@@ -13,7 +11,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.util.LazyLoadedValue;
@@ -37,7 +34,6 @@ import com.main.maring.util.net.EnergyNetProcess;
 public class CoreDiggerEntity extends ConsumerEntity implements IConsumer{
 
 	private int energy_consume = 0;
-	
 	private static LazyLoadedValue<Block> SUCKER = new LazyLoadedValue<>(()->MBlockRegister.CORESUCKER_B.get());
 	private static Random rd = new Random();
 	static protected int itemstack_number = 6;
@@ -132,7 +128,6 @@ public class CoreDiggerEntity extends ConsumerEntity implements IConsumer{
 	}
 
 	private final String TAG_NAME = "Item";
-	private final String TAG_ID = "id";
 
 	protected void savedata(CompoundTag tag) {
 		super.savedata(tag);
@@ -154,7 +149,7 @@ public class CoreDiggerEntity extends ConsumerEntity implements IConsumer{
 			this.energy_consume = FULL_ENERGY;
 			if(rd.nextInt(0,12*20)!=0) return;
 			int supplylevel = getEnergySupplyLevel();
-			int r = supplylevel>=100 ? 1 : supplylevel>=75 ? 2  : supplylevel>=50 ? 3 : supplylevel>=25 ? 4 : 16;
+			int r = supplylevel>=90 ? 1 : supplylevel>=75 ? 2  : supplylevel>=50 ? 3 : supplylevel>=25 ? 4 : 16;
 			if(rd.nextInt(r)==0) {
 				int d = CoreSucker.getCoreDis(this.level,this.worldPosition.below());
 				if(d>8) {

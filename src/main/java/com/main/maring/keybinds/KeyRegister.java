@@ -11,5 +11,6 @@ public class KeyRegister {
     @SubscribeEvent
     public static void onKeyRegister(RegisterKeyMappingsEvent event) {
         event.register(KeyVariables.ROCKET_SETOFF_KEY);
+        event.register(KeyVariables.ROCKET_OPENINV_KEY);
     }
 }

@@ -13,6 +13,7 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -34,8 +35,9 @@ import com.main.maring.util.json.BlockJSON;
  * @author NANMEDA
  * */
 public class CoreDigger extends Block implements EntityBlock{
-	public static final String global_name = "core_digger"; 
-	
+	public static final String global_name = "core_digger";
+
+
 	public CoreDigger(Properties properties) {
 		super(properties
 				.sound(SoundType.AMETHYST)

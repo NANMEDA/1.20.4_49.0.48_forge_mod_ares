@@ -16,4 +16,6 @@ public class KeyVariables {
 
     public static final KeyMapping ROCKET_SETOFF_KEY = new KeyMapping("maring.key.sendrocket", KeyConflictContext.IN_GAME,
             InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_SPACE,MARING_KEY_CATEGORY);
+    public static final KeyMapping ROCKET_OPENINV_KEY = new KeyMapping("maring.key.rocket.openinv", KeyConflictContext.IN_GAME,
+            InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_E,MARING_KEY_CATEGORY);
 }

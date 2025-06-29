@@ -33,6 +33,8 @@ import org.jetbrains.annotations.NotNull;
  */
 public class WaterGatherEntity extends ConsumerEntity implements IFluidHandler, IConsumer {
 
+	private int energy_consume = 0;
+
 	private static final int MAX_WATER = 360000;         // 最多water值（10桶）
 	private static final int TANK_CAPACITY = 10000;      // tank容量：10桶 = 10000mB
 	private static final int WATER_PER_BUCKET = 36000;   // 36000water == 1000mB
@@ -65,6 +67,7 @@ public class WaterGatherEntity extends ConsumerEntity implements IFluidHandler, 
 	public WaterGatherEntity(BlockPos pos, BlockState state) {
 		super(BlockEntityRegister.watergather_BLOCKENTITY.get(), pos, state);
 		this.FULL_ENERGY = 2;
+		this.energy_consume = this.FULL_ENERGY;
 	}
 
 	public ItemStackHandler getItems() {
@@ -213,7 +216,7 @@ public class WaterGatherEntity extends ConsumerEntity implements IFluidHandler, 
 
 	@Override
 	public int getEnergyConsume() {
-		return this.FULL_ENERGY;
+		return this.energy_consume;
 	}
 
 	@Override

@@ -20,6 +20,10 @@ public class KeyHandler {
         	LocalPlayer player = Minecraft.getInstance().player;
             KeyMethods.startRocket(player);
         }
+        if(KeyVariables.ROCKET_OPENINV_KEY.consumeClick()){
+            LocalPlayer player = Minecraft.getInstance().player;
+            KeyMethods.openRocketInv(player);
+        }
     }
 
 }

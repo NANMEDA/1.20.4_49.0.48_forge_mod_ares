@@ -3,11 +3,7 @@ package com.main.maring.network;
 import java.util.Optional;
 
 import com.main.maring.Maring;
-import com.main.maring.network.client.CDomeControl;
-import com.main.maring.network.client.CResearchTableUpdate;
-import com.main.maring.network.client.CRocketStart;
-import com.main.maring.network.client.CStartTech;
-import com.main.maring.network.client.CTechTreeUpdate;
+import com.main.maring.network.client.*;
 import com.main.maring.network.server.SRocketStart;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.network.NetworkDirection;
@@ -37,9 +33,11 @@ public class NetworkHandler {
 				  CTechTreeUpdate::handle, Optional.of(NetworkDirection.PLAY_TO_SERVER));
 		  INSTANCE.registerMessage(4, CStartTech.class, CStartTech::encode, CStartTech::decode,
 				  CStartTech::handle, Optional.of(NetworkDirection.PLAY_TO_SERVER));
+		  INSTANCE.registerMessage(5, COpenRocketInv.class, COpenRocketInv::encode, COpenRocketInv::decode,
+				  COpenRocketInv::handle, Optional.of(NetworkDirection.PLAY_TO_SERVER));
 
 		  // Server 2 Client
-		  INSTANCE.registerMessage(5, SRocketStart.class, SRocketStart::encode, SRocketStart::decode,
+		  INSTANCE.registerMessage(6, SRocketStart.class, SRocketStart::encode, SRocketStart::decode,
 				  SRocketStart::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));//没用到
 	  }
 

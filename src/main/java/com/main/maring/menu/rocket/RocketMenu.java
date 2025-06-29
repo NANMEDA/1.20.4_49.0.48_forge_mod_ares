@@ -1,5 +1,6 @@
 package com.main.maring.menu.rocket;
 
+import com.main.maring.vehicle.rocket.RocketEntity;
 import org.jetbrains.annotations.NotNull;
 
 import com.main.maring.menu.EntityMenuBasic;
@@ -13,41 +14,41 @@ import com.main.maring.vehicle.rocket.IRocketEntity;
 
 public class RocketMenu extends EntityMenuBasic {
 	
-	private final IRocketEntity rocket;
+	private final RocketEntity rocket;
 	
 	public RocketMenu(Inventory pInventory, int pID, int entityId) {
 		super(MenuRegister.ROCKET_MENU.get(), pID, pInventory.player.level().getEntity(entityId), 8, 0, 8);
-		this.rocket = (IRocketEntity) pInventory.player.level().getEntity(entityId);
-			addSlot(new SlotItemHandler(this.rocket.getInventory(), 0, 56, 35) {
+		this.rocket = (RocketEntity) pInventory.player.level().getEntity(entityId);
+			addSlot(new SlotItemHandler(this.rocket.getInventory(), 0, 125, 18) {
 				@Override
 			    public boolean mayPlace(@NotNull ItemStack stack)
 			    {
 			        return stack.is(TagkeyRegistry.FUEL_BUCKET_TAG);
 			    }
 			});
-			addSlot(new SlotItemHandler(this.rocket.getInventory(), 1, 115, 34) {
+			addSlot(new SlotItemHandler(this.rocket.getInventory(), 1, 125, 38) {
 			    @Override
 			    public boolean mayPlace(@NotNull ItemStack stack)
 			    {
-			        return stack.is(Items.BUCKET);
+			        return false;
 			    }
 			});
-			addSlot(new SlotItemHandler(this.rocket.getInventory(), 2, 115, 34) {
+			addSlot(new SlotItemHandler(this.rocket.getInventory(), 2, 34, 18) {
 			});
-			addSlot(new SlotItemHandler(this.rocket.getInventory(), 3, 115, 34) {
+			addSlot(new SlotItemHandler(this.rocket.getInventory(), 3, 55, 18) {
 			});
-			addSlot(new SlotItemHandler(this.rocket.getInventory(), 4, 115, 34) {
+			addSlot(new SlotItemHandler(this.rocket.getInventory(), 4, 76, 18) {
 			});
-			addSlot(new SlotItemHandler(this.rocket.getInventory(), 5, 115, 34) {
+			addSlot(new SlotItemHandler(this.rocket.getInventory(), 5, 34, 38) {
 			});
-			addSlot(new SlotItemHandler(this.rocket.getInventory(), 6, 115, 34) {
+			addSlot(new SlotItemHandler(this.rocket.getInventory(), 6, 55, 38) {
 			});
-			addSlot(new SlotItemHandler(this.rocket.getInventory(), 7, 115, 34) {
+			addSlot(new SlotItemHandler(this.rocket.getInventory(), 7, 76, 38) {
 			});
 		addPlayerInventory(pInventory,8,84);
 	}
 	
-	public IRocketEntity rocket() {
+	public RocketEntity rocket() {
 		return rocket;
 	}
 }
