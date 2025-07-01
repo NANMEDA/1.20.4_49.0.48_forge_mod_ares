@@ -89,7 +89,7 @@ public class EnvironmentData extends SavedData {
     		if(o<3||o>50) { 
     			return EnvironmentEnum.DEAD;
     			}
-    		else if(o<8||o>35) {
+    		else if(o<10||o>35) {
     			return EnvironmentEnum.STRUGGLE;
     		}
     		else if(o<16||o>24) {

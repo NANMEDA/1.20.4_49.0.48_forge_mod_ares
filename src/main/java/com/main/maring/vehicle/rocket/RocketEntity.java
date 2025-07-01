@@ -60,6 +60,8 @@ public class RocketEntity extends IRocketEntity {
 	private static ResourceKey<Level> limboKey = ResourceKey.create(Registries.DIMENSION, new ResourceLocation(Maring.MODID, "limbo"));
 	private static ResourceKey<Level> marKey = ResourceKey.create(Registries.DIMENSION, new ResourceLocation(Maring.MODID, "maringmar"));
 
+	private double dropSpeed = -2;
+
 
 	public RocketEntity(EntityType<?> type, Level level) {
 		super(type, level);
@@ -196,7 +198,7 @@ public class RocketEntity extends IRocketEntity {
 
 
 	public void GoingTo() {
-		if (this.yo > 200) {
+		if (this.yo > 1200) {
 			Player player = this.getFirstPlayerPassenger();
 			if(player==null) return;
 			Level level = this.level();
@@ -306,26 +308,24 @@ public class RocketEntity extends IRocketEntity {
 	}
 
 
-	private double dropSpeed = -2;
-
 	protected void IsDrop() {
 		BlockPos entityPos = this.blockPosition();
 		// 向下搜索非空气方块
-		double dis = 0;
+		double nearestBlockDistance = 0;
 		//if(this.level().isClientSide) return;
 		Level level = this.level();
-		if(level.isEmptyBlock(new BlockPos(entityPos.getX(), entityPos.getY()-20, entityPos.getZ()))) {
+		BlockPos mutablePos = new BlockPos(entityPos.getX(), entityPos.getY(), entityPos.getZ());
+		while (nearestBlockDistance<20 && level.isEmptyBlock(mutablePos)) {
+			mutablePos = mutablePos.below();
+			nearestBlockDistance++;
+		}
+		if(nearestBlockDistance == 20){
 			this.setDeltaMovement(this.getDeltaMovement().x, dropSpeed, this.getDeltaMovement().z);
 			this.setPos(this.xo+this.getDeltaMovement().x, this.yo+ this.getDeltaMovement().y, this.zo + this.getDeltaMovement().z);
 			return;
 		}
-		BlockPos mutablePos = new BlockPos(entityPos.getX(), entityPos.getY(), entityPos.getZ());
-		while (dis<20 && level.isEmptyBlock(mutablePos)) {
-			mutablePos = mutablePos.below();
-			dis++;
-		}
-		double K = dis/20.0;
-		if (this.getDeltaMovement().y < -0.05&& dis>1) {
+		double K = nearestBlockDistance/20.0;
+		if (this.getDeltaMovement().y < -0.05&& nearestBlockDistance>1) {
 			this.setDeltaMovement(this.getDeltaMovement().x, dropSpeed*K*K, this.getDeltaMovement().z);
 		} else{
 			this.setDeltaMovement(this.getDeltaMovement().x, 0, this.getDeltaMovement().z);

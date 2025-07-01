@@ -17,6 +17,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.TickEvent.LevelTickEvent;
 import net.minecraftforge.event.level.LevelEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -43,6 +44,7 @@ public class EnergyNetCalculation {
 	@SubscribeEvent
 	public static void EnergyNetCalculate(LevelTickEvent event) {
 	    Level level = event.level;
+		if (event.phase != TickEvent.Phase.START) return;
 	    if (!level.isClientSide) {
 	        if (!EnergyNetProcess.initialized) {
 	            EnergyNetProcess.init(level);

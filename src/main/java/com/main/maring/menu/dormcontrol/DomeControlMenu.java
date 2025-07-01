@@ -1,6 +1,6 @@
 package com.main.maring.menu.dormcontrol;
 
-import com.main.maring.block.entity.neutral.dormcontrol.DomeControlEntity;
+import com.main.maring.block.entity.neutral.fastbuild.dormcontrol.DomeControlEntity;
 import com.main.maring.block.norm.BlockRegister;
 import com.main.maring.menu.BlockEntityMenuBasic;
 import com.main.maring.menu.registry.MenuRegister;

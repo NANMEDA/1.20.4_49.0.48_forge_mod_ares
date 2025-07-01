@@ -3,7 +3,7 @@ package com.main.maring.network.client;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerLevel;
-import com.main.maring.block.entity.neutral.dormcontrol.DomeControlEntity;
+import com.main.maring.block.entity.neutral.fastbuild.dormcontrol.DomeControlEntity;
 import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;

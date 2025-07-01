@@ -74,6 +74,7 @@ public class EnergyViewer extends Block implements EntityBlock {
 			if(BlockEntity instanceof EnergyViewerEntity entity) {
 				ServerPlayer ifpe = (ServerPlayer)player;
 				NetworkHooks.openScreen(ifpe, new EnergyViewerMenuProvider(pos), pos);
+				return InteractionResult.CONSUME;
 			}else {
 				throw new IllegalStateException("missing block");
 			}

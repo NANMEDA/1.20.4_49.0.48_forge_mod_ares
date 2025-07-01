@@ -1,7 +1,7 @@
 package com.main.maring.machine.registry;
 
 import com.main.maring.Maring;
-import com.main.maring.block.entity.neutral.dormcontrol.DomeControlEntity;
+import com.main.maring.block.entity.neutral.fastbuild.dormcontrol.DomeControlEntity;
 import com.main.maring.block.norm.BlockRegister;
 import com.main.maring.block.norm.fastbuild.dormcontrol.DomeControl;
 import com.main.maring.block.norm.unbroken.BlockUnbrokenConductor;

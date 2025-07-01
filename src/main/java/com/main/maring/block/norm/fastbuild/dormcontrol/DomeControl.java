@@ -2,9 +2,10 @@ package com.main.maring.block.norm.fastbuild.dormcontrol;
 
 import javax.annotation.Nullable;
 
-import com.main.maring.block.entity.neutral.dormcontrol.DomeControlEntity;
+import com.main.maring.block.entity.neutral.fastbuild.dormcontrol.DomeControlEntity;
 import com.main.maring.menu.dormcontrol.DomeControlMenuProvider;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -70,7 +71,7 @@ public class DomeControl extends Block implements EntityBlock {
 	     }else {
     		 return (level,pos,state,blockentity) -> {
 	    		 if(blockentity instanceof DomeControlEntity entity) {
-	    			 entity.servertick();
+					 if(level instanceof  ServerLevel serverLevel) entity.servertick(serverLevel);
 	    		 }
 	    	 };
 	     }

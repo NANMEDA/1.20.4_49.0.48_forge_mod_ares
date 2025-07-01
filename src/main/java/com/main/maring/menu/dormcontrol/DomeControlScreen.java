@@ -1,7 +1,7 @@
 package com.main.maring.menu.dormcontrol;
 
 import com.main.maring.Maring;
-import com.main.maring.block.entity.neutral.dormcontrol.DomeControlEntity;
+import com.main.maring.block.entity.neutral.fastbuild.dormcontrol.DomeControlEntity;
 import com.main.maring.menu.ScreenHelper;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;

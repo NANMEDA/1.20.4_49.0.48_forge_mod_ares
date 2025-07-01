@@ -1,7 +1,7 @@
 {
   "variants": {
-    "": {
-      "model": "maring:block/a_air"
-    }
+    "state=still":    { "model": "maring:block/a_air_still" },
+    "state=activate": { "model": "maring:block/a_air_activate" },
+    "state=deactivate": { "model": "maring:block/a_air_deactivate" }
   }
 }

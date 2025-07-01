@@ -13,11 +13,5 @@ public class DormJunction extends Block {
 		super(p_49795_);
 	}
 
-	 static {
-	        BlockJSON.GenModelsJSONBasic(global_name);
-	        BlockJSON.GenBlockStateJSONBasic(global_name);
-	        BlockJSON.GenItemJSONBasic(global_name);
-	        BlockJSON.GenLootTableJSONBasic(global_name);
-	 }
 
 }

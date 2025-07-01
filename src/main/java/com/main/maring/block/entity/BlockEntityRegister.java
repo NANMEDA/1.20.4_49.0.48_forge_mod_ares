@@ -11,7 +11,7 @@ import com.main.maring.block.entity.consumer.stonewasher.StoneWasherEntity;
 import com.main.maring.machine.energy.consumer.watergather.WaterGatherEntity;
 import com.main.maring.block.entity.neutral.blueprintbuilder.BlueprintBuilderEntity;
 import com.main.maring.block.entity.neutral.crystalbuilder.CrystalBuilderEntity;
-import com.main.maring.block.entity.neutral.dormcontrol.DomeControlEntity;
+import com.main.maring.block.entity.neutral.fastbuild.dormcontrol.DomeControlEntity;
 import com.main.maring.block.entity.neutral.fastbuild.DormJunctionControlEntity;
 import com.main.maring.block.entity.neutral.fuelrefiner.FuelRefinerEntity;
 import com.main.maring.block.entity.neutral.researchtable.ResearchTableEntity;

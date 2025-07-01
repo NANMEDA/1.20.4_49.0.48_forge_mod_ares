@@ -14,7 +14,6 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import com.main.maring.util.json.BlockJSON;
 
 public class DormJunctionControl extends Block implements EntityBlock {
 
@@ -58,7 +57,7 @@ public class DormJunctionControl extends Block implements EntityBlock {
                 BlockPos oppositePos = entity.getOppositePos();
                 BlockEntity oppositeEntity = pLevel.getBlockEntity(oppositePos);
                 if(oppositeEntity instanceof DormJunctionControlEntity oentity) {
-                	oentity.SavePosData(oppositePos);
+                	oentity.savePosData(oppositePos);
                 }
             }
             CleanAll();
@@ -79,11 +78,5 @@ public class DormJunctionControl extends Block implements EntityBlock {
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(BlockStateProperties.LEVEL);
     }
-	
-	 static {
-	        BlockJSON.GenModelsJSONBasic(global_name);
-	        BlockJSON.GenBlockStateJSONBasic(global_name);
-	        BlockJSON.GenItemJSONBasic(global_name);
-	        BlockJSON.GenLootTableJSONBasic(global_name);
-	 }
+
 }

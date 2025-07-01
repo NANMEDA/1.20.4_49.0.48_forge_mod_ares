@@ -26,6 +26,11 @@ public class BlockUnbrokenFog extends Block{
 	public VoxelShape getCollisionShape(BlockState p_154285_, BlockGetter p_154286_, BlockPos p_154287_, CollisionContext p_154288_) {
 	     return Shapes.empty();
 	}
+
+	@Override
+	public VoxelShape getShape(BlockState p_48760_, BlockGetter p_48761_, BlockPos p_48762_, CollisionContext p_48763_) {
+		return Shapes.empty();
+	}
 		
     static {
         BlockJSON.GenModelsJSONBasic(global_name);

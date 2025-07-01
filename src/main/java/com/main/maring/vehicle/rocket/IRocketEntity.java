@@ -2,56 +2,29 @@ package com.main.maring.vehicle.rocket;
 
 import com.google.common.collect.Sets;
 
-import com.main.maring.Maring;
-import com.main.maring.block.norm.BlockBasic;
-import com.main.maring.block.norm.BlockRegister;
-import com.main.maring.event.forge.TeleportAndCreateLanderEvent;
-import com.main.maring.item.ItemRegister;
-import com.main.maring.menu.rocket.RocketMenuProvider;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
-import net.minecraft.nbt.Tag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.vehicle.DismountHelper;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandlerModifiable;
-import net.minecraftforge.items.ItemStackHandler;
-import net.minecraftforge.items.wrapper.CombinedInvWrapper;
-import com.main.maring.util.Methods;
 import com.main.maring.util.gauge.GaugeValueHelper;
 import com.main.maring.util.gauge.IGaugeValue;
 import com.main.maring.util.gauge.IGaugeValuesProvider;
 import com.main.maring.vehicle.ModVehicle;
-import com.main.maring.vehicle.VehicleRegister;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -64,7 +37,7 @@ import java.util.Random;
  * BeyondEarth
  * https://github.com/MrScautHD/Beyond-Earth
  * */
-public abstract class IRocketEntity extends ModVehicle implements IGaugeValuesProvider{
+public abstract class IRocketEntity extends ModVehicle{
 
     public static final EntityDataAccessor<Boolean> ROCKET_START = SynchedEntityData.defineId(IRocketEntity.class, EntityDataSerializers.BOOLEAN);
     public static final EntityDataAccessor<Boolean> ROCKET_IS_DROP = SynchedEntityData.defineId(IRocketEntity.class, EntityDataSerializers.BOOLEAN);
@@ -99,11 +72,6 @@ public abstract class IRocketEntity extends ModVehicle implements IGaugeValuesPr
     public int getFuel(){
         return this.getEntityData().get(FUEL);
     }
-
-	@Override
-	public List<IGaugeValue> getDisplayGaugeValues() {
-		return Collections.singletonList(this.getFuelGauge());
-	}
 
     @Override
     public boolean isPushable() {

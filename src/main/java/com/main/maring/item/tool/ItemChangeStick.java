@@ -1,11 +1,17 @@
 package com.main.maring.item.tool;
 
+import com.main.maring.block.entity.BlockEntityRegister;
+import com.main.maring.block.entity.neutral.fastbuild.DormJunctionControlEntity;
 import com.main.maring.block.norm.BlockRegister;
+import com.main.maring.block.norm.fastbuild.FastBuildRegister;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class ItemChangeStick extends Item {
@@ -27,10 +33,30 @@ public class ItemChangeStick extends Item {
         if (!level.isClientSide) {
             if (currentBlockState == UNBROKEN_CEMENT_BLOCKSTATE) {
                 level.setBlockAndUpdate(pos, UNBROKEN_GLASS_BLOCKSTATE);
+                return InteractionResult.SUCCESS;
             } else if (currentBlockState == UNBROKEN_GLASS_BLOCKSTATE) {
                 level.setBlockAndUpdate(pos, UNBROKEN_CEMENT_BLOCKSTATE);
+                return InteractionResult.SUCCESS;
+            } else if(currentBlockState.getBlock() == FastBuildRegister.dormjunctioncontrol_BLOCK.get()){
+                if(level.getBlockEntity(pos) instanceof DormJunctionControlEntity de){
+                    BlockState recentState = level.getBlockState(pos.above());
+                    if(recentState.isAir()){
+                        de._genDoor(BlockRegister.unbrokenfog_BLOCK.get().defaultBlockState());
+                        return InteractionResult.SUCCESS;
+                    }else if(recentState == BlockRegister.unbrokenfog_BLOCK.get().defaultBlockState()){
+                        de._genDoor(UNBROKEN_CEMENT_BLOCKSTATE);
+                        return InteractionResult.SUCCESS;
+                    }else{
+                        if(de.connected()){
+                            de._genDoor(Blocks.AIR.defaultBlockState());
+                            return InteractionResult.SUCCESS;
+                        }else {
+                            de._genDoor(BlockRegister.unbrokenfog_BLOCK.get().defaultBlockState());
+                            return InteractionResult.SUCCESS;
+                        }
+                    }
+                }
             }
-            return InteractionResult.SUCCESS;
         }
 
         return InteractionResult.PASS;
