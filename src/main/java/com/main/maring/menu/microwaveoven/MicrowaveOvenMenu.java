@@ -27,10 +27,11 @@ public class MicrowaveOvenMenu extends BlockEntityMenuBasic{
 				@Override
 			    public boolean mayPlace(@NotNull ItemStack stack)
 			    {
+					/**
 					Item item = stack.getItem();
 			        if(!item.isEdible()&&item!=Items.EGG&&item!=Items.WET_SPONGE&&item!=ItemRegister.CAN.get()) {
 			        	return false;
-			        }
+			        }*/
 			        return true;
 			    }
 			});

@@ -36,6 +36,7 @@ public class BiomeEffectApplier {
     //private static Supplier<BlockState>  A_AIR_STATE = () -> {return BlockRegister.A_AIR.get().defaultBlockState();};
     private static EnvironmentData environmentData = null;
     private static ResourceKey<Level> marKey = ResourceKey.create(Registries.DIMENSION, new ResourceLocation(Maring.MODID, "maringmar"));
+
     /***
      * GIVE EFFECT
      * DETECT THE ENTITY'S DIMENSION AND BLOCK

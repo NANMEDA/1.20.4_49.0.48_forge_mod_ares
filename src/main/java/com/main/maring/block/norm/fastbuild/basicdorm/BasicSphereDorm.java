@@ -41,21 +41,21 @@ public class BasicSphereDorm extends Block {
             BlockPos control = DormHelper.fromCenterGetControlBlockPos(level, pos);
             level.setBlockAndUpdate(control, BlockRegister.dormcontrol_BLOCK.get().defaultBlockState());
             
-            createJunctionBase(level,pos.below());
+            createJunctionBase(level,pos.below(),control);
         }
         return InteractionResult.SUCCESS;
     }
 
-    private void createJunctionBase(Level level, BlockPos pos) {
-    	JunctionHelper.BirthJuntionBase(level,pos.offset(0,0,12),6,pos);
-    	JunctionHelper.BirthJuntionBase(level,pos.offset(0,0,-12),2,pos);
-    	JunctionHelper.BirthJuntionBase(level,pos.offset(12,0,0),0,pos);
-    	JunctionHelper.BirthJuntionBase(level,pos.offset(-12,0,0),4,pos);
+    private void createJunctionBase(Level level, BlockPos pos,BlockPos control) {
+    	JunctionHelper.BirthJuntionBase(level,pos.offset(0,0,12),6,pos,control);
+    	JunctionHelper.BirthJuntionBase(level,pos.offset(0,0,-12),2,pos,control);
+    	JunctionHelper.BirthJuntionBase(level,pos.offset(12,0,0),0,pos,control);
+    	JunctionHelper.BirthJuntionBase(level,pos.offset(-12,0,0),4,pos,control);
     	
-    	JunctionHelper.BirthJuntionBase(level,pos.offset(9,0,9),7,pos);
-    	JunctionHelper.BirthJuntionBase(level,pos.offset(9,0,-9),1,pos);
-    	JunctionHelper.BirthJuntionBase(level,pos.offset(-9,0,9),5,pos);
-    	JunctionHelper.BirthJuntionBase(level,pos.offset(-9,0,-9),3,pos);
+    	JunctionHelper.BirthJuntionBase(level,pos.offset(9,0,9),7,pos,control);
+    	JunctionHelper.BirthJuntionBase(level,pos.offset(9,0,-9),1,pos,control);
+    	JunctionHelper.BirthJuntionBase(level,pos.offset(-9,0,9),5,pos,control);
+    	JunctionHelper.BirthJuntionBase(level,pos.offset(-9,0,-9),3,pos,control);
     	
 	}
 

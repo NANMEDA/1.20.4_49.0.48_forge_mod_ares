@@ -33,18 +33,6 @@ public class WireRenderer {
      * @param light 当前光照强度
      */
     public static void renderWire(Vec3 startPos, Vec3 endPos, PoseStack poseStack, MultiBufferSource bufferSource, int light) {
-        /*
-        if (endPos.z > startPos.z) {
-        	return;//反正能渲染好一个就可以了
-        }else if(endPos.z == startPos.z) {
-        	if (endPos.y > startPos.y) {
-            	return;
-            }else if(endPos.y == startPos.y) {
-            	if (endPos.x > startPos.x) {
-                	return;
-                }
-            }
-        }*/
     	
     	// 计算电线的顶点和法线方向
         float f4 = (float)(endPos.x - startPos.x);

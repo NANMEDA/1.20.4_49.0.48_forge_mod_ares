@@ -64,6 +64,7 @@ public class DomeControlScreen extends AbstractContainerScreen<DomeControlMenu> 
 	
     @Override
     protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
+		DomeControlEntity blockEntity = (DomeControlEntity) this.getMenu().getBlockEntity();
         guiGraphics.drawString(this.font, this.title.getString(), this.titleLabelX, this.titleLabelY, 0xFFFFFF);
         guiGraphics.drawString(
         	    this.font, 
@@ -84,9 +85,16 @@ public class DomeControlScreen extends AbstractContainerScreen<DomeControlMenu> 
         	    this.font, 
         	    Component.translatable("menu.domecontrol.remove"), 
         	    removeButtonStartPosX  + removeButtonWidth / 2 - this.font.width(Component.translatable("menu.domecontrol.remove")) / 2, 
-        	    removeButtonStartPosY + removeButtonHeight/2 -5, // 5 像素的间距
+        	    removeButtonStartPosY + removeButtonHeight/2 -5,
         	    0xFF0000
         	);
+		guiGraphics.drawString(
+				this.font,
+				Component.translatable("menu.domecontrol.list.count",(blockEntity.getConnetSet().size()+1)),
+				removeButtonStartPosX  + removeButtonWidth / 2 - this.font.width(Component.translatable("menu.domecontrol.list.count",blockEntity.getConnetSet().size()+1)) / 2,
+				removeButtonStartPosY - removeButtonHeight*5,
+				0xFFFFFF
+		);
         
     }
     

@@ -56,7 +56,6 @@ public class BlockUnbrokenGlass extends Block {
 	/***
 	 * 试图做连接无边缘
 	 * 类似optifine那种
-	 * 但做不出来
 	 * ***/
 	@Override
 	public void neighborChanged(BlockState pBlockState, Level pLevel, BlockPos pos, Block pBlock, BlockPos pos2, boolean don) {{}

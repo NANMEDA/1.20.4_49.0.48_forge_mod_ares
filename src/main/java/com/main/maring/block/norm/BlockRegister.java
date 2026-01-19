@@ -338,6 +338,13 @@ public class BlockRegister {
 	});
     public static final RegistryObject<Item> unbrokencement_BLOCK_ITEM = BLOCK_ITEMS.register(BlockUnbrokenCement.global_name,
     		() -> new BlockItem(unbrokencement_BLOCK.get(), new Item.Properties()));
+
+	public static final RegistryObject<Block> unbrokenjunctioncement_BLOCK = BLOCKS.register("unbroken_junction_cement", () -> {
+		return new BlockUnbrokenCement(BlockBehaviour.Properties.of()
+				.sound(SoundType.STONE));
+	});
+	public static final RegistryObject<Item> unbrokenjunctioncement_BLOCK_ITEM = BLOCK_ITEMS.register("unbroken_junction_cement",
+			() -> new BlockItem(unbrokenjunctioncement_BLOCK.get(), new Item.Properties()));
     
     public static final RegistryObject<Block> unbrokengreen_BLOCK = BLOCKS.register(BlockUnbrokenGreen.global_name, () -> {
 		return new BlockUnbrokenGreen(BlockBehaviour.Properties.of()

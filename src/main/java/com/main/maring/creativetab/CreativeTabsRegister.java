@@ -32,12 +32,22 @@ public class CreativeTabsRegister {
             	}
                 output.accept(BlockRegister.awakeningstone_BLOCK_ITEM.get());
                 output.accept(BlockRegister.unbrokenglass_BLOCK_ITEM.get());
+				output.accept(BlockRegister.unbrokenjunctioncement_BLOCK_ITEM.get());
                 output.accept(com.main.maring.block.norm.deposit.Register.DEPOSIT_EMPTY_ITEM.get());
                 output.accept(com.main.maring.block.norm.deposit.Register.DEPOSIT_ICE_ITEM.get());
                 output.accept(com.main.maring.block.norm.deposit.Register.DEPOSIT_IRON_ITEM.get());
                 output.accept(com.main.maring.block.norm.deposit.Register.DEPOSIT_GOLD_ITEM.get());
 				output.accept(BlockRegister.unbrokenmagma_BLOCK_ITEM.get());
 				output.accept(BlockRegister.MARGRASS_I.get());
+
+				/**	     		DORM			**/
+				output.accept(FastBuildRegister.basicspheredorm_BLOCK_ITEM.get());
+				output.accept(FastBuildRegister.basicflatspheredorm_BLOCK_ITEM.get());
+				output.accept(FastBuildRegister.basiceclipsedorm_BLOCK_ITEM.get());
+				output.accept(FastBuildRegister.basicflateclipsedorm_BLOCK_ITEM.get());
+				output.accept(FastBuildRegister.spheredoor_BLOCK_ITEM.get());
+				output.accept(FastBuildRegister.basiccylinderdorm_BLOCK_ITEM.get());
+				output.accept(com.main.maring.block.norm.decoration.Register.LIGHT_PANE_BLOCK_ITEM.get());
             }).build());
     
     public static final RegistryObject<CreativeModeTab> MAR_FOOD_TAB = CREATIVE_MODE_TABS.register("mar_food_tab", () -> CreativeModeTab.builder()
@@ -54,6 +64,7 @@ public class CreativeTabsRegister {
 					//for farmersdelight
 					output.accept(ItemRegister.CHEESE_PIE.get());
 				}
+				output.accept(ItemRegister.NUTRIENT_PASTE.get());
             }).build());
     
     public static final RegistryObject<CreativeModeTab> MAR_MACHINE_TAB = CREATIVE_MODE_TABS.register("mar_machine_tab", () -> CreativeModeTab.builder()
@@ -121,6 +132,9 @@ public class CreativeTabsRegister {
 				output.accept(ItemRegister.EMPTY_HYDROGEN_TANK.get());
 				output.accept(ItemRegister.HYDROGEN_TANK.get());
 				output.accept(ItemRegister.BOTTLED_FUEL.get());
+				output.accept(ItemRegister.BIOPLASTIC_BOTTLE.get());
+				output.accept(ItemRegister.ACID.get());
+				output.accept(ItemRegister.ALKALI.get());
 				output.accept(ItemRegister.RAW_IRON_NUGGET.get());
 				output.accept(ItemRegister.INSULATION_MATERIAL.get());
 				output.accept(ItemRegister.INSULATION_LAYER.get());
@@ -141,8 +155,26 @@ public class CreativeTabsRegister {
 
 				output.accept(ItemRegister.BUILDING_STRUCTURE.get());
                 output.accept(ItemRegister.BATTERY_HEART.get());
+
+				/**	     		TOOL			**/
+				output.accept(ItemRegister.SPACESUIT_BOOTS.get());
+				output.accept(ItemRegister.SPACESUIT_LEGGINGS.get());
+				output.accept(ItemRegister.SPACESUIT_CHESTPLATE.get());
+				output.accept(ItemRegister.SPACESUIT_HELMET.get());
+				output.accept(ItemRegister.OMINOUS_AXE.get());
+				output.accept(ItemRegister.OMINOUS_HOE.get());
+				output.accept(ItemRegister.OMINOUS_PICKAXE.get());
+				output.accept(ItemRegister.OMINOUS_SHOVEL.get());
+				output.accept(ItemRegister.FRENCH_BREAD.get());
+				output.accept(ItemRegister.CHANGE_STICK.get());
+				output.accept(ItemRegister.JUNCTION_CONNECTOR.get());
+				output.accept(ItemRegister.WIRE_CREATOR.get());
+				output.accept(ItemRegister.WIRE_CUTOR.get());
+				output.accept(ItemRegister.ELECTRIC_DEBUGGER_STICK.get());
+				output.accept(ItemRegister.CHEESE_BUCKET.get());
+				output.accept(ItemRegister.ROCKET_ITEM.get());
             }).build());
-    
+    /**
     public static final RegistryObject<CreativeModeTab> MAR_TOOL_TAB = CREATIVE_MODE_TABS.register("mar_tool_tab", () -> CreativeModeTab.builder()
     		.title(Component.translatable("mar_tool_tab"))
     		.withTabsBefore(MAR_MATERIAL_TAB.getId())
@@ -164,10 +196,10 @@ public class CreativeTabsRegister {
 				output.accept(ItemRegister.ELECTRIC_DEBUGGER_STICK.get());
 				output.accept(ItemRegister.CHEESE_BUCKET.get());
 				output.accept(ItemRegister.ROCKET_ITEM.get());
-            }).build());
+            }).build());*/
     
 
-    
+    /**
     public static final RegistryObject<CreativeModeTab> MAR_DORM_TAB = CREATIVE_MODE_TABS.register("mar_dorm_tab", () -> CreativeModeTab.builder()
     		.title(Component.translatable("mar_dorm_tab"))
     		.withTabsBefore(MAR_TOOL_TAB.getId())
@@ -180,5 +212,5 @@ public class CreativeTabsRegister {
             	output.accept(FastBuildRegister.spheredoor_BLOCK_ITEM.get());
             	output.accept(FastBuildRegister.basiccylinderdorm_BLOCK_ITEM.get());
             	output.accept(com.main.maring.block.norm.decoration.Register.LIGHT_PANE_BLOCK_ITEM.get());
-            }).build());
+            }).build());*/
 }

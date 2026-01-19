@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "minecraft:bedrock"
+      "item": "maring:ominous_gemstone"
     },
     "title": {
       "translate": "advancements.maringmaterial.maringmaterial_init.title"

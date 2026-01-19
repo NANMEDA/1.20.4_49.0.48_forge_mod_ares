@@ -1,10 +1,12 @@
 package com.main.maring.util.mar;
 
 import com.main.maring.Maring;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.saveddata.SavedData;
@@ -129,16 +131,20 @@ public class EnvironmentData extends SavedData {
 	}
     
 	public boolean iceMelt() {
-		return this.temperature>0&&this.pressure>500;
+		return (this.temperature>0&&this.pressure>500)||this.temperature>20;
 	}
 	
 	public boolean genClouds(){
-		return this.humid>20&&this.pressure>200;
+		return this.humid>5&&this.pressure>200&&this.temperature>=-5&&this.temperature<90;
 	}
     
     public boolean canBurn() {
     	return this.oxygen>16;
     }
+
+	public boolean genSea(){
+		return this.humid>10&&this.pressure>200&&this.temperature>-5&&this.temperature<60;
+	}
 
     public double getHumid() {
         return humid;
@@ -215,6 +221,8 @@ public class EnvironmentData extends SavedData {
     public static EnvironmentData get(ServerLevel level) {
         return getOrCreate(Objects.requireNonNull(level.getServer().getLevel(marKey)));
     }
+
+
 
 
 }

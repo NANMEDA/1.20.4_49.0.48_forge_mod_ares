@@ -1,6 +1,7 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "minecraft:block/cube_column",
   "textures": {
-    "all": "maring:block/broken_electronic_block"
+    "end": "maring:block/broken_structure_block",
+    "side": "maring:block/broken_electronic_block"
   }
 }

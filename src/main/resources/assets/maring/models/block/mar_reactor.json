@@ -1,6 +1,38 @@
 {
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "maring:block/mar_reactor"
-  }
+	"format_version": "1.9.0",
+	"credit": "Made with Blockbench",
+	"texture_size": [32, 32],
+	"textures": {
+		"1": "maring:block/mar_reactor",
+		"particle": "maring:block/mar_reactor"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 0],
+			"to": [16, 16, 16],
+			"faces": {
+				"north": {"uv": [0, 0, 8, 8], "texture": "#1", "cullface": "north"},
+				"east": {"uv": [0, 0, 8, 8], "texture": "#1", "cullface": "east"},
+				"south": {"uv": [0, 0, 8, 8], "texture": "#1", "cullface": "south"},
+				"west": {"uv": [0, 0, 8, 8], "texture": "#1", "cullface": "west"},
+				"up": {"uv": [8, 16, 0, 8], "texture": "#1", "cullface": "up"},
+				"down": {"uv": [16, 0, 8, 8], "texture": "#1", "cullface": "down"}
+			}
+		}
+	],
+	"display": {
+		"firstperson_righthand": {
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"firstperson_lefthand": {
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"ground": {
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"gui": {
+			"rotation": [30, 120, 0],
+			"scale": [0.5, 0.5, 0.5]
+		}
+	}
 }

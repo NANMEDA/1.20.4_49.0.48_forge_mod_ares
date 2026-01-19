@@ -5,6 +5,9 @@
     "maring:unbroken_glass",
     "maring:unbroken_decoration_green",
     "maring:unbroken_decoration_lightblue",
-    "maring:unbroken_fog"
+    "maring:unbroken_fog",
+    "maring:dorm_junction",
+    "maring:dorm_junction_control",
+    "maring:unbroken_junction_cement"
   ]
 }

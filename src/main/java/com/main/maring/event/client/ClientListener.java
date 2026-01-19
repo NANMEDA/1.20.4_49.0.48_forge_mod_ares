@@ -26,8 +26,8 @@ import com.main.maring.block.entity.neutral.crystalbuilder.CrystalBuilderEntityR
 import com.main.maring.block.entity.neutral.researchtable.ResearchTableEntityRender;
 import com.main.maring.machine.energy.consumer.render.CoreDiggerEntityRender;
 import com.main.maring.machine.energy.consumer.render.MicrowaveOvenEntityRender;
-import com.main.maring.machine.energy.producer.solar.render.MarReactorEntityRender;
-import com.main.maring.machine.energy.producer.solar.render.SolarBasementEntityRender;
+import com.main.maring.machine.energy.producer.render.MarReactorEntityRender;
+import com.main.maring.machine.energy.producer.render.SolarBasementEntityRender;
 import com.main.maring.machine.energy.storage.render.BatteryBasementEntityRender;
 import com.main.maring.machine.energy.viewer.EnergyViewerEntityRender;
 import com.main.maring.machine.registry.MBlockEntityRegister;

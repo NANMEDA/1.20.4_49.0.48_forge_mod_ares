@@ -3,6 +3,7 @@ package com.main.maring.block.norm.fastbuild;
 import javax.annotation.Nullable;
 
 import com.main.maring.block.entity.neutral.fastbuild.DormJunctionControlEntity;
+import com.main.maring.block.entity.neutral.fastbuild.dormcontrol.DomeControlEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
@@ -17,7 +18,6 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
 public class DormJunctionControl extends Block implements EntityBlock {
 
-	
 	public static final String global_name = "dorm_junction_control";
 
 	public DormJunctionControl(Properties p_49795_) {
@@ -58,6 +58,8 @@ public class DormJunctionControl extends Block implements EntityBlock {
                 BlockEntity oppositeEntity = pLevel.getBlockEntity(oppositePos);
                 if(oppositeEntity instanceof DormJunctionControlEntity oentity) {
                 	oentity.savePosData(oppositePos);
+					((DomeControlEntity) pLevel.getBlockEntity(pPos)).removeConnection(oppositePos);
+					((DomeControlEntity) pLevel.getBlockEntity(oppositePos)).removeConnection(pPos);
                 }
             }
             CleanAll();

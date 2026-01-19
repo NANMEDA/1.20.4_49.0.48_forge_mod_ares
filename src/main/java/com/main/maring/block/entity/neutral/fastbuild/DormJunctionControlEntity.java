@@ -2,6 +2,7 @@ package com.main.maring.block.entity.neutral.fastbuild;
 
 import com.main.maring.block.entity.BlockEntityRegister;
 import com.main.maring.block.entity.consumer.PowerConsumerEntity;
+import com.main.maring.block.entity.neutral.fastbuild.dormcontrol.DomeControlEntity;
 import com.main.maring.block.norm.BlockRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Vec3i;
@@ -26,11 +27,14 @@ import java.util.*;
  * */
 public class DormJunctionControlEntity extends PowerConsumerEntity{
 	private int X,Y,Z;
-
+	public BlockPos father;
 	
 	public DormJunctionControlEntity(BlockPos pos, BlockState pBlockState) {
 		super(BlockEntityRegister.dormjunctioncontrol_BLOCKENTITY.get(), pos, pBlockState);
-		savePosData(this.getBlockPos());
+		X = pos.getX();
+		Y = pos.getY();
+		Z = pos.getZ();
+		setChanged();
 	}
 
     @Override
@@ -76,11 +80,17 @@ public class DormJunctionControlEntity extends PowerConsumerEntity{
 	private final String TAG_X = "save_junc_x";
 	private final String TAG_Y = "save_junc_y";
 	private final String TAG_Z = "save_junc_z";
+	private final String TAG_FX = "save_father_x";
+	private final String TAG_FY = "save_father_y";
+	private final String TAG_FZ = "save_father_z";
 	
 	protected void savedata(CompoundTag tag) {
 		tag.putInt(TAG_X, X);
 		tag.putInt(TAG_Y, Y);
 		tag.putInt(TAG_Z, Z);
+		tag.putInt(TAG_FX, father.getX());
+		tag.putInt(TAG_FY, father.getZ());
+		tag.putInt(TAG_FZ, father.getZ());
 	}
 	
 	protected void loaddata(CompoundTag tag) {
@@ -93,6 +103,17 @@ public class DormJunctionControlEntity extends PowerConsumerEntity{
 		if(tag.contains(TAG_Z)) {
 			Z = tag.getInt(TAG_Z);
 		}
+		int x=0,y=0,z=0;
+		if(tag.contains(TAG_FX)) {
+			x = tag.getInt(TAG_FX);
+		}
+		if(tag.contains(TAG_FY)) {
+			y = tag.getInt(TAG_FY);
+		}
+		if(tag.contains(TAG_FZ)) {
+			z = tag.getInt(TAG_FZ);
+		}
+		father = new BlockPos(x,y,z);
 	}
 
 
@@ -110,6 +131,13 @@ public class DormJunctionControlEntity extends PowerConsumerEntity{
 		Y = pos.getY();
 		Z = pos.getZ();
 		setChanged();
+		level.sendBlockUpdated(worldPosition,getBlockState(),getBlockState(),Block.UPDATE_ALL);
+	}
+
+	public void saveFatherData(BlockPos pos){
+		this.father = pos;
+		setChanged();
+		level.sendBlockUpdated(worldPosition,getBlockState(),getBlockState(),Block.UPDATE_ALL);
 	}
 
 	public boolean connected(){

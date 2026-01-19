@@ -74,7 +74,7 @@ public class BlockElectrolyticDevice extends Block implements EntityBlock {
 
 	@Override
 	public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-		return Block.box(0, 0, 0, 16, 16, 16);
+		return Block.box(0, 0, 0, 16, 14, 16);
 	}
 
 	@Override

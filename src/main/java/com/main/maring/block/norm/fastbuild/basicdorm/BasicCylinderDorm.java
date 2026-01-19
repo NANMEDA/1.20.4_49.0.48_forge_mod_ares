@@ -62,18 +62,18 @@ public class BasicCylinderDorm extends Block {
             BlockPos control = DormHelper.fromCenterGetControlBlockPos(level, pos);
             level.setBlockAndUpdate(control, BlockRegister.dormcontrol_BLOCK.get().defaultBlockState());
             
-            createJunctionBase(level,pos.below(),rotate);
+            createJunctionBase(level,pos.below(),rotate,control);
         }
         return InteractionResult.SUCCESS;
     }
     
-    private void createJunctionBase(Level level, BlockPos pos,boolean rotate) {
+    private void createJunctionBase(Level level, BlockPos pos,boolean rotate,BlockPos control) {
     	if(rotate) {
-	    	JunctionHelper.BirthJuntionBase(level,pos.offset(14,0,0),0,pos);
-	    	JunctionHelper.BirthJuntionBase(level,pos.offset(-14,0,0),4,pos);
+	    	JunctionHelper.BirthJuntionBase(level,pos.offset(14,0,0),0,pos,control);
+	    	JunctionHelper.BirthJuntionBase(level,pos.offset(-14,0,0),4,pos,control);
     	}else {	    	
-    		JunctionHelper.BirthJuntionBase(level,pos.offset(0,0,14),6,pos);
-    		JunctionHelper.BirthJuntionBase(level,pos.offset(0,0,-14),2,pos);
+    		JunctionHelper.BirthJuntionBase(level,pos.offset(0,0,14),6,pos,control);
+    		JunctionHelper.BirthJuntionBase(level,pos.offset(0,0,-14),2,pos,control);
     	}
     	
 	}

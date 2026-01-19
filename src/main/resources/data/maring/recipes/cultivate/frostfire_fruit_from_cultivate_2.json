@@ -1,0 +1,22 @@
+{
+  "type": "maring:cultivate",
+  "input": {
+    "item": "minecraft:melon_seeds"
+  },
+  "output": {
+    "item": "maring:frostfire_fruit"
+  },
+  "condition": {
+    "ph": "ACIDIC",
+    "light": true,
+    "wavelength": "MEDIUM",
+    "salinity": "LOW",
+    "oxygen": false,
+    "catalyst": {
+      "item": "minecraft:lapis_lazuli"
+    },
+    "substrate": {
+      "item": "maring:mar_stone"
+    }
+  }
+}

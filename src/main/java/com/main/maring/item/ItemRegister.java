@@ -12,21 +12,20 @@ import com.main.maring.item.electric.BatteryHeart;
 import com.main.maring.item.food.CheesePiece;
 import com.main.maring.item.food.farm.FrostfireFruit;
 import com.main.maring.item.rocket.RocketItem;
-import com.main.maring.item.tool.ItemChangeStick;
-import com.main.maring.item.tool.ItemJunctionConnector;
-import com.main.maring.item.tool.OminousAxe;
-import com.main.maring.item.tool.OminousHoe;
-import com.main.maring.item.tool.OminousPickaxe;
-import com.main.maring.item.tool.OminousShovel;
+import com.main.maring.item.tool.*;
 import com.main.maring.item.tool.electric.ElectricDebuggerStick;
 import com.main.maring.item.tool.electric.WireCreator;
 import com.main.maring.item.tool.electric.WireCutor;
 import com.main.maring.item.weapon.ItemFrenchBread;
 import com.main.maring.item.weapon.SwordTier;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -159,6 +158,9 @@ public class ItemRegister {
     
     public static final RegistryObject<Item> CHANGE_STICK = ITEMS.register(ItemChangeStick.global_name,
             () -> new ItemChangeStick(new Item.Properties()));
+
+	public static final RegistryObject<Item> DEBUG_FUNCTION_STICK = ITEMS.register(DebugFunctionStick.global_name,
+			() -> new DebugFunctionStick(new Item.Properties()));
     
     public static final RegistryObject<Item> JUNCTION_CONNECTOR = ITEMS.register(ItemJunctionConnector.global_name,
             () -> new ItemJunctionConnector(new Item.Properties()));
@@ -226,5 +228,32 @@ public class ItemRegister {
 			() -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> HYDROGEN_TANK = ITEMS.register("hydrogen_tank",
 			() -> new Item(new Item.Properties()));
+
+	public static final RegistryObject<Item> BIOPLASTIC_BOTTLE = ITEMS.register("bioplastic_bottle",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> ACID = ITEMS.register("acid",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> ALKALI = ITEMS.register("alkali",
+			() -> new Item(new Item.Properties()));
+
+	//just like Rimworld ^^
+	public static final RegistryObject<Item> NUTRIENT_PASTE = ITEMS.register("nutrient_paste",
+			() -> new Item(new Item.Properties().food(
+					new FoodProperties.Builder()
+							.nutrition(6)
+							.saturationMod(3f)
+							.build()
+			)) {
+				@Override
+				public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
+					if (!level.isClientSide && entity instanceof Player player) {
+						int rand = new Random().nextInt(100) + 1;
+						if (rand <= 30) {
+							player.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 20 * 60));
+						}
+					}
+					return super.finishUsingItem(stack, level, entity);
+				}
+			});
 
 }

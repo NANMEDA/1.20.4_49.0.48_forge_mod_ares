@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>计划管理</title>
+<style>
+  body { font-family: sans-serif; margin: 0; padding: 0; background: #f5f5f5; }
+  .header {
+    position: fixed; top: 10px; left: 10px;
+    font-size: 18px; font-weight: bold;
+    background: #fff; padding: 5px 10px;
+    border-radius: 6px; box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    z-index: 1000;
+  }
+  #list { margin-top: 60px; padding: 10px; }
+  .item {
+    border: 1px solid #ccc; padding: 10px; margin: 5px;
+    cursor: pointer; border-radius: 8px; background: #fff;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .item:hover { background: #f0f8ff; }
+  .item button { margin-left: 10px; cursor: pointer; }
+  .form { margin: 5px 0; padding: 10px; border: 1px dashed #aaa; border-radius: 6px; background: #fff; }
+  .form input, .form textarea { display: block; margin: 5px 0; width: 95%; padding: 5px; }
+  .btn { padding: 5px 10px; margin-top: 5px; cursor: pointer; border: 1px solid #666; border-radius: 4px; background: #ddd; }
+</style>
+</head>
+<body>
+<div class="header" id="header">根目录</div>
+<div id="list"></div>
+
+<script>
+let data = {}; // 由 C++ 注入初始化JSON
+let stack = [];
+
+function sendMessageToCpp() {
+fetch('http://127.0.0.1:5000/update', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+})
+.catch(e => console.error("发送消息失败:", e));
+}
+
+function render() {
+  const list = document.getElementById("list");
+  const header = document.getElementById("header");
+  list.innerHTML = "";
+
+  let current = data;
+  for (const s of stack) current = current[s.type][s.index];
+
+  if (stack.length) {
+    header.innerHTML = `<button class="btn" onclick="goBack()">← 返回</button> ${stack[stack.length-1].name}`;
+  } else {
+    header.innerHTML = '根目录';
+  }
+
+  function createItem(displayContent, onClickCallback, onDeleteCallback) {
+    const div = document.createElement("div");
+    div.className = "item";
+    const content = document.createElement("div");
+    content.innerHTML = displayContent;
+    content.style.flexGrow = "1";
+    div.onclick = onClickCallback;
+
+    const del = document.createElement("button");
+    del.textContent = "❌";
+    del.onclick = (e) => {
+      e.stopPropagation();
+      onDeleteCallback();
+      sendMessageToCpp(); // 每次操作发送消息
+    };
+
+    div.appendChild(content);
+    div.appendChild(del);
+    list.appendChild(div);
+  }
+
+  if (!stack.length) {
+    current.categories?.forEach((cat,i)=>{
+      createItem(`<b>${cat.name}</b><br>${cat.description||""}`,
+        ()=>{ stack.push({type:"categories",index:i,name:cat.name}); render(); },
+        ()=>{ 
+          if(cat.plans?.length && !confirm("此类别下有计划，确定删除？")) return; 
+          current.categories.splice(i,1); render(); 
+        }
+      );
+    });
+    addForm("添加类别","类别名称","类别描述",(name,desc)=>{
+      current.categories.push({name,description:desc,plans:[]}); render(); 
+      sendMessageToCpp();
+    });
+  } else if (stack[stack.length-1].type==="categories") {
+    if (!current.plans) current.plans = [];
+    current.plans.forEach((plan,i)=>{
+      createItem(`<b>${plan.name}</b><br>${plan.description||""}`,
+        ()=>{ stack.push({type:"plans",index:i,name:plan.name}); render(); },
+        ()=>{ if(plan.logs?.length && !confirm("此计划下有日志，确定删除？")) return; current.plans.splice(i,1); render(); }
+      );
+    });
+    addForm("添加计划","计划名称","计划描述",(name,desc)=>{
+      current.plans.push({name,description:desc,logs:[]}); render();
+      sendMessageToCpp();
+    });
+  } else {
+    if (!current.logs) current.logs = [];
+    current.logs.forEach((log,i)=>{
+      createItem(`${log.time} - ${log.action}`,
+        ()=>{}, // 日志没有下一级
+        ()=>{ current.logs.splice(i,1); render(); sendMessageToCpp(); }
+      );
+    });
+    addForm("添加日志","日志内容","",(action)=>{
+      current.logs.push({time:new Date().toLocaleString(),action}); render();
+      sendMessageToCpp();
+    },true);
+  }
+}
+
+function addForm(title,placeholder1,placeholder2,callback,isLog=false){
+  const form=document.createElement("div");
+  form.className="form";
+  let html=`<div><b>${title}</b></div>`;
+  html+=`<input id="f1" placeholder="${placeholder1}">`;
+  if(!isLog) html+=`<textarea id="f2" placeholder="${placeholder2}"></textarea>`;
+  html+=`<button class="btn" id="ok">确认</button>`;
+  form.innerHTML=html;
+  form.querySelector("#ok").onclick=()=> {
+    const v1=form.querySelector("#f1").value.trim();
+    const v2=isLog?"":form.querySelector("#f2").value.trim();
+    if(v1) callback(v1,v2);
+  };
+  document.getElementById("list").appendChild(form);
+}
+
+function goBack(){ if(stack.length){ stack.pop(); render(); } }
+
+window.onload = async function() {
+    try {
+        let res = await fetch('http://127.0.0.1:5000/PLANdata.json');
+        data = await res.json();
+    } catch(e) {
+        console.error("获取初始数据失败", e);
+        data = { categories: [] };
+    }
+    render();
+};
+
+</script>
+</body>
+</html>

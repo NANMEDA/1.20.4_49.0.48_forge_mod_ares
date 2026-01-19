@@ -22,6 +22,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 
@@ -51,8 +52,10 @@ public class BlockWaterGather extends Block implements EntityBlock{
 	
 	@Override
     public VoxelShape getShape(BlockState p_60555_, BlockGetter p_60556_, BlockPos p_60557_, CollisionContext p_60558_) {
-		return Block.box(0,0,0,16,16,16);
-    }
+		return Shapes.or(
+				Block.box(0, 0, 0, 16, 11, 16),
+				Block.box(2, 11, 2, 14, 16, 14)
+		);    }
 
 	@Override
 	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {

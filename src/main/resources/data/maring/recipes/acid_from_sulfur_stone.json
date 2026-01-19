@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "maring:bioplastic_bottle"
+    },
+    {
+      "item": "minecraft:blaze_powder"
+    },
+    {
+      "item": "maring:mar_sulfur_stone"
+    }
+  ],
+  "result": {
+    "item": "maring:acid",
+    "count": 1
+  }
+}

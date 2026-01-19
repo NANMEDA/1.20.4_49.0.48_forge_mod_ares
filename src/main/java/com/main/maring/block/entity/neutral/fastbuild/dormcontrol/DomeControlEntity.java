@@ -11,6 +11,7 @@ import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -58,9 +59,13 @@ public class DomeControlEntity extends BlockEntity{
 	}
 	public void addConnetion(BlockPos pos) {
 		this.connectionSet.add(pos);
+		setChanged();
+		level.sendBlockUpdated(worldPosition,getBlockState(),getBlockState(),Block.UPDATE_ALL);
 	}
 	public void removeConnection(BlockPos pos) {
 		this.connectionSet.remove(pos);
+		setChanged();
+		level.sendBlockUpdated(worldPosition,getBlockState(),getBlockState(),Block.UPDATE_ALL);
 	}
 	
 	/**
@@ -145,10 +150,10 @@ public class DomeControlEntity extends BlockEntity{
 	    int index = 0; // 用于标识每个 BlockPos
 	    for (BlockPos pos : this.connectionSet) {
 	        CompoundTag posTag = new CompoundTag();
-	        posTag.putInt("x", pos.getX());
-	        posTag.putInt("y", pos.getY());
-	        posTag.putInt("z", pos.getZ());
-	        connectionTag.put("pos" + index, posTag); // 使用 pos+index 作为键
+	        posTag.putInt("domex", pos.getX());
+	        posTag.putInt("domey", pos.getY());
+	        posTag.putInt("domez", pos.getZ());
+	        connectionTag.put("domepos" + index, posTag); // 使用 pos+index 作为键
 	        index++;
 	    }
 	    tag.put(TAG_CONNECTION_SET, connectionTag);
@@ -179,9 +184,9 @@ public class DomeControlEntity extends BlockEntity{
 	        CompoundTag connectionTag = tag.getCompound(TAG_CONNECTION_SET);
 	        for (String key : connectionTag.getAllKeys()) { // 遍历所有的键
 	            CompoundTag posTag = connectionTag.getCompound(key);
-	            int x = posTag.getInt("x");
-	            int y = posTag.getInt("y");
-	            int z = posTag.getInt("z");
+	            int x = posTag.getInt("domex");
+	            int y = posTag.getInt("domey");
+	            int z = posTag.getInt("domez");
 	            this.connectionSet.add(new BlockPos(x, y, z));
 	        }
 	    }

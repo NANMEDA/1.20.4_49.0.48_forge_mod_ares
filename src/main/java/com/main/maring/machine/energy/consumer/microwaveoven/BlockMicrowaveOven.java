@@ -102,13 +102,10 @@ public class BlockMicrowaveOven extends Block implements EntityBlock{
 						return InteractionResult.SUCCESS;
 					}
 				}else if(entity.getItems().getStackInSlot(0).isEmpty() && !mainHandItemStack.isEmpty()) {
-					Item item = mainHandItemStack.getItem();
-			        if(item.isEdible()||item==Items.EGG) {
-			        	entity.getItems().setStackInSlot(0, mainHandItemStack);
-			        	player.setItemInHand(InteractionHand.MAIN_HAND, ItemStack.EMPTY);
-						level.sendBlockUpdated(pos, blockstate, blockstate, Block.UPDATE_ALL);
-						return InteractionResult.SUCCESS;
-			        }
+					entity.getItems().setStackInSlot(0, mainHandItemStack);
+					player.setItemInHand(InteractionHand.MAIN_HAND, ItemStack.EMPTY);
+					level.sendBlockUpdated(pos, blockstate, blockstate, Block.UPDATE_ALL);
+					return InteractionResult.SUCCESS;
 				}
 				ServerPlayer ifpe = (ServerPlayer)player;
 				NetworkHooks.openScreen(ifpe, new MicrowaveOvenMenuProvider(pos), pos);

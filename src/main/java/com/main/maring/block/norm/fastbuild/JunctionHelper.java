@@ -2,6 +2,7 @@ package com.main.maring.block.norm.fastbuild;
 
 import java.util.*;
 
+import com.main.maring.block.entity.neutral.fastbuild.DormJunctionControlEntity;
 import com.main.maring.block.norm.BlockRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Vec3i;
@@ -33,7 +34,7 @@ public class JunctionHelper {
      * @param pos 
      * @param emitDirection 八方向
      */
-    public static void BirthJuntionBase(Level level, BlockPos pos, int emitDirection,BlockPos center) {
+    public static void BirthJuntionBase(Level level, BlockPos pos, int emitDirection,BlockPos center,BlockPos control) {
         BlockPos[] posDoor;
         BlockPos[] posAir;
         
@@ -105,6 +106,9 @@ public class JunctionHelper {
         }
         level.setBlockAndUpdate(pos, JUNCTION_CONTROL_STATE
         		.setValue(BlockStateProperties.LEVEL, emitDirection));
+        if(level.getBlockEntity(pos) instanceof DormJunctionControlEntity jce){
+            jce.saveFatherData(control);
+        }
 
         
         for(BlockPos pos_a : posAir) {
@@ -668,7 +672,7 @@ public class JunctionHelper {
     }
 
     /**
-     * 启发
+     * A*
      * @param a
      * @param b
      * @return
@@ -703,13 +707,13 @@ public class JunctionHelper {
     }
 
     /**
-     * 是对一些基本情况，无法生成链码或者生成的链码容易出现bug进行排除
+     *
      * @param start
      * @param start_direction
      * @param end
      * @param end_direction
      * @param player
-     * @return 无法生成 - false
+     * @return  - false
      */
     private static boolean checkChainCode(Vec3i start, int start_direction, Vec3i end, int end_direction, Player player) {
     	end_direction = (end_direction+4)%8;
@@ -775,7 +779,7 @@ public class JunctionHelper {
     }
 
     
-    private static Vec3i getDirectionVector(int direction) {
+    public static Vec3i getDirectionVector(int direction) {
         switch (direction%8) {
             case 0: return new Vec3i(1, 0, 0);  // East
             case 1: return new Vec3i(1, 0, -1); // East-North
@@ -803,6 +807,5 @@ public class JunctionHelper {
         return newArray;
     }
 
-    
-    
+
 }

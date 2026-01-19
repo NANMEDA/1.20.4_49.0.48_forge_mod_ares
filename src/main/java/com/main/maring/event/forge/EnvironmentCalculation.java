@@ -1,7 +1,7 @@
 package com.main.maring.event.forge;
 
 import com.main.maring.Maring;
-import com.main.maring.event.client.MarSky;
+import com.main.maring.event.client.MarPlanetRenderer;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -52,10 +52,20 @@ public class EnvironmentCalculation {
 	                // 记录计算结果，准备分段更新
 	                data.setX(current);  // 重新设置当前状态
 	                if(data.genClouds()) {
-	                	MarSky.shouldnotRenderClouds = false;
+	                	MarPlanetRenderer.shouldnotRenderClouds = false;
 	                }else {
-	                	MarSky.shouldnotRenderClouds = true;
+	                	MarPlanetRenderer.shouldnotRenderClouds = true;
 	                }
+					if(data.genSea()){
+						MarPlanetRenderer.shouldRenderSea = true;
+					}else{
+						MarPlanetRenderer.shouldRenderSea = false;
+					}
+					if(data.getTemperature()<35){
+						MarPlanetRenderer.shouldRenderIce = true;
+					}else{
+						MarPlanetRenderer.shouldRenderIce = false;
+					}
 	            } else {
 	                // 逐段更新状态
 	                double[] current = data.getX();
@@ -64,10 +74,20 @@ public class EnvironmentCalculation {
 	                }
 	                data.setX(current);  // 更新状态
 	                if(data.genClouds()) {
-	                	MarSky.shouldnotRenderClouds = false;
+	                	MarPlanetRenderer.shouldnotRenderClouds = false;
 	                }else {
-	                	MarSky.shouldnotRenderClouds = true;
+	                	MarPlanetRenderer.shouldnotRenderClouds = true;
 	                }
+					if(data.genSea()){
+						MarPlanetRenderer.shouldRenderSea = true;
+					}else{
+						MarPlanetRenderer.shouldRenderSea = false;
+					}
+					if(data.getTemperature()<35){
+						MarPlanetRenderer.shouldRenderIce = true;
+					}else{
+						MarPlanetRenderer.shouldRenderIce = false;
+					}
 	            }
 	            
 	            // 更新段计数

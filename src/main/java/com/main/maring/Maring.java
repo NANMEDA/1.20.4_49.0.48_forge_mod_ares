@@ -33,6 +33,8 @@ import com.main.maring.vehicle.VehicleRegister;
 import com.main.maring.worldgen.feature.FeatureRegistry;
 
 import org.slf4j.Logger;
+import com.main.maring.recipe.ModRecipeSerializers;
+import com.main.maring.recipe.ModRecipeTypes;
 
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -83,7 +85,10 @@ public class Maring
         
         BrewRigster.registerBrewingRecipes();
         CanHelper.init();
-        
+
+        ModRecipeSerializers.RECIPE_SERIALIZERS.register(modEventBus);
+        ModRecipeTypes.RECIPE_TYPES.register(modEventBus);
+
         TechManager.initiateTech();
         TechTreeLayout.genLayout(TechManager.getOriginalTechNodes());
         

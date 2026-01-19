@@ -51,24 +51,24 @@ public class SphereDoor extends Block {
             BlockPos control = DormHelper.fromCenterGetControlBlockPos(level, pos);
             level.setBlockAndUpdate(control, BlockRegister.dormcontrol_BLOCK.get().defaultBlockState());
             
-            createJunctionBase(level,pos.below(),direction);
+            createJunctionBase(level,pos.below(),direction,control);
         }
         return InteractionResult.SUCCESS;
     }
     
-    private void createJunctionBase(Level level, BlockPos pos,Direction direction) {
+    private void createJunctionBase(Level level, BlockPos pos,Direction direction,BlockPos control) {
     	switch (direction) {
 		case NORTH: 
-			JunctionHelper.BirthJuntionBase(level,pos.offset(0,0,5),6,pos);
+			JunctionHelper.BirthJuntionBase(level,pos.offset(0,0,5),6,pos,control);
 			break;
 		case SOUTH: 
-			JunctionHelper.BirthJuntionBase(level,pos.offset(0,0,-5),2,pos);
+			JunctionHelper.BirthJuntionBase(level,pos.offset(0,0,-5),2,pos,control);
 			break;
 		case EAST: 
-			JunctionHelper.BirthJuntionBase(level,pos.offset(5,0,0),0,pos);
+			JunctionHelper.BirthJuntionBase(level,pos.offset(5,0,0),0,pos,control);
 			break;
 		case WEST: 
-			JunctionHelper.BirthJuntionBase(level,pos.offset(-5,0,0),4,pos);
+			JunctionHelper.BirthJuntionBase(level,pos.offset(-5,0,0),4,pos,control);
 			break;
 		default:
 			throw new IllegalArgumentException("Unexpected value: " + direction);
